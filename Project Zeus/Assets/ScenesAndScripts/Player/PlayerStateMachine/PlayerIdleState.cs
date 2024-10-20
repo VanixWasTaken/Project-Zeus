@@ -1,18 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class PlayerIdleState : MonoBehaviour
+public class PlayerIdleState : PlayerBaseState
 {
-    // Start is called before the first frame update
-    void Start()
+    
+    InputActions inputActions;
+
+    public override void EnterState(PlayerStateManager player)
     {
-        
+        inputActions = new InputActions();
+        inputActions.Mouse.Enable();
+
+        player.mAnimator.SetFloat("anSpeed", 0);
     }
 
-    // Update is called once per frame
-    void Update()
+    public override void UpdateState(PlayerStateManager player)
     {
-        
+        if (inputActions.Mouse.Click.IsPressed())
+        {
+            // Create a ray from the camera going through the mouse position
+            Ray ray = player.mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+
+            RaycastHit hit;
+
+            // perfoming the raycast
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            {
+                // Get the hit point in the 3D world
+                Vector3 clickPosition = hit.point;
+
+                player.mouseClickPos = clickPosition;
+
+                player.SwitchStates(player.walkingState);
+            }
+        }
+
+
+
     }
 }
