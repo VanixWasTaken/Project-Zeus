@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,6 +34,8 @@ public class PlayerIdleState : PlayerBaseState
 
                 player.mouseClickPos = clickPosition;
 
+                RandomizeBarks(player);
+
                 player.SwitchStates(player.walkingState);
             }
         }
@@ -40,4 +43,24 @@ public class PlayerIdleState : PlayerBaseState
 
 
     }
+
+    public void RandomizeBarks(PlayerStateManager player)
+    {
+        System.Random rnd = new System.Random();
+        int num = rnd.Next(1, 3);
+
+        if (num == 1)
+        {
+            player.soundManager.StartPlaying("Affirm1");
+        }
+        else if (num == 2)
+        {
+            player.soundManager.StartPlaying("Affirm2");
+        }
+        else if (num == 3)
+        {
+            player.soundManager.StartPlaying("Affirm3");
+        }
+    }
+
 }

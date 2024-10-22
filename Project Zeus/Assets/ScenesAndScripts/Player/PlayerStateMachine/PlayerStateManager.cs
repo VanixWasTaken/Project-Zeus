@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,7 @@ public class PlayerStateManager : MonoBehaviour
     public Animator mAnimator;
     public Camera mainCamera;
     public Vector3 mouseClickPos;
+    public SoundManager soundManager;
     #endregion
 
 
@@ -39,5 +41,4 @@ public class PlayerStateManager : MonoBehaviour
         currentState = state;
         state.EnterState(this);
     }
-
 }

@@ -484,10 +484,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: 
-    clip: {fileID: 0}
-    volume: 0
-    pitch: 0
+  - name: Affirm1
+    clip: {fileID: 8300000, guid: 004ea98efe98de44bb6e395cb3f66635, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Affirm2
+    clip: {fileID: 8300000, guid: 1adca69f1e344fe49bbb71f0cc5454eb, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Affirm3
+    clip: {fileID: 8300000, guid: 01c529f396328c8409457e3e91c8c101, type: 3}
+    volume: 1
+    pitch: 1
     loop: 0
     source: {fileID: 0}
 --- !u!4 &973673897
@@ -852,6 +864,11 @@ PrefabInstance:
       propertyPath: mainCamera
       value: 
       objectReference: {fileID: 1048343147}
+    - target: {fileID: 8591644706123088338, guid: 874aa44ff3dba454592934469e046189,
+        type: 3}
+      propertyPath: soundManager
+      value: 
+      objectReference: {fileID: 973673896}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -887,12 +904,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Priority:
-    Enabled: 0
-    m_Value: 0
+    Enabled: 1
+    m_Value: 10
   OutputChannel: 1
   StandbyUpdate: 2
-  m_StreamingVersion: 20170927
-  m_LegacyPriority: 10
+  m_StreamingVersion: 20241001
+  m_LegacyPriority: 0
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
