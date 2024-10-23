@@ -26,11 +26,12 @@ public class CommandCenterIdleState : CommandCenterBaseState
 
         if (raycastHit)
         {
-            //commandCenter.commandCenterObject.
+            commandCenter.commandCenterObject.layer = LayerMask.NameToLayer("Outline");
+            
         }
         else
         {
-            Debug.Log("Raycast hat nichts getroffen.");
+            commandCenter.commandCenterObject.layer = LayerMask.NameToLayer("Default");
         }
 
         if (raycastHit)
