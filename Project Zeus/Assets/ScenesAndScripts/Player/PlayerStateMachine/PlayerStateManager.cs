@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityCore.Audio;
 using UnityEngine;
 
 public class PlayerStateManager : MonoBehaviour
@@ -18,6 +19,7 @@ public class PlayerStateManager : MonoBehaviour
     public Camera mainCamera;
     public Vector3 mouseClickPos;
     public SoundManager soundManager;
+    public AudioController audioController;
     #endregion
 
 
@@ -45,5 +47,10 @@ public class PlayerStateManager : MonoBehaviour
     public void OnFootstep()
     {
         return;
+    }
+
+    public void printus(int num)
+    {
+        print(num);
     }
 }

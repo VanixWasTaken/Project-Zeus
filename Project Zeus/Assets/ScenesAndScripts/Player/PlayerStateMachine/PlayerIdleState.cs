@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
+using UnityCore.Audio;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -47,19 +49,21 @@ public class PlayerIdleState : PlayerBaseState
     public void RandomizeBarks(PlayerStateManager player)
     {
         System.Random rnd = new System.Random();
-        int num = rnd.Next(1, 3);
+        int num = rnd.Next(1, 4);
+
+        player.printus(num);
 
         if (num == 1)
         {
-            player.soundManager.StartPlaying("Affirm1");
+            player.audioController.PlayAudio(UnityCore.Audio.AudioType.SMAffirmBark_01);
         }
         else if (num == 2)
         {
-            player.soundManager.StartPlaying("Affirm2");
+            player.audioController.PlayAudio(UnityCore.Audio.AudioType.SMAffirmBark_02);
         }
         else if (num == 3)
         {
-            player.soundManager.StartPlaying("Affirm3");
+            player.audioController.PlayAudio(UnityCore.Audio.AudioType.SMAffirmBark_03);
         }
     }
 
