@@ -41,4 +41,9 @@ public class PlayerStateManager : MonoBehaviour
         currentState = state;
         state.EnterState(this);
     }
+
+    public void OnFootstep()
+    {
+        return;
+    }
 }
