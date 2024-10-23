@@ -28,6 +28,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Keyboard",
+            "id": "c138210c-5fa2-4753-9213-572e58c32ce0",
+            "actions": [
+                {
+                    "name": "InitializeBuilding",
+                    "type": "Button",
+                    "id": "9f4a8ae2-873f-4299-aa85-0fed72185b77",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "be0c5d17-79b1-474f-b525-7038e2f86a77",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InitializeBuilding",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
