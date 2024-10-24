@@ -243,11 +243,11 @@ MonoBehaviour:
   - source: {fileID: 68148130}
     audio:
     - type: 4
-      clip: {fileID: 8300000, guid: 72f526a6a9890f643a88e85a61c86c8a, type: 3}
+      clip: {fileID: 8300000, guid: a81b53c8d8ddfac49be8bc6fe0967021, type: 3}
     - type: 5
-      clip: {fileID: 8300000, guid: 85016e0f2b01da248b9663dd49a161b0, type: 3}
+      clip: {fileID: 8300000, guid: 90c04c351c6d9d74d83cb6db055c5af6, type: 3}
     - type: 6
-      clip: {fileID: 8300000, guid: 186de84b3207156479abe98f4958fed0, type: 3}
+      clip: {fileID: 8300000, guid: de112e8d13023e9488108dfeec1a87a0, type: 3}
 --- !u!4 &523603976
 Transform:
   m_ObjectHideFlags: 0
@@ -976,6 +976,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4395404796969592589, guid: 874aa44ff3dba454592934469e046189,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 5565899619235537443, guid: 874aa44ff3dba454592934469e046189,
         type: 3}
