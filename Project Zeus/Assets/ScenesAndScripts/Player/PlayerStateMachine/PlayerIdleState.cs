@@ -51,7 +51,6 @@ public class PlayerIdleState : PlayerBaseState
         System.Random rnd = new System.Random();
         int num = rnd.Next(1, 4);
 
-        player.printus(num);
 
         if (num == 1)
         {

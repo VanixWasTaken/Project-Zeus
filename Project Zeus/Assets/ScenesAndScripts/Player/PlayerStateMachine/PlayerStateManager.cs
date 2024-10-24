@@ -46,11 +46,31 @@ public class PlayerStateManager : MonoBehaviour
 
     public void OnFootstep()
     {
-        return;
+        PlayFootsteps();
     }
 
-    public void printus(int num)
+    private void PlayFootsteps()
     {
-        print(num);
+        int rando = Randomizer(1, 4);
+
+        if (rando == 1)
+        {
+            audioController.PlayAudio(UnityCore.Audio.AudioType.SMFootstep_01);
+        }
+        else if (rando == 2)
+        {
+            audioController.PlayAudio(UnityCore.Audio.AudioType.SMFootstep_02);
+        }
+        else if (rando == 3)
+        {
+            audioController.PlayAudio(UnityCore.Audio.AudioType.SMFootstep_03);
+        }
+    }
+
+    public int Randomizer(int min, int max)
+    {
+        System.Random rnd = new System.Random();
+        int num = rnd.Next(min, max);
+        return num;
     }
 }
