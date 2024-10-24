@@ -41,7 +41,7 @@ public class CommandCenterIdleState : CommandCenterBaseState
 
         if (inputActions.Mouse.Click.IsPressed() && commandCenter.hoversAbove)
         {
-            Debug.Log("Ich wurde angeklickt: " + hit.collider.gameObject.name);
+            commandCenter.commandCenterHUD.SetActive(true);
         }
     }
 }
