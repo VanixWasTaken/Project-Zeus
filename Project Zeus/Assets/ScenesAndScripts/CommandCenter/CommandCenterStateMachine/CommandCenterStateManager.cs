@@ -17,6 +17,7 @@ public class CommandCenterStateManager : MonoBehaviour
     public Camera mainCamera;
     public GameObject commandCenterObject;
     public bool hoversAbove = false; // Also is referenced in PlayerStateManager
+    public GameObject commandCenterHUD;
     #endregion
 
 
