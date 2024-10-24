@@ -16,6 +16,7 @@ public class PlayerStateManager : MonoBehaviour
     public Animator mAnimator;
     public Camera mainCamera;
     public Vector3 mouseClickPos;
+    public CommandCenterStateManager commandCenter;
     #endregion
 
 

@@ -26,7 +26,7 @@ public class PlayerIdleState : PlayerBaseState
             RaycastHit hit;
 
             // perfoming the raycast
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity))
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity) && player.commandCenter.hoversAbove == false)
             {
                 // Get the hit point in the 3D world
                 Vector3 clickPosition = hit.point;

@@ -4,7 +4,6 @@ using UnityEngine.InputSystem;
 public class CommandCenterIdleState : CommandCenterBaseState
 {
     InputActions inputActions;
-    bool hoversAbove = false;
 
     
 
@@ -27,7 +26,6 @@ public class CommandCenterIdleState : CommandCenterBaseState
         if (raycastHit)
         {
             commandCenter.commandCenterObject.layer = LayerMask.NameToLayer("Outline");
-            
         }
         else
         {
@@ -36,12 +34,12 @@ public class CommandCenterIdleState : CommandCenterBaseState
 
         if (raycastHit)
         {
-            hoversAbove = true;
+            commandCenter.hoversAbove = true;
         }
-        else { hoversAbove = false; }
+        else { commandCenter.hoversAbove = false; }
 
 
-        if (inputActions.Mouse.Click.IsPressed() && hoversAbove)
+        if (inputActions.Mouse.Click.IsPressed() && commandCenter.hoversAbove)
         {
             Debug.Log("Ich wurde angeklickt: " + hit.collider.gameObject.name);
         }
