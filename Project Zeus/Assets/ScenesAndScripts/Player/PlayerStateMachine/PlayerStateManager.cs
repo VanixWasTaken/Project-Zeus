@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityCore.Audio;
 using UnityEngine;
 
 public class PlayerStateManager : MonoBehaviour
@@ -17,6 +18,7 @@ public class PlayerStateManager : MonoBehaviour
     public Camera mainCamera;
     public Vector3 mouseClickPos;
     public CommandCenterStateManager commandCenter;
+    public AudioController audioController;
     #endregion
 
 
