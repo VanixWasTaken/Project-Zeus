@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
-using UnityCore.Audio;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using AudioType = UnityEngine.Audio.AudioType;
 
 public class PlayerIdleState : PlayerBaseState
 {
@@ -38,7 +38,7 @@ public class PlayerIdleState : PlayerBaseState
 
                 player.mouseClickPos = clickPosition;
 
-                RandomizeBarks(player);
+                player.audioController.RandomizeAudioClip(AudioType.SMAffirmBark_01, AudioType.SMAffirmBark_03);
 
                 player.SwitchStates(player.walkingState);
             }
@@ -52,26 +52,4 @@ public class PlayerIdleState : PlayerBaseState
     {
         //if (player)
     }
-
-
-    public void RandomizeBarks(PlayerStateManager player)
-    {
-        System.Random rnd = new System.Random();
-        int num = rnd.Next(1, 4);
-
-
-        if (num == 1)
-        {
-            player.audioController.PlayAudio(UnityCore.Audio.AudioType.SMAffirmBark_01);
-        }
-        else if (num == 2)
-        {
-            player.audioController.PlayAudio(UnityCore.Audio.AudioType.SMAffirmBark_02);
-        }
-        else if (num == 3)
-        {
-            player.audioController.PlayAudio(UnityCore.Audio.AudioType.SMAffirmBark_03);
-        }
-    }
-
 }

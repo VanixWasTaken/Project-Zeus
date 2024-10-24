@@ -1,4 +1,4 @@
-namespace UnityCore
+namespace UnityEngine
 {
     namespace Audio
     {

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using AudioType = UnityEngine.Audio.AudioType;
 
 public class PlayerWalkingState : PlayerBaseState
 {
@@ -31,19 +32,6 @@ public class PlayerWalkingState : PlayerBaseState
 
     public override void OnFootstep(PlayerStateManager player)
     {
-        RandomizeAudio(player, UnityCore.Audio.AudioType.SMFootstep_01, UnityCore.Audio.AudioType.SMFootstep_03);
-    }
-
-    private void RandomizeAudio(PlayerStateManager player, UnityCore.Audio.AudioType min, UnityCore.Audio.AudioType max)
-    {
-        int minValue = (int)min;
-        int maxValue = (int)max;
-
-        int rng = Random.Range(minValue, maxValue);
-
-        UnityCore.Audio.AudioType selectedClip = (UnityCore.Audio.AudioType)rng;
-
-        player.audioController.PlayAudio(selectedClip);
-        
+        player.audioController.RandomizeAudioPitch(AudioType.SMFootstep_01, 0.8f, 1.2f);
     }
 }

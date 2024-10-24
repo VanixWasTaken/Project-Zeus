@@ -1,9 +1,7 @@
+using System;
 using System.Collections;
-using System.Runtime.CompilerServices;
-using Unity.Collections.LowLevel.Unsafe;
-using UnityEngine;
 
-namespace UnityCore
+namespace UnityEngine
 {
     namespace Audio
     {
@@ -36,17 +34,25 @@ namespace UnityCore
             {
                 public AudioAction action;
                 public AudioType type;
+                public AudioType type2;
+                public float pitch;
+                public float pitch2;
 
-                public AudioJob(AudioAction _action, AudioType _type)
+                public AudioJob(AudioAction _action, AudioType _type, AudioType _type2 = AudioType.none, float _pitch = 1.0f, float _pitch2 = 1.0f)
                 {
                     action = _action;
                     type = _type;
+                    type2 = _type2;
+                    pitch = _pitch;
+                    pitch2 = _pitch2;
                 }
             }
 
             private enum AudioAction
             {
                 START,
+                RANDOMIZE_CLIP,
+                RANDOMIZE_PITCH,
                 STOP,
                 RESTART
             }
@@ -72,6 +78,16 @@ namespace UnityCore
             public void PlayAudio(AudioType _type)
             {
                 AddJob(new AudioJob(AudioAction.START, _type));
+            }
+
+            public void RandomizeAudioClip(AudioType _type, AudioType _type2)
+            {
+                AddJob(new AudioJob(AudioAction.RANDOMIZE_CLIP, _type, _type2));
+            }
+
+            public void RandomizeAudioPitch(AudioType _type, float _min_pitch, float _max_pitch)
+            {
+                AddJob(new AudioJob(AudioAction.RANDOMIZE_PITCH, _type, AudioType.none, _min_pitch, _max_pitch));
             }
 
             public void StopAudio(AudioType _type)
@@ -128,12 +144,21 @@ namespace UnityCore
             {
                 AudioTrack _track = (AudioTrack)m_AudioTable[_job.type];
                 _track.source.clip = GetAudioClipFromAudioTrack(_job.type, _track);
+                _track.source.pitch = GetRandomPitch(_job.pitch, _job.pitch2);
 
                 switch (_job.action)
                 {
                     case AudioAction.START:
                         _track.source.Play();
                     break;
+
+                    case AudioAction.RANDOMIZE_CLIP:
+                        _track.source.Play();
+                        break;
+
+                    case AudioAction.RANDOMIZE_PITCH:
+                        _track.source.Play();
+                        break;
 
                     case AudioAction.STOP:
                         _track.source.Stop();
@@ -146,13 +171,15 @@ namespace UnityCore
                 }
 
                 m_JobTable.Remove(_job.type);
-                Log("Job count: " + m_JobTable.Count);
 
                 yield return null;
             }
 
             private void AddJob(AudioJob _job)
             {
+                // randomize types
+                _job.type = GetRandomType(_job.type, _job.type2);
+
                 // remove conflicting jobs
                 RemoveConflictingJobs(_job.type);
 
@@ -160,7 +187,32 @@ namespace UnityCore
                 IEnumerator _jobRunner = RunAudioJob(_job);
                 m_JobTable.Add(_job.type, _jobRunner);
                 StartCoroutine(_jobRunner);
-                Log("Starting job on [" + _job.type + "] with operation: " + _job.action + ".");
+            }
+
+            private AudioType GetRandomType(AudioType _type, AudioType _type2)
+            {
+                if ( _type2 != AudioType.none)
+                {
+                    int rng = Random.Range((int)_type, (int) _type2 + 1);
+                    return (AudioType)rng;
+                }
+                else
+                {
+                    return _type;
+                }
+            }
+
+            private float GetRandomPitch(float _min_pitch, float _max_pitch)
+            {
+                if (_min_pitch != _max_pitch)
+                {
+                    float randomPitch = Random.Range(_min_pitch, _max_pitch);
+                    return (float)randomPitch;
+                }
+                else
+                {
+                    return 1.0f;
+                }
             }
 
             private void RemoveJob(AudioType _type)
