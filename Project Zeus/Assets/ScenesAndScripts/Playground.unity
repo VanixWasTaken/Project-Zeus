@@ -264,7 +264,6 @@ MonoBehaviour:
   debug: 1
   tracks:
   - source: {fileID: 1444040022}
-    source2: {fileID: 0}
     audio:
     - type: 1
       clip: {fileID: 8300000, guid: 004ea98efe98de44bb6e395cb3f66635, type: 3}
@@ -273,10 +272,13 @@ MonoBehaviour:
     - type: 3
       clip: {fileID: 8300000, guid: 01c529f396328c8409457e3e91c8c101, type: 3}
   - source: {fileID: 68148130}
-    source2: {fileID: 0}
     audio:
     - type: 4
       clip: {fileID: 8300000, guid: a81b53c8d8ddfac49be8bc6fe0967021, type: 3}
+    - type: 5
+      clip: {fileID: 8300000, guid: 90c04c351c6d9d74d83cb6db055c5af6, type: 3}
+    - type: 6
+      clip: {fileID: 8300000, guid: de112e8d13023e9488108dfeec1a87a0, type: 3}
 --- !u!4 &523603976
 Transform:
   m_ObjectHideFlags: 0
@@ -1343,7 +1345,13 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4172377243619080721, guid: 5c4f4c1cc6972684087ed3289c01e140, type: 3}
+    - {fileID: 3839855453487104469, guid: 5c4f4c1cc6972684087ed3289c01e140, type: 3}
+    - {fileID: 7994090246559646050, guid: 5c4f4c1cc6972684087ed3289c01e140, type: 3}
+    - {fileID: 5836621544690316071, guid: 5c4f4c1cc6972684087ed3289c01e140, type: 3}
+    - {fileID: 3480055858887162348, guid: 5c4f4c1cc6972684087ed3289c01e140, type: 3}
+    - {fileID: 3423684469629129691, guid: 5c4f4c1cc6972684087ed3289c01e140, type: 3}
     m_RemovedGameObjects:
     - {fileID: 9212131145346023700, guid: 5c4f4c1cc6972684087ed3289c01e140, type: 3}
     - {fileID: 3348771292936394227, guid: 5c4f4c1cc6972684087ed3289c01e140, type: 3}
@@ -1461,6 +1469,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1447976440}
   - component: {fileID: 1447976439}
+  - component: {fileID: 1447976441}
   m_Layer: 0
   m_Name: VirtualCamera1
   m_TagString: Untagged
@@ -1537,6 +1546,18 @@ Transform:
   - {fileID: 1003079532}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 53.95, y: -45, z: 0}
+--- !u!114 &1447976441
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1447976438}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2420269ce43520844ba8891c843aadef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1551855586 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3715906669690748447, guid: 5c4f4c1cc6972684087ed3289c01e140,
