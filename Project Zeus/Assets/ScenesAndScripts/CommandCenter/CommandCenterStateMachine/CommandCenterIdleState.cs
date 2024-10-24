@@ -46,7 +46,7 @@ public class CommandCenterIdleState : CommandCenterBaseState
 
         if (inputActions.Mouse.Click.IsPressed() && commandCenter.hoversAbove)
         {
-            commandCenter.commandCenterHUD.SetActive(true);
+            commandCenter.SwitchStates(commandCenter.clickedState);
         }
     }
 }

@@ -42,6 +42,21 @@ public class PlayerIdleState : PlayerBaseState
                 player.SwitchStates(player.walkingState);
             }
         }
+
+        
+        Ray ray2 = player.mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit hit2;
+
+        
+        if (Physics.Raycast(ray2, out hit2, Mathf.Infinity))
+        {
+            int hitLayer = hit2.collider.gameObject.layer;
+
+            if (LayerMask.LayerToName(hitLayer) == "UI")
+            {
+                player.shouldMoveOnClick = false;
+            }
+        }
     }
 
 

@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CommandCenterStateManager : MonoBehaviour
 {
@@ -18,7 +20,10 @@ public class CommandCenterStateManager : MonoBehaviour
     public GameObject commandCenterObject;
     public bool hoversAbove = false;
     public GameObject commandCenterHUD;
+    public GameObject commandCenterSpawnTroopButton;
     public PlayerStateManager player;
+    public GraphicRaycaster graphicRaycaster;
+    public EventSystem eventSystem;
     #endregion
 
 
