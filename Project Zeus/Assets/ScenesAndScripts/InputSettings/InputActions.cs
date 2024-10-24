@@ -35,6 +35,24 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RightClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""d154e4c1-3447-44f0-b715-8070fe050106"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Released"",
+                    ""type"": ""Button"",
+                    ""id"": ""e199c84f-9532-4202-8344-598c959a578e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Press(behavior=1)"",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -46,6 +64,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Click"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a0bf3e63-8807-483d-aca7-9590842139c8"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RightClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""99110ad0-82c3-4060-b8d2-8885dcc2ea3b"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": ""Hold,Hold"",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Released"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -85,6 +125,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         // Mouse
         m_Mouse = asset.FindActionMap("Mouse", throwIfNotFound: true);
         m_Mouse_Click = m_Mouse.FindAction("Click", throwIfNotFound: true);
+        m_Mouse_RightClick = m_Mouse.FindAction("RightClick", throwIfNotFound: true);
+        m_Mouse_Released = m_Mouse.FindAction("Released", throwIfNotFound: true);
         // Keyboard
         m_Keyboard = asset.FindActionMap("Keyboard", throwIfNotFound: true);
         m_Keyboard_InitializeBuilding = m_Keyboard.FindAction("InitializeBuilding", throwIfNotFound: true);
@@ -150,11 +192,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Mouse;
     private List<IMouseActions> m_MouseActionsCallbackInterfaces = new List<IMouseActions>();
     private readonly InputAction m_Mouse_Click;
+    private readonly InputAction m_Mouse_RightClick;
+    private readonly InputAction m_Mouse_Released;
     public struct MouseActions
     {
         private @InputActions m_Wrapper;
         public MouseActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Click => m_Wrapper.m_Mouse_Click;
+        public InputAction @RightClick => m_Wrapper.m_Mouse_RightClick;
+        public InputAction @Released => m_Wrapper.m_Mouse_Released;
         public InputActionMap Get() { return m_Wrapper.m_Mouse; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -167,6 +213,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Click.started += instance.OnClick;
             @Click.performed += instance.OnClick;
             @Click.canceled += instance.OnClick;
+            @RightClick.started += instance.OnRightClick;
+            @RightClick.performed += instance.OnRightClick;
+            @RightClick.canceled += instance.OnRightClick;
+            @Released.started += instance.OnReleased;
+            @Released.performed += instance.OnReleased;
+            @Released.canceled += instance.OnReleased;
         }
 
         private void UnregisterCallbacks(IMouseActions instance)
@@ -174,6 +226,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Click.started -= instance.OnClick;
             @Click.performed -= instance.OnClick;
             @Click.canceled -= instance.OnClick;
+            @RightClick.started -= instance.OnRightClick;
+            @RightClick.performed -= instance.OnRightClick;
+            @RightClick.canceled -= instance.OnRightClick;
+            @Released.started -= instance.OnReleased;
+            @Released.performed -= instance.OnReleased;
+            @Released.canceled -= instance.OnReleased;
         }
 
         public void RemoveCallbacks(IMouseActions instance)
@@ -240,6 +298,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     public interface IMouseActions
     {
         void OnClick(InputAction.CallbackContext context);
+        void OnRightClick(InputAction.CallbackContext context);
+        void OnReleased(InputAction.CallbackContext context);
     }
     public interface IKeyboardActions
     {
