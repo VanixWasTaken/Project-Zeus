@@ -23,7 +23,6 @@ public class CommandCenterStateManager : MonoBehaviour
     public GameObject commandCenterSpawnTroopButton;
     public PlayerStateManager player;
     public GraphicRaycaster graphicRaycaster;
-    public EventSystem eventSystem;
     #endregion
 
 
