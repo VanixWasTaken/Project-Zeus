@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class CommandCenterStateManager : MonoBehaviour
 {
     // All available CommandCenterStates
-    #region PlayerStates
+    #region CommandCenterStates
     CommandCenterBaseState currentState;
     public CommandCenterIdleState idleState = new CommandCenterIdleState();
     public CommandCenterClickedState clickedState = new CommandCenterClickedState();
@@ -16,8 +18,11 @@ public class CommandCenterStateManager : MonoBehaviour
     #region References
     public Camera mainCamera;
     public GameObject commandCenterObject;
-    public bool hoversAbove = false; // Also is referenced in PlayerStateManager
+    public bool hoversAbove = false;
     public GameObject commandCenterHUD;
+    public GameObject commandCenterSpawnTroopButton;
+    public PlayerStateManager player;
+    public GraphicRaycaster graphicRaycaster;
     #endregion
 
 

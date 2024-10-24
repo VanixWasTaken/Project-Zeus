@@ -10,7 +10,6 @@ public class PlayerIdleState : PlayerBaseState
 {
     
     InputActions inputActions;
-    bool shouldMoveOnClick = true;
 
 
     public override void EnterState(PlayerStateManager player)
@@ -31,7 +30,7 @@ public class PlayerIdleState : PlayerBaseState
             RaycastHit hit;
 
             // perfoming the raycast
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity) && shouldMoveOnClick)
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity) && player.shouldMoveOnClick && !player.mouseAboveUI)
             {
                 // Get the hit point in the 3D world
                 Vector3 clickPosition = hit.point;
@@ -44,12 +43,20 @@ public class PlayerIdleState : PlayerBaseState
             }
         }
 
+        
+        Ray ray2 = player.mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
+        RaycastHit hit2;
 
+        
+        if (Physics.Raycast(ray2, out hit2, Mathf.Infinity))
+        {
+            int hitLayer = hit2.collider.gameObject.layer;
 
-    }
-
-    public void ShouldMoveOnClick(PlayerStateManager player)
-    {
-        //if (player)
+            if (LayerMask.LayerToName(hitLayer) == "UI")
+            {
+                player.mouseAboveUI = true;
+            }
+            else { player.mouseAboveUI = false; }
+        }
     }
 }

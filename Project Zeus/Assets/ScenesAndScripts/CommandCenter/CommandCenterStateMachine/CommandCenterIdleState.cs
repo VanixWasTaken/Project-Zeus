@@ -34,14 +34,19 @@ public class CommandCenterIdleState : CommandCenterBaseState
 
         if (raycastHit)
         {
+            commandCenter.player.shouldMoveOnClick = false;
             commandCenter.hoversAbove = true;
         }
-        else { commandCenter.hoversAbove = false; }
+        else
+        {
+            commandCenter.player.shouldMoveOnClick = true;
+            commandCenter.hoversAbove = false;
+        }
 
 
         if (inputActions.Mouse.Click.IsPressed() && commandCenter.hoversAbove)
         {
-            commandCenter.commandCenterHUD.SetActive(true);
+            commandCenter.SwitchStates(commandCenter.clickedState);
         }
     }
 }
