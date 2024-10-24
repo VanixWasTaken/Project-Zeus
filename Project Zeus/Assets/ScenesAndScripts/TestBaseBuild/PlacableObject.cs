@@ -4,15 +4,13 @@ using UnityEngine;
 
 public class PlacableObject : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public bool Placed { get; private set; }
+    public Vector3Int Size { get; private set; }
+    private Vector3[] Vertices;
+
+    private void GetColliderVertexPositionsLocal()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
