@@ -134,7 +134,6 @@ namespace UnityEngine
                         else
                         {
                             m_AudioTable.Add(_obj.type, _track);
-                            Log("Registering audio [" + _obj.type + "].");
                         }
                     }
                 }
