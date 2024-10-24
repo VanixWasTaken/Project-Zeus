@@ -27,6 +27,7 @@ namespace UnityEngine
             public class AudioTrack
             {
                 public AudioSource source;
+                public AudioSource source2;
                 public AudioObject[] audio;
             }
 
@@ -134,6 +135,7 @@ namespace UnityEngine
                         else
                         {
                             m_AudioTable.Add(_obj.type, _track);
+                            Log("Registering audio [" + _obj.type + "].");
                         }
                     }
                 }
@@ -148,15 +150,15 @@ namespace UnityEngine
                 switch (_job.action)
                 {
                     case AudioAction.START:
-                        _track.source.Play();
+                        HandlePolyphony(_job);
                     break;
 
                     case AudioAction.RANDOMIZE_CLIP:
-                        _track.source.Play();
+                        HandlePolyphony(_job);
                         break;
 
                     case AudioAction.RANDOMIZE_PITCH:
-                        _track.source.Play();
+                        HandlePolyphony(_job);
                         break;
 
                     case AudioAction.STOP:
@@ -172,6 +174,25 @@ namespace UnityEngine
                 m_JobTable.Remove(_job.type);
 
                 yield return null;
+            }
+
+            private void HandlePolyphony(AudioJob _job)
+            {
+                AudioTrack _track = (AudioTrack)m_AudioTable[_job.type];
+                AudioClip newClip = GetAudioClipFromAudioTrack(_job.type, _track);
+
+                // Create a new AudioSource for this specific clip to allow multiple sounds to play at the same time
+                AudioSource newSource = Instantiate(_track.source, _track.source.transform.parent);
+                newSource.clip = newClip;
+
+                if (_job.action == AudioAction.RANDOMIZE_PITCH)
+                {
+                    newSource.pitch = GetRandomPitch(_job.pitch, _job.pitch2);
+                }
+
+                newSource.Play();
+
+                Destroy(newSource.gameObject, newClip.length);
             }
 
             private void AddJob(AudioJob _job)
