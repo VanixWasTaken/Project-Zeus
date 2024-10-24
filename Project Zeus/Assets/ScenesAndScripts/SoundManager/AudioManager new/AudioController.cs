@@ -13,8 +13,8 @@ namespace UnityEngine
             public bool debug;
             public AudioTrack[] tracks;
 
-            private Hashtable m_AudioTable; //relationship between audio types (key) and audio tracks (value)
-            private Hashtable m_JobTable;   //relationship between audio types (key) and jobs (value) (Coroutine, IEnumerator)
+            private Hashtable mAudioTable; //relationship between audio types (key) and audio tracks (value)
+            private Hashtable mJobTable;   //relationship between audio types (key) and jobs (value) (Coroutine, IEnumerator)
 
             [System.Serializable]
             public class AudioObject
@@ -27,7 +27,6 @@ namespace UnityEngine
             public class AudioTrack
             {
                 public AudioSource source;
-                public AudioSource source2;
                 public AudioObject[] audio;
             }
 
@@ -107,14 +106,14 @@ namespace UnityEngine
             private void Configure()
             {
                 instance = this;
-                m_AudioTable = new Hashtable();
-                m_JobTable = new Hashtable();
+                mAudioTable = new Hashtable();
+                mJobTable = new Hashtable();
                 GenerateAudioTable();
             }
 
             private void Dispose()
             {
-                foreach (DictionaryEntry _entry in m_JobTable)
+                foreach (DictionaryEntry _entry in mJobTable)
                 {
                     IEnumerator _job = (IEnumerator)_entry.Value;
                     StopCoroutine(_job);
@@ -128,13 +127,13 @@ namespace UnityEngine
                     foreach(AudioObject _obj in _track.audio)
                     {
                         // do not duplicate keys
-                        if (m_AudioTable.ContainsKey(_obj.type))
+                        if (mAudioTable.ContainsKey(_obj.type))
                         {
                             LogWarning("You are trying to register audio [" + _obj.type + "] that has already been registered.");
                         }
                         else
                         {
-                            m_AudioTable.Add(_obj.type, _track);
+                            mAudioTable.Add(_obj.type, _track);
                             Log("Registering audio [" + _obj.type + "].");
                         }
                     }
@@ -143,7 +142,7 @@ namespace UnityEngine
 
             private IEnumerator RunAudioJob(AudioJob _job)
             {
-                AudioTrack _track = (AudioTrack)m_AudioTable[_job.type];
+                AudioTrack _track = (AudioTrack)mAudioTable[_job.type];
                 _track.source.clip = GetAudioClipFromAudioTrack(_job.type, _track);
                 _track.source.pitch = GetRandomPitch(_job.pitch, _job.pitch2);
 
@@ -171,18 +170,18 @@ namespace UnityEngine
                     break;
                 }
 
-                m_JobTable.Remove(_job.type);
+                mJobTable.Remove(_job.type);
 
                 yield return null;
             }
 
             private void HandlePolyphony(AudioJob _job)
             {
-                AudioTrack _track = (AudioTrack)m_AudioTable[_job.type];
-                AudioClip newClip = GetAudioClipFromAudioTrack(_job.type, _track);
+                AudioTrack track = (AudioTrack)mAudioTable[_job.type];
+                AudioClip newClip = GetAudioClipFromAudioTrack(_job.type, track);
 
                 // Create a new AudioSource for this specific clip to allow multiple sounds to play at the same time
-                AudioSource newSource = Instantiate(_track.source, _track.source.transform.parent);
+                AudioSource newSource = Instantiate(track.source, track.source.transform.parent);
                 newSource.clip = newClip;
 
                 if (_job.action == AudioAction.RANDOMIZE_PITCH)
@@ -204,9 +203,9 @@ namespace UnityEngine
                 RemoveConflictingJobs(_job.type);
 
                 // start job
-                IEnumerator _jobRunner = RunAudioJob(_job);
-                m_JobTable.Add(_job.type, _jobRunner);
-                StartCoroutine(_jobRunner);
+                IEnumerator jobRunner = RunAudioJob(_job);
+                mJobTable.Add(_job.type, jobRunner);
+                StartCoroutine(jobRunner);
             }
 
             private AudioType GetRandomType(AudioType _type, AudioType _type2)
@@ -237,31 +236,31 @@ namespace UnityEngine
 
             private void RemoveJob(AudioType _type)
             {
-                if (!m_JobTable.ContainsKey(_type))
+                if (!mJobTable.ContainsKey(_type))
                 {
                     LogWarning("Trying to stop a job [" + _type + "] that is not running.");
                     return;
                 }
 
-                IEnumerator _runningJob = (IEnumerator)m_JobTable[_type];
+                IEnumerator _runningJob = (IEnumerator)mJobTable[_type];
                 StopCoroutine(_runningJob);
-                m_JobTable.Remove(_type);
+                mJobTable.Remove(_type);
             }
 
             private void RemoveConflictingJobs(AudioType _type)
             {
-                if (m_JobTable.ContainsKey(_type))
+                if (mJobTable.ContainsKey(_type))
                 {
                     RemoveJob(_type);
                 }
 
                 AudioType _conflictAudio = AudioType.none;
                 
-                foreach(DictionaryEntry _entry in m_JobTable)
+                foreach(DictionaryEntry _entry in mJobTable)
                 {
                     AudioType _audioType = (AudioType)_entry.Key;
-                    AudioTrack _audioTrackInUse = (AudioTrack)m_AudioTable[_audioType];
-                    AudioTrack _audioTrackNeeded = (AudioTrack)m_AudioTable[_type];
+                    AudioTrack _audioTrackInUse = (AudioTrack)mAudioTable[_audioType];
+                    AudioTrack _audioTrackNeeded = (AudioTrack)mAudioTable[_type];
 
                     if (_audioTrackNeeded.source == _audioTrackInUse.source) 
                     {
