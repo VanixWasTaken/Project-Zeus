@@ -30,7 +30,7 @@ public class PlayerIdleState : PlayerBaseState
             RaycastHit hit;
 
             // perfoming the raycast
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity) && player.shouldMoveOnClick)
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity) && player.shouldMoveOnClick && !player.mouseAboveUI)
             {
                 // Get the hit point in the 3D world
                 Vector3 clickPosition = hit.point;
@@ -54,8 +54,9 @@ public class PlayerIdleState : PlayerBaseState
 
             if (LayerMask.LayerToName(hitLayer) == "UI")
             {
-                player.shouldMoveOnClick = false;
+                player.mouseAboveUI = true;
             }
+            else { player.mouseAboveUI = false; }
         }
     }
 

@@ -20,6 +20,7 @@ public class PlayerStateManager : MonoBehaviour
     public CommandCenterStateManager commandCenter;
     public AudioController audioController;
     public bool shouldMoveOnClick;
+    public bool mouseAboveUI;
     #endregion
 
 
