@@ -10,6 +10,8 @@ public class PlayerIdleState : PlayerBaseState
 {
     
     InputActions inputActions;
+    bool shouldMoveOnClick = true;
+
 
     public override void EnterState(PlayerStateManager player)
     {
@@ -29,7 +31,7 @@ public class PlayerIdleState : PlayerBaseState
             RaycastHit hit;
 
             // perfoming the raycast
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity) && player.commandCenter.hoversAbove == false)
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity) && shouldMoveOnClick)
             {
                 // Get the hit point in the 3D world
                 Vector3 clickPosition = hit.point;
@@ -45,6 +47,12 @@ public class PlayerIdleState : PlayerBaseState
 
 
     }
+
+    public void ShouldMoveOnClick(PlayerStateManager player)
+    {
+        //if (player)
+    }
+
 
     public void RandomizeBarks(PlayerStateManager player)
     {
