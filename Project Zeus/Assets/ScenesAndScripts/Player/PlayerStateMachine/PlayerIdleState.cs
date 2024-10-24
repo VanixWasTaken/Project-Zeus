@@ -10,7 +10,6 @@ public class PlayerIdleState : PlayerBaseState
 {
     
     InputActions inputActions;
-    bool shouldMoveOnClick = true;
 
 
     public override void EnterState(PlayerStateManager player)
@@ -31,7 +30,7 @@ public class PlayerIdleState : PlayerBaseState
             RaycastHit hit;
 
             // perfoming the raycast
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity) && shouldMoveOnClick)
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity) && player.shouldMoveOnClick)
             {
                 // Get the hit point in the 3D world
                 Vector3 clickPosition = hit.point;
@@ -43,14 +42,6 @@ public class PlayerIdleState : PlayerBaseState
                 player.SwitchStates(player.walkingState);
             }
         }
-
-
-
-    }
-
-    public void ShouldMoveOnClick(PlayerStateManager player)
-    {
-        //if (player)
     }
 
 

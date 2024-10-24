@@ -19,6 +19,7 @@ public class PlayerStateManager : MonoBehaviour
     public Vector3 mouseClickPos;
     public CommandCenterStateManager commandCenter;
     public AudioController audioController;
+    public bool shouldMoveOnClick;
     #endregion
 
 
@@ -46,6 +47,11 @@ public class PlayerStateManager : MonoBehaviour
     public void OnFootstep()
     {
         currentState.OnFootstep(this);
+    }
+
+    public void ShouldMoveOnClick()
+    {
+        
     }
 
 }
