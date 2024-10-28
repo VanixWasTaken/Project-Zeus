@@ -13,6 +13,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "RightClick",
+                    "type": "Button",
+                    "id": "d154e4c1-3447-44f0-b715-8070fe050106",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Released",
+                    "type": "Button",
+                    "id": "e199c84f-9532-4202-8344-598c959a578e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press(behavior=1)",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -24,6 +42,56 @@
                     "processors": "",
                     "groups": "",
                     "action": "Click",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a0bf3e63-8807-483d-aca7-9590842139c8",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RightClick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "99110ad0-82c3-4060-b8d2-8885dcc2ea3b",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Hold,Hold",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Released",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Keyboard",
+            "id": "c138210c-5fa2-4753-9213-572e58c32ce0",
+            "actions": [
+                {
+                    "name": "InitializeBuilding",
+                    "type": "Button",
+                    "id": "9f4a8ae2-873f-4299-aa85-0fed72185b77",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "be0c5d17-79b1-474f-b525-7038e2f86a77",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "InitializeBuilding",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

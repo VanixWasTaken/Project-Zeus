@@ -4,8 +4,13 @@
 TagManager:
   serializedVersion: 3
   tags:
+<<<<<<< HEAD
   - CinemachineTarget
   - SpawnTroopsButton
+=======
+  - BuildSystem
+  - CinemachineTarget
+>>>>>>> Level-Ausbauen
   layers:
   - Default
   - TransparentFX
