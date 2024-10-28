@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class PlayerStateManager : MonoBehaviour
+public class UnitStateManager : MonoBehaviour
 {
     // All available PlayerStates
     #region PlayerStates
-    PlayerBaseState currentState;
-    public PlayerIdleState idleState = new PlayerIdleState();
-    public PlayerWalkingState walkingState = new PlayerWalkingState();
+    UnitBaseState currentState;
+    public UnitIdleState idleState = new UnitIdleState();
+    public UnitWalkingState walkingState = new UnitWalkingState();
     #endregion
 
     // All References
@@ -19,8 +19,8 @@ public class PlayerStateManager : MonoBehaviour
     public Vector3 mouseClickPos;
     public CommandCenterStateManager commandCenter;
     public AudioController audioController;
-    public bool shouldMoveOnClick;
-    public bool mouseAboveUI;
+    public Vector3 targetPosition;
+    private bool isSelected;
     #endregion
 
 
@@ -39,7 +39,7 @@ public class PlayerStateManager : MonoBehaviour
     }
 
 
-    public void SwitchStates(PlayerBaseState state)
+    public void SwitchStates(UnitBaseState state)
     {
         currentState = state;
         state.EnterState(this);
@@ -50,9 +50,22 @@ public class PlayerStateManager : MonoBehaviour
         currentState.OnFootstep(this);
     }
 
-    public void ShouldMoveOnClick()
+    public void OnCommandMove(Vector3 destination)
     {
-        
+        targetPosition = destination;
+        SwitchStates(walkingState);
+    }
+
+    public void Select()
+    {
+        isSelected = true;
+        // change visual to make selection apparent
+    }
+
+    public void Deselect()
+    {
+        isSelected = false;
+        // change visual to make deselection apparent
     }
 
 }
