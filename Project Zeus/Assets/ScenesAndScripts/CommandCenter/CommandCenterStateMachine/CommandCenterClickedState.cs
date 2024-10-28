@@ -16,6 +16,7 @@ public class CommandCenterClickedState : CommandCenterBaseState
         inputActions.Mouse.Enable();
 
         commandCenter.commandCenterHUD.SetActive(true);
+        commandCenter.commandCenterSpawnTroopButton.SetActive(true);
     }
 
     public override void UpdateState(CommandCenterStateManager commandCenter)
