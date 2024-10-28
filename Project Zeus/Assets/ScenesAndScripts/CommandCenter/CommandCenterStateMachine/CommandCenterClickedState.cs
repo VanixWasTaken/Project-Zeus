@@ -38,18 +38,21 @@ public class CommandCenterClickedState : CommandCenterBaseState
             commandCenter.commandCenterObject.layer = LayerMask.NameToLayer("Default");
         }
 
+
+
+        /*
         if (raycastHit)
         {
-            commandCenter.player.shouldMoveOnClick = false;
+            commandCenter.unit.shouldMoveOnClick = false;
             commandCenter.hoversAbove = true;
         }
         else
         {
-            commandCenter.player.shouldMoveOnClick = true;
+            commandCenter.unit.shouldMoveOnClick = true;
             commandCenter.hoversAbove = false;
         }
 
-
+        */
 
 
 

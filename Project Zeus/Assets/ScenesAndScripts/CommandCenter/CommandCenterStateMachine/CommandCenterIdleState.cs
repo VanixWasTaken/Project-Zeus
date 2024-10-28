@@ -35,12 +35,12 @@ public class CommandCenterIdleState : CommandCenterBaseState
         /*
         if (raycastHit)
         {
-            commandCenter.player.shouldMoveOnClick = false;
+            commandCenter.unit.shouldMoveOnClick = false;
             commandCenter.hoversAbove = true;
         }
         else
         {
-            commandCenter.player.shouldMoveOnClick = true;
+            commandCenter.unit.shouldMoveOnClick = true;
             commandCenter.hoversAbove = false;
         }
         */
