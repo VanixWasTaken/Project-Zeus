@@ -17,7 +17,6 @@ public class CommandCenterIdleState : CommandCenterBaseState
     public override void UpdateState(CommandCenterStateManager commandCenter)
     {
         
-
         Vector2 mousePosition = Mouse.current.position.ReadValue();
         Ray ray = commandCenter.mainCamera.ScreenPointToRay(mousePosition);
         RaycastHit hit;
@@ -29,32 +28,21 @@ public class CommandCenterIdleState : CommandCenterBaseState
         if (raycastHit)
         {
             commandCenter.commandCenterObject.layer = LayerMask.NameToLayer("Outline");
-        }
-        else
-        {
-            commandCenter.commandCenterObject.layer = LayerMask.NameToLayer("Default");
-        }
-
-        /*
-        if (raycastHit)
-        {
-            commandCenter.unit.shouldMoveOnClick = false;
             commandCenter.hoversAbove = true;
         }
         else
         {
-            commandCenter.unit.shouldMoveOnClick = true;
+            commandCenter.commandCenterObject.layer = LayerMask.NameToLayer("Default");
             commandCenter.hoversAbove = false;
         }
-        */
+
 
 
         if (inputActions.Mouse.Click.IsPressed() && commandCenter.hoversAbove)
         {
             commandCenter.SwitchStates(commandCenter.clickedState);
+            Debug.Log("Command Center wurde angeklickt");
         }
-
-        Debug.Log("asdasd");
     }
 }
 

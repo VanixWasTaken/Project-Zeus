@@ -32,30 +32,13 @@ public class CommandCenterClickedState : CommandCenterBaseState
         if (raycastHit)
         {
             commandCenter.commandCenterObject.layer = LayerMask.NameToLayer("Outline");
-        }
-        else
-        {
-            commandCenter.commandCenterObject.layer = LayerMask.NameToLayer("Default");
-        }
-
-
-
-        /*
-        if (raycastHit)
-        {
-            commandCenter.unit.shouldMoveOnClick = false;
             commandCenter.hoversAbove = true;
         }
         else
         {
-            commandCenter.unit.shouldMoveOnClick = true;
+            commandCenter.commandCenterObject.layer = LayerMask.NameToLayer("Default");
             commandCenter.hoversAbove = false;
         }
-
-        */
-
-
-
 
     }
 
