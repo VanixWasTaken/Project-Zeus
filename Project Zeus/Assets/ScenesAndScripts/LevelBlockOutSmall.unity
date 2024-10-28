@@ -216,12 +216,12 @@ PrefabInstance:
         type: 3}
       propertyPath: commandCenterHUD
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1355053947}
     - target: {fileID: 7640442197078376434, guid: b6ee55fdccfc9de4bb851d392fd453c0,
         type: 3}
       propertyPath: commandCenterSpawnTroopButton
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2130471616}
     - target: {fileID: 8070242947219511517, guid: b6ee55fdccfc9de4bb851d392fd453c0,
         type: 3}
       propertyPath: m_Layer
@@ -6902,7 +6902,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1355053948
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9056,13 +9056,14 @@ GameObject:
   - component: {fileID: 2130471620}
   - component: {fileID: 2130471619}
   - component: {fileID: 2130471618}
+  - component: {fileID: 2130471621}
   m_Layer: 5
   m_Name: CommandCenterSpawnTroopUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2130471617
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9126,7 +9127,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2130471619}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2130471621}
+        m_TargetAssemblyTypeName: CommandCenterSpawnTroopUIButtonScript, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2130471619
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9165,6 +9178,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2130471616}
   m_CullTransparentMesh: 1
+--- !u!114 &2130471621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2130471616}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6ccb390b1ed753478188965a4b90619, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitPrefab: {fileID: 2096777302}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

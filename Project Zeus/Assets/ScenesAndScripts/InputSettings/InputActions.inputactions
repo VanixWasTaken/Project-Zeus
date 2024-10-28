@@ -27,7 +27,7 @@
                     "name": "Released",
                     "type": "Button",
                     "id": "e199c84f-9532-4202-8344-598c959a578e",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "Press(behavior=1)",
                     "initialStateCheck": false
@@ -87,7 +87,7 @@
                 {
                     "name": "",
                     "id": "be0c5d17-79b1-474f-b525-7038e2f86a77",
-                    "path": "<Keyboard>/a",
+                    "path": "<Keyboard>/q",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -126,7 +126,7 @@
                 {
                     "name": "up",
                     "id": "bff83de3-3fba-4a73-b05a-8fac516b5d54",
-                    "path": "<Keyboard>/upArrow",
+                    "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -137,7 +137,7 @@
                 {
                     "name": "down",
                     "id": "664bc7e8-3529-4aaf-a658-e8d5e817bbf5",
-                    "path": "<Keyboard>/downArrow",
+                    "path": "<Keyboard>/s",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -148,7 +148,7 @@
                 {
                     "name": "left",
                     "id": "8e288537-319f-493e-ab90-a7d22eee0c09",
-                    "path": "<Keyboard>/leftArrow",
+                    "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -159,7 +159,7 @@
                 {
                     "name": "right",
                     "id": "313f357a-0891-4d97-ab9f-f65603af038e",
-                    "path": "<Keyboard>/rightArrow",
+                    "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
