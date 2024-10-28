@@ -20,7 +20,6 @@ public class CommandCenterStateManager : MonoBehaviour
     public GameObject commandCenterObject;
     public bool hoversAbove = false;
     public GameObject commandCenterHUD;
-    public GameObject commandCenterSpawnTroopButton;
     public UnitStateManager unit;
     #endregion
 
