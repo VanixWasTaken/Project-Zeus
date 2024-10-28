@@ -8267,18 +8267,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1700668713}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1732230632 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7640442197078376434, guid: b6ee55fdccfc9de4bb851d392fd453c0,
-    type: 3}
-  m_PrefabInstance: {fileID: 47737614}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03afdbe9603006c479db12b512e718bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1760154958 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bfff06aaff363a847ad37bf592364e6b,
@@ -8677,7 +8665,7 @@ PrefabInstance:
         type: 3}
       propertyPath: commandCenter
       value: 
-      objectReference: {fileID: 1732230632}
+      objectReference: {fileID: 0}
     - target: {fileID: 8591644706123088338, guid: 874aa44ff3dba454592934469e046189,
         type: 3}
       propertyPath: audioController
@@ -8736,11 +8724,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5565899619235537443, guid: 874aa44ff3dba454592934469e046189,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2096777305}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 874aa44ff3dba454592934469e046189, type: 3}
 --- !u!114 &1800063549 stripped
 MonoBehaviour:
@@ -9840,29 +9824,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1800063548}
   m_PrefabAsset: {fileID: 0}
---- !u!136 &2096777305
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2096777302}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2.33
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.73, z: 0}
 --- !u!1 &2097620011 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bfff06aaff363a847ad37bf592364e6b,

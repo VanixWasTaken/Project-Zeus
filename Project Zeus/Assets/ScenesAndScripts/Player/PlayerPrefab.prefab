@@ -1405,6 +1405,7 @@ GameObject:
   - component: {fileID: 8591644706123088338}
   - component: {fileID: 6135961154334580718}
   - component: {fileID: 8135151890897981097}
+  - component: {fileID: 1521064161453576361}
   m_Layer: 0
   m_Name: PlayerPrefab
   m_TagString: Untagged
@@ -1519,6 +1520,29 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 0
+--- !u!136 &1521064161453576361
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5565899619235537443}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.33
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.73, z: 0}
 --- !u!1 &5634961224512264360
 GameObject:
   m_ObjectHideFlags: 0
