@@ -44,7 +44,6 @@ public class CameraScript : MonoBehaviour
     private void HandleMovement()
     {
         Vector2 inputVector = inputActions.Camera.Move.ReadValue<Vector2>();
-        Debug.Log("Input Vector: " + inputVector);  // Log the input values to check
 
         direction = new Vector3(inputVector.x, 0f, inputVector.y).normalized;
 
@@ -52,7 +51,6 @@ public class CameraScript : MonoBehaviour
 
         if (direction.magnitude >= 0.1f)
         {
-            Debug.Log("Moving camera");
             currentVelocity = direction * speed;
             transform.position += direction * speed * Time.deltaTime;
         }

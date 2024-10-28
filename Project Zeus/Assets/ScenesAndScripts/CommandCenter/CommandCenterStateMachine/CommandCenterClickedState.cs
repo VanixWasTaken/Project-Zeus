@@ -8,6 +8,8 @@ public class CommandCenterClickedState : CommandCenterBaseState
 {
     InputActions inputActions;
 
+
+
     public override void EnterState(CommandCenterStateManager commandCenter)
     {
         inputActions = new InputActions();
@@ -45,6 +47,12 @@ public class CommandCenterClickedState : CommandCenterBaseState
             commandCenter.player.shouldMoveOnClick = true;
             commandCenter.hoversAbove = false;
         }
+
+
+
+
+
+
     }
 
 }
