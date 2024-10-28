@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.Audio;
+using AudioType = UnityEngine.Audio.AudioType;
 
 public class UnitStateManager : MonoBehaviour
 {
@@ -19,7 +21,9 @@ public class UnitStateManager : MonoBehaviour
     public Vector3 mouseClickPos;
     public CommandCenterStateManager commandCenter;
     public AudioController audioController;
+    public NavMeshAgent navMeshAgent;
     public Vector3 targetPosition;
+    public GameObject selectionIndicator;
     private bool isSelected;
     #endregion
 
@@ -28,6 +32,7 @@ public class UnitStateManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        selectionIndicator.SetActive(false);
         currentState = idleState;
         currentState.EnterState(this);
     }
@@ -52,20 +57,31 @@ public class UnitStateManager : MonoBehaviour
 
     public void OnCommandMove(Vector3 destination)
     {
-        targetPosition = destination;
-        SwitchStates(walkingState);
+        // play barks for walking
+        audioController.RandomizeAudioClip(AudioType.SMAffirmBark_01, AudioType.SMAffirmBark_03);
+
+        // navmesh testing for avoidance --> this can be laid over to walking state
+        NavMeshAgent agent = GetComponent<NavMeshAgent>();
+        if (agent != null)
+        {
+            agent.SetDestination(targetPosition);
+        }
     }
 
     public void Select()
     {
         isSelected = true;
+
         // change visual to make selection apparent
+        selectionIndicator.SetActive(true);
     }
 
     public void Deselect()
     {
         isSelected = false;
+
         // change visual to make deselection apparent
+        selectionIndicator.SetActive(false);
     }
 
 
