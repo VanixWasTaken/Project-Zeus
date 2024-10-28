@@ -1,3 +1,4 @@
+using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,8 @@ public class CommandCenterIdleState : CommandCenterBaseState
 
     public override void UpdateState(CommandCenterStateManager commandCenter)
     {
+        
+
         Vector2 mousePosition = Mouse.current.position.ReadValue();
         Ray ray = commandCenter.mainCamera.ScreenPointToRay(mousePosition);
         RaycastHit hit;
@@ -50,6 +53,8 @@ public class CommandCenterIdleState : CommandCenterBaseState
         {
             commandCenter.SwitchStates(commandCenter.clickedState);
         }
+
+        Debug.Log("asdasd");
     }
 }
 
