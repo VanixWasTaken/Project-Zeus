@@ -35,6 +35,7 @@ public class CommandCenterClickedState : CommandCenterBaseState
             commandCenter.commandCenterObject.layer = LayerMask.NameToLayer("Default");
         }
 
+        /*
         if (raycastHit)
         {
             commandCenter.player.shouldMoveOnClick = false;
@@ -45,6 +46,7 @@ public class CommandCenterClickedState : CommandCenterBaseState
             commandCenter.player.shouldMoveOnClick = true;
             commandCenter.hoversAbove = false;
         }
+        */
     }
 
 }
