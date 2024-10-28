@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
 public class UnitSelectionManager : MonoBehaviour
 {
@@ -66,22 +65,18 @@ public class UnitSelectionManager : MonoBehaviour
 
     private void SelectUnitsInBox()
     {
-        // Get positions of selected units
         Vector2 min = startPosition;
         Vector2 max = endPosition;
 
-        // Ensure min is bottom-left and max is top-right
         if (min.x > max.x) (min.x, max.x) = (max.x, min.x);
         if (min.y > max.y) (min.y, max.y) = (max.y, min.y);
 
-        // Deselect all previously selected units
         foreach (var unit in selectedUnits)
         {
             unit.Deselect();
         }
         selectedUnits.Clear();
 
-        // Find all units within the selection box
         foreach (UnitStateManager unit in FindObjectsByType<UnitStateManager>(FindObjectsSortMode.None))
         {
             Vector3 screenPosition = mainCamera.WorldToScreenPoint(unit.transform.position);
@@ -90,28 +85,8 @@ public class UnitSelectionManager : MonoBehaviour
                 screenPosition.y >= min.y && screenPosition.y <= max.y)
             {
                 unit.Select();
-                selectedUnits.Add(unit);
+                selectedUnits.Add(unit);  // Only add the unit to the selection
             }
-        }
-
-        // Move the selected units to a target position with spacing
-        if (selectedUnits.Count > 0)
-        {
-            MoveUnitsToTargetWithSpacing(endPosition); // Use the end position as the target
-        }
-    }
-
-    private void MoveUnitsToTargetWithSpacing(Vector3 targetPosition)
-    {
-        float spacing = 1.5f; // Set a spacing distance
-
-        foreach (UnitStateManager unit in selectedUnits)
-        {
-            // Calculate a new position based on the target position and random offset for spacing
-            Vector3 offset = new Vector3(Random.Range(-spacing, spacing), 0, Random.Range(-spacing, spacing));
-            Vector3 adjustedTarget = targetPosition + offset;
-
-            unit.OnCommandMove(adjustedTarget);
         }
     }
 
@@ -123,8 +98,23 @@ public class UnitSelectionManager : MonoBehaviour
             Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                MoveUnitsToTargetWithSpacing(hit.point); // Move units to the clicked point with spacing
+                Vector3 targetPosition = hit.point; // Get the target position from the raycast hit
+                MoveUnitsToTargetWithSpacing(targetPosition);
             }
+        }
+    }
+
+    private void MoveUnitsToTargetWithSpacing(Vector3 targetPosition)
+    {
+        float spacing = 1.5f; // Set a spacing distance
+
+        foreach (UnitStateManager unit in selectedUnits)
+        {
+            // Calculate a new position based on the current unit's position and desired target
+            Vector3 offset = new Vector3(Random.Range(-spacing, spacing), 0, Random.Range(-spacing, spacing));
+            Vector3 adjustedTarget = targetPosition + offset;
+
+            unit.OnCommandMove(adjustedTarget);
         }
     }
 }

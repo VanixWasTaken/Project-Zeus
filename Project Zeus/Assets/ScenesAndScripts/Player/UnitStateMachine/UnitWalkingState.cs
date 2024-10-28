@@ -7,9 +7,6 @@ using AudioType = UnityEngine.Audio.AudioType;
 public class UnitWalkingState : UnitBaseState
 {
 
-    private float speed = 5f;
-    private float rotationSpeed = 15f;
-
     public override void EnterState(UnitStateManager _unit)
     {
         _unit.mAnimator.SetFloat("anSpeed", 1);
@@ -17,16 +14,15 @@ public class UnitWalkingState : UnitBaseState
 
     public override void UpdateState(UnitStateManager _unit)
     {
-        _unit.transform.position = Vector3.MoveTowards(_unit.transform.position, _unit.targetPosition, speed * Time.deltaTime);
-
-        if (_unit.transform.position == _unit.targetPosition)
+        // Check if the unit has reached its destination
+        if (_unit.navMeshAgent != null && !_unit.navMeshAgent.pathPending)
         {
-            _unit.SwitchStates(_unit.idleState);
+            if (_unit.navMeshAgent.remainingDistance <= _unit.navMeshAgent.stoppingDistance)
+            {
+                // Stop moving and switch to idle state if the destination is reached
+                _unit.StopMoving();
+            }
         }
-
-        Vector3 direction = _unit.targetPosition - _unit.transform.position;
-        Quaternion targetRotation = Quaternion.LookRotation(direction);
-        _unit.transform.rotation = Quaternion.Slerp(_unit.transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
     public override void OnFootstep(UnitStateManager _unit)

@@ -32,9 +32,11 @@ public class UnitStateManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         selectionIndicator.SetActive(false);
         currentState = idleState;
         currentState.EnterState(this);
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     // Update is called once per frame
@@ -55,18 +57,25 @@ public class UnitStateManager : MonoBehaviour
         currentState.OnFootstep(this);
     }
 
-    public void OnCommandMove(Vector3 destination)
+    public void OnCommandMove(Vector3 targetPosition)
     {
-        // play barks for walking
-        audioController.RandomizeAudioClip(AudioType.SMAffirmBark_01, AudioType.SMAffirmBark_03);
-
-        // navmesh testing for avoidance --> this can be laid over to walking state
-        NavMeshAgent agent = GetComponent<NavMeshAgent>();
-        if (agent != null)
+        if (navMeshAgent != null)
         {
-            agent.SetDestination(targetPosition);
+            navMeshAgent.SetDestination(targetPosition); // Use NavMeshAgent to move
+            SwitchStates(walkingState); // Switch to walking state
         }
     }
+
+    public void StopMoving()
+    {
+        if (navMeshAgent != null)
+        {
+            navMeshAgent.ResetPath();
+        }
+        SwitchStates(idleState);
+    }
+
+
 
     public void Select()
     {
