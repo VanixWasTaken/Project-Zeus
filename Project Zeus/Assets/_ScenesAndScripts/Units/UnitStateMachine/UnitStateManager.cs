@@ -17,40 +17,42 @@ public class UnitStateManager : MonoBehaviour
     // All References
     #region References
     public Animator mAnimator;
-    public Camera mainCamera;
-    public Vector3 mouseClickPos;
-    public CommandCenterStateManager commandCenter;
+    [SerializeField] Camera mainCamera;
+    [SerializeField] Vector3 mouseClickPos;
+    [SerializeField] CommandCenterStateManager commandCenter;
     public AudioController audioController;
     public NavMeshAgent navMeshAgent;
-    public Vector3 targetPosition;
-    public GameObject selectionIndicator;
-    private bool isSelected;
+    [SerializeField] Vector3 targetPosition;
+    [SerializeField] GameObject selectionIndicator;
     #endregion
 
 
 
-    // Start is called before the first frame update
+
+    
     void Start()
     {
-
         selectionIndicator.SetActive(false);
         currentState = idleState;
         currentState.EnterState(this);
-        navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         currentState.UpdateState(this);
     }
 
-
-    public void SwitchStates(UnitBaseState state)
+    void SwitchStates(UnitBaseState state)
     {
         currentState = state;
         state.EnterState(this);
     }
+
+
+
+
+
+
 
     public void OnFootstep()
     {
@@ -79,16 +81,12 @@ public class UnitStateManager : MonoBehaviour
 
     public void Select()
     {
-        isSelected = true;
-
         // change visual to make selection apparent
         selectionIndicator.SetActive(true);
     }
 
     public void Deselect()
     {
-        isSelected = false;
-
         // change visual to make deselection apparent
         selectionIndicator.SetActive(false);
     }

@@ -4,18 +4,21 @@ using UnityEngine.InputSystem;
 
 public class UnitSelectionManager : MonoBehaviour
 {
-    private InputActions inputActions;
+    InputActions inputActions;
     public Camera mainCamera;
     public LayerMask unitLayer;
 
     // Selection box UI
     public RectTransform selectionBox; // Drag your UI Image here for the selection box
-    private Vector2 startPosition;
-    private Vector2 endPosition;
+    Vector2 startPosition;
+    Vector2 endPosition;
 
-    private List<UnitStateManager> selectedUnits = new List<UnitStateManager>();
+    List<UnitStateManager> selectedUnits = new List<UnitStateManager>();
 
-    private void Start()
+
+
+
+    void Start()
     {
         inputActions = new InputActions();
         inputActions.Mouse.Enable();
@@ -28,7 +31,12 @@ public class UnitSelectionManager : MonoBehaviour
         HandleCommands();
     }
 
-    private void HandleSelection()
+
+
+
+
+
+    void HandleSelection()
     {
         // Handle click selection and drag start
         if (Mouse.current.leftButton.wasPressedThisFrame)
@@ -53,7 +61,7 @@ public class UnitSelectionManager : MonoBehaviour
         }
     }
 
-    private void UpdateSelectionBox()
+    void UpdateSelectionBox()
     {
         Vector2 boxStart = startPosition;
         Vector2 boxEnd = endPosition;
@@ -63,7 +71,7 @@ public class UnitSelectionManager : MonoBehaviour
         selectionBox.anchoredPosition = boxStart + boxSize / 2;
     }
 
-    private void SelectUnitsInBox()
+    void SelectUnitsInBox()
     {
         Vector2 min = startPosition;
         Vector2 max = endPosition;
@@ -90,7 +98,7 @@ public class UnitSelectionManager : MonoBehaviour
         }
     }
 
-    private void HandleCommands()
+    void HandleCommands()
     {
         // Handle movement command with right-click
         if (Mouse.current.rightButton.wasPressedThisFrame && selectedUnits.Count > 0)
@@ -104,7 +112,7 @@ public class UnitSelectionManager : MonoBehaviour
         }
     }
 
-    private void MoveUnitsToTargetWithSpacing(Vector3 targetPosition)
+    void MoveUnitsToTargetWithSpacing(Vector3 targetPosition)
     {
         float spacing = 1.5f; // Set a spacing distance
 

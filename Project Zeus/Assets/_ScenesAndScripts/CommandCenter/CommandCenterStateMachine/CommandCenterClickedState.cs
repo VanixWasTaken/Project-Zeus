@@ -20,24 +20,7 @@ public class CommandCenterClickedState : CommandCenterBaseState
 
     public override void UpdateState(CommandCenterStateManager commandCenter)
     {
-        Vector2 mousePosition = Mouse.current.position.ReadValue();
-        Ray ray = commandCenter.mainCamera.ScreenPointToRay(mousePosition);
-        RaycastHit hit;
 
-        int layerMask = 1 << 6;
-
-        bool raycastHit = Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask);
-
-        if (raycastHit)
-        {
-            commandCenter.commandCenterObject.layer = LayerMask.NameToLayer("Outline");
-            commandCenter.hoversAbove = true;
-        }
-        else
-        {
-            commandCenter.commandCenterObject.layer = LayerMask.NameToLayer("Default");
-            commandCenter.hoversAbove = false;
-        }
 
     }
 
