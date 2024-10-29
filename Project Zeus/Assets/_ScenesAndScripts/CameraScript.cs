@@ -7,9 +7,7 @@ public class CameraScript : MonoBehaviour
     float speed = 6.0f;
     Vector3 currentVelocity;
     Vector3 direction;
-
     InputActions inputActions;
-
     GameObject test;
 
 
@@ -23,16 +21,11 @@ public class CameraScript : MonoBehaviour
     void Start()
     {
         inputActions.Camera.Enable();
-
-
-        
     }
    
     void Update()
     {
         HandleMovement();
-
-
     }
 
 
@@ -40,7 +33,7 @@ public class CameraScript : MonoBehaviour
    
 
 
-
+    // Reads the Input (Found under Input/Camera/Move) and moves the camera on the horizontal axes based on that
     private void HandleMovement()
     {
         Vector2 inputVector = inputActions.Camera.Move.ReadValue<Vector2>();

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class CommandCenterStateManager : MonoBehaviour
@@ -16,11 +17,11 @@ public class CommandCenterStateManager : MonoBehaviour
 
     // All references
     #region References
-    public Camera mainCamera;
-    public GameObject commandCenterObject;
-    public bool hoversAbove = false;
+    [SerializeField] Camera mainCamera;
+    [SerializeField] GameObject commandCenterObject;
+    public bool hoversAbove;
     public GameObject commandCenterHUD;
-    public UnitStateManager unit;
+    [SerializeField] UnitStateManager unit;
     #endregion
 
 
@@ -33,6 +34,28 @@ public class CommandCenterStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
+
+
+        // Creates a Raycast and checks wether or not you hover above the commandCenter
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+        Ray ray = mainCamera.ScreenPointToRay(mousePosition);
+        RaycastHit hit;
+
+        int layerMask = 1 << 6;
+
+        bool raycastHit = Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask);
+
+        // Applies a shader if you hover above the commandCenter
+        if (raycastHit)
+        {
+            commandCenterObject.layer = LayerMask.NameToLayer("Outline");
+            hoversAbove = true;
+        }
+        else
+        {
+            commandCenterObject.layer = LayerMask.NameToLayer("Default");
+            hoversAbove = false;
+        }
     }
 
     public void SwitchStates(CommandCenterBaseState state)

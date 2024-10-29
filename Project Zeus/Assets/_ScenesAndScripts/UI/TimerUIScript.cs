@@ -5,10 +5,16 @@ using UnityEngine.UI;
 public class TimerUIScript : MonoBehaviour
 {
 
-    public TextMeshProUGUI timerText;
+    TextMeshProUGUI timerText;
     float timeElapsed = 0f;
 
-    
+
+
+    private void Start()
+    {
+        timerText = GetComponent<TextMeshProUGUI>();
+    }
+
     void Update()
     {
         timeElapsed += Time.deltaTime;
@@ -17,7 +23,7 @@ public class TimerUIScript : MonoBehaviour
     }
 
 
-
+    // Updates the visual timer and shows it in the correct form, for example -->  12:51
     void UpdateTimerDisplay()
     {
         float minutes = Mathf.FloorToInt(timeElapsed / 60);
