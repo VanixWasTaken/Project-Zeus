@@ -233,7 +233,7 @@ PrefabInstance:
         type: 3}
       propertyPath: unit
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1354313878}
     - target: {fileID: 1176063971113869333, guid: b6ee55fdccfc9de4bb851d392fd453c0,
         type: 3}
       propertyPath: mainCamera
@@ -634,7 +634,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d396a4b9d39cbc8469c5e7858bdeebe6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 215134003}
 --- !u!1 &293000396 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d2f0da3998423f44594868ffed55c3e6,
@@ -7578,6 +7577,24 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1297158085}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1354313874 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7683531235369300858, guid: de5468ed0cc36ea408dee687fdba8dc5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1086112404}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1354313878 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2350191614257842607, guid: de5468ed0cc36ea408dee687fdba8dc5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1086112404}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354313874}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f928774bed1f2044a9edc0906ed39873, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1355053947
 GameObject:
   m_ObjectHideFlags: 0
@@ -9967,7 +9984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6ccb390b1ed753478188965a4b90619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitPrefab: {fileID: 0}
+  unitPrefab: {fileID: 1354313874}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
