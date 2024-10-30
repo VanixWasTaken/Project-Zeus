@@ -100,6 +100,12 @@ public class UnitSelectionManager : MonoBehaviour
                 selectedUnits.Add(unit);  // Only add the unit to the selection
             }
         }
+
+        if (selectedUnits.Count > 0) 
+        {
+            audioController.PlayAudio(SMSelectedBark_01);
+        }
+
     }
 
     void HandleCommands()

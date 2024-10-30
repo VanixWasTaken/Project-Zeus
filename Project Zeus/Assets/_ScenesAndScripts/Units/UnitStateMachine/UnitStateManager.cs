@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Audio;
-using AudioType = UnityEngine.Audio.AudioType;
+using static UnityEngine.Audio.AudioType;
 
 public class UnitStateManager : MonoBehaviour
 {
@@ -57,6 +58,11 @@ public class UnitStateManager : MonoBehaviour
     public void OnFootstep()
     {
         currentState.OnFootstep(this);
+    }
+
+    public void OnMiningHit()
+    {
+        audioController.RandomizeAudioClip(DroneFarming_01, DroneFarming_03);
     }
 
     public void OnCommandMove(Vector3 targetPosition)
