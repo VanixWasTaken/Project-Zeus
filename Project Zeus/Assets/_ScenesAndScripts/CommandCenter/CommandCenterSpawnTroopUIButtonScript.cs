@@ -13,6 +13,5 @@ public class CommandCenterSpawnTroopUIButtonScript : MonoBehaviour
         Quaternion spawnRotation = Quaternion.identity;
 
         Instantiate(unitPrefab, spawnPosition, spawnRotation);
-        Debug.Log("asdabd");
     }
 }
