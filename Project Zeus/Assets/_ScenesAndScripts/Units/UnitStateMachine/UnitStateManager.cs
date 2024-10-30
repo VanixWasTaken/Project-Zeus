@@ -92,5 +92,20 @@ public class UnitStateManager : MonoBehaviour
     }
 
 
-    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == 7) // 7 = Resource Layer
+        {
+            mAnimator.SetTrigger("anShouldMine");
+            mAnimator.SetBool("anIsMining", true);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 7) // 7 = Resource Layer
+        {
+            mAnimator.SetBool("anIsMining", false);
+        }
+    }
 }
