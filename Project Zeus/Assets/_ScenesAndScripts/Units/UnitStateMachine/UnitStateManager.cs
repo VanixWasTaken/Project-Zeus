@@ -69,6 +69,11 @@ public class UnitStateManager : MonoBehaviour
     {
         if (navMeshAgent != null)
         {
+            if (currentState == fightState)
+            {
+                mAnimator.SetBool("isAttacking", false);
+            }
+
             navMeshAgent.SetDestination(targetPosition); // Use NavMeshAgent to move
             SwitchStates(walkingState); // Switch to walking state
         }
@@ -86,7 +91,6 @@ public class UnitStateManager : MonoBehaviour
         }
         
     }
-
 
     public void Select()
     {
@@ -120,7 +124,8 @@ public class UnitStateManager : MonoBehaviour
         life -= incomingDamage;
         if (life <= 0)
         {
-            Destroy(gameObject);
+            mAnimator.SetTrigger("shouldDie");
+            Destroy(GetComponent<UnitStateManager>());
         }
     }
 

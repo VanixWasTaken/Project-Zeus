@@ -7,7 +7,8 @@ public class UnitFightState : UnitBaseState
     public override void EnterState(UnitStateManager _unit)
     {
         _unit.StopMoving();
-        //_unit.mAnimator.Play("Shoot");
+        _unit.mAnimator.SetTrigger("shouldAttack");
+        _unit.mAnimator.SetBool("isAttacking", true);
         Fight(_unit);
     }
 
@@ -22,7 +23,7 @@ public class UnitFightState : UnitBaseState
         if (_unit.enemiesInRange.Count > 0)
         {
             currentEnemy = _unit.enemiesInRange[0];
-            if (currentEnemy == null )
+            if (currentEnemy == null)
             {
                 _unit.enemiesInRange.RemoveAt(0);
                 return;
@@ -34,6 +35,11 @@ public class UnitFightState : UnitBaseState
                 _unit.enemiesInRange.RemoveAt(0);
             }
             _unit.WaitTimer(1.5f);
+        }
+        else
+        {
+            _unit.mAnimator.SetBool("isAttacking", false);
+            _unit.SwitchStates(_unit.idleState);
         }
     }
 
