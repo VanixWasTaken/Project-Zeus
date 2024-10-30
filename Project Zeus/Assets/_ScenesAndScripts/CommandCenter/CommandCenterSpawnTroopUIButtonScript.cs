@@ -7,6 +7,7 @@ public class CommandCenterSpawnTroopUIButtonScript : MonoBehaviour
 
     [SerializeField] GameObject unitPrefab;
     [SerializeField] TextMeshProUGUI spawningTimerText;
+    bool isAllowedToSpawnUnit = true;
     
     
 
@@ -14,11 +15,11 @@ public class CommandCenterSpawnTroopUIButtonScript : MonoBehaviour
 
     public void OnClick()
     {
-        StartCoroutine(WaitForSeconds());
-        StartCoroutine(StartCountdown());
-        
-        
-
+        if (isAllowedToSpawnUnit)
+        {
+            StartCoroutine(WaitForSeconds());
+            StartCoroutine(StartCountdown());
+        }
     }
 
 
@@ -33,6 +34,7 @@ public class CommandCenterSpawnTroopUIButtonScript : MonoBehaviour
 
     IEnumerator StartCountdown()
     {
+        isAllowedToSpawnUnit = false;
         int countdownTime = 5; // Timer starting value
         while (countdownTime > 0)
         {
@@ -46,6 +48,7 @@ public class CommandCenterSpawnTroopUIButtonScript : MonoBehaviour
         // Optional: Wait a moment before resetting (if needed)
         yield return new WaitForSeconds(1);
         spawningTimerText.text = "5"; // Reset timer display for next round
+        isAllowedToSpawnUnit = true;
     }
 }
 
