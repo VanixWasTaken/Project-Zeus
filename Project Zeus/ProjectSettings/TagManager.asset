@@ -6,6 +6,7 @@ TagManager:
   tags:
   - BuildSystem
   - SpawnTroopsButton
+  - Enemy
   layers:
   - Default
   - TransparentFX

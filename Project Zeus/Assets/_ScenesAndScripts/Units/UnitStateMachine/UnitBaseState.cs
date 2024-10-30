@@ -9,4 +9,5 @@ public abstract class UnitBaseState
     public virtual void OnFootstep(UnitStateManager _unit) { }
 
     public virtual void OnMiningHit(UnitStateManager _unit) { }
+
 }
