@@ -6,7 +6,7 @@ public class ResourceSystemScript : MonoBehaviour
 {
 
     public int collectedMinerals;
-    public ResourceCollecterScript resource;
+    public ResourceCollecterScript[] resources; // Array to hold multiple resources
     float timeElapsed = 0f;
 
     [SerializeField] TextMeshProUGUI mineralsHUDCounter;
@@ -20,13 +20,15 @@ public class ResourceSystemScript : MonoBehaviour
 
     private void CollectResources()
     {
-        if (resource.isCollecting == true)
+        foreach (var resource in resources)
         {
-            timeElapsed += Time.deltaTime;
-            collectedMinerals = Mathf.FloorToInt(timeElapsed % 60);
+            if (resource.isCollecting == true)
+            {
+                timeElapsed += Time.deltaTime;
+                collectedMinerals = Mathf.FloorToInt(timeElapsed % 60);
 
-            mineralsHUDCounter.text = collectedMinerals.ToString();
-            Debug.Log("test14");
+                mineralsHUDCounter.text = collectedMinerals.ToString();
+            }
         }
     }
 }
