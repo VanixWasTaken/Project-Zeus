@@ -49,7 +49,7 @@ public class CommandCenterSpawnTroopUIButtonScript : MonoBehaviour
 
     IEnumerator WaitForSeconds()
     {
-        Vector3 spawnPosition = new Vector3(-44, 12, -2);
+        Vector3 spawnPosition = new Vector3(98, 10, 3);
         Quaternion spawnRotation = Quaternion.identity;
         audioController.PlayAudio(HeadquarterDroneSpawn_01);
 
