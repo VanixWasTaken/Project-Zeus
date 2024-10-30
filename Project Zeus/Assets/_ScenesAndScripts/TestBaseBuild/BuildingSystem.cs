@@ -23,6 +23,7 @@ public class BuildingSystem : MonoBehaviour
 
     InputActions inputActions;
     #endregion
+
     #region Unity Functions
 
     private void Awake()
@@ -36,10 +37,11 @@ public class BuildingSystem : MonoBehaviour
 
     private void Update()
     {
+        /*
         if (inputActions.Keyboard.InitializeBuilding.IsPressed())
         {
             InitializeObject(TestBuilding);
-        }
+        }*/
 
         if (!objectToPlace)
         {
@@ -66,6 +68,7 @@ public class BuildingSystem : MonoBehaviour
 
     }
     #endregion
+
     #region Utils
     public static Vector3 GetMouseWorldPosition()
     {
@@ -94,6 +97,7 @@ public class BuildingSystem : MonoBehaviour
         return array;
     }
     #endregion
+
     #region Building Placement
 
     public void InitializeObject(GameObject prefab)
