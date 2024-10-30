@@ -10717,6 +10717,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpaceMarinePrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 7218633794424186248, guid: 75d767ddd96a0974ba4b9d59859b6f61,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 4d6e553bb2c005c4fb16e0587804853e, type: 2}
     - target: {fileID: 9064454566642255563, guid: 75d767ddd96a0974ba4b9d59859b6f61,
         type: 3}
       propertyPath: mainCamera
