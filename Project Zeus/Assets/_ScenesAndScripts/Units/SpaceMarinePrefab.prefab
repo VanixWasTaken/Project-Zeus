@@ -2470,7 +2470,8 @@ MonoBehaviour:
   mAnimator: {fileID: 749311534690382091}
   mainCamera: {fileID: 0}
   mouseClickPos: {x: 0, y: 0, z: 0}
-  commandCenter: {fileID: 0}
+  commandCenter: {fileID: 1176063971113869333, guid: b6ee55fdccfc9de4bb851d392fd453c0,
+    type: 3}
   audioController: {fileID: 0}
   navMeshAgent: {fileID: 5303338562658446206}
   targetPosition: {x: 0, y: 0, z: 0}
@@ -2479,6 +2480,7 @@ MonoBehaviour:
   life: 100
   enemiesInRange: []
   myEnemyTag: 
+  damage: 10
 --- !u!1 &7866930614544722859
 GameObject:
   m_ObjectHideFlags: 0
