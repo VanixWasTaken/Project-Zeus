@@ -97,11 +97,8 @@ public class BuildingSystem : MonoBehaviour
     public void InitializeObject(GameObject prefab)
     { 
         //Initializes a Building at the nearest Gridspot to the center of the world (0,0,0)
-        Vector3 position = SnapCoordinateToGrid(Vector3.zero);
-        GameObject obj = Instantiate(prefab, position, Quaternion.identity);
-        //Gets the Placable Object Component for that Building to use that later, when using it 
-        //Adds the Object Drag Component so you can drag the object with yoour mouse.
-        objectToPlace = obj.GetComponent<PlacableObject>();
+        GameObject obj = Instantiate(prefab, GetMouseWorldPosition(), Quaternion.identity);
+
     }
 
     private bool CanBePlaced(PlacableObject placeableObject)

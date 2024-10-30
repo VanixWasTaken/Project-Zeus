@@ -16,23 +16,14 @@ public class ObjectDrag : MonoBehaviour, IPointerDownHandler, IPointerMoveHandle
         inputActions = new InputActions();
         inputActions.Mouse.Enable();
         buildingSystem = GameObject.FindGameObjectWithTag("BuildSystem").GetComponent<BuildingSystem>();
+        dragging = true;
+        buildingSystem.objectToPlace = gameObject.GetComponent<PlacableObject>();
     }
     public void OnPointerDown(PointerEventData eventData)
     {
         //When the mouse is over the Object and left-click is pressed the buidling is set to be dragged
-        dragging = true;
-        buildingSystem.objectToPlace = gameObject.GetComponent<PlacableObject>();
-       // offset = transform.position - BuildingSystem.GetMouseWorldPosition();
-    }
-
-    private void Update()
-    {
-        if (inputActions.Mouse.Released.WasReleasedThisFrame() && dragging)
-        {
-            dragging = false;
-        }
-
-       
+        dragging = false;
+        // offset = transform.position - BuildingSystem.GetMouseWorldPosition();
     }
 
     public void OnPointerMove(PointerEventData eventData)
