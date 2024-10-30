@@ -20,7 +20,8 @@ public class CommandCenterStateManager : MonoBehaviour
     [SerializeField] Camera mainCamera;
     [SerializeField] GameObject commandCenterObject;
     public bool hoversAbove;
-    public GameObject commandCenterHUD;
+    public GameObject buildingButton;
+    public GameObject playerButton;
     [SerializeField] UnitStateManager unit;
     #endregion
 
