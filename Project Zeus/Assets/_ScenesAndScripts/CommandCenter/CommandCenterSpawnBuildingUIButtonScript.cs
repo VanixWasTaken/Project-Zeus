@@ -28,7 +28,7 @@ public class CommandCenterSpawnBuildingUIButtonScript : MonoBehaviour
         Vector3 spawnPosition = new Vector3(21, 2.8f, 41);
         Quaternion spawnRotation = Quaternion.identity;
 
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(1);
         buildingSystem.InstantiateObject();
     }
 
