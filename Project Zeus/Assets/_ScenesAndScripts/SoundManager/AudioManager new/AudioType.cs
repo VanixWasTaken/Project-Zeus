@@ -11,6 +11,7 @@ namespace UnityEngine
             SMAffirmBark_01,
             SMAffirmBark_02,
             SMAffirmBark_03,
+            SMDeath_01,
             SMFootstep_01,
             SMGunshot_01,
 
