@@ -10,7 +10,7 @@ public class UnitStateManager : MonoBehaviour
 {
     // All available PlayerStates
     #region PlayerStates
-    UnitBaseState currentState;
+    public UnitBaseState currentState;
     public UnitIdleState idleState = new UnitIdleState();
     public UnitWalkingState walkingState = new UnitWalkingState();
     public UnitFightState fightState = new UnitFightState();
@@ -26,9 +26,11 @@ public class UnitStateManager : MonoBehaviour
     public NavMeshAgent navMeshAgent;
     [SerializeField] Vector3 targetPosition;
     [SerializeField] GameObject selectionIndicator;
+    [SerializeField] GameObject enemyDetector;
     public float life = 100;
-    public int enemiesInRange = 0;
+    public List<GameObject> enemiesInRange;
     public string myEnemyTag;
+    public int damage = 10;
     #endregion
 
     
@@ -43,10 +45,7 @@ public class UnitStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
-        if (life <= 0) 
-        {
-        Destroy(gameObject);
-        }
+
     }
 
     public void SwitchStates(UnitBaseState state)
@@ -95,16 +94,6 @@ public class UnitStateManager : MonoBehaviour
         selectionIndicator.SetActive(false);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        currentState.OnTriggerEnter(this, other);
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        currentState.OnTriggerExit(this, other);
-    }
-
     public void WaitTimer(float waitTime)
     {
         StartCoroutine(WaitForSeconds(waitTime));
@@ -115,7 +104,17 @@ public class UnitStateManager : MonoBehaviour
         yield return new WaitForSeconds(waitTime);
         if (currentState == fightState)
         {
+            
             fightState.Fight(this);
+        }
+    }
+
+    public void TakeDamage(int incomingDamage)
+    {
+        life -= incomingDamage;
+        if (life <= 0)
+        {
+            Destroy(gameObject);
         }
     }
 

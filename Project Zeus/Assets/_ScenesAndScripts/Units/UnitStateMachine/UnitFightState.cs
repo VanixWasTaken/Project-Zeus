@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class UnitFightState : UnitBaseState
 {
+    GameObject currentEnemy;
     public override void EnterState(UnitStateManager _unit)
     {
         _unit.StopMoving();
@@ -15,26 +16,24 @@ public class UnitFightState : UnitBaseState
         return;
     }
 
-    public override void OnTriggerExit(UnitStateManager _unit, Collider other)
-    {
-        if (other.gameObject.CompareTag(_unit.myEnemyTag))
-        {
-            _unit.enemiesInRange--;
-            if (_unit.enemiesInRange <= 0 )
-            {
-                _unit.enemiesInRange = 0;
-                _unit.SwitchStates(_unit.idleState);
-            }
-        }
-    }
 
     public void Fight(UnitStateManager _unit)
     {
-        if (_unit.enemiesInRange != 0)
+        if (_unit.enemiesInRange.Count > 0)
         {
-            _unit.life -= 10 * _unit.enemiesInRange;
+            currentEnemy = _unit.enemiesInRange[0];
+            if (currentEnemy == null )
+            {
+                _unit.enemiesInRange.RemoveAt(0);
+                return;
+            }
+            currentEnemy.GetComponent<UnitStateManager>().TakeDamage(_unit.damage);
+            if (currentEnemy.GetComponent<UnitStateManager>().life <= 0)
+            {
+                currentEnemy = null;
+                _unit.enemiesInRange.RemoveAt(0);
+            }
             _unit.WaitTimer(1.5f);
-            
         }
     }
 

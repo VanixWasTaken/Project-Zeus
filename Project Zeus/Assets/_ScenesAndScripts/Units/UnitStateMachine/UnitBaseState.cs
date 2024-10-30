@@ -8,7 +8,7 @@ public abstract class UnitBaseState
 
     public virtual void OnFootstep(UnitStateManager _unit) { }
 
-    public virtual void OnTriggerEnter(UnitStateManager _unit, Collider other) { }
+    //public virtual void OnTriggerEnter(UnitStateManager _unit, Collider other) { }
 
-    public virtual void OnTriggerExit(UnitStateManager _unit, Collider other) { }
+    //public virtual void OnTriggerExit(UnitStateManager _unit, Collider other) { }
 }

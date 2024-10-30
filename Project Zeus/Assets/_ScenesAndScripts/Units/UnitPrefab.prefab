@@ -554,6 +554,75 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3685444459843365806}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2370616763752102737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6862479587341320198}
+  - component: {fileID: 5194647511354096785}
+  - component: {fileID: 5321518453241612260}
+  m_Layer: 15
+  m_Name: EnemyDetector
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6862479587341320198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2370616763752102737}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7778857941531187121}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &5194647511354096785
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2370616763752102737}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 5
+  m_Height: 0.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5321518453241612260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2370616763752102737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdea68593cef08446b5efe82a276ed28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitStateManager: {fileID: 2904028142786790226}
 --- !u!1 &2408202561162531061
 GameObject:
   m_ObjectHideFlags: 0
@@ -2267,7 +2336,6 @@ GameObject:
   - component: {fileID: 8906703520535599928}
   - component: {fileID: 5303338562658446206}
   - component: {fileID: 2515456879417379530}
-  - component: {fileID: 4127200344056051965}
   - component: {fileID: 2904028142786790226}
   m_Layer: 15
   m_Name: UnitPrefab
@@ -2294,6 +2362,7 @@ Transform:
   - {fileID: 1644096016037564420}
   - {fileID: 907821873889736736}
   - {fileID: 916631739305596788}
+  - {fileID: 6862479587341320198}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &749311534690382091
@@ -2386,29 +2455,6 @@ CapsuleCollider:
   m_Height: 2.33
   m_Direction: 1
   m_Center: {x: 0, y: 0.73, z: 0}
---- !u!136 &4127200344056051965
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7683531235369300858}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 5
-  m_Height: 0.5
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2904028142786790226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2429,8 +2475,10 @@ MonoBehaviour:
   navMeshAgent: {fileID: 5303338562658446206}
   targetPosition: {x: 0, y: 0, z: 0}
   selectionIndicator: {fileID: 609776238214439572}
+  enemyDetector: {fileID: 2370616763752102737}
   life: 100
-  enemiesInRange: 0
+  enemiesInRange: []
+  myEnemyTag: 
 --- !u!1 &7866930614544722859
 GameObject:
   m_ObjectHideFlags: 0
