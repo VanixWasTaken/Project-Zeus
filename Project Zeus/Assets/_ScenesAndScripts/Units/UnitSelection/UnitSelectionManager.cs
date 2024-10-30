@@ -1,5 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using static UnityEngine.Audio.AudioType;
 using UnityEngine.InputSystem;
 
 public class UnitSelectionManager : MonoBehaviour
@@ -12,6 +14,8 @@ public class UnitSelectionManager : MonoBehaviour
     public RectTransform selectionBox; // Drag your UI Image here for the selection box
     Vector2 startPosition;
     Vector2 endPosition;
+
+    public AudioController audioController;
 
     List<UnitStateManager> selectedUnits = new List<UnitStateManager>();
 
@@ -106,7 +110,10 @@ public class UnitSelectionManager : MonoBehaviour
             Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
             if (Physics.Raycast(ray, out RaycastHit hit))
             {
-                Vector3 targetPosition = hit.point; // Get the target position from the raycast hit
+                Vector3 targetPosition = hit.point; // Get the target position from the raycast hit                
+
+                audioController.PlayAudio(DroneAffirmBark_01);
+
                 MoveUnitsToTargetWithSpacing(targetPosition);
             }
         }
@@ -122,6 +129,7 @@ public class UnitSelectionManager : MonoBehaviour
             Vector3 offset = new Vector3(Random.Range(-spacing, spacing), 0, Random.Range(-spacing, spacing));
             Vector3 adjustedTarget = targetPosition + offset;
 
+            
             unit.OnCommandMove(adjustedTarget);
         }
     }

@@ -4,13 +4,18 @@ namespace UnityEngine
     {
         public enum AudioType
         {
+            // default
             none,
+
+            // SpaceMarine Sounds
             SMAffirmBark_01,
             SMAffirmBark_02,
             SMAffirmBark_03,
             SMFootstep_01,
-            SMFootstep_02,
-            SMFootstep_03,
+
+            // Drone sounds
+            DroneAffirmBark_01,
+            DroneFootstep_01,
             SFX_01
             //.. more types of audio
         }

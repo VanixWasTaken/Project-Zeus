@@ -2701,10 +2701,14 @@ MonoBehaviour:
       clip: {fileID: 8300000, guid: 1adca69f1e344fe49bbb71f0cc5454eb, type: 3}
     - type: 3
       clip: {fileID: 8300000, guid: 01c529f396328c8409457e3e91c8c101, type: 3}
+    - type: 5
+      clip: {fileID: 8300000, guid: bf4f38a2804506a41b0e98bb68d45f01, type: 3}
   - source: {fileID: 1123108451}
     audio:
     - type: 4
       clip: {fileID: 8300000, guid: a81b53c8d8ddfac49be8bc6fe0967021, type: 3}
+    - type: 6
+      clip: {fileID: 8300000, guid: 8385ecd514993564280eb2ce699ddeac, type: 3}
 --- !u!4 &537171057
 Transform:
   m_ObjectHideFlags: 0

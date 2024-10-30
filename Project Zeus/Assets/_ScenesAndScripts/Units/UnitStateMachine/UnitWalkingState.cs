@@ -27,6 +27,6 @@ public class UnitWalkingState : UnitBaseState
 
     public override void OnFootstep(UnitStateManager _unit)
     {
-        _unit.audioController.RandomizeAudioPitch(AudioType.SMFootstep_01, 0.8f, 1.2f);
+        _unit.audioController.RandomizeAudioPitch(AudioType.DroneFootstep_01, 0.8f, 1.2f);
     }
 }
