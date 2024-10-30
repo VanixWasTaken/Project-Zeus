@@ -12,6 +12,7 @@ public class UnitStateManager : MonoBehaviour
     UnitBaseState currentState;
     public UnitIdleState idleState = new UnitIdleState();
     public UnitWalkingState walkingState = new UnitWalkingState();
+    public UnitFightState fightState = new UnitFightState();
     #endregion
 
     // All References
@@ -25,9 +26,6 @@ public class UnitStateManager : MonoBehaviour
     [SerializeField] Vector3 targetPosition;
     [SerializeField] GameObject selectionIndicator;
     #endregion
-
-
-
 
     
     void Start()
@@ -47,12 +45,6 @@ public class UnitStateManager : MonoBehaviour
         currentState = state;
         state.EnterState(this);
     }
-
-
-
-
-
-
 
     public void OnFootstep()
     {
@@ -91,6 +83,14 @@ public class UnitStateManager : MonoBehaviour
         selectionIndicator.SetActive(false);
     }
 
+    public void OnTriggerStay(Collider other)
+    {
+        Debug.Log("HEHEHE");
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            SwitchStates(fightState);
+            Debug.Log("GOOBI");
+        }
+    }
 
-    
 }
