@@ -15,6 +15,7 @@ public class UnitStateManager : MonoBehaviour
     public UnitIdleState idleState = new UnitIdleState();
     public UnitWalkingState walkingState = new UnitWalkingState();
     public UnitFightState fightState = new UnitFightState();
+    public UnitMiningState miningState = new UnitMiningState();
     #endregion
 
     // All References
@@ -32,6 +33,7 @@ public class UnitStateManager : MonoBehaviour
     public List<GameObject> enemiesInRange;
     public string myEnemyTag;
     public int damage = 10;
+    [SerializeField] bool canMine;
     #endregion
 
     
@@ -72,6 +74,11 @@ public class UnitStateManager : MonoBehaviour
             {
                 mAnimator.SetBool("isAttacking", false);
             }
+            if (currentState == miningState) 
+            {
+                mAnimator.SetBool("anIsMining", false);
+            }
+
 
             navMeshAgent.SetDestination(targetPosition); // Use NavMeshAgent to move
             SwitchStates(walkingState); // Switch to walking state
@@ -84,7 +91,7 @@ public class UnitStateManager : MonoBehaviour
         {
             navMeshAgent.ResetPath();
         }
-        if (currentState != fightState)
+        if (currentState != fightState && currentState != miningState)
         {
             SwitchStates(idleState);
         }
@@ -123,6 +130,7 @@ public class UnitStateManager : MonoBehaviour
         life -= incomingDamage;
         if (life <= 0)
         {
+            Destroy(GetComponent<NavMeshAgent>());
             mAnimator.SetTrigger("shouldDie");
             Destroy(GetComponent<UnitStateManager>());
         }
@@ -130,16 +138,16 @@ public class UnitStateManager : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 7) // 7 = Resource Layer
+        if (other.gameObject.layer == 7 && canMine) // 7 = Resource Layer
         {
-            mAnimator.SetTrigger("anShouldMine");
-            mAnimator.SetBool("anIsMining", true);
+            transform.LookAt(other.transform.position);
+            SwitchStates(miningState);
         }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.layer == 7) // 7 = Resource Layer
+        if (other.gameObject.layer == 7 && canMine) // 7 = Resource Layer
         {
             mAnimator.SetBool("anIsMining", false);
         }

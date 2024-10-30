@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.InputSystem;
 using Unity.VisualScripting;
+using Unity.AI.Navigation;
 
 public class BuildingSystem : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class BuildingSystem : MonoBehaviour
     public PlacableObject objectToPlace;
 
     InputActions inputActions;
+
+    [SerializeField] Transform levelParent;
     #endregion
 
     #region Unity Functions
@@ -98,7 +101,7 @@ public class BuildingSystem : MonoBehaviour
     { 
         //Initializes a Building at the nearest Gridspot to the center of the world (0,0,0)
         GameObject obj = Instantiate(prefab, GetMouseWorldPosition(), Quaternion.identity);
-
+        obj.transform.SetParent(levelParent);
     }
 
     private bool CanBePlaced(PlacableObject placeableObject)
@@ -129,6 +132,7 @@ public class BuildingSystem : MonoBehaviour
     {
         tileMap.BoxFill(start, whiteTile, start.x, start.y, start.x + size.x, start.y + size.y);
         objectToPlace = null;
+        levelParent.GetComponent<NavMeshSurface>().BuildNavMesh();
     }
     #endregion
 

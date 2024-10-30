@@ -2303,7 +2303,8 @@ MonoBehaviour:
   life: 100
   enemiesInRange: []
   myEnemyTag: Enemy
-  damage: 10
+  damage: 0
+  canMine: 1
 --- !u!136 &3449445113560540697
 CapsuleCollider:
   m_ObjectHideFlags: 0

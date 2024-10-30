@@ -186,6 +186,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: anShouldMine
     m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: anIsMining
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 13746059796630839}
   m_Solo: 0
