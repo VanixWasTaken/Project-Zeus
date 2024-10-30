@@ -15,19 +15,12 @@ public class CommandCenterClickedState : CommandCenterBaseState
         inputActions = new InputActions();
         inputActions.Mouse.Enable();
 
-        commandCenter.buildingButton.SetActive(true);
-        commandCenter.playerButton.SetActive(false);
-        
+    
     }
 
     public override void UpdateState(CommandCenterStateManager commandCenter)
     {
-        // Switches states if you click somewhere else than the commandCenter
-       /* if (inputActions.Mouse.Click.IsPressed() && !commandCenter.hoversAbove)
-        {
-            commandCenter.SwitchStates(commandCenter.idleState);
-        }*/
-
+   
     }
 
 }
