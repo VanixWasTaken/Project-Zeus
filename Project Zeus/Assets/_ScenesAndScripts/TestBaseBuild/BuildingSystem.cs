@@ -37,12 +37,6 @@ public class BuildingSystem : MonoBehaviour
 
     private void Update()
     {
-        /*
-        if (inputActions.Keyboard.InitializeBuilding.IsPressed())
-        {
-            InitializeObject(TestBuilding);
-        }*/
-
         if (!objectToPlace)
         {
             return;
@@ -141,4 +135,11 @@ public class BuildingSystem : MonoBehaviour
     }
     #endregion
 
+
+
+
+    public void InstantiateObject()
+    {
+        InitializeObject(TestBuilding);
+    }
 }

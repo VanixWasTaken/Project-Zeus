@@ -12,6 +12,9 @@ public class CommandCenterIdleState : CommandCenterBaseState
     {
         inputActions = new InputActions();
         inputActions.Mouse.Enable();
+
+        commandCenter.buildingButton.SetActive(false);
+        commandCenter.playerButton.SetActive(true);
     }
 
     public override void UpdateState(CommandCenterStateManager commandCenter)
