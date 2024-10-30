@@ -1834,8 +1834,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa2c03c7763ffc48a56923360b07b01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collectedRessources: 0
-  ressource: {fileID: 726013551}
+  collectedResources: 0
+  resource: {fileID: 726013551}
 --- !u!1 &407724543
 GameObject:
   m_ObjectHideFlags: 0
@@ -3704,6 +3704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23078515b528bc04c9227be95f003822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCollecting: 0
 --- !u!1001 &731733618
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14568,6 +14569,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23078515b528bc04c9227be95f003822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isCollecting: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
