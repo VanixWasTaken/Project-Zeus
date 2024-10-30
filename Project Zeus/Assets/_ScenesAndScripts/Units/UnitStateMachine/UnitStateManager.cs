@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Audio;
@@ -25,6 +26,9 @@ public class UnitStateManager : MonoBehaviour
     public NavMeshAgent navMeshAgent;
     [SerializeField] Vector3 targetPosition;
     [SerializeField] GameObject selectionIndicator;
+    public float life = 100;
+    public int enemiesInRange = 0;
+    public string myEnemyTag;
     #endregion
 
     
@@ -33,14 +37,19 @@ public class UnitStateManager : MonoBehaviour
         selectionIndicator.SetActive(false);
         currentState = idleState;
         currentState.EnterState(this);
+        
     }
 
     void Update()
     {
         currentState.UpdateState(this);
+        if (life <= 0) 
+        {
+        Destroy(gameObject);
+        }
     }
 
-    void SwitchStates(UnitBaseState state)
+    public void SwitchStates(UnitBaseState state)
     {
         currentState = state;
         state.EnterState(this);
@@ -66,9 +75,12 @@ public class UnitStateManager : MonoBehaviour
         {
             navMeshAgent.ResetPath();
         }
-        SwitchStates(idleState);
+        if (currentState != fightState)
+        {
+            SwitchStates(idleState);
+        }
+        
     }
-
 
 
     public void Select()
@@ -83,13 +95,27 @@ public class UnitStateManager : MonoBehaviour
         selectionIndicator.SetActive(false);
     }
 
-    public void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("HEHEHE");
-        if (other.gameObject.CompareTag("Enemy"))
+        currentState.OnTriggerEnter(this, other);
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        currentState.OnTriggerExit(this, other);
+    }
+
+    public void WaitTimer(float waitTime)
+    {
+        StartCoroutine(WaitForSeconds(waitTime));
+    }
+
+    IEnumerator WaitForSeconds(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        if (currentState == fightState)
         {
-            SwitchStates(fightState);
-            Debug.Log("GOOBI");
+            fightState.Fight(this);
         }
     }
 

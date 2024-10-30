@@ -2405,7 +2405,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 7
+  m_Radius: 5
   m_Height: 0.5
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
@@ -2429,6 +2429,8 @@ MonoBehaviour:
   navMeshAgent: {fileID: 5303338562658446206}
   targetPosition: {x: 0, y: 0, z: 0}
   selectionIndicator: {fileID: 609776238214439572}
+  life: 100
+  enemiesInRange: 0
 --- !u!1 &7866930614544722859
 GameObject:
   m_ObjectHideFlags: 0
