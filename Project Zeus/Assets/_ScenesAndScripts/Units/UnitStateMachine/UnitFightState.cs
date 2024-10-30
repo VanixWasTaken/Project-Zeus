@@ -1,0 +1,40 @@
+using UnityEditor;
+using UnityEngine;
+
+public class UnitFightState : UnitBaseState
+{
+    GameObject currentEnemy;
+    public override void EnterState(UnitStateManager _unit)
+    {
+        _unit.StopMoving();
+        //_unit.mAnimator.Play("Shoot");
+        Fight(_unit);
+    }
+
+    public override void UpdateState(UnitStateManager _unit)
+    {
+        return;
+    }
+
+
+    public void Fight(UnitStateManager _unit)
+    {
+        if (_unit.enemiesInRange.Count > 0)
+        {
+            currentEnemy = _unit.enemiesInRange[0];
+            if (currentEnemy == null )
+            {
+                _unit.enemiesInRange.RemoveAt(0);
+                return;
+            }
+            currentEnemy.GetComponent<UnitStateManager>().TakeDamage(_unit.damage);
+            if (currentEnemy.GetComponent<UnitStateManager>().life <= 0)
+            {
+                currentEnemy = null;
+                _unit.enemiesInRange.RemoveAt(0);
+            }
+            _unit.WaitTimer(1.5f);
+        }
+    }
+
+}

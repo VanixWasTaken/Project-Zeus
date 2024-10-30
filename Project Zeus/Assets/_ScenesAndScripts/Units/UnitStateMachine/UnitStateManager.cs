@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Audio;
@@ -10,9 +11,10 @@ public class UnitStateManager : MonoBehaviour
 {
     // All available PlayerStates
     #region PlayerStates
-    UnitBaseState currentState;
+    public UnitBaseState currentState;
     public UnitIdleState idleState = new UnitIdleState();
     public UnitWalkingState walkingState = new UnitWalkingState();
+    public UnitFightState fightState = new UnitFightState();
     #endregion
 
     // All References
@@ -25,10 +27,12 @@ public class UnitStateManager : MonoBehaviour
     public NavMeshAgent navMeshAgent;
     [SerializeField] Vector3 targetPosition;
     [SerializeField] GameObject selectionIndicator;
+    [SerializeField] GameObject enemyDetector;
+    public float life = 100;
+    public List<GameObject> enemiesInRange;
+    public string myEnemyTag;
+    public int damage = 10;
     #endregion
-
-
-
 
     
     void Start()
@@ -36,24 +40,20 @@ public class UnitStateManager : MonoBehaviour
         selectionIndicator.SetActive(false);
         currentState = idleState;
         currentState.EnterState(this);
+        
     }
 
     void Update()
     {
         currentState.UpdateState(this);
+
     }
 
-    void SwitchStates(UnitBaseState state)
+    public void SwitchStates(UnitBaseState state)
     {
         currentState = state;
         state.EnterState(this);
     }
-
-
-
-
-
-
 
     public void OnFootstep()
     {
@@ -80,9 +80,12 @@ public class UnitStateManager : MonoBehaviour
         {
             navMeshAgent.ResetPath();
         }
-        SwitchStates(idleState);
+        if (currentState != fightState)
+        {
+            SwitchStates(idleState);
+        }
+        
     }
-
 
 
     public void Select()
@@ -97,6 +100,29 @@ public class UnitStateManager : MonoBehaviour
         selectionIndicator.SetActive(false);
     }
 
+    public void WaitTimer(float waitTime)
+    {
+        StartCoroutine(WaitForSeconds(waitTime));
+    }
+
+    IEnumerator WaitForSeconds(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        if (currentState == fightState)
+        {
+            
+            fightState.Fight(this);
+        }
+    }
+
+    public void TakeDamage(int incomingDamage)
+    {
+        life -= incomingDamage;
+        if (life <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
