@@ -5,10 +5,11 @@ using UnityEngine;
 public class ResourceSystemScript : MonoBehaviour
 {
 
-    public int collectedResources;
+    public int collectedMinerals;
     public ResourceCollecterScript resource;
     float timeElapsed = 0f;
 
+    [SerializeField] TextMeshProUGUI mineralsHUDCounter;
 
     private void Update()
     {
@@ -22,7 +23,10 @@ public class ResourceSystemScript : MonoBehaviour
         if (resource.isCollecting == true)
         {
             timeElapsed += Time.deltaTime;
-            collectedResources = Mathf.FloorToInt(timeElapsed % 60);
+            collectedMinerals = Mathf.FloorToInt(timeElapsed % 60);
+
+            mineralsHUDCounter.text = collectedMinerals.ToString();
+            Debug.Log("test14");
         }
     }
 }
