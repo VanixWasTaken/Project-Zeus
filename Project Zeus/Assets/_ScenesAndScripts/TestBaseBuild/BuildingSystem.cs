@@ -41,11 +41,12 @@ public class BuildingSystem : MonoBehaviour
         {
             return;
         }
-
+ 
         if (inputActions.Mouse.Released.WasReleasedThisFrame())
         {
             if (CanBePlaced(objectToPlace))
             {
+                Debug.Log("Releasedthisfrm");
                 objectToPlace.Place();
                 Vector3Int start = gridLayout.WorldToCell(objectToPlace.GetStartPosition());
                 TakeArea(start, objectToPlace.Size);
@@ -67,6 +68,7 @@ public class BuildingSystem : MonoBehaviour
     public static Vector3 GetMouseWorldPosition()
     {
         Ray ray = Camera.main.ScreenPointToRay(Mouse.current.position.ReadValue());
+        Debug.Log(ray);
         if (Physics.Raycast(ray, out RaycastHit raycastHit)){
             return raycastHit.point;
         }
@@ -98,10 +100,9 @@ public class BuildingSystem : MonoBehaviour
     { 
         //Initializes a Building at the nearest Gridspot to the center of the world (0,0,0)
         Vector3 position = SnapCoordinateToGrid(Vector3.zero);
-        GameObject obj = Instantiate(prefab, position, Quaternion.identity);
+        GameObject obj = Instantiate(prefab, GetMouseWorldPosition(), Quaternion.identity);
         //Gets the Placable Object Component for that Building to use that later, when using it 
-        //Adds the Object Drag Component so you can drag the object with yoour mouse.
-        objectToPlace = obj.GetComponent<PlacableObject>();
+       
     }
 
     private bool CanBePlaced(PlacableObject placeableObject)
@@ -130,6 +131,7 @@ public class BuildingSystem : MonoBehaviour
 
     public void TakeArea(Vector3Int start, Vector3Int size)
     {
+        Debug.Log("Takeare");
         tileMap.BoxFill(start, whiteTile, start.x, start.y, start.x + size.x, start.y + size.y);
         objectToPlace = null;
     }
