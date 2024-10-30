@@ -12,6 +12,7 @@ namespace UnityEngine
             SMAffirmBark_02,
             SMAffirmBark_03,
             SMFootstep_01,
+            SMGunshot_01,
 
             // Drone sounds
             DroneAffirmBark_01,
