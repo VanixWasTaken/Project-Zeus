@@ -13,6 +13,7 @@ public class PlacableObject : MonoBehaviour
 
     private void Awake()
     {
+
         buildingSystem = GameObject.FindGameObjectWithTag("BuildSystem").GetComponent<BuildingSystem>();
     }
     private void GetColliderVertexPositionsLocal()
