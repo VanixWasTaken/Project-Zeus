@@ -39,8 +39,7 @@ public class UnitStateManager : MonoBehaviour
     {
         selectionIndicator.SetActive(false);
         currentState = idleState;
-        currentState.EnterState(this);
-        
+        currentState.EnterState(this);  
     }
 
     void Update()

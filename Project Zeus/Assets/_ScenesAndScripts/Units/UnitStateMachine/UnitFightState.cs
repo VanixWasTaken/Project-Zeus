@@ -9,6 +9,7 @@ public class UnitFightState : UnitBaseState
         _unit.StopMoving();
         _unit.mAnimator.SetTrigger("shouldAttack");
         _unit.mAnimator.SetBool("isAttacking", true);
+        _unit.mAnimator.SetFloat("anSpeed", 1);
         Fight(_unit);
     }
 
@@ -23,6 +24,10 @@ public class UnitFightState : UnitBaseState
         if (_unit.enemiesInRange.Count > 0)
         {
             currentEnemy = _unit.enemiesInRange[0];
+            _unit.transform.LookAt(currentEnemy.transform.position);
+            Vector3 rotation = _unit.transform.rotation.eulerAngles;
+            rotation.y += 60;
+            _unit.transform.rotation = Quaternion.Euler(rotation);
             if (currentEnemy == null)
             {
                 _unit.enemiesInRange.RemoveAt(0);

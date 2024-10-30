@@ -35,6 +35,7 @@ public class EnemyDetector : MonoBehaviour
                 unitStateManager.enemiesInRange.Remove(other.gameObject);
                 if (unitStateManager.enemiesInRange.Count <= 0)
                 {
+                unitStateManager.mAnimator.SetBool("isAttacking", false);
                     unitStateManager.enemiesInRange.Clear();
                     unitStateManager.SwitchStates(unitStateManager.idleState);
                 }
