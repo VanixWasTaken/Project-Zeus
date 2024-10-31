@@ -35,11 +35,6 @@ public class UnitSelectionManager : MonoBehaviour
         HandleCommands();
     }
 
-
-
-
-
-
     void HandleSelection()
     {
         // Handle click selection and drag start
@@ -131,7 +126,7 @@ public class UnitSelectionManager : MonoBehaviour
 
     void MoveUnitsToTargetWithSpacing(Vector3 targetPosition)
     {
-        float spacing = 1.5f; // Set a spacing distance
+        float spacing = 2f; // Set a spacing distance
 
         foreach (UnitStateManager unit in selectedUnits)
         {

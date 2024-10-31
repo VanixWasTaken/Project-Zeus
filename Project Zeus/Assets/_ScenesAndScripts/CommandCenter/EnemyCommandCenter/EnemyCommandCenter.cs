@@ -26,15 +26,7 @@ public class EnemyCommandCenter : MonoBehaviour
         Debug.Log("ShouldSpawn: " + randomNumber.ToString());
         for (int i = 1; i <= randomNumber; i++)
         {
-            GameObject obj = Instantiate(unitPrefab, spawnLocation, Quaternion.identity);
-            obj.GetComponent<UnitStateManager>().myEnemyTag = "Player";
-            obj.GetComponent<UnitStateManager>().life = 50;
-            obj.GetComponent<UnitStateManager>().damage = 5;
-            obj.GetComponentInChildren<SkinnedMeshRenderer>().material = blueSpaceMarine;
-            obj.AddComponent<BasicEnemyAI>();
-            obj.transform.SetParent(GameObject.FindGameObjectWithTag("EnemyContainer").transform);
-            obj.transform.localScale = new Vector3(0.58f, 0.58f, 0.58f);
-            obj.tag = "Enemy";
+            InstantiateMarine();
 
             if (i == randomNumber)
             {
@@ -44,4 +36,21 @@ public class EnemyCommandCenter : MonoBehaviour
             }
         }
     }
+
+    void InstantiateMarine()
+    {
+        float spacing = 4.0f;
+        Vector3 offset = new Vector3(UnityEngine.Random.Range(-spacing, spacing), 0, UnityEngine.Random.Range(-spacing, spacing));
+        GameObject obj = Instantiate(unitPrefab, spawnLocation + offset, Quaternion.identity);
+        UnitStateManager _unit = obj.GetComponent<UnitStateManager>();
+        _unit.myEnemyTag = "Player";
+        _unit.life = 50;
+        _unit.damage = 5;
+        obj.GetComponentInChildren<SkinnedMeshRenderer>().material = blueSpaceMarine;
+        obj.AddComponent<BasicEnemyAI>();
+        obj.transform.SetParent(GameObject.FindGameObjectWithTag("EnemyContainer").transform);
+        obj.transform.localScale = new Vector3(0.58f, 0.58f, 0.58f);
+        obj.tag = "Enemy";
+    }
+
 }

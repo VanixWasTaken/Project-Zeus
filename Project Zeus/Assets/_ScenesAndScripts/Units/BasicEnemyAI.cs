@@ -32,6 +32,7 @@ public class BasicEnemyAI : MonoBehaviour
 
     public void UpdateList()
     {
+        float spacing = 2;
         GameObject[] playerTags = GameObject.FindGameObjectsWithTag("Player");
         Debug.Log(playerTags.Length);
         foreach (GameObject playerTag in playerTags)
@@ -41,7 +42,8 @@ public class BasicEnemyAI : MonoBehaviour
         System.Random _rnd = new System.Random();
         int randomListSpot = _rnd.Next(0, playerUnits.Count);
         myEnemy = playerUnits[randomListSpot];
-        stateManager.OnCommandMove(myEnemy.transform.position);
+        Vector3 offset = new Vector3(Random.Range(-spacing, spacing), 0, Random.Range(-spacing, spacing));
+        stateManager.OnCommandMove(myEnemy.transform.position + offset);
 
     }
 

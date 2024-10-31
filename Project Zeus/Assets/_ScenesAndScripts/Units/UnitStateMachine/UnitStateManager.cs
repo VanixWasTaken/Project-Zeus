@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.Audio;
 using static UnityEngine.Audio.AudioType;
+using UnityEditor.SceneManagement;
 
 public class UnitStateManager : MonoBehaviour
 {
@@ -147,6 +148,7 @@ public class UnitStateManager : MonoBehaviour
             tag = "Untagged";
             mAnimator.SetTrigger("shouldDie");
             isDead = true;
+            Destroy(GetComponent<Rigidbody>());
         }
     }
 

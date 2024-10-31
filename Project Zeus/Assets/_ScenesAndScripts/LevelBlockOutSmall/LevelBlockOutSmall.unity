@@ -15345,6 +15345,26 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6315628705533745189, guid: 75d767ddd96a0974ba4b9d59859b6f61,
+        type: 3}
+      propertyPath: m_Drag
+      value: 46.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315628705533745189, guid: 75d767ddd96a0974ba4b9d59859b6f61,
+        type: 3}
+      propertyPath: m_Mass
+      value: 56.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315628705533745189, guid: 75d767ddd96a0974ba4b9d59859b6f61,
+        type: 3}
+      propertyPath: m_AngularDrag
+      value: 47.26
+      objectReference: {fileID: 0}
+    - target: {fileID: 6315628705533745189, guid: 75d767ddd96a0974ba4b9d59859b6f61,
+        type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7218633794424186248, guid: 75d767ddd96a0974ba4b9d59859b6f61,
         type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
