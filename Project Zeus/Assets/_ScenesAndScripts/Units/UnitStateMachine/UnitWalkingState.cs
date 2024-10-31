@@ -17,6 +17,7 @@ public class UnitWalkingState : UnitBaseState
         // Check if the unit has reached its destination
         if (_unit.navMeshAgent != null && !_unit.navMeshAgent.pathPending)
         {
+            _unit.navMeshAgent.stoppingDistance = 3;
             if (_unit.navMeshAgent.remainingDistance <= _unit.navMeshAgent.stoppingDistance)
             {
                 // Stop moving and switch to idle state if the destination is reached
