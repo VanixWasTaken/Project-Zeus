@@ -1593,7 +1593,7 @@ GameObject:
   - component: {fileID: 130574267}
   - component: {fileID: 130574269}
   - component: {fileID: 130574268}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: CollectResourcesHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14863,6 +14863,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 413611998}
     m_Modifications:
+    - target: {fileID: 3449445113560540697, guid: 90e77627283cd1d4d815c5064754c714,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3449445113560540697, guid: 90e77627283cd1d4d815c5064754c714,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3886569656472545445, guid: 90e77627283cd1d4d815c5064754c714,
         type: 3}
       propertyPath: mainCamera
@@ -14937,6 +14947,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: DronePrefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 9220568740354695395, guid: 90e77627283cd1d4d815c5064754c714,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

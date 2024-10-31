@@ -7,6 +7,7 @@ using UnityEngine.AI;
 using UnityEngine.Audio;
 using static UnityEngine.Audio.AudioType;
 using UnityEditor.SceneManagement;
+using static UnityEngine.UI.CanvasScaler;
 
 public class UnitStateManager : MonoBehaviour
 {
@@ -35,7 +36,6 @@ public class UnitStateManager : MonoBehaviour
     public string myEnemyTag;
     public int damage = 10;
     public bool isDead = false;
-    [SerializeField] bool canMine;
     #endregion
 
     
@@ -43,7 +43,7 @@ public class UnitStateManager : MonoBehaviour
     {
         selectionIndicator.SetActive(false);
         currentState = idleState;
-        currentState.EnterState(this);  
+        currentState.EnterState(this);
     }
 
     void Update()
@@ -149,25 +149,6 @@ public class UnitStateManager : MonoBehaviour
             mAnimator.SetTrigger("shouldDie");
             isDead = true;
             Destroy(GetComponent<Rigidbody>());
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.layer == 7 && canMine) // 7 = Resource Layer
-        {
-            transform.LookAt(other.transform.position);
-            SwitchStates(miningState);
-            Debug.Log("test rein");
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.layer == 7 && canMine) // 7 = Resource Layer
-        {
-            mAnimator.SetBool("anIsMining", false);
-            Debug.Log("test raus");
         }
     }
 }
