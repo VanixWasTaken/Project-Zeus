@@ -7,6 +7,8 @@ TagManager:
   - BuildSystem
   - SpawnTroopsButton
   - Enemy
+  - PlayerContainer
+  - EnemyContainer
   layers:
   - Default
   - TransparentFX

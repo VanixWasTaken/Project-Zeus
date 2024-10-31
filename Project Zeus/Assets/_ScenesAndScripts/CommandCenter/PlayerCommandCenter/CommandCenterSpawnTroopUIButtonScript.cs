@@ -10,6 +10,7 @@ public class CommandCenterSpawnTroopUIButtonScript : MonoBehaviour
     private AudioController audioController;
     [SerializeField] GameObject unitPrefab;
     [SerializeField] TextMeshProUGUI spawningTimerText;
+    [SerializeField] Material redSpaceMarine;
 
     private void Start()
     {
@@ -54,6 +55,9 @@ public class CommandCenterSpawnTroopUIButtonScript : MonoBehaviour
         audioController.PlayAudio(HeadquarterDroneSpawn_01);
 
         yield return new WaitForSeconds(5);
-        Instantiate(unitPrefab, spawnPosition, spawnRotation);
+        GameObject obj = Instantiate(unitPrefab, spawnPosition, spawnRotation);
+        obj.GetComponent<UnitStateManager>().myEnemyTag = "Enemy";
+        obj.GetComponentInChildren<SkinnedMeshRenderer>().material = redSpaceMarine;
+        obj.transform.SetParent(GameObject.FindGameObjectWithTag("PlayerContainer").transform);
     }
 }
