@@ -158,6 +158,7 @@ public class UnitStateManager : MonoBehaviour
         {
             transform.LookAt(other.transform.position);
             SwitchStates(miningState);
+            Debug.Log("test rein");
         }
     }
 
@@ -166,6 +167,7 @@ public class UnitStateManager : MonoBehaviour
         if (other.gameObject.layer == 7 && canMine) // 7 = Resource Layer
         {
             mAnimator.SetBool("anIsMining", false);
+            Debug.Log("test raus");
         }
     }
 }

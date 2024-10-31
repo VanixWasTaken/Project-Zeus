@@ -34,7 +34,7 @@ public class BasicEnemyAI : MonoBehaviour
     {
         float spacing = 2;
         GameObject[] playerTags = GameObject.FindGameObjectsWithTag("Player");
-        Debug.Log(playerTags.Length);
+        // Debug.Log(playerTags.Length);
         foreach (GameObject playerTag in playerTags)
         {
           playerUnits.Add(playerTag.gameObject);

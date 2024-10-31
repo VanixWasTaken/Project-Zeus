@@ -23,7 +23,7 @@ public class EnemyCommandCenter : MonoBehaviour
     {
         System.Random _rnd = new System.Random();
         int randomNumber = _rnd.Next(1, 4);
-        Debug.Log("ShouldSpawn: " + randomNumber.ToString());
+        // Debug.Log("ShouldSpawn: " + randomNumber.ToString());
         for (int i = 1; i <= randomNumber; i++)
         {
             InstantiateMarine();
@@ -31,7 +31,7 @@ public class EnemyCommandCenter : MonoBehaviour
             if (i == randomNumber)
             {
                 int gulp = _rnd.Next(5, 15);
-                Debug.Log("Should Wait: " + gulp.ToString());
+                // Debug.Log("Should Wait: " + gulp.ToString());
                 StartCoroutine(WaitForSeconds(gulp));
             }
         }
