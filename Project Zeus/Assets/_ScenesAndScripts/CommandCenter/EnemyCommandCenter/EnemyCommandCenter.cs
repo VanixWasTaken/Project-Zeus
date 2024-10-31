@@ -28,9 +28,13 @@ public class EnemyCommandCenter : MonoBehaviour
         {
             GameObject obj = Instantiate(unitPrefab, spawnLocation, Quaternion.identity);
             obj.GetComponent<UnitStateManager>().myEnemyTag = "Player";
+            obj.GetComponent<UnitStateManager>().life = 50;
+            obj.GetComponent<UnitStateManager>().damage = 5;
             obj.GetComponentInChildren<SkinnedMeshRenderer>().material = blueSpaceMarine;
             obj.AddComponent<BasicEnemyAI>();
             obj.transform.SetParent(GameObject.FindGameObjectWithTag("EnemyContainer").transform);
+            obj.transform.localScale = new Vector3(0.58f, 0.58f, 0.58f);
+            obj.tag = "Enemy";
 
             if (i == randomNumber)
             {

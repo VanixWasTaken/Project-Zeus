@@ -54,6 +54,10 @@ public class UnitStateManager : MonoBehaviour
     {
         if (!isDead)
         {
+            if (state == idleState && tag == "Enemy")
+            {
+                GetComponent<BasicEnemyAI>().UpdateList();
+            }
             currentState = state;
             state.EnterState(this);
         }
@@ -103,7 +107,7 @@ public class UnitStateManager : MonoBehaviour
 
     public void Select()
     {
-        if (!isDead)
+        if (!isDead && tag != "Enemy")
         {
             // change visual to make selection apparent
             selectionIndicator.SetActive(true);

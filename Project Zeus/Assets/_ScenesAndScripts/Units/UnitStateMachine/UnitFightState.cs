@@ -24,7 +24,6 @@ public class UnitFightState : UnitBaseState
         if (_unit.enemiesInRange.Count > 0 && !_unit.isDead)
         {
             currentEnemy = _unit.enemiesInRange[0];
-            
             if (currentEnemy == null)
             {
                 _unit.enemiesInRange.RemoveAt(0);
@@ -41,6 +40,16 @@ public class UnitFightState : UnitBaseState
                 {
                     currentEnemy = null;
                     _unit.enemiesInRange.RemoveAt(0);
+                    if (_unit.enemiesInRange.Count >= 1)
+                    {
+                        currentEnemy = _unit.enemiesInRange[0];
+                    }
+                    else if (_unit.enemiesInRange.Count <= 0)
+                    {
+                        _unit.SwitchStates(_unit.idleState);
+                        _unit.mAnimator.SetBool("isFighting", false);
+                    }
+
                 }
                 _unit.WaitTimer(1.5f);
             }

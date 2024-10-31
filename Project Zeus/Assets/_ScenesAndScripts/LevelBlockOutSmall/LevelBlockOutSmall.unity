@@ -5640,11 +5640,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5595765290303610752, guid: 09785fdf30f896f4bb36f84834756c5f,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1317347861}
-    - targetCorrespondingSourceObject: {fileID: -930923630484901147, guid: 09785fdf30f896f4bb36f84834756c5f,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 702138707}
+      addedObject: {fileID: 1317347865}
   m_SourcePrefab: {fileID: 100100000, guid: 09785fdf30f896f4bb36f84834756c5f, type: 3}
 --- !u!4 &670206860 stripped
 Transform:
@@ -5864,34 +5860,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 702107171}
   m_CullTransparentMesh: 1
---- !u!1 &702138703 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: -930923630484901147, guid: 09785fdf30f896f4bb36f84834756c5f,
-    type: 3}
-  m_PrefabInstance: {fileID: 670206859}
-  m_PrefabAsset: {fileID: 0}
---- !u!64 &702138707
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 702138703}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 2675590822725635628, guid: 09785fdf30f896f4bb36f84834756c5f, type: 3}
 --- !u!1 &716297833
 GameObject:
   m_ObjectHideFlags: 0
@@ -10721,7 +10689,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 670206859}
   m_PrefabAsset: {fileID: 0}
---- !u!64 &1317347861
+--- !u!64 &1317347865
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10734,7 +10702,7 @@ MeshCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 32768
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0

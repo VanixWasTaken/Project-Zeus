@@ -97,7 +97,11 @@ public class UnitSelectionManager : MonoBehaviour
                 screenPosition.y >= min.y && screenPosition.y <= max.y)
             {
                 unit.Select();
-                selectedUnits.Add(unit);  // Only add the unit to the selection
+                if(unit.gameObject.tag != "Enemy")
+                {
+                    selectedUnits.Add(unit);
+                }
+                 // Only add the unit to the selection
             }
         }
 

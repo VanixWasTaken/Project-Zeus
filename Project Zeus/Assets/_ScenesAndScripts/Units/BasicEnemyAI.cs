@@ -10,6 +10,7 @@ public class BasicEnemyAI : MonoBehaviour
     [SerializeField] bool isBase = false;
     [SerializeField] List<GameObject> playerUnits = new List<GameObject>();
     GameObject myEnemy;
+    UnitStateManager stateManager;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -17,6 +18,7 @@ public class BasicEnemyAI : MonoBehaviour
     {
         if (!isBase)
         {
+            stateManager = GetComponent<UnitStateManager>();
             UpdateList();
         }
         
@@ -28,7 +30,7 @@ public class BasicEnemyAI : MonoBehaviour
         
     }
 
-    void UpdateList()
+    public void UpdateList()
     {
         GameObject[] playerTags = GameObject.FindGameObjectsWithTag("Player");
         Debug.Log(playerTags.Length);
@@ -39,6 +41,8 @@ public class BasicEnemyAI : MonoBehaviour
         System.Random _rnd = new System.Random();
         int randomListSpot = _rnd.Next(0, playerUnits.Count);
         myEnemy = playerUnits[randomListSpot];
+        stateManager.OnCommandMove(myEnemy.transform.position);
+
     }
 
 }
