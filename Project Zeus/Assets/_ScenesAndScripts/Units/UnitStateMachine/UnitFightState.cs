@@ -28,6 +28,7 @@ public class UnitFightState : UnitBaseState
             {
                 _unit.enemiesInRange.RemoveAt(0);
                 return;
+                //EnterIdleState(_unit);
             }
             else
             {
@@ -46,21 +47,25 @@ public class UnitFightState : UnitBaseState
                     }
                     else if (_unit.enemiesInRange.Count <= 0)
                     {
-                        _unit.SwitchStates(_unit.idleState);
-                        _unit.mAnimator.SetBool("isFighting", false);
+                        EnterIdleState(_unit);
                     }
 
                 }
-                _unit.audioController.RandomizeAudioPitch(UnityEngine.Audio.AudioType.SMGunshot_01, 0.8f, 1.2f);
+                //_unit.audioController.RandomizeAudioPitch(UnityEngine.Audio.AudioType.SMGunshot_01, 0.8f, 1.2f);
                 _unit.WaitTimer(1.5f);
             }
 
         }
         else
         {
-            _unit.mAnimator.SetBool("isAttacking", false);
-            _unit.SwitchStates(_unit.idleState);
+            EnterIdleState(_unit);
         }
+    }
+
+    void EnterIdleState(UnitStateManager _unit)
+    {
+        _unit.mAnimator.SetBool("isAttacking", false);
+        _unit.SwitchStates(_unit.idleState);
     }
 
 }
