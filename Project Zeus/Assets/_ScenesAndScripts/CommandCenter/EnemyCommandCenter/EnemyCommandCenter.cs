@@ -30,7 +30,7 @@ public class EnemyCommandCenter : MonoBehaviour
 
             if (i == randomNumber)
             {
-                int gulp = _rnd.Next(1, 8);
+                int gulp = _rnd.Next(5, 15);
                 Debug.Log("Should Wait: " + gulp.ToString());
                 StartCoroutine(WaitForSeconds(gulp));
             }

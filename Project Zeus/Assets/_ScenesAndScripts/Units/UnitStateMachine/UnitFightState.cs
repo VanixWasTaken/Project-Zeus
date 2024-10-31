@@ -51,6 +51,7 @@ public class UnitFightState : UnitBaseState
                     }
 
                 }
+                _unit.audioController.RandomizeAudioPitch(UnityEngine.Audio.AudioType.SMGunshot_01, 0.8f, 1.2f);
                 _unit.WaitTimer(1.5f);
             }
 
