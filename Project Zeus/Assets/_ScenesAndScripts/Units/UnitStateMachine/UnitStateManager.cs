@@ -33,6 +33,7 @@ public class UnitStateManager : MonoBehaviour
     public List<GameObject> enemiesInRange;
     public string myEnemyTag;
     public int damage = 10;
+    public bool isDead = false;
     [SerializeField] bool canMine;
     #endregion
 
@@ -47,13 +48,15 @@ public class UnitStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
-
     }
 
     public void SwitchStates(UnitBaseState state)
     {
-        currentState = state;
-        state.EnterState(this);
+        if (!isDead)
+        {
+            currentState = state;
+            state.EnterState(this);
+        }
     }
 
     public void OnFootstep()
@@ -100,8 +103,12 @@ public class UnitStateManager : MonoBehaviour
 
     public void Select()
     {
-        // change visual to make selection apparent
-        selectionIndicator.SetActive(true);
+        if (!isDead)
+        {
+            // change visual to make selection apparent
+            selectionIndicator.SetActive(true);
+        }
+
     }
 
     public void Deselect()
@@ -112,7 +119,10 @@ public class UnitStateManager : MonoBehaviour
 
     public void WaitTimer(float waitTime)
     {
-        StartCoroutine(WaitForSeconds(waitTime));
+        if (!isDead)
+        {
+            StartCoroutine(WaitForSeconds(waitTime));
+        }
     }
 
     IEnumerator WaitForSeconds(float waitTime)
@@ -130,9 +140,9 @@ public class UnitStateManager : MonoBehaviour
         life -= incomingDamage;
         if (life <= 0)
         {
-            Destroy(GetComponent<NavMeshAgent>());
+            tag = "Untagged";
             mAnimator.SetTrigger("shouldDie");
-            Destroy(GetComponent<UnitStateManager>());
+            isDead = true;
         }
     }
 

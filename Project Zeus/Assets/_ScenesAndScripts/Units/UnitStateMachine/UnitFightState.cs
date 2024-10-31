@@ -21,26 +21,30 @@ public class UnitFightState : UnitBaseState
 
     public void Fight(UnitStateManager _unit)
     {
-        if (_unit.enemiesInRange.Count > 0)
+        if (_unit.enemiesInRange.Count > 0 && !_unit.isDead)
         {
             currentEnemy = _unit.enemiesInRange[0];
-
+            
             if (currentEnemy == null)
             {
                 _unit.enemiesInRange.RemoveAt(0);
                 return;
             }
-            _unit.transform.LookAt(currentEnemy.transform.position);
-            Vector3 rotation = _unit.transform.rotation.eulerAngles;
-            rotation.y += 60;
-            _unit.transform.rotation = Quaternion.Euler(rotation);
-            currentEnemy.GetComponent<UnitStateManager>().TakeDamage(_unit.damage);
-            if (currentEnemy.GetComponent<UnitStateManager>().life <= 0)
+            else
             {
-                currentEnemy = null;
-                _unit.enemiesInRange.RemoveAt(0);
+                _unit.transform.LookAt(currentEnemy.transform.position);
+                Vector3 rotation = _unit.transform.rotation.eulerAngles;
+                rotation.y += 60;
+                _unit.transform.rotation = Quaternion.Euler(rotation);
+                currentEnemy.GetComponent<UnitStateManager>().TakeDamage(_unit.damage);
+                if (currentEnemy.GetComponent<UnitStateManager>().life <= 0)
+                {
+                    currentEnemy = null;
+                    _unit.enemiesInRange.RemoveAt(0);
+                }
+                _unit.WaitTimer(1.5f);
             }
-            _unit.WaitTimer(1.5f);
+
         }
         else
         {
