@@ -35,6 +35,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         if (currentPickedWorkers < availableWorkers)
         {
             currentPickedWorkers++;
+            GameDataManager.Instance.IncreaseCurrentKilogram(10);
         }
         workersText.text = ("Workers    : " + currentPickedWorkers + " / " + availableWorkers);
     }
@@ -43,6 +44,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         if (currentPickedWorkers > 0)
         {
             currentPickedWorkers--;
+            GameDataManager.Instance.DecreaseCurrentKilogram(10);
         }
         workersText.text = ("Workers    : " + currentPickedWorkers + " / " + availableWorkers);
     }
@@ -52,6 +54,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         if (currentPickedRecons < availableRecons)
         {
             currentPickedRecons++;
+            GameDataManager.Instance.IncreaseCurrentKilogram(10);
         }
         reconsText.text = ("Recons  : " + currentPickedRecons + " / " + availableRecons);
     }
@@ -60,6 +63,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         if (currentPickedRecons > 0)
         {
             currentPickedRecons--;
+            GameDataManager.Instance.DecreaseCurrentKilogram(10);
         }
         reconsText.text = ("Recons : " + currentPickedRecons + " / " + availableRecons);
     }
@@ -69,6 +73,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         if (currentPickedGatherers < availableGatherers)
         {
             currentPickedGatherers++;
+            GameDataManager.Instance.IncreaseCurrentKilogram(10);
         }
         gatherersText.text = ("Gatherers    : " + currentPickedGatherers + " / " + availableGatherers);
     }
@@ -77,6 +82,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         if (currentPickedGatherers > 0)
         {
             currentPickedGatherers--;
+            GameDataManager.Instance.DecreaseCurrentKilogram(10);
         }
         gatherersText.text = ("Gatherers    : " + currentPickedGatherers + " / " + availableGatherers);
     }
