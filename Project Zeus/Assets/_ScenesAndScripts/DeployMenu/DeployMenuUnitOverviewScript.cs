@@ -20,9 +20,9 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         availableRecons = GameDataManager.Instance.availableRecons;
         availableGatherers = GameDataManager.Instance.availableGatherers;
 
-        workersText.text = ("Workers    : " + currentPickedWorkers + " / " + availableWorkers);
-        reconsText.text = ("Recons  : " + currentPickedRecons + " / " + availableRecons);
-        gatherersText.text = ("Gatherers    : " + currentPickedGatherers + " / " + availableGatherers);
+        workersText.text = ("Workers\t\t: " + currentPickedWorkers + " / " + availableWorkers);
+        reconsText.text = ("Recons\t\t: " + currentPickedRecons + " / " + availableRecons);
+        gatherersText.text = ("Gatherers\t\t: " + currentPickedGatherers + " / " + availableGatherers);
     }
 
     void Update()
@@ -37,7 +37,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
             currentPickedWorkers++;
             GameDataManager.Instance.IncreaseCurrentKilogram(10);
         }
-        workersText.text = ("Workers    : " + currentPickedWorkers + " / " + availableWorkers);
+        workersText.text = ("Workers\t\t: " + currentPickedWorkers + " / " + availableWorkers);
     }
     public void OnWorkersSubtractClicked()
     {
@@ -46,7 +46,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
             currentPickedWorkers--;
             GameDataManager.Instance.DecreaseCurrentKilogram(10);
         }
-        workersText.text = ("Workers    : " + currentPickedWorkers + " / " + availableWorkers);
+        workersText.text = ("Workers\t\t: " + currentPickedWorkers + " / " + availableWorkers);
     }
 
     public void OnReconsAddClicked()
@@ -56,7 +56,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
             currentPickedRecons++;
             GameDataManager.Instance.IncreaseCurrentKilogram(10);
         }
-        reconsText.text = ("Recons  : " + currentPickedRecons + " / " + availableRecons);
+        reconsText.text = ("Recons\t\t: " + currentPickedRecons + " / " + availableRecons);
     }
     public void OnReconsSubtractClicked()
     {
@@ -65,7 +65,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
             currentPickedRecons--;
             GameDataManager.Instance.DecreaseCurrentKilogram(10);
         }
-        reconsText.text = ("Recons : " + currentPickedRecons + " / " + availableRecons);
+        reconsText.text = ("Recons\t\t: " + currentPickedRecons + " / " + availableRecons);
     }
 
     public void OnGatherersAddClicked()
@@ -75,7 +75,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
             currentPickedGatherers++;
             GameDataManager.Instance.IncreaseCurrentKilogram(10);
         }
-        gatherersText.text = ("Gatherers    : " + currentPickedGatherers + " / " + availableGatherers);
+        gatherersText.text = ("Gatherers\t\t: " + currentPickedGatherers + " / " + availableGatherers);
     }
     public void OnGatherersSubtractClicked()
     {
@@ -84,6 +84,6 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
             currentPickedGatherers--;
             GameDataManager.Instance.DecreaseCurrentKilogram(10);
         }
-        gatherersText.text = ("Gatherers    : " + currentPickedGatherers + " / " + availableGatherers);
+        gatherersText.text = ("Gatherers\t\t: " + currentPickedGatherers + " / " + availableGatherers);
     }
 }
