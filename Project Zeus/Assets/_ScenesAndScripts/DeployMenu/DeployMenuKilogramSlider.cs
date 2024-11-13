@@ -1,5 +1,7 @@
+using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DeployMenuKilogramSlider : MonoBehaviour
 {
@@ -7,6 +9,7 @@ public class DeployMenuKilogramSlider : MonoBehaviour
     float _currentKilogram;
     [SerializeField] TextMeshProUGUI availableKilogramText;
     [SerializeField] GameObject kilogramWarning;
+    [SerializeField] Slider kilogramSlider;
 
     void Start()
     {
@@ -26,6 +29,8 @@ public class DeployMenuKilogramSlider : MonoBehaviour
 
     public void AdjustKilogramSlider()
     {
+        float percent = (_currentKilogram / _kilogram) * 100;
+        kilogramSlider.value = percent / 100f;
         availableKilogramText.text = _currentKilogram + " / " + _kilogram;
     }
 

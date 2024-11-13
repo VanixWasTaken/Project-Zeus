@@ -4223,6 +4223,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableKilogramText: {fileID: 1144702352}
   kilogramWarning: {fileID: 245369004}
+  kilogramSlider: {fileID: 2106916735}
 --- !u!1 &1707975558
 GameObject:
   m_ObjectHideFlags: 0
