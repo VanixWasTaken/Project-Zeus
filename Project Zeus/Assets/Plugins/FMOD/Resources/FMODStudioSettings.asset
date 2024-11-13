@@ -464,7 +464,7 @@ MonoBehaviour:
   HasSourceProject: 0
   HasPlatforms: 0
   sourceProjectPath: 
-  sourceBankPath: Assets/_Art/Sound/DesktopBanks
+  sourceBankPath: Assets/_Art/Sound/DesktopBanks/Desktop
   sourceBankPathUnformatted: 
   BankRefreshCooldown: 5
   ShowBankRefreshWindow: 1
@@ -485,8 +485,22 @@ MonoBehaviour:
   VirtualChannelSettings: []
   RealChannelSettings: []
   Plugins: []
-  MasterBanks: []
-  Banks: []
+  MasterBanks:
+  - Desktop/_Master
+  Banks:
+  - Desktop/BARK_ENG
+  - Desktop/C_DIA_ENG
+  - Desktop/COMB
+  - Desktop/EFF_ENG
+  - Desktop/ENEMIES
+  - Desktop/ENV
+  - Desktop/EXPL
+  - Desktop/G_DIA_ENG
+  - Desktop/MENU
+  - Desktop/NARR_ENG
+  - Desktop/UI
+  - Desktop/UNIT
+  - Desktop/WEAPONS
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
