@@ -4,13 +4,13 @@ using UnityEngine;
 public class DeployMenuLandingPodMenu : MonoBehaviour
 {
     [SerializeField] GameObject landingPodMenuGO;
-    float _kilogram;
+    float _maxKilogram;
     float _currentKilogram;
     [SerializeField] TextMeshProUGUI landingPodKilogramText;
 
     void Update()
     {
-        _kilogram = GameDataManager.Instance.maxKilogram;
+        _maxKilogram = GameDataManager.Instance.maxKilogram;
         _currentKilogram = GameDataManager.Instance.currentKilogram;
 
         UpdateKilogram();
@@ -19,7 +19,7 @@ public class DeployMenuLandingPodMenu : MonoBehaviour
 
     void UpdateKilogram()
     {
-        landingPodKilogramText.text = "Kilogram\n" + _currentKilogram + " / " + _kilogram;
+        landingPodKilogramText.text = "Kilogram\n" + _currentKilogram + " / " + _maxKilogram;
     }
 
     public void OnLandingPodMenuClick()

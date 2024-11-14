@@ -2248,7 +2248,7 @@ Transform:
   m_GameObject: {fileID: 7728441241921136730}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 15.0584955, y: 2.84, z: 34.773}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2295,7 +2295,7 @@ MonoBehaviour:
   mainCamera: {fileID: 0}
   mouseClickPos: {x: 0, y: 0, z: 0}
   commandCenter: {fileID: 0}
-  audioController: {fileID: 0}
+  audioSheet: {fileID: 0}
   navMeshAgent: {fileID: 4804059227772445722}
   targetPosition: {x: 0, y: 0, z: 0}
   selectionIndicator: {fileID: 203598350586918367}
@@ -2304,7 +2304,7 @@ MonoBehaviour:
   enemiesInRange: []
   myEnemyTag: Enemy
   damage: 0
-  canMine: 1
+  isDead: 0
 --- !u!136 &3449445113560540697
 CapsuleCollider:
   m_ObjectHideFlags: 0

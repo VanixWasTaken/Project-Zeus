@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DeployMenuKilogramSlider : MonoBehaviour
 {
-    float _kilogram;
+    float _maxKilogram;
     float _currentKilogram;
     [SerializeField] TextMeshProUGUI availableKilogramText;
     [SerializeField] GameObject kilogramWarning;
@@ -19,7 +19,7 @@ public class DeployMenuKilogramSlider : MonoBehaviour
     
     void Update()
     {
-        _kilogram = GameDataManager.Instance.maxKilogram;
+        _maxKilogram = GameDataManager.Instance.maxKilogram;
         _currentKilogram = GameDataManager.Instance.currentKilogram;
 
         AdjustKilogramSlider();
@@ -29,14 +29,14 @@ public class DeployMenuKilogramSlider : MonoBehaviour
 
     public void AdjustKilogramSlider()
     {
-        float percent = (_currentKilogram / _kilogram) * 100;
+        float percent = (_currentKilogram / _maxKilogram) * 100;
         kilogramSlider.value = percent / 100f;
-        availableKilogramText.text = _currentKilogram + " / " + _kilogram;
+        availableKilogramText.text = _currentKilogram + " / " + _maxKilogram;
     }
 
     void KilogramWarning()
     {
-        if (_currentKilogram > _kilogram)
+        if (_currentKilogram > _maxKilogram)
         {
             kilogramWarning.SetActive(true);
         }

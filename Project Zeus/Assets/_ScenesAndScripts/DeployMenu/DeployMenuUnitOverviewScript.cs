@@ -36,6 +36,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         {
             currentPickedWorkers++;
             GameDataManager.Instance.IncreaseCurrentKilogram(10);
+            GameDataManager.Instance.pickedWorkers++;
         }
         workersText.text = ("Workers\t\t: " + currentPickedWorkers + " / " + availableWorkers);
     }
@@ -45,6 +46,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         {
             currentPickedWorkers--;
             GameDataManager.Instance.DecreaseCurrentKilogram(10);
+            GameDataManager.Instance.pickedWorkers--;
         }
         workersText.text = ("Workers\t\t: " + currentPickedWorkers + " / " + availableWorkers);
     }
@@ -55,6 +57,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         {
             currentPickedRecons++;
             GameDataManager.Instance.IncreaseCurrentKilogram(10);
+            GameDataManager.Instance.pickedRecons++;
         }
         reconsText.text = ("Recons\t\t: " + currentPickedRecons + " / " + availableRecons);
     }
@@ -64,6 +67,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         {
             currentPickedRecons--;
             GameDataManager.Instance.DecreaseCurrentKilogram(10);
+            GameDataManager.Instance.pickedRecons--;
         }
         reconsText.text = ("Recons\t\t: " + currentPickedRecons + " / " + availableRecons);
     }
@@ -74,6 +78,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         {
             currentPickedGatherers++;
             GameDataManager.Instance.IncreaseCurrentKilogram(10);
+            GameDataManager.Instance.pickedGatherers++;
         }
         gatherersText.text = ("Gatherers\t\t: " + currentPickedGatherers + " / " + availableGatherers);
     }
@@ -83,6 +88,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         {
             currentPickedGatherers--;
             GameDataManager.Instance.DecreaseCurrentKilogram(10);
+            GameDataManager.Instance.pickedGatherers--;
         }
         gatherersText.text = ("Gatherers\t\t: " + currentPickedGatherers + " / " + availableGatherers);
     }
