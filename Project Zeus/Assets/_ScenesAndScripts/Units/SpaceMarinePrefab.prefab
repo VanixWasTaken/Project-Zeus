@@ -644,7 +644,6 @@ MonoBehaviour:
   myEnemyTag: Enemy
   damage: 10
   isDead: 0
-  canMine: 0
 --- !u!54 &6315628705533745189
 Rigidbody:
   m_ObjectHideFlags: 0
