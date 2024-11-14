@@ -4460,7 +4460,7 @@ MonoBehaviour:
   - UNIT
   - WEAPONS
   CollisionTag: 
-  PreloadSamples: 0
+  PreloadSamples: 1
 --- !u!1 &574180236
 GameObject:
   m_ObjectHideFlags: 0
