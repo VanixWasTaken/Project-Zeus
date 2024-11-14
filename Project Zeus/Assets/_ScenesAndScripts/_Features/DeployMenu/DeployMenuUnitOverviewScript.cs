@@ -14,22 +14,31 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
     int currentPickedGatherers = 0;
     int availableGatherers;
 
+
+
     void Start()
     {
+        // For ease of use a local reference
         availableWorkers = GameDataManager.Instance.availableWorkers;
         availableRecons = GameDataManager.Instance.availableRecons;
         availableGatherers = GameDataManager.Instance.availableGatherers;
 
+        // Reads the current units available and correctly formats the texts
         workersText.text = ("Workers\t\t: " + currentPickedWorkers + " / " + availableWorkers);
         reconsText.text = ("Recons\t\t: " + currentPickedRecons + " / " + availableRecons);
         gatherersText.text = ("Gatherers\t\t: " + currentPickedGatherers + " / " + availableGatherers);
     }
 
-    void Update()
-    {
-        
-    }
+   
 
+
+
+
+
+    /// <summary>
+    /// All units each habe two buttons, one for adding and one for subtracting the count inside the text.
+    /// Can't count above maximum individual unit count or less than zero.
+    /// </summary>
     public void OnWorkersAddClicked()
     {
         if (currentPickedWorkers < availableWorkers)

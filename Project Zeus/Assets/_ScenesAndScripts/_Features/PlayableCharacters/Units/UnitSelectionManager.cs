@@ -10,12 +10,14 @@ public class UnitSelectionManager : MonoBehaviour
     public Camera mainCamera;
     public LayerMask unitLayer;
 
-    // Selection box UI
+    
+    #region Selection Box UI
     public RectTransform selectionBox; // Drag your UI Image here for the selection box
     Vector2 startPosition;
     Vector2 endPosition;
+    #endregion
 
-    List<UnitStateManager> selectedUnits = new List<UnitStateManager>();
+    List<WorkerStateManager> selectedUnits = new List<WorkerStateManager>();
 
 
 
@@ -32,10 +34,12 @@ public class UnitSelectionManager : MonoBehaviour
         HandleCommands();
     }
 
+
+
+
     void HandleSelection()
     {
-        // Handle click selection and drag start
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton.wasPressedThisFrame) // Handle click selection and drag start
         {
             // Reset the selection box size to zero to avoid flashing
             selectionBox.sizeDelta = Vector2.zero;
@@ -43,14 +47,12 @@ public class UnitSelectionManager : MonoBehaviour
             startPosition = Mouse.current.position.ReadValue();
             selectionBox.gameObject.SetActive(true);
         }
-        // Update the selection box while dragging
-        else if (Mouse.current.leftButton.isPressed)
+        else if (Mouse.current.leftButton.isPressed) // Update the selection box while dragging
         {
             endPosition = Mouse.current.position.ReadValue();
             UpdateSelectionBox();
         }
-        // Release the selection box and select units within it
-        else if (Mouse.current.leftButton.wasReleasedThisFrame)
+        else if (Mouse.current.leftButton.wasReleasedThisFrame) // Release the selection box and select units within it
         {
             SelectUnitsInBox();
             selectionBox.gameObject.SetActive(false);
@@ -81,7 +83,7 @@ public class UnitSelectionManager : MonoBehaviour
         }
         selectedUnits.Clear();
 
-        foreach (UnitStateManager unit in FindObjectsByType<UnitStateManager>(FindObjectsSortMode.None))
+        foreach (WorkerStateManager unit in FindObjectsByType<WorkerStateManager>(FindObjectsSortMode.None))
         {
             Vector3 screenPosition = mainCamera.WorldToScreenPoint(unit.transform.position);
 
@@ -119,7 +121,7 @@ public class UnitSelectionManager : MonoBehaviour
     {
         float spacing = 2f; // Set a spacing distance
 
-        foreach (UnitStateManager unit in selectedUnits)
+        foreach (WorkerStateManager unit in selectedUnits)
         {
             // Calculate a new position based on the current unit's position and desired target
             Vector3 offset = new Vector3(Random.Range(-spacing, spacing), 0, Random.Range(-spacing, spacing));

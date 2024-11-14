@@ -20,19 +20,20 @@ public class DeployMenuDeployButton : MonoBehaviour
     }
 
 
-    public void OnDeployButtonClicked()
+    
+    public void OnDeployButtonClicked() // Activates when the deploy button in DeployMenu.unity ist pressed
     {
+        // Checks if the current weight is inside the players maximum weight capacity
         if (GameDataManager.Instance.currentKilogram <= GameDataManager.Instance.maxKilogram)
         {
-            deployCutscene.SetActive(true);
+            deployCutscene.SetActive(true); // Small mp4 currently used as "cutscene" will most likely be removed later
         }
     }
 
 
 
-    void OnVideoEnd(VideoPlayer vp)
+    void OnVideoEnd(VideoPlayer vp) // Activates when the video ends and changes scene
     {
-        Debug.Log("Video has ended!");
         SceneManager.LoadScene("BaseLevel");
     }
 }
