@@ -12,20 +12,20 @@ public class WorkerStateManager : MonoBehaviour
 
     #region References Variables
     public Animator animator;
+    public NavMeshAgent navMeshAgent;
+    GameObject selectionIndicator;
     //[SerializeField] Camera mainCamera;
     //[SerializeField] Vector3 mouseClickPos;
     //[SerializeField] CommandCenterStateManager commandCenter;
     //public ObjectAudioData audioSheet;
-    NavMeshAgent navMeshAgent;
     //[SerializeField] Vector3 targetPosition;
-    GameObject selectionIndicator;
     //[SerializeField] GameObject enemyDetector;
     //public float life = 100;
     //public List<GameObject> enemiesInRange;
     //public string myEnemyTag;
     //public int damage = 10;
     //public bool isDead = false;
-    #endregion 
+    #endregion
 
 
 
@@ -64,7 +64,7 @@ public class WorkerStateManager : MonoBehaviour
 
     void Start()
     {
-        selectionIndicator.SetActive(false);
+        selectionIndicator.SetActive(false); 
         currentState = idleState;
         currentState.EnterState(this);
     }
@@ -80,13 +80,14 @@ public class WorkerStateManager : MonoBehaviour
     #region Custom Functions()
     public void SwitchStates(WorkerBaseState state) // Change the state
     {
-         state.EnterState(this);
+        currentState = state;
+        currentState.EnterState(this);
     }
 
     public void OnCommandMove(Vector3 targetPosition) // Moves the player to the set destination and switches to walking state
     {
-         navMeshAgent.SetDestination(targetPosition);
-         SwitchStates(walkingState);
+        navMeshAgent.SetDestination(targetPosition);
+        SwitchStates(walkingState);
     }
 
     public void StopMoving() // Resets the NavMesh path and switches to idle state

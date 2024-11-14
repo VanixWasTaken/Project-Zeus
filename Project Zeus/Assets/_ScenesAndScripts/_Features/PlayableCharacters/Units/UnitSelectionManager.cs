@@ -36,7 +36,7 @@ public class UnitSelectionManager : MonoBehaviour
 
 
 
-
+    #region Custom Functions()
     void HandleSelection()
     {
         if (Mouse.current.leftButton.wasPressedThisFrame) // Handle click selection and drag start
@@ -91,14 +91,9 @@ public class UnitSelectionManager : MonoBehaviour
                 screenPosition.y >= min.y && screenPosition.y <= max.y)
             {
                 unit.Select();
-                if(unit.gameObject.tag != "Enemy")
-                {
-                    selectedUnits.Add(unit);
-                }
-                 // Only add the unit to the selection
+                selectedUnits.Add(unit);
             }
         }
-
     }
 
     void HandleCommands()
@@ -131,4 +126,5 @@ public class UnitSelectionManager : MonoBehaviour
             unit.OnCommandMove(adjustedTarget);
         }
     }
+    #endregion
 }
