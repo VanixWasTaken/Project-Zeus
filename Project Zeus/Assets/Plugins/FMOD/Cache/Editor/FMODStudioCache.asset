@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/UNIT.bank
   Name: UNIT
   StudioPath: bank:/SFX/UNIT
-  lastModified: 638671731148328049
+  lastModified: 638671768757345870
   FileSizes: []
   Exists: 1
 --- !u!114 &-7253505570656008458
@@ -33,7 +33,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/C_DIA_ENG.bank
   Name: C_DIA_ENG
   StudioPath: bank:/VO/Localisation/English/C_DIA_ENG
-  lastModified: 638671731148135548
+  lastModified: 638671768757295796
   FileSizes: []
   Exists: 1
 --- !u!114 &-6876815848444543005
@@ -78,7 +78,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/COMB.bank
   Name: COMB
   StudioPath: bank:/MUS/COMB
-  lastModified: 638671731148156142
+  lastModified: 638671768757285187
   FileSizes: []
   Exists: 1
 --- !u!114 &-4833431907875456204
@@ -96,7 +96,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/EFF_ENG.bank
   Name: EFF_ENG
   StudioPath: bank:/VO/Localisation/English/EFF_ENG
-  lastModified: 638671731148177914
+  lastModified: 638671768757295796
   FileSizes: []
   Exists: 1
 --- !u!114 &-2865764766057362934
@@ -168,7 +168,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/_Master.bank
   Name: _Master
   StudioPath: bank:/_Master/_Master
-  lastModified: 638671731148070213
+  lastModified: 638671866274769141
   FileSizes: []
   Exists: 1
 --- !u!114 &-2168720322136858775
@@ -186,7 +186,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/ENV.bank
   Name: ENV
   StudioPath: bank:/SFX/ENV
-  lastModified: 638671731148211359
+  lastModified: 638671768757315869
   FileSizes: []
   Exists: 1
 --- !u!114 &-1516006362837739793
@@ -231,7 +231,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/_Master.strings.bank
   Name: _Master.strings
   StudioPath: bank:/_Master/_Master.strings
-  lastModified: 638671731148100254
+  lastModified: 638671866274779144
   FileSizes:
   - Name: 
     Value: 2000
@@ -276,7 +276,7 @@ MonoBehaviour:
   - {fileID: -2825738890928706980}
   StringsBanks:
   - {fileID: -863181981819171695}
-  cacheTime: 638671731148339193
+  cacheTime: 638671866274779144
   cacheVersion: 131620
 --- !u!114 &1001093438210618375
 MonoBehaviour:
@@ -347,7 +347,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/NARR_ENG.bank
   Name: NARR_ENG
   StudioPath: bank:/VO/Localisation/English/NARR_ENG
-  lastModified: 638671731148284453
+  lastModified: 638671768757335870
   FileSizes: []
   Exists: 1
 --- !u!114 &3789926066159013402
@@ -365,7 +365,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/EXPL.bank
   Name: EXPL
   StudioPath: bank:/MUS/EXPL
-  lastModified: 638671731148229940
+  lastModified: 638671768757315869
   FileSizes: []
   Exists: 1
 --- !u!114 &4227317636684415643
@@ -383,7 +383,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/BARK_ENG.bank
   Name: BARK_ENG
   StudioPath: bank:/VO/Localisation/English/BARK_ENG
-  lastModified: 638671731148115344
+  lastModified: 638671768757275076
   FileSizes: []
   Exists: 1
 --- !u!114 &5847732944344907864
@@ -401,7 +401,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/SFX/UI
-  lastModified: 638671731148305680
+  lastModified: 638671768757335870
   FileSizes: []
   Exists: 1
 --- !u!114 &6724919468750681032
@@ -419,7 +419,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/G_DIA_ENG.bank
   Name: G_DIA_ENG
   StudioPath: bank:/VO/Localisation/English/G_DIA_ENG
-  lastModified: 638671731148241866
+  lastModified: 638671768757325870
   FileSizes: []
   Exists: 1
 --- !u!114 &6983199195530380771
@@ -437,7 +437,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/MENU.bank
   Name: MENU
   StudioPath: bank:/MUS/MENU
-  lastModified: 638671731148256910
+  lastModified: 638671768757325870
   FileSizes: []
   Exists: 1
 --- !u!114 &8294703059903622155
@@ -455,7 +455,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/WEAPONS.bank
   Name: WEAPONS
   StudioPath: bank:/SFX/WEAPONS
-  lastModified: 638671731148339193
+  lastModified: 638671768757355870
   FileSizes: []
   Exists: 1
 --- !u!114 &8407631444911058309
@@ -473,6 +473,6 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/ENEMIES.bank
   Name: ENEMIES
   StudioPath: bank:/SFX/ENEMIES
-  lastModified: 638671731148188951
+  lastModified: 638671768757305831
   FileSizes: []
   Exists: 1
