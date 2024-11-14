@@ -33,6 +33,6 @@ public class DeployMenuDeployButton : MonoBehaviour
     void OnVideoEnd(VideoPlayer vp)
     {
         Debug.Log("Video has ended!");
-        SceneManager.LoadScene("LevelBlockOutSmall");
+        SceneManager.LoadScene("BaseLevel");
     }
 }
