@@ -489,15 +489,20 @@ MonoBehaviour:
   - _Master
   Banks:
   - BARK_ENG
+  - BARK_GER
   - C_DIA_ENG
+  - C_DIA_GER
   - COMB
   - EFF_ENG
+  - EFF_GER
   - ENEMIES
   - ENV
   - EXPL
   - G_DIA_ENG
+  - G_DIA_GER
   - MENU
   - NARR_ENG
+  - NARR_GER
   - UI
   - UNIT
   - WEAPONS
