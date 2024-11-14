@@ -15,10 +15,7 @@ public class UnitSelectionManager : MonoBehaviour
     Vector2 startPosition;
     Vector2 endPosition;
 
-    public AudioController audioController;
-
     List<UnitStateManager> selectedUnits = new List<UnitStateManager>();
-
 
 
 
@@ -100,11 +97,6 @@ public class UnitSelectionManager : MonoBehaviour
             }
         }
 
-        if (selectedUnits.Count > 0) 
-        {
-            audioController.PlayAudio(SMSelectedBark_01);
-        }
-
     }
 
     void HandleCommands()
@@ -117,7 +109,6 @@ public class UnitSelectionManager : MonoBehaviour
             {
                 Vector3 targetPosition = hit.point; // Get the target position from the raycast hit                
 
-                audioController.PlayAudio(DroneAffirmBark_01);
 
                 MoveUnitsToTargetWithSpacing(targetPosition);
             }

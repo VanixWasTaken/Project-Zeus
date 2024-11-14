@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using AudioType = UnityEngine.Audio.AudioType;
+using static FMODUnity.RuntimeManager;
 
 public class UnitWalkingState : UnitBaseState
 {
@@ -28,7 +28,7 @@ public class UnitWalkingState : UnitBaseState
 
     public override void OnFootstep(UnitStateManager _unit)
     {
-        _unit.audioController.RandomizeAudioPitch(AudioType.DroneFootstep_01, 0.8f, 1.2f);
+        PlayOneShot(_unit.audioSheet.exampleReference02);
     }
 
 

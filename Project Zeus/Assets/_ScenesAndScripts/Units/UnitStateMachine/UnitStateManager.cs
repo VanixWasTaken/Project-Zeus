@@ -4,10 +4,9 @@ using Unity.VisualScripting;
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Audio;
-using static UnityEngine.Audio.AudioType;
 using UnityEditor.SceneManagement;
 using static UnityEngine.UI.CanvasScaler;
+using static FMODUnity.RuntimeManager;
 
 public class UnitStateManager : MonoBehaviour
 {
@@ -26,7 +25,7 @@ public class UnitStateManager : MonoBehaviour
     [SerializeField] Camera mainCamera;
     [SerializeField] Vector3 mouseClickPos;
     [SerializeField] CommandCenterStateManager commandCenter;
-    public AudioController audioController;
+    public ObjectAudioData audioSheet;
     public NavMeshAgent navMeshAgent;
     [SerializeField] Vector3 targetPosition;
     [SerializeField] GameObject selectionIndicator;
@@ -71,7 +70,7 @@ public class UnitStateManager : MonoBehaviour
 
     public void OnMiningHit()
     {
-        audioController.RandomizeAudioClip(DroneFarming_01, DroneFarming_03);
+        PlayOneShot(audioSheet.exampleReference01);
     }
 
     public void OnCommandMove(Vector3 targetPosition)
