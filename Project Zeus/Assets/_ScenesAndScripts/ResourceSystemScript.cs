@@ -13,11 +13,11 @@ public class ResourceSystemScript : MonoBehaviour
 
     private void Update()
     {
-        CollectResources();
+       // CollectResources();
     }
 
 
-
+    /*
     private void CollectResources()
     {
         foreach (var resource in resources)
@@ -31,4 +31,5 @@ public class ResourceSystemScript : MonoBehaviour
             }
         }
     }
+    */
 }

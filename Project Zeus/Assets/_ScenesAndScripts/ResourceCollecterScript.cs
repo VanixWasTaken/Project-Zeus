@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ResourceCollecterScript : MonoBehaviour
 {
-
+    /*
     public bool isCollecting = false;
     UnitMiningState miningState = new UnitMiningState();
     UnitIdleState idleState = new UnitIdleState();
@@ -49,4 +49,5 @@ public class ResourceCollecterScript : MonoBehaviour
 
         }
     }
+    */
 }

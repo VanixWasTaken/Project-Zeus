@@ -6,8 +6,4 @@ public abstract class UnitBaseState
 
     public abstract void UpdateState(UnitStateManager _unit);
 
-    public virtual void OnFootstep(UnitStateManager _unit) { }
-
-    public virtual void OnMiningHit(UnitStateManager _unit) { }
-
 }

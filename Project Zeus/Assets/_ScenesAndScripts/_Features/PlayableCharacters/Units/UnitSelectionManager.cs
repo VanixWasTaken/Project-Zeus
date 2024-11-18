@@ -17,7 +17,7 @@ public class UnitSelectionManager : MonoBehaviour
     Vector2 endPosition;
     #endregion
 
-    List<WorkerStateManager> selectedUnits = new List<WorkerStateManager>();
+    List<UnitStateManager> selectedUnits = new List<UnitStateManager>();
 
 
 
@@ -83,7 +83,7 @@ public class UnitSelectionManager : MonoBehaviour
         }
         selectedUnits.Clear();
 
-        foreach (WorkerStateManager unit in FindObjectsByType<WorkerStateManager>(FindObjectsSortMode.None))
+        foreach (UnitStateManager unit in FindObjectsByType<UnitStateManager>(FindObjectsSortMode.None))
         {
             Vector3 screenPosition = mainCamera.WorldToScreenPoint(unit.transform.position);
 
@@ -95,6 +95,7 @@ public class UnitSelectionManager : MonoBehaviour
             }
         }
     }
+
 
     void HandleCommands()
     {
@@ -116,7 +117,7 @@ public class UnitSelectionManager : MonoBehaviour
     {
         float spacing = 2f; // Set a spacing distance
 
-        foreach (WorkerStateManager unit in selectedUnits)
+        foreach (UnitStateManager unit in selectedUnits)
         {
             // Calculate a new position based on the current unit's position and desired target
             Vector3 offset = new Vector3(Random.Range(-spacing, spacing), 0, Random.Range(-spacing, spacing));

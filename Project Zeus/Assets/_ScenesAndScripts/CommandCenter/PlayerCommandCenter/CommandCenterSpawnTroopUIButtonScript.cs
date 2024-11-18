@@ -56,7 +56,7 @@ public class CommandCenterSpawnTroopUIButtonScript : MonoBehaviour
 
         yield return new WaitForSeconds(5);
         GameObject obj = Instantiate(unitPrefab, spawnPosition, spawnRotation);
-        obj.GetComponent<UnitStateManager>().myEnemyTag = "Enemy";
+        // obj.GetComponent<UnitStateManager>().myEnemyTag = "Enemy";
         obj.GetComponentInChildren<SkinnedMeshRenderer>().material = redSpaceMarine;
         obj.transform.SetParent(GameObject.FindGameObjectWithTag("PlayerContainer").transform);
     }
