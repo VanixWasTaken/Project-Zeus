@@ -89,7 +89,6 @@ public class UnitStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
-        Debug.Log(currentState);
     }
 
 
