@@ -11,20 +11,18 @@ public class DeployMenuKilogramSlider : MonoBehaviour
     [SerializeField] GameObject kilogramWarning;
     [SerializeField] Slider kilogramSlider;
 
-    void Start()
-    {
-        
-    }
+  
 
-    
     void Update()
     {
-        _maxKilogram = GameDataManager.Instance.maxKilogram;
-        _currentKilogram = GameDataManager.Instance.currentKilogram;
+        _maxKilogram = GameDataManager.Instance.maxKilogram; // For ease of use a local reference
+        _currentKilogram = GameDataManager.Instance.currentKilogram; // For ease of use a local reference
 
-        AdjustKilogramSlider();
-        KilogramWarning();
+        AdjustKilogramSlider(); // Adjust the Slider to represant the current percent of usage of the available weight
+        KilogramWarning(); // Pops a little warning that shows the player he is currently overweight
     }
+
+
 
 
     public void AdjustKilogramSlider()

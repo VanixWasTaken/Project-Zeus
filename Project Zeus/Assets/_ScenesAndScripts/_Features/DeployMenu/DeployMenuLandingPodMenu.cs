@@ -8,13 +8,17 @@ public class DeployMenuLandingPodMenu : MonoBehaviour
     float _currentKilogram;
     [SerializeField] TextMeshProUGUI landingPodKilogramText;
 
+
+
     void Update()
     {
         _maxKilogram = GameDataManager.Instance.maxKilogram;
         _currentKilogram = GameDataManager.Instance.currentKilogram;
 
-        UpdateKilogram();
+        UpdateKilogram(); // Updates the current kilogram in the correct format
     }
+
+
 
 
     void UpdateKilogram()
@@ -32,7 +36,7 @@ public class DeployMenuLandingPodMenu : MonoBehaviour
         {
             landingPodMenuGO.SetActive(false);
         }
-    }
+    } // Shows the pod menu when the LandingPodButton is pressed inside DeployMenu
 
     
 }

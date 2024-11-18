@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/UNIT.bank
   Name: UNIT
   StudioPath: bank:/SFX/UNIT
-  lastModified: 638671788130367681
+  lastModified: 638675229714260925
   FileSizes: []
   Exists: 1
 --- !u!114 &-7253505570656008458
@@ -33,7 +33,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/C_DIA_ENG.bank
   Name: C_DIA_ENG
   StudioPath: bank:/VO/Localisation/English/C_DIA_ENG
-  lastModified: 638671788130574015
+  lastModified: 638675229714023589
   FileSizes: []
   Exists: 1
 --- !u!114 &-6876815848444543005
@@ -78,7 +78,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/COMB.bank
   Name: COMB
   StudioPath: bank:/MUS/COMB
-  lastModified: 638671788129927151
+  lastModified: 638675229713996293
   FileSizes: []
   Exists: 1
 --- !u!114 &-4833431907875456204
@@ -96,7 +96,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/EFF_ENG.bank
   Name: EFF_ENG
   StudioPath: bank:/VO/Localisation/English/EFF_ENG
-  lastModified: 638671788130636043
+  lastModified: 638675229714056669
   FileSizes: []
   Exists: 1
 --- !u!114 &-2865764766057362934
@@ -168,7 +168,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/_Master.bank
   Name: _Master
   StudioPath: bank:/_Master/_Master
-  lastModified: 638671788129799776
+  lastModified: 638675229975893957
   FileSizes: []
   Exists: 1
 --- !u!114 &-2168720322136858775
@@ -186,43 +186,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/ENV.bank
   Name: ENV
   StudioPath: bank:/SFX/ENV
-  lastModified: 638671788130198515
-  FileSizes: []
-  Exists: 1
---- !u!114 &-1980428810786880693
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/BARK_GER.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/_Art/Sound/Banks/Desktop/BARK_GER.bank
-  Name: BARK_GER
-  StudioPath: 
-  lastModified: 638671788130850252
-  FileSizes: []
-  Exists: 1
---- !u!114 &-1541368339828148101
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/C_DIA_GER.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/_Art/Sound/Banks/Desktop/C_DIA_GER.bank
-  Name: C_DIA_GER
-  StudioPath: bank:/VO/Localisation/German/C_DIA_GER
-  lastModified: 638671788130911513
+  lastModified: 638675229714112419
   FileSizes: []
   Exists: 1
 --- !u!114 &-1516006362837739793
@@ -267,10 +231,10 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/_Master.strings.bank
   Name: _Master.strings
   StudioPath: bank:/_Master/_Master.strings
-  lastModified: 638671788129825295
+  lastModified: 638675229975905840
   FileSizes:
   - Name: 
-    Value: 2228
+    Value: 2000
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -300,11 +264,6 @@ MonoBehaviour:
   - {fileID: -8660594532279740105}
   - {fileID: 8294703059903622155}
   - {fileID: -2825738890928706980}
-  - {fileID: -1980428810786880693}
-  - {fileID: -1541368339828148101}
-  - {fileID: 6384093977159820141}
-  - {fileID: 744978792812747502}
-  - {fileID: 3444046355304499982}
   EditorEvents:
   - {fileID: 1700966227102106160}
   - {fileID: -2861672397131800954}
@@ -317,26 +276,8 @@ MonoBehaviour:
   - {fileID: -2825738890928706980}
   StringsBanks:
   - {fileID: -863181981819171695}
-  cacheTime: 638671788131088494
+  cacheTime: 638675229975905840
   cacheVersion: 131620
---- !u!114 &744978792812747502
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/G_DIA_GER.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/_Art/Sound/Banks/Desktop/G_DIA_GER.bank
-  Name: G_DIA_GER
-  StudioPath: bank:/VO/Localisation/German/G_DIA_GER
-  lastModified: 638671788131039250
-  FileSizes: []
-  Exists: 1
 --- !u!114 &1001093438210618375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,25 +347,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/NARR_ENG.bank
   Name: NARR_ENG
   StudioPath: bank:/VO/Localisation/English/NARR_ENG
-  lastModified: 638671788130781467
-  FileSizes: []
-  Exists: 1
---- !u!114 &3444046355304499982
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/NARR_GER.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/_Art/Sound/Banks/Desktop/NARR_GER.bank
-  Name: NARR_GER
-  StudioPath: bank:/VO/Localisation/German/NARR_GER
-  lastModified: 638671788131088494
+  lastModified: 638675229714199400
   FileSizes: []
   Exists: 1
 --- !u!114 &3789926066159013402
@@ -442,7 +365,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/EXPL.bank
   Name: EXPL
   StudioPath: bank:/MUS/EXPL
-  lastModified: 638671788129988447
+  lastModified: 638675229714129661
   FileSizes: []
   Exists: 1
 --- !u!114 &4227317636684415643
@@ -460,7 +383,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/BARK_ENG.bank
   Name: BARK_ENG
   StudioPath: bank:/VO/Localisation/English/BARK_ENG
-  lastModified: 638671788130501421
+  lastModified: 638675229713962379
   FileSizes: []
   Exists: 1
 --- !u!114 &5847732944344907864
@@ -478,25 +401,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/SFX/UI
-  lastModified: 638671788130293578
-  FileSizes: []
-  Exists: 1
---- !u!114 &6384093977159820141
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c18180ecb35941f4682ae60107b85b7c, type: 3}
-  m_Name: bank:/EFF_GER.bank
-  m_EditorClassIdentifier: 
-  Path: Assets/_Art/Sound/Banks/Desktop/EFF_GER.bank
-  Name: EFF_GER
-  StudioPath: bank:/VO/Localisation/German/EFF_GER
-  lastModified: 638671788130972626
+  lastModified: 638675229714241864
   FileSizes: []
   Exists: 1
 --- !u!114 &6724919468750681032
@@ -514,7 +419,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/G_DIA_ENG.bank
   Name: G_DIA_ENG
   StudioPath: bank:/VO/Localisation/English/G_DIA_ENG
-  lastModified: 638671788130715471
+  lastModified: 638675229714139664
   FileSizes: []
   Exists: 1
 --- !u!114 &6983199195530380771
@@ -532,7 +437,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/MENU.bank
   Name: MENU
   StudioPath: bank:/MUS/MENU
-  lastModified: 638671788130070521
+  lastModified: 638675229714182513
   FileSizes: []
   Exists: 1
 --- !u!114 &8294703059903622155
@@ -550,7 +455,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/WEAPONS.bank
   Name: WEAPONS
   StudioPath: bank:/SFX/WEAPONS
-  lastModified: 638671788130439214
+  lastModified: 638675229714279724
   FileSizes: []
   Exists: 1
 --- !u!114 &8407631444911058309
@@ -568,6 +473,6 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/ENEMIES.bank
   Name: ENEMIES
   StudioPath: bank:/SFX/ENEMIES
-  lastModified: 638671788130126436
+  lastModified: 638675229714087187
   FileSizes: []
   Exists: 1
