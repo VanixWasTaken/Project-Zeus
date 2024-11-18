@@ -10,10 +10,11 @@ public class ResourceSystemScript : MonoBehaviour
     float timeElapsed = 0f;
 
     [SerializeField] TextMeshProUGUI mineralsHUDCounter;
+    
 
     private void Update()
     {
-       // CollectResources();
+      // CollectResources();
     }
 
 
@@ -22,7 +23,7 @@ public class ResourceSystemScript : MonoBehaviour
     {
         foreach (var resource in resources)
         {
-            if (resource.isCollecting == true)
+            if (resource.workersInsideRessource > 0)
             {
                 timeElapsed += Time.deltaTime;
                 collectedMinerals = Mathf.FloorToInt(timeElapsed % 60);
@@ -32,4 +33,5 @@ public class ResourceSystemScript : MonoBehaviour
         }
     }
     */
+    
 }

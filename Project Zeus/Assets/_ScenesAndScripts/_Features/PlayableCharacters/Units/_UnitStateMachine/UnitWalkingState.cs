@@ -6,6 +6,7 @@ public class UnitWalkingState : UnitBaseState
 
     public override void EnterState(UnitStateManager _unit)
     {
+        _unit.animator.SetBool("anIsMining", false);
         _unit.animator.SetFloat("anSpeed", 1);
     }
 

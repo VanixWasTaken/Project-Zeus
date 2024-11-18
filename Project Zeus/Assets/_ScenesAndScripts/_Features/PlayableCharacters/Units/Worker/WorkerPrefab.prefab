@@ -48,7 +48,7 @@ GameObject:
   - component: {fileID: -4718250512302751863}
   m_Layer: 15
   m_Name: WorkerPrefab
-  m_TagString: Untagged
+  m_TagString: Worker
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -177,8 +177,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e23d1dfefc567b24da0d40bf99a209e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 1272302715363853340}
-  navMeshAgent: {fileID: 8068339395854321779}
+  animator: {fileID: 0}
+  navMeshAgent: {fileID: 0}
 --- !u!1 &349868753245545877
 GameObject:
   m_ObjectHideFlags: 0

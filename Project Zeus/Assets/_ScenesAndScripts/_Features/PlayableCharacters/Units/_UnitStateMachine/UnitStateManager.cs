@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
@@ -8,6 +9,8 @@ public class UnitStateManager : MonoBehaviour
     public UnitBaseState currentState;
     public UnitIdleState idleState = new UnitIdleState();
     public UnitWalkingState walkingState = new UnitWalkingState();
+
+    public UnitWorkerMiningState workerMiningState = new UnitWorkerMiningState();
     #endregion
 
     #region References Variables
@@ -27,6 +30,10 @@ public class UnitStateManager : MonoBehaviour
     //public bool isDead = false;
     #endregion
 
+    #region Worker Variables
+    [Header("Worker Variables")]
+    public int collectedEnergy;
+    #endregion
 
 
     void Awake()
@@ -58,6 +65,15 @@ public class UnitStateManager : MonoBehaviour
                 Debug.LogError("SelectionIndicator could not be found and assigned");
             }
         }
+
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>();
+            if (animator == null)
+            {
+                Debug.LogError("Animator could not be found and assigned");
+            }
+        }
         #endregion
     }
 
@@ -73,6 +89,7 @@ public class UnitStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
+        Debug.Log(currentState);
     }
 
 
@@ -95,7 +112,6 @@ public class UnitStateManager : MonoBehaviour
         navMeshAgent.ResetPath();
         SwitchStates(idleState);
     }
-
 
     #region SelectionIndicator Functions()
     public void Select() // Change visual to make selection apparent.

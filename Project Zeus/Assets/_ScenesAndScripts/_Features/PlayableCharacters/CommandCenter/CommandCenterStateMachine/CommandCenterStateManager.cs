@@ -26,6 +26,8 @@ public class CommandCenterStateManager : MonoBehaviour
     #endregion
 
 
+    public int collectedCompleteEnergy;
+
     void Start()
     {
         currentState = idleState;
@@ -64,4 +66,25 @@ public class CommandCenterStateManager : MonoBehaviour
         currentState = state;
         state.EnterState(this);
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Worker"))
+        {
+            UnitStateManager unitStateManager = other.GetComponent<UnitStateManager>();
+
+            if (unitStateManager != null) // Check if the component was found
+            {
+                collectedCompleteEnergy = unitStateManager.collectedEnergy;  // Access the collectedEnergy from the other GameObject
+
+                unitStateManager.collectedEnergy = 0; // Reset the collectedEnergy on that GameObject
+            }
+            else
+            {
+                Debug.LogError("UnitStateManager component not found on the Worker!");
+            }
+        }
+    }
+
 }

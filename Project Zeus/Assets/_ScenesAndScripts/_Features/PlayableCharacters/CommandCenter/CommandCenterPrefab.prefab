@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7002255106468799223}
   - component: {fileID: 1176063971113869333}
+  - component: {fileID: 8345761443313743947}
   m_Layer: 0
   m_Name: CommandCenterPrefab
   m_TagString: Untagged
@@ -52,6 +53,27 @@ MonoBehaviour:
   buildingButton: {fileID: 0}
   playerButton: {fileID: 0}
   unit: {fileID: 0}
+--- !u!135 &8345761443313743947
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386283318288435204}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 7.06
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8099869876767769438
 GameObject:
   m_ObjectHideFlags: 0
@@ -63,7 +85,7 @@ GameObject:
   - component: {fileID: 8666627221585976316}
   - component: {fileID: 8873775509872311366}
   m_Layer: 6
-  m_Name: Hitbox
+  m_Name: OutlineHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78,7 +100,7 @@ Transform:
   m_GameObject: {fileID: 8099869876767769438}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 6.5, y: 6.5, z: 6.5}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -118,7 +140,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: db4179ec087d4e841b18e0b326cfc3a3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.040000916
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db4179ec087d4e841b18e0b326cfc3a3,
         type: 3}
@@ -128,7 +150,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: db4179ec087d4e841b18e0b326cfc3a3,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.66
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: db4179ec087d4e841b18e0b326cfc3a3,
         type: 3}
