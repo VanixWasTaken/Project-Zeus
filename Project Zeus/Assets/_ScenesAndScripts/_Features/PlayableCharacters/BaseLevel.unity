@@ -1827,7 +1827,7 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 953601989}
   m_PrefabAsset: {fileID: 0}
---- !u!195 &264572359
+--- !u!195 &264572363
 NavMeshAgent:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1835,7 +1835,7 @@ NavMeshAgent:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 264572355}
   m_Enabled: 1
-  m_AgentTypeID: 0
+  m_AgentTypeID: 1479372276
   m_Radius: 0.5
   m_Speed: 3.5
   m_Acceleration: 8
@@ -3622,7 +3622,7 @@ PrefabInstance:
     - target: {fileID: 2512483780783033359, guid: 8dfd6a211cdbf8b4694d7a15b4ea0fde,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.69
+      value: 24.7
       objectReference: {fileID: 0}
     - target: {fileID: 2512483780783033359, guid: 8dfd6a211cdbf8b4694d7a15b4ea0fde,
         type: 3}
@@ -6386,7 +6386,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6228393709742757974, guid: 4173552810c5b554f99cf9552c5c6423,
         type: 3}
       insertIndex: -1
-      addedObject: {fileID: 264572359}
+      addedObject: {fileID: 264572363}
   m_SourcePrefab: {fileID: 100100000, guid: 4173552810c5b554f99cf9552c5c6423, type: 3}
 --- !u!1 &956675720
 GameObject:
@@ -9860,7 +9860,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: af99602dd6911a948aca0bd59c33de82, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: db50b9465df639d4f8cf7f3673eeb00a, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &1519462507
 MonoBehaviour:
@@ -9892,7 +9892,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: adb2a3c817fbc924e9a98a309067f3f7, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: a6122c1a6f13e6144ad4358f56225947, type: 2}
   m_BuildHeightMesh: 0
 --- !u!114 &1519462508
 MonoBehaviour:
@@ -9924,7 +9924,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 665e23f3b9a29924fb065cdb8948121a, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: d8ea7da6e40e3224abe25be5329be12a, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1535278031
 GameObject:
