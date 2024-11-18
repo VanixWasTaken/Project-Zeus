@@ -13,8 +13,16 @@ public class EnemyChasingState : EnemyBaseState
         // check for exit conditions, e.g. worker in range for attack or out of range for roaming
     }
 
-    private void ChasePlayer(EnemyStateManager _enemy, WorkerStateManager _worker = null)
+    public Transform AquireWorkerPos(EnemyStateManager _enemy)
     {
-        // get position of worker object and set destination for chasing the worker around
+        GameObject workerObject = _enemy.GetTarget();
+        Transform workerPosition = workerObject.GetComponent<Transform>();
+        Debug.Log(workerPosition.ToString());
+        return workerPosition;
+    }
+
+    private void ChasePlayer(EnemyStateManager _enemy)
+    {
+        AquireWorkerPos(_enemy);
     }
 }
