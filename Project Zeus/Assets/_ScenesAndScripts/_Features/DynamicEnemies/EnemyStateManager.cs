@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -6,8 +7,8 @@ public class EnemyStateManager : MonoBehaviour
 {
 #region States
     public EnemyBaseState roamingState = new EnemyRoamingState();
-    public EnemyBaseState chasingState = new EnemyChasingState();
-    public EnemyBaseState attackingState = new EnemyAttackingState();
+    public EnemyChasingState chasingState = new EnemyChasingState();
+    public EnemyAttackingState attackingState = new EnemyAttackingState();
 #endregion
 #region References
     EnemyBaseState currentState;
@@ -105,5 +106,14 @@ public class EnemyStateManager : MonoBehaviour
         }
     }
 
-#endregion
+    public IEnumerator AttackDelay(float _attackDelay)
+    {
+        if (currentState == attackingState)
+        {
+            yield return new WaitForSeconds(_attackDelay);
+            attackingState.AttackWorker(this, GetTarget());
+        }
+    }
+        
+    #endregion
 }

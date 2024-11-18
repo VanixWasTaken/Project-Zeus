@@ -20,11 +20,11 @@ public class WorkerStateManager : MonoBehaviour
     //public ObjectAudioData audioSheet;
     //[SerializeField] Vector3 targetPosition;
     //[SerializeField] GameObject enemyDetector;
-    //public float life = 100;
+    public float life = 99;
     //public List<GameObject> enemiesInRange;
     //public string myEnemyTag;
     //public int damage = 10;
-    //public bool isDead = false;
+    public bool isDead = false;
     #endregion
 
 
@@ -96,6 +96,15 @@ public class WorkerStateManager : MonoBehaviour
         SwitchStates(idleState);
     }
 
+    public void TakeDamage(float _damage)
+    {
+        life -= _damage;
+        if(life <= 0)
+        {
+            Debug.Log("Deleting Worker Object rn");
+            Destroy(this);
+        }
+    }
 
     #region SelectionIndicator Functions()
     public void Select() // Change visual to make selection apparent.
