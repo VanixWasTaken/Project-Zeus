@@ -1,28 +1,47 @@
+using Unity.Cinemachine;
 using UnityEngine;
 
 public class EnemyChasingState : EnemyBaseState
 {
+    bool workerReached = false;
+
     public override void EnterState(EnemyStateManager _enemy)
     {
         Debug.Log("Chasing!");
-        ChasePlayer(_enemy);
+        ChaseUnit(_enemy);
     }
 
     public override void UpdateState(EnemyStateManager _enemy)
     {
-        // check for exit conditions, e.g. worker in range for attack or out of range for roaming
+        // Check if the enemy has reached the units
+        if (_enemy.navMeshAgent != null && !_enemy.navMeshAgent.pathPending)
+        {
+            _enemy.navMeshAgent.stoppingDistance = 3;
+            if (_enemy.navMeshAgent.remainingDistance < _enemy.navMeshAgent.stoppingDistance)
+            {
+                workerReached = true;
+            }
+            else
+            {
+                UpdateUnitPosition(_enemy);
+            }
+
+            if (workerReached)
+            {
+                // Switch to attack state once the enemy is close enough to the player
+                _enemy.SwitchState(_enemy.attackingState);
+            }
+        }
     }
 
-    public Transform AquireWorkerPos(EnemyStateManager _enemy)
+    private void ChaseUnit(EnemyStateManager _enemy)
     {
-        GameObject workerObject = _enemy.GetTarget();
-        Transform workerPosition = workerObject.GetComponent<Transform>();
-        Debug.Log(workerPosition.ToString());
-        return workerPosition;
+        Vector3 targetPosition = _enemy.GetTarget().transform.position;
+        _enemy.MoveToTarget(targetPosition);
     }
 
-    private void ChasePlayer(EnemyStateManager _enemy)
+    private void UpdateUnitPosition(EnemyStateManager _enemy)
     {
-        AquireWorkerPos(_enemy);
+        _enemy.navMeshAgent.destination = _enemy.GetTarget().transform.position;
     }
 }

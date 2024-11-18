@@ -12,7 +12,7 @@ public class EnemyAttackingState : EnemyBaseState
 
     public override void UpdateState(EnemyStateManager _enemy)
     {
-        throw new System.NotImplementedException();
+        
     }
 
     private void AttackWorker(EnemyStateManager _enemy, WorkerStateManager _worker = null)

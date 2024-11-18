@@ -1,21 +1,27 @@
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class EnemyStateManager : MonoBehaviour
 {
+#region States
     public EnemyBaseState roamingState = new EnemyRoamingState();
     public EnemyBaseState chasingState = new EnemyChasingState();
     public EnemyBaseState attackingState = new EnemyAttackingState();
-
+#endregion
+#region References
     EnemyBaseState currentState;
-
     Collider enemyDetectionRadius;
-
     GameObject mainTarget;
+    public NavMeshAgent navMeshAgent;
+    #endregion
+
+    #region Unity BuiltIn
 
     void Awake()
     {
         enemyDetectionRadius = GetComponent<SphereCollider>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
     }
 
     void Start()
@@ -45,9 +51,15 @@ public class EnemyStateManager : MonoBehaviour
         }
     }
 
-    public void SwitchState(EnemyBaseState _state, GameObject _target)
+#endregion
+
+#region Custom Functions
+
+#region Public Functions
+    public void SwitchState(EnemyBaseState _state)
     {
         currentState = _state;
+        currentState.EnterState(this);
     }
 
     public GameObject GetTarget() 
@@ -69,7 +81,17 @@ public class EnemyStateManager : MonoBehaviour
         Debug.Log("Target set to:" + mainTarget);
     }
 
-    private bool CheckMethod(string funcName)
+    public void MoveToTarget(Vector3 targetPosition)
+    {
+        if (navMeshAgent != null)
+        {
+            navMeshAgent.SetDestination(targetPosition); // Use NavMeshAgent to move
+        }
+    }
+
+    #endregion
+
+    bool CheckMethod(string funcName)
     {
         var thisType = currentState.GetType();
 
@@ -82,4 +104,6 @@ public class EnemyStateManager : MonoBehaviour
             return false;
         }
     }
+
+#endregion
 }

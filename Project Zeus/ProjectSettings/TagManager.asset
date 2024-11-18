@@ -9,6 +9,7 @@ TagManager:
   - Enemy
   - PlayerContainer
   - EnemyContainer
+  - UnitDetectionTag
   layers:
   - Default
   - TransparentFX
