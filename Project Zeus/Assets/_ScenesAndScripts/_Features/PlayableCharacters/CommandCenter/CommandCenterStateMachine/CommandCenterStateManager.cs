@@ -18,7 +18,6 @@ public class CommandCenterStateManager : MonoBehaviour
     #region References
     [SerializeField] Camera mainCamera;
     [SerializeField] GameObject commandCenterObject;
-    public bool hoversAbove;
     public GameObject buildingButton;
     public GameObject playerButton;
     [SerializeField] UnitStateManager unit;
@@ -28,9 +27,11 @@ public class CommandCenterStateManager : MonoBehaviour
     public TextMeshProUGUI extractionUIWorkers;
     public TextMeshProUGUI extractionUIRecons;
     public TextMeshProUGUI extractionUIGatherers;
+    public Button extractionUIExtractButton;
     #endregion
 
 
+    public bool hoversAbove;
     public int collectedCompleteEnergy;
     public int workersInsideExtraction;
     public int reconsInsideExtraction;
@@ -140,5 +141,12 @@ public class CommandCenterStateManager : MonoBehaviour
         {
             gatherersInsideExtraction--;
         }
+    }
+
+
+    public void ExtractionButtonClicked()
+    {
+        Debug.Log("YOU EXTRACTED");
+        // Extract
     }
 }
