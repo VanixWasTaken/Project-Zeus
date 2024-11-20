@@ -1,3 +1,4 @@
+using System.Linq;
 using UnityEngine;
 
 public class GameDataManager : MonoBehaviour
@@ -37,5 +38,55 @@ public class GameDataManager : MonoBehaviour
     public void DecreaseCurrentKilogram(float value)
     {
         currentKilogram -= value;
+    }
+
+    public int[] GetLostUnitCount()
+    {
+        int[] unitValues = new int[3];
+
+        for (int i = 0; i < unitValues.Length; i++)
+        {
+            int unitCount = 0;
+
+            if (i == 0)
+            {
+                unitCount = pickedWorkers;
+            }
+            else if(i == 1) 
+            {
+                unitCount = pickedRecons;
+            }
+            else if (i == 2)
+            {
+                unitCount = pickedGatherers;
+            }
+
+            unitValues[i] = unitCount;
+            Debug.Log(unitValues[i]);
+        }
+
+        return unitValues;
+    }
+
+    public void UpdateAvailableUnits(int[] lostUnits)
+    {
+        for (int i = 0; i < lostUnits.Length; i++)
+        {
+
+            if (i == 0)
+            {
+                availableWorkers -= lostUnits[i];
+            }
+            else if (i == 1)
+            {
+                availableRecons -= lostUnits[i];
+            }
+            else if (i == 2)
+            {
+                availableGatherers -= lostUnits[i];
+            }
+
+            Debug.Log("Available Units:" + availableWorkers + " " + availableRecons + " " + availableGatherers);
+        }
     }
 }
