@@ -19,7 +19,8 @@ public class CommandCenterIdleState : CommandCenterBaseState
         // Switches states if you click on the commandCenter
         if (inputActions.Mouse.Click.IsPressed() && commandCenter.hoversAbove)
         {
-            commandCenter.SwitchStates(commandCenter.clickedState);
+            //commandCenter.SwitchStates(commandCenter.clickedState);
+            //Debug.Log(commandCenter.collectedCompleteEnergy);
         }
     }
 }
