@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
@@ -23,6 +22,9 @@ public class CommandCenterStateManager : MonoBehaviour
     public GameObject buildingButton;
     public GameObject playerButton;
     [SerializeField] UnitStateManager unit;
+    InputActions inputActions;
+
+    public TextMeshProUGUI extracttionUnitInfo;
     #endregion
 
 
@@ -32,6 +34,9 @@ public class CommandCenterStateManager : MonoBehaviour
     {
         currentState = idleState;
         currentState.EnterState(this);
+
+        inputActions = new InputActions();
+        inputActions.Mouse.Enable();
     }
 
     void Update()
@@ -58,6 +63,15 @@ public class CommandCenterStateManager : MonoBehaviour
         {
             commandCenterObject.layer = LayerMask.NameToLayer("Default");
             hoversAbove = false;
+        }
+
+
+        if (hoversAbove)
+        {
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                SwitchStates(clickedState);
+            }
         }
     }
 
