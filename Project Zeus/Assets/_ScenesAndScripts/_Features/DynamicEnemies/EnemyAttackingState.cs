@@ -2,9 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class EnemyAttackingState : EnemyBaseState
 {
-    private WorkerStateManager target;
+    private UnitStateManager target;
 
     public override void EnterState(EnemyStateManager _enemy)
     {
@@ -16,14 +17,14 @@ public class EnemyAttackingState : EnemyBaseState
     {
         
     }
-
+    
     public void AttackWorker(EnemyStateManager _enemy, GameObject _unit)
     {
-        target = _unit.GetComponent<WorkerStateManager>();
+        target = _unit.GetComponent<UnitStateManager>();
 
         if (target.life > 0)
         {
-            target.TakeDamage(25);
+            target.TakeDamage(); // Fill TakeDamage with 25 later 
             Debug.Log("The target has " + target.life + " lifepoints.");
         }
 
@@ -35,4 +36,5 @@ public class EnemyAttackingState : EnemyBaseState
         _enemy.StartCoroutine(_enemy.AttackDelay(1.0f));
 
     }
+    
 }

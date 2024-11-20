@@ -23,7 +23,7 @@ public class UnitStateManager : MonoBehaviour
     //public ObjectAudioData audioSheet;
     //[SerializeField] Vector3 targetPosition;
     //[SerializeField] GameObject enemyDetector;
-    //public float life = 100;
+    public float life = 100; // delte later
     //public List<GameObject> enemiesInRange;
     //public string myEnemyTag;
     //public int damage = 10;
@@ -110,6 +110,11 @@ public class UnitStateManager : MonoBehaviour
     {
         navMeshAgent.ResetPath();
         SwitchStates(idleState);
+    }
+
+    public void TakeDamage()
+    {
+        // Write Function to take damage here later
     }
 
     #region SelectionIndicator Functions()
