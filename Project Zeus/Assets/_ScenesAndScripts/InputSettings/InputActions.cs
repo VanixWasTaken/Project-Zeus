@@ -103,6 +103,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DeactiveUnit"",
+                    ""type"": ""Button"",
+                    ""id"": ""f1b8674d-2d9a-4dec-83dd-e1b0fbffb5bc"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -114,6 +123,17 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""InitializeBuilding"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9534efbd-fd67-43dd-a4a6-994c26cb7f89"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DeactiveUnit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -202,6 +222,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         // Keyboard
         m_Keyboard = asset.FindActionMap("Keyboard", throwIfNotFound: true);
         m_Keyboard_InitializeBuilding = m_Keyboard.FindAction("InitializeBuilding", throwIfNotFound: true);
+        m_Keyboard_DeactiveUnit = m_Keyboard.FindAction("DeactiveUnit", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Move = m_Camera.FindAction("Move", throwIfNotFound: true);
@@ -336,11 +357,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Keyboard;
     private List<IKeyboardActions> m_KeyboardActionsCallbackInterfaces = new List<IKeyboardActions>();
     private readonly InputAction m_Keyboard_InitializeBuilding;
+    private readonly InputAction m_Keyboard_DeactiveUnit;
     public struct KeyboardActions
     {
         private @InputActions m_Wrapper;
         public KeyboardActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @InitializeBuilding => m_Wrapper.m_Keyboard_InitializeBuilding;
+        public InputAction @DeactiveUnit => m_Wrapper.m_Keyboard_DeactiveUnit;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -353,6 +376,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @InitializeBuilding.started += instance.OnInitializeBuilding;
             @InitializeBuilding.performed += instance.OnInitializeBuilding;
             @InitializeBuilding.canceled += instance.OnInitializeBuilding;
+            @DeactiveUnit.started += instance.OnDeactiveUnit;
+            @DeactiveUnit.performed += instance.OnDeactiveUnit;
+            @DeactiveUnit.canceled += instance.OnDeactiveUnit;
         }
 
         private void UnregisterCallbacks(IKeyboardActions instance)
@@ -360,6 +386,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @InitializeBuilding.started -= instance.OnInitializeBuilding;
             @InitializeBuilding.performed -= instance.OnInitializeBuilding;
             @InitializeBuilding.canceled -= instance.OnInitializeBuilding;
+            @DeactiveUnit.started -= instance.OnDeactiveUnit;
+            @DeactiveUnit.performed -= instance.OnDeactiveUnit;
+            @DeactiveUnit.canceled -= instance.OnDeactiveUnit;
         }
 
         public void RemoveCallbacks(IKeyboardActions instance)
@@ -432,6 +461,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     public interface IKeyboardActions
     {
         void OnInitializeBuilding(InputAction.CallbackContext context);
+        void OnDeactiveUnit(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {

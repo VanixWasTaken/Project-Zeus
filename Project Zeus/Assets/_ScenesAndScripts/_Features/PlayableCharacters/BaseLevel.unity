@@ -1227,11 +1227,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableWorkers: 0
-  pickedWorkers: 0
+  pickedWorkers: 1
   availableRecons: 0
-  pickedRecons: 0
+  pickedRecons: 1
   availableGatherers: 0
-  pickedGatherers: 0
+  pickedGatherers: 1
   maxKilogram: 100
   currentKilogram: 0
   currentEnergy: 0

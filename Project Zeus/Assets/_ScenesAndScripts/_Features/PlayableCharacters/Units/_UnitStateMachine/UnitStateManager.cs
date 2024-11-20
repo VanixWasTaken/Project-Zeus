@@ -9,6 +9,7 @@ public class UnitStateManager : MonoBehaviour
     public UnitBaseState currentState;
     public UnitIdleState idleState = new UnitIdleState();
     public UnitWalkingState walkingState = new UnitWalkingState();
+    public UnitDeactivatedState deactivatedState = new UnitDeactivatedState();
 
     public UnitWorkerMiningState workerMiningState = new UnitWorkerMiningState();
     #endregion
@@ -31,14 +32,15 @@ public class UnitStateManager : MonoBehaviour
     #endregion
 
     // These values can be assigned in the Unit Prefabs, to make some Units more expensive than others
-    [SerializeField] int energyDepletionRate = 5;
-    [SerializeField] float energyDepletionInterval = 5;
+    public int energyDepletionRate = 5;
+    public float energyDepletionInterval = 5;
 
     #region Worker Variables
     [Header("Worker Variables")]
     public int collectedEnergy;
     #endregion
 
+    public InputActions newInputActions;
 
     void Awake()
     {
@@ -102,6 +104,9 @@ public class UnitStateManager : MonoBehaviour
 
     void Start()
     {
+        newInputActions = new InputActions();
+        newInputActions.Keyboard.Enable();
+
         StartCoroutine(EnergyDepletion(energyDepletionInterval));
 
         selectionIndicator.SetActive(false);
@@ -113,6 +118,15 @@ public class UnitStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
+
+        if (newInputActions.Keyboard.DeactiveUnit.WasPressedThisFrame())
+        {
+            if (currentState != deactivatedState)
+            {
+                SwitchStates(deactivatedState);
+            }
+            
+        }
     }
 
 
@@ -126,8 +140,12 @@ public class UnitStateManager : MonoBehaviour
 
     public void OnCommandMove(Vector3 targetPosition) // Moves the player to the set destination and switches to walking state
     {
-        navMeshAgent.SetDestination(targetPosition);
-        SwitchStates(walkingState);
+        if (currentState != deactivatedState)
+        {
+            navMeshAgent.SetDestination(targetPosition);
+            SwitchStates(walkingState);
+        }
+        
     }
 
     public void StopMoving() // Resets the NavMesh path and switches to idle state
@@ -146,7 +164,7 @@ public class UnitStateManager : MonoBehaviour
         commandCenter.DepleteEnergy(_amount);
     }
 
-    private IEnumerator EnergyDepletion(float _depletionInterval)
+    public IEnumerator EnergyDepletion(float _depletionInterval)
     {
         while (true)
         {

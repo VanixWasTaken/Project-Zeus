@@ -81,6 +81,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "DeactiveUnit",
+                    "type": "Button",
+                    "id": "f1b8674d-2d9a-4dec-83dd-e1b0fbffb5bc",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -92,6 +101,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "InitializeBuilding",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9534efbd-fd67-43dd-a4a6-994c26cb7f89",
+                    "path": "<Keyboard>/o",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DeactiveUnit",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
