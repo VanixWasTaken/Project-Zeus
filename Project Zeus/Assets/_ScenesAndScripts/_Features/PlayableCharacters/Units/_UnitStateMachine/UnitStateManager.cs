@@ -1,5 +1,5 @@
 using System;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -19,7 +19,7 @@ public class UnitStateManager : MonoBehaviour
     GameObject selectionIndicator;
     //[SerializeField] Camera mainCamera;
     //[SerializeField] Vector3 mouseClickPos;
-    //[SerializeField] CommandCenterStateManager commandCenter;
+    CommandCenterStateManager commandCenter; // needed to call function DepleteEnergy()
     //public ObjectAudioData audioSheet;
     //[SerializeField] Vector3 targetPosition;
     //[SerializeField] GameObject enemyDetector;
@@ -29,6 +29,10 @@ public class UnitStateManager : MonoBehaviour
     //public int damage = 10;
     //public bool isDead = false;
     #endregion
+
+    // These values can be assigned in the Unit Prefabs, to make some Units more expensive than others
+    [SerializeField] int energyDepletionRate = 5;
+    [SerializeField] float energyDepletionInterval = 5;
 
     #region Worker Variables
     [Header("Worker Variables")]
@@ -74,12 +78,32 @@ public class UnitStateManager : MonoBehaviour
                 Debug.LogError("Animator could not be found and assigned");
             }
         }
+
+        if (commandCenter == null)
+        {
+            GameObject[] cC = GameObject.FindGameObjectsWithTag("CommandCenter");
+
+            foreach (GameObject c in cC)
+            {
+                if (c != null)
+                {
+                    commandCenter = c.GetComponent<CommandCenterStateManager>();
+                }
+            }
+
+            if (commandCenter == null)
+            {
+                Debug.LogError("CommandCenter could not be found and assigned");
+            }
+        }
         #endregion
     }
 
 
     void Start()
     {
+        StartCoroutine(EnergyDepletion(energyDepletionInterval));
+
         selectionIndicator.SetActive(false);
         currentState = idleState;
         currentState.EnterState(this);
@@ -115,6 +139,21 @@ public class UnitStateManager : MonoBehaviour
     public void TakeDamage()
     {
         // Write Function to take damage here later
+    }
+
+    private void DepleteEnergy(int _amount)
+    {
+        commandCenter.DepleteEnergy(_amount);
+    }
+
+    private IEnumerator EnergyDepletion(float _depletionInterval)
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(_depletionInterval);
+
+            DepleteEnergy(energyDepletionRate);
+        }
     }
 
     #region SelectionIndicator Functions()

@@ -12,6 +12,7 @@ TagManager:
   - Worker
   - Recon
   - Gatherer
+  - CommandCenter
   layers:
   - Default
   - TransparentFX

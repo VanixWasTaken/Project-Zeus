@@ -15,6 +15,9 @@ public class GameDataManager : MonoBehaviour
     public float maxKilogram = 100;
     public float currentKilogram = 0;
 
+    public int currentEnergy;
+    public int maxEnergy = 100;
+
     private void Awake()
     {
         if (Instance == null)
