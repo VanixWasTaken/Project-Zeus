@@ -6,6 +6,10 @@ using System.Collections.Generic;
 
 public class CommandCenterClickedState : CommandCenterBaseState
 {
+
+    
+
+
     InputActions inputActions;
 
     bool aboveButton = false;
@@ -25,6 +29,11 @@ public class CommandCenterClickedState : CommandCenterBaseState
             if (Mouse.current.leftButton.isPressed && !aboveButton)
             commandCenter.extracttionUnitInfo.gameObject.SetActive(false);
         }
+
+
+        commandCenter.extractionUIWorkers.text = "Workers:\t" + commandCenter.workersInsideExtraction.ToString() + " / "  + GameDataManager.Instance.pickedWorkers;
+        commandCenter.extractionUIRecons.text = "Recons:\t" + commandCenter.reconsInsideExtraction.ToString() + " / " + GameDataManager.Instance.pickedRecons;
+        commandCenter.extractionUIGatherers.text = "Gatherers:\t" + commandCenter.gatherersInsideExtraction.ToString() + " / " + GameDataManager.Instance.pickedGatherers;
     }
 
 }

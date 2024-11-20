@@ -24,11 +24,22 @@ public class CommandCenterStateManager : MonoBehaviour
     [SerializeField] UnitStateManager unit;
     InputActions inputActions;
 
-    public TextMeshProUGUI extracttionUnitInfo;
+    public GameObject extracttionUnitInfo;
+    public TextMeshProUGUI extractionUIWorkers;
+    public TextMeshProUGUI extractionUIRecons;
+    public TextMeshProUGUI extractionUIGatherers;
     #endregion
 
 
     public int collectedCompleteEnergy;
+    public int workersInsideExtraction;
+    public int reconsInsideExtraction;
+    public int gatherersInsideExtraction;
+
+
+
+  
+
 
     void Start()
     {
@@ -86,6 +97,8 @@ public class CommandCenterStateManager : MonoBehaviour
     {
         if (other.CompareTag("Worker"))
         {
+            workersInsideExtraction++;
+
             UnitStateManager unitStateManager = other.GetComponent<UnitStateManager>();
 
             if (unitStateManager != null) // Check if the component was found
@@ -99,6 +112,33 @@ public class CommandCenterStateManager : MonoBehaviour
                 Debug.LogError("UnitStateManager component not found on the Worker!");
             }
         }
+
+        if (other.CompareTag("Recon"))
+        {
+            reconsInsideExtraction++;
+        }
+        
+        if (other.CompareTag("Gatherer"))
+        {
+            gatherersInsideExtraction++;
+        }
     }
 
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Worker"))
+        {
+            workersInsideExtraction--;
+        }
+        
+        if (other.CompareTag("Recon"))
+        {
+            reconsInsideExtraction--;
+        }
+
+        if (other.CompareTag("Gatherer"))
+        {
+            gatherersInsideExtraction--;
+        }
+    }
 }

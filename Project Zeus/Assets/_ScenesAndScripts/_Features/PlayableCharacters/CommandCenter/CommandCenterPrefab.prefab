@@ -53,6 +53,14 @@ MonoBehaviour:
   buildingButton: {fileID: 0}
   playerButton: {fileID: 0}
   unit: {fileID: 0}
+  extracttionUnitInfo: {fileID: 0}
+  extractionUIWorkers: {fileID: 0}
+  extractionUIRecons: {fileID: 0}
+  extractionUIGatherers: {fileID: 0}
+  collectedCompleteEnergy: 0
+  workersInsideExtraction: 0
+  reconsInsideExtraction: 0
+  gatherersInsideExtraction: 0
 --- !u!135 &8345761443313743947
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -72,7 +80,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 7.06
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &8099869876767769438
 GameObject:
