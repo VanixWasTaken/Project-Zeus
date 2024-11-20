@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CommandCenterStateManager : MonoBehaviour
 {
@@ -146,7 +147,6 @@ public class CommandCenterStateManager : MonoBehaviour
 
     public void ExtractionButtonClicked()
     {
-        Debug.Log("YOU EXTRACTED");
-        // Extract
+        SceneManager.LoadScene("ExtractionScreenMenu");
     }
 }
