@@ -45,10 +45,10 @@ GameObject:
   - component: {fileID: 8068339395854321779}
   - component: {fileID: 6844881601502991166}
   - component: {fileID: 3394126121733284473}
-  - component: {fileID: -4718250512302751863}
+  - component: {fileID: -8983877965743053095}
   m_Layer: 15
-  m_Name: WorkerPrefab
-  m_TagString: Worker
+  m_Name: ReconPrefab
+  m_TagString: Recon
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +81,7 @@ Animator:
   m_GameObject: {fileID: 277383952719586449}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 36078ab0369161e49a29d349ae3e0739, type: 3}
-  m_Controller: {fileID: 9100000, guid: 88867ab2ba1739c41ade643b3f5b03e6, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7705ea3469088704da4a3f25ba377019, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -103,8 +103,8 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 5
-  m_Acceleration: 20
+  m_Speed: 8
+  m_Acceleration: 30
   avoidancePriority: 50
   m_AngularSpeed: 500
   m_StoppingDistance: 0
@@ -165,7 +165,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-4718250512302751863
+--- !u!114 &-8983877965743053095
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -179,6 +179,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   navMeshAgent: {fileID: 0}
+  collectedEnergy: 0
 --- !u!1 &349868753245545877
 GameObject:
   m_ObjectHideFlags: 0

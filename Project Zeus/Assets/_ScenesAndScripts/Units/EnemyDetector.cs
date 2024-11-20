@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class EnemyDetector : MonoBehaviour
 {
+    /*
     [SerializeField] UnitStateManager unitStateManager;
 
         public void OnTriggerEnter(Collider other)
@@ -41,4 +42,5 @@ public class EnemyDetector : MonoBehaviour
                 }
             }
         }
+    */
 }

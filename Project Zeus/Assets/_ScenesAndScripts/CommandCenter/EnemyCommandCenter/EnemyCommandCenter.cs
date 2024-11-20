@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyCommandCenter : MonoBehaviour
 {
+    /*
+
     [SerializeField] GameObject unitPrefab;
     [SerializeField] Material blueSpaceMarine;
     private Vector3 spawnLocation;
@@ -13,6 +15,7 @@ public class EnemyCommandCenter : MonoBehaviour
         StartCoroutine(WaitForSeconds(1));
     }
 
+    
     private IEnumerator WaitForSeconds(int waitTime)
     {
        yield return new WaitForSeconds(waitTime);
@@ -37,6 +40,7 @@ public class EnemyCommandCenter : MonoBehaviour
         }
     }
 
+    
     void InstantiateMarine()
     {
         float spacing = 4.0f;
@@ -52,5 +56,5 @@ public class EnemyCommandCenter : MonoBehaviour
         obj.transform.localScale = new Vector3(0.58f, 0.58f, 0.58f);
         obj.tag = "Enemy";
     }
-
+    */
 }

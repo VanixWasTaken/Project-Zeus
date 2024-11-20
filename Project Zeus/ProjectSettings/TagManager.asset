@@ -9,7 +9,9 @@ TagManager:
   - Enemy
   - PlayerContainer
   - EnemyContainer
-  - UnitDetectionTag
+  - Worker
+  - Recon
+  - Gatherer
   layers:
   - Default
   - TransparentFX
