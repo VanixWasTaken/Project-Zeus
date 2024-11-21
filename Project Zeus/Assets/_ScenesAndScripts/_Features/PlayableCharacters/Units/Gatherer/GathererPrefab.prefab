@@ -588,6 +588,7 @@ GameObject:
   - component: {fileID: 6315628705533745189}
   - component: {fileID: 4437015007349617180}
   - component: {fileID: 5320346246174388841}
+  - component: {fileID: 6760945820301196620}
   m_Layer: 15
   m_Name: GathererPrefab
   m_TagString: Gatherer
@@ -722,6 +723,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   navMeshAgent: {fileID: 0}
   life: 100
+  rightPartUIUnitDescription: {fileID: 6760945820301196620}
   energyDepletionRate: 5
   energyDepletionInterval: 5
   collectedEnergy: 0
@@ -738,6 +740,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lootGO: {fileID: 680124673622037963}
+--- !u!114 &6760945820301196620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5059330462096545759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31923dc1e8f34f04ea8d32415b28ed35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdingItemsInt: 0
+  isActive: 1
 --- !u!1 &5407630381268824551
 GameObject:
   m_ObjectHideFlags: 0

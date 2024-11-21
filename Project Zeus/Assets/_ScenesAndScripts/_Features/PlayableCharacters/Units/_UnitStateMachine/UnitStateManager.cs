@@ -30,6 +30,7 @@ public class UnitStateManager : MonoBehaviour
     //public string myEnemyTag;
     //public int damage = 10;
     //public bool isDead = false;
+    public RightPartUIUnitDescription rightPartUIUnitDescription;
     #endregion
 
     // These values can be assigned in the Unit Prefabs, to make some Units more expensive than others

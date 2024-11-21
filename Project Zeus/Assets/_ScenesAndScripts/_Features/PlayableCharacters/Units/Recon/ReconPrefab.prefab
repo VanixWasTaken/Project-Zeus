@@ -46,6 +46,7 @@ GameObject:
   - component: {fileID: 6844881601502991166}
   - component: {fileID: 3394126121733284473}
   - component: {fileID: -8983877965743053095}
+  - component: {fileID: 7652998036567853228}
   m_Layer: 15
   m_Name: ReconPrefab
   m_TagString: Recon
@@ -180,9 +181,24 @@ MonoBehaviour:
   animator: {fileID: 0}
   navMeshAgent: {fileID: 0}
   life: 100
+  rightPartUIUnitDescription: {fileID: 7652998036567853228}
   energyDepletionRate: 5
   energyDepletionInterval: 5
   collectedEnergy: 0
+--- !u!114 &7652998036567853228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 277383952719586449}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 31923dc1e8f34f04ea8d32415b28ed35, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  holdingItemsInt: 0
+  isActive: 1
 --- !u!1 &349868753245545877
 GameObject:
   m_ObjectHideFlags: 0

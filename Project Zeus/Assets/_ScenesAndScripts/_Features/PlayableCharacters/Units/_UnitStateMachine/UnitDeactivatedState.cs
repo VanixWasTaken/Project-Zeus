@@ -6,6 +6,8 @@ public class UnitDeactivatedState : UnitBaseState
     {
         _unit.animator.SetFloat("anSpeed", 0);
         Deactivate(_unit);
+
+        _unit.rightPartUIUnitDescription.isActive = false;
     }
 
     public override void UpdateState(UnitStateManager _unit)
@@ -26,6 +28,7 @@ public class UnitDeactivatedState : UnitBaseState
     {
         _unit.StartCoroutine(_unit.EnergyDepletion(_unit.energyDepletionInterval));
         _unit.animator.SetBool("anIsDeactivated", false);
+        _unit.rightPartUIUnitDescription.isActive = true;
         _unit.SwitchStates(_unit.idleState);
     }
 }
