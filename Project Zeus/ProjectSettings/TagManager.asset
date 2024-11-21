@@ -14,6 +14,7 @@ TagManager:
   - Gatherer
   - CommandCenter
   - SelectionManager
+  - LootOnUnit
   layers:
   - Default
   - TransparentFX
