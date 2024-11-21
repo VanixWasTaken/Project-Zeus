@@ -13,6 +13,7 @@ TagManager:
   - Recon
   - Gatherer
   - CommandCenter
+  - LootOnUnit
   layers:
   - Default
   - TransparentFX
