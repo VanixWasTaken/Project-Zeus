@@ -159,6 +159,11 @@ public class UnitStateManager : MonoBehaviour
         // Write Function to take damage here later
     }
 
+    public void Reactivate()
+    {
+        
+    }
+
     private void DepleteEnergy(int _amount)
     {
         commandCenter.DepleteEnergy(_amount);

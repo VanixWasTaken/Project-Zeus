@@ -20,7 +20,7 @@ public class UnitDeactivatedState : UnitBaseState
         _unit.animator.SetTrigger("anShouldDeactivate");
     }
 
-    private void Reactivate(UnitStateManager _unit)
+    public void Reactivate(UnitStateManager _unit)
     {
         _unit.StartCoroutine(_unit.EnergyDepletion(_unit.energyDepletionInterval));
         _unit.animator.SetBool("anIsDeactivated", false);

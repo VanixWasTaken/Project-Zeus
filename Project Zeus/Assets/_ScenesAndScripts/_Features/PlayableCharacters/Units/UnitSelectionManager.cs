@@ -18,7 +18,7 @@ public class UnitSelectionManager : MonoBehaviour
     #endregion
 
     List<UnitStateManager> selectedUnits = new List<UnitStateManager>();
-
+    List<UnitStateManager> lastSelectedUnits = new List<UnitStateManager>();
 
 
     void Start()
@@ -125,6 +125,18 @@ public class UnitSelectionManager : MonoBehaviour
 
             
             unit.OnCommandMove(adjustedTarget);
+        }
+    }
+
+
+    public void ShutDownSelected()
+    {
+        if (selectedUnits.Count > 0)
+        {
+            foreach (UnitStateManager unit in selectedUnits)
+            {
+                unit.SwitchStates(unit.deactivatedState);
+            }
         }
     }
     #endregion
