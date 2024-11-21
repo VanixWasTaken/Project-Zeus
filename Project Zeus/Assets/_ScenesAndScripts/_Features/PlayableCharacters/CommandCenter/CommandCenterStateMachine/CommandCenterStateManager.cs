@@ -29,6 +29,7 @@ public class CommandCenterStateManager : MonoBehaviour
     public TextMeshProUGUI extractionUIRecons;
     public TextMeshProUGUI extractionUIGatherers;
     public Button extractionUIExtractButton;
+    public GameObject extractionWarningMenu;
     #endregion
 
 
@@ -37,6 +38,7 @@ public class CommandCenterStateManager : MonoBehaviour
     public int workersInsideExtraction;
     public int reconsInsideExtraction;
     public int gatherersInsideExtraction;
+    bool allUnitsInsideExtraction;
 
 
 
@@ -145,7 +147,39 @@ public class CommandCenterStateManager : MonoBehaviour
     }
 
 
-    public void ExtractionButtonClicked()
+    public void OnExtractionButtonClicked()
+    {
+        AllUnitsInsideExitCheck();
+
+        if (allUnitsInsideExtraction)
+        {
+            extractionWarningMenu.SetActive(false);
+            SceneManager.LoadScene("ExtractionScreenMenu");
+        }
+        else
+        {
+            extractionWarningMenu.SetActive(true);
+        }
+    }
+
+    void AllUnitsInsideExitCheck()
+    {
+        if (GameDataManager.Instance.pickedWorkers + GameDataManager.Instance.pickedRecons + GameDataManager.Instance.pickedGatherers == workersInsideExtraction + reconsInsideExtraction + gatherersInsideExtraction)
+        {
+            allUnitsInsideExtraction = true;
+        }
+        else
+        {
+            allUnitsInsideExtraction = false;
+        }
+    }
+
+    public void OnExtractionWarningNoClicked()
+    {
+        extracttionUnitInfo.SetActive(false);
+    }
+
+    public void OnExtractionWarningYesClicked()
     {
         SceneManager.LoadScene("ExtractionScreenMenu");
     }

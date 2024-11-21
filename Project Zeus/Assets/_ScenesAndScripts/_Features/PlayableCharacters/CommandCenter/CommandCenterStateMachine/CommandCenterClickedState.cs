@@ -52,16 +52,7 @@ public class CommandCenterClickedState : CommandCenterBaseState
         raycaster.Raycast(pointerEventData, results);
 
         // Check if the button is in the results
-        aboveButton = results.Exists(result => result.gameObject == commandCenter.extractionUIExtractButton.gameObject);
-
-        if (aboveButton)
-        {
-            Debug.Log("Mouse is over the extraction button!");
-        }
-        else
-        {
-            Debug.Log("Mouse is not over the extraction button.");
-        }
+        aboveButton = results.Exists(result => result.gameObject == commandCenter.extractionUIExtractButton.gameObject || commandCenter.extractionWarningMenu.gameObject);
     }
 
 }
