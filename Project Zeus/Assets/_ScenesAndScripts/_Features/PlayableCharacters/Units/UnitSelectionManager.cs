@@ -7,6 +7,7 @@ using UnityEngine.InputSystem;
 public class UnitSelectionManager : MonoBehaviour
 {
     InputActions inputActions;
+    bool keepSelected;
     public Camera mainCamera;
     public LayerMask unitLayer;
 
@@ -54,8 +55,15 @@ public class UnitSelectionManager : MonoBehaviour
         }
         else if (Mouse.current.leftButton.wasReleasedThisFrame) // Release the selection box and select units within it
         {
-            SelectUnitsInBox();
-            selectionBox.gameObject.SetActive(false);
+            if (ActivationHandling() == false)
+            {
+                SelectUnitsInBox();
+                selectionBox.gameObject.SetActive(false);
+            }
+            else
+            {
+                KeepSelection();
+            }
         }
     }
 
@@ -129,6 +137,20 @@ public class UnitSelectionManager : MonoBehaviour
         }
     }
 
+    bool ActivationHandling()
+    {
+        return keepSelected;
+    }
+
+    void KeepSelection()
+    {
+        foreach (UnitStateManager unit in lastSelectedUnits)
+        {
+            unit.Select();
+        }
+        selectedUnits = lastSelectedUnits;
+        keepSelected = false;
+    }
 
     public void ShutDownSelected()
     {
@@ -138,6 +160,7 @@ public class UnitSelectionManager : MonoBehaviour
             {
                 unit.EnergyLogic("Deactivate");
             }
+            keepSelected = true;
         }
     }
 
@@ -149,6 +172,7 @@ public class UnitSelectionManager : MonoBehaviour
             {
                 unit.EnergyLogic("Reactivate");
             }
+            keepSelected = true;
         }
     }
     #endregion

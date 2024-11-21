@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -154,17 +155,19 @@ public class UnitStateManager : MonoBehaviour
     {
         if (_action != null)
         {
-            if (_action == "Reactivate" && currentState == deactivatedState)
+            if (_action == "Reactivate")
             {
-                deactivatedState.Reactivate(this);
+                if (currentState == deactivatedState)
+                {
+                    deactivatedState.Reactivate(this);
+                }
             }
             else if(_action == "Deactivate")
             {
-                SwitchStates(deactivatedState);
-            }
-            else
-            {
-                Debug.LogError("Error! No valid specifier given! You typed: " + _action);
+                if (currentState != deactivatedState)
+                {
+                    SwitchStates(deactivatedState);
+                }
             }
         }
     }

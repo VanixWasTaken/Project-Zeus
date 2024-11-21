@@ -466,7 +466,6 @@ GameObject:
   - component: {fileID: 1435658055810737525}
   - component: {fileID: 7277558842508319967}
   - component: {fileID: 8606774847178573513}
-  - component: {fileID: 8039597387061517043}
   m_Layer: 15
   m_Name: SelectionIndicator
   m_TagString: Untagged
@@ -542,28 +541,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &8039597387061517043
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4570336035569954634}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &4781015777842097496
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,6 +721,8 @@ MonoBehaviour:
   animator: {fileID: 0}
   navMeshAgent: {fileID: 0}
   life: 100
+  energyDepletionRate: 5
+  energyDepletionInterval: 5
   collectedEnergy: 0
 --- !u!1 &5407630381268824551
 GameObject:
