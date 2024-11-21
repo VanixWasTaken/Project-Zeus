@@ -3357,7 +3357,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &811454227
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8970,6 +8970,7 @@ MonoBehaviour:
   unitLayer:
     serializedVersion: 2
     m_Bits: 0
+  activationButtons: {fileID: 811454226}
   selectionBox: {fileID: 1398338671}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

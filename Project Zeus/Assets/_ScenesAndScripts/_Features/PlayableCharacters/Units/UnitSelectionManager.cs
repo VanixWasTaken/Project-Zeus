@@ -10,6 +10,7 @@ public class UnitSelectionManager : MonoBehaviour
     bool keepSelected;
     public Camera mainCamera;
     public LayerMask unitLayer;
+    [SerializeField] GameObject activationButtons;
 
     
     #region Selection Box UI
@@ -44,6 +45,7 @@ public class UnitSelectionManager : MonoBehaviour
         {
             // Reset the selection box size to zero to avoid flashing
             selectionBox.sizeDelta = Vector2.zero;
+            
 
             startPosition = Mouse.current.position.ReadValue();
             selectionBox.gameObject.SetActive(true);
@@ -57,6 +59,7 @@ public class UnitSelectionManager : MonoBehaviour
         {
             if (ActivationHandling() == false)
             {
+                activationButtons.SetActive(false);
                 SelectUnitsInBox();
                 selectionBox.gameObject.SetActive(false);
             }
@@ -102,6 +105,11 @@ public class UnitSelectionManager : MonoBehaviour
                 unit.Select();
                 selectedUnits.Add(unit);
             }
+        }
+
+        if (selectedUnits.Count > 0)
+        {
+            activationButtons.SetActive(true);
         }
     }
 
