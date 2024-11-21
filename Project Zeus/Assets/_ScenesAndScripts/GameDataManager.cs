@@ -76,20 +76,18 @@ public class GameDataManager : MonoBehaviour
         for (int i = 0; i < lostUnits.Length; i++)
         {
 
-            if (i == 0)
+            if (i == 0 && availableWorkers > 0)
             {
                 availableWorkers -= lostUnits[i];
             }
-            else if (i == 1)
+            else if (i == 1 && availableRecons > 0)
             {
                 availableRecons -= lostUnits[i];
             }
-            else if (i == 2)
+            else if (i == 2 && availableGatherers > 0)
             {
                 availableGatherers -= lostUnits[i];
             }
-
-            Debug.Log("Available Units:" + availableWorkers + " " + availableRecons + " " + availableGatherers);
         }
     }
 }

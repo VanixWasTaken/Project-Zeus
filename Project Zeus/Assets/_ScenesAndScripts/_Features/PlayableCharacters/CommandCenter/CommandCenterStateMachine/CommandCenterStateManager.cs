@@ -6,6 +6,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class CommandCenterStateManager : MonoBehaviour
 {
@@ -21,12 +22,33 @@ public class CommandCenterStateManager : MonoBehaviour
     #region References
     [SerializeField] Camera mainCamera;
     [SerializeField] GameObject commandCenterObject;
-    public bool hoversAbove; 
+    [SerializeField] TextMeshProUGUI energyMeter;
+
     public GameObject buildingButton;
     public GameObject playerButton;
     [SerializeField] UnitStateManager unit;
-    [SerializeField] TextMeshProUGUI energyMeter;
+    InputActions inputActions;
+
+    public GameObject extracttionUnitInfo;
+    public TextMeshProUGUI extractionUIWorkers;
+    public TextMeshProUGUI extractionUIRecons;
+    public TextMeshProUGUI extractionUIGatherers;
+    public Button extractionUIExtractButton;
+    public GameObject extractionWarningMenu;
     #endregion
+
+
+    public bool hoversAbove;
+    public int collectedCompleteEnergy;
+    public int workersInsideExtraction;
+    public int reconsInsideExtraction;
+    public int gatherersInsideExtraction;
+    bool allUnitsInsideExtraction;
+
+
+
+  
+
 
     void Start()
     {
@@ -34,6 +56,9 @@ public class CommandCenterStateManager : MonoBehaviour
         energyMeter.text = ("Energy:\t" +  GameDataManager.Instance.currentEnergy + " / " + GameDataManager.Instance.maxEnergy);
         currentState = idleState;
         currentState.EnterState(this);
+
+        inputActions = new InputActions();
+        inputActions.Mouse.Enable();
     }
 
     void Update()
@@ -60,6 +85,15 @@ public class CommandCenterStateManager : MonoBehaviour
             commandCenterObject.layer = LayerMask.NameToLayer("Default");
             hoversAbove = false;
         }
+
+
+        if (hoversAbove)
+        {
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                SwitchStates(clickedState);
+            }
+        }
     }
 
     public void SwitchStates(CommandCenterBaseState state)
@@ -73,6 +107,8 @@ public class CommandCenterStateManager : MonoBehaviour
     {
         if (other.CompareTag("Worker"))
         {
+            workersInsideExtraction++;
+
             UnitStateManager unitStateManager = other.GetComponent<UnitStateManager>();
 
             if (unitStateManager != null) // Check if the component was found
@@ -100,6 +136,16 @@ public class CommandCenterStateManager : MonoBehaviour
                 Debug.LogError("UnitStateManager component not found on the Worker!");
             }
         }
+
+        if (other.CompareTag("Recon"))
+        {
+            reconsInsideExtraction++;
+        }
+        
+        if (other.CompareTag("Gatherer"))
+        {
+            gatherersInsideExtraction++;
+        }
     }
 
     void UpdateEnergyMeter()
@@ -124,5 +170,59 @@ public class CommandCenterStateManager : MonoBehaviour
     {
         int difference = GameDataManager.Instance.currentEnergy - _amount;
         ExitCheck(difference, _amount);
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Worker"))
+        {
+            workersInsideExtraction--;
+        }
+        
+        if (other.CompareTag("Recon"))
+        {
+            reconsInsideExtraction--;
+        }
+
+        if (other.CompareTag("Gatherer"))
+        {
+            gatherersInsideExtraction--;
+        }
+    }
+
+
+    public void OnExtractionButtonClicked()
+    {
+        AllUnitsInsideExitCheck();
+
+        if (allUnitsInsideExtraction)
+        {
+            extractionWarningMenu.SetActive(false);
+            SceneManager.LoadScene("ExtractionScreenMenu");
+        }
+        else
+        {
+            extractionWarningMenu.SetActive(true);
+        }
+    }
+
+    void AllUnitsInsideExitCheck()
+    {
+        if (GameDataManager.Instance.pickedWorkers + GameDataManager.Instance.pickedRecons + GameDataManager.Instance.pickedGatherers == workersInsideExtraction + reconsInsideExtraction + gatherersInsideExtraction)
+        {
+            allUnitsInsideExtraction = true;
+        }
+        else
+        {
+            allUnitsInsideExtraction = false;
+        }
+    }
+
+    public void OnExtractionWarningNoClicked()
+    {
+        extracttionUnitInfo.SetActive(false);
+    }
+
+    public void OnExtractionWarningYesClicked()
+    {
+        SceneManager.LoadScene("ExtractionScreenMenu");
     }
 }
