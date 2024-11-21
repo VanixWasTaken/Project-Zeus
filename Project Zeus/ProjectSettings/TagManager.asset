@@ -13,6 +13,7 @@ TagManager:
   - Recon
   - Gatherer
   - CommandCenter
+  - SelectionManager
   layers:
   - Default
   - TransparentFX
