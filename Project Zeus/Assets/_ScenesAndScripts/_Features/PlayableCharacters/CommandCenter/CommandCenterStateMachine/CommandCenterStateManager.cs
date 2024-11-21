@@ -170,6 +170,9 @@ public class CommandCenterStateManager : MonoBehaviour
     {
         int difference = GameDataManager.Instance.currentEnergy - _amount;
         ExitCheck(difference, _amount);
+
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Worker"))
