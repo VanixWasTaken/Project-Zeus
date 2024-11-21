@@ -15,6 +15,8 @@ public class UnitDeactivatedState : UnitBaseState
 
     private void Deactivate(UnitStateManager _unit)
     {
+        _unit.navMeshAgent.isStopped = true;
+        _unit.navMeshAgent.ResetPath();
         _unit.StopAllCoroutines();
         _unit.animator.SetBool("anIsDeactivated", true);
         _unit.animator.SetTrigger("anShouldDeactivate");

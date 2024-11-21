@@ -81,6 +81,7 @@ public class UnitSelectionManager : MonoBehaviour
         {
             unit.Deselect();
         }
+        lastSelectedUnits = selectedUnits;
         selectedUnits.Clear();
 
         foreach (UnitStateManager unit in FindObjectsByType<UnitStateManager>(FindObjectsSortMode.None))
@@ -131,11 +132,22 @@ public class UnitSelectionManager : MonoBehaviour
 
     public void ShutDownSelected()
     {
-        if (selectedUnits.Count > 0)
+        if (lastSelectedUnits.Count > 0)
         {
-            foreach (UnitStateManager unit in selectedUnits)
+            foreach (UnitStateManager unit in lastSelectedUnits)
             {
-                unit.SwitchStates(unit.deactivatedState);
+                unit.EnergyLogic("Deactivate");
+            }
+        }
+    }
+
+    public void ActivateSelected()
+    {
+        if (lastSelectedUnits.Count > 0)
+        {
+            foreach (UnitStateManager unit in lastSelectedUnits)
+            {
+                unit.EnergyLogic("Reactivate");
             }
         }
     }

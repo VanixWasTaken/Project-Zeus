@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class DeactivationButtonScript : MonoBehaviour
+public class ActivationHandleButtonScript : MonoBehaviour
 {
     UnitSelectionManager unitSelectionManager;
 
@@ -23,5 +23,10 @@ public class DeactivationButtonScript : MonoBehaviour
     public void OnDeactivateButtonClicked()
     {
         unitSelectionManager.ShutDownSelected();
+    }
+
+    public void OnActivateButtonClicked()
+    {
+        unitSelectionManager.ActivateSelected();
     }
 }

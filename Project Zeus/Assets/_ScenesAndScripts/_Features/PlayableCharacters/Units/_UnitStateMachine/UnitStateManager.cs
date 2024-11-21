@@ -118,15 +118,6 @@ public class UnitStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
-
-        if (newInputActions.Keyboard.DeactiveUnit.WasPressedThisFrame())
-        {
-            if (currentState != deactivatedState)
-            {
-                SwitchStates(deactivatedState);
-            }
-            
-        }
     }
 
 
@@ -159,9 +150,23 @@ public class UnitStateManager : MonoBehaviour
         // Write Function to take damage here later
     }
 
-    public void Reactivate()
+    public void EnergyLogic(string _action)
     {
-        
+        if (_action != null)
+        {
+            if (_action == "Reactivate" && currentState == deactivatedState)
+            {
+                deactivatedState.Reactivate(this);
+            }
+            else if(_action == "Deactivate")
+            {
+                SwitchStates(deactivatedState);
+            }
+            else
+            {
+                Debug.LogError("Error! No valid specifier given! You typed: " + _action);
+            }
+        }
     }
 
     private void DepleteEnergy(int _amount)
