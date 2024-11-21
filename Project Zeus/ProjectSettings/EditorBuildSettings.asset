@@ -5,21 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/ScenesAndScripts/TestArea.unity
-    guid: 99c9720ab356a0642a771bea13969a05
   - enabled: 1
     path: Assets/_ScenesAndScripts/_Features/DeployMenu/DeployMenu.unity
     guid: 8d21244188daf8b41b120b93220395cd
-  - enabled: 0
-    path: Assets/_ScenesAndScripts/LevelBlockOutSmall/LevelBlockOutSmall.unity
-    guid: de5acbc8d374eb3488f3b55903a0fffc
   - enabled: 1
     path: Assets/_ScenesAndScripts/_Features/PlayableCharacters/BaseLevel.unity
     guid: dbc8de915e8ba924a9e8f321be262ba3
   - enabled: 1
     path: Assets/_ScenesAndScripts/_Features/DeathScreenMenu/DeathScreenMenu.unity
     guid: 998fb85792a6e474eb9b05edca8fd709
+  - enabled: 1
     path: Assets/_ScenesAndScripts/_Features/ExtractionScreenMenu/ExtractionScreenMenu.unity
     guid: f11513a961ce68b42bb793687212d248
   m_configObjects:
