@@ -2,11 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 public class CommandCenterStateManager : MonoBehaviour
 {
@@ -170,6 +168,8 @@ public class CommandCenterStateManager : MonoBehaviour
     {
         int difference = GameDataManager.Instance.currentEnergy - _amount;
         ExitCheck(difference, _amount);
+    }
+
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Worker"))
