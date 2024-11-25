@@ -19,9 +19,7 @@ public class RightPartUIUnitDescription : MonoBehaviour
 
     void Awake()
     {
-        textMeshParent = GameObject.Find("RightPartUI");    
-
-        textMeshArray = GetComponentsInChildren<TextMeshProUGUI>();
+        textMeshParent = GameObject.Find("RightPartUI");
     }
 
     void Start()
@@ -39,6 +37,7 @@ public class RightPartUIUnitDescription : MonoBehaviour
             unitType = "Gatherer";
         }
 
+        textMeshArray = textMeshParent.GetComponentsInChildren<TextMeshProUGUI>();
 
     }
 
