@@ -7,7 +7,13 @@ public class DeployMenuLandingPodMenu : MonoBehaviour
     float _maxKilogram;
     float _currentKilogram;
     [SerializeField] TextMeshProUGUI landingPodKilogramText;
+    [SerializeField] TextMeshProUGUI loot;
 
+
+    void Start()
+    {
+        loot.text = "Loot\n" + GameDataManager.Instance.collectedLoot; 
+    }
 
 
     void Update()
