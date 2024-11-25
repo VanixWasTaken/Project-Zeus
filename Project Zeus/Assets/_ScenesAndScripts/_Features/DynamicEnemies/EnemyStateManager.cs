@@ -69,6 +69,11 @@ public class EnemyStateManager : MonoBehaviour
         {
             return mainTarget;
         }
+        else if (mainTarget == null)
+        {
+            SwitchState(roamingState);
+            return default;
+        }
         else
         {
             Debug.LogError("Error: No mainTarget set in EnemyStateManager! The return value is null.");
@@ -78,8 +83,15 @@ public class EnemyStateManager : MonoBehaviour
 
     public void SetTarget(GameObject _target)
     {
-        mainTarget = _target;
-        Debug.Log("Target set to:" + mainTarget);
+        if (_target == null)
+        {
+            mainTarget = null;
+        }
+        else if (_target != null)
+        {
+            mainTarget = _target;
+            Debug.Log("Target set to:" + mainTarget);
+        }
     }
 
     public void MoveToTarget(Vector3 targetPosition)
@@ -108,6 +120,7 @@ public class EnemyStateManager : MonoBehaviour
 
     public IEnumerator AttackDelay(float _attackDelay)
     {
+        Debug.Log("Starting Attack Delay");
         if (currentState == attackingState)
         {
             yield return new WaitForSeconds(_attackDelay);

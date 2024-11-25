@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 726466336552129662}
   - component: {fileID: 1199337483447460220}
   - component: {fileID: 1720856435111332009}
+  - component: {fileID: 3114155543926996128}
   m_Layer: 0
   m_Name: EnemyPrefab
   m_TagString: Enemy
@@ -46,6 +47,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21cd8364f826fe545864402d6b952811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  navMeshAgent: {fileID: 0}
 --- !u!135 &1720856435111332009
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -67,6 +69,28 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!195 &3114155543926996128
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6228393709742757974}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 1
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 2
 --- !u!1 &6587163581127224816
 GameObject:
   m_ObjectHideFlags: 0
