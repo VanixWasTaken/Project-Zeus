@@ -20,7 +20,7 @@ public class PlayableCharactersFriendlyUnitsSpawner : MonoBehaviour
             float xOffset = Random.Range(-spawnAreaWidth, spawnAreaWidth);
             float zOffset = Random.Range(-spawnAreaWidth, spawnAreaWidth);
             Vector3 spawnPosition = friendlyUnitsGO.transform.position + new Vector3(xOffset, 0, zOffset);
-            Instantiate(workerPrefab, spawnPosition, Quaternion.identity);
+            Instantiate(workerPrefab, spawnPosition, Quaternion.identity, friendlyUnitsGO.transform);
         }
         for (int i = 0; i < GameDataManager.Instance.pickedGatherers; i++)
         {
@@ -28,7 +28,7 @@ public class PlayableCharactersFriendlyUnitsSpawner : MonoBehaviour
             float xOffset = Random.Range(-spawnAreaWidth, spawnAreaWidth);
             float zOffset = Random.Range(-spawnAreaWidth, spawnAreaWidth);
             Vector3 spawnPosition = friendlyUnitsGO.transform.position + new Vector3(xOffset, 0, zOffset);
-            Instantiate(gathererPrefab, spawnPosition, Quaternion.identity);
+            Instantiate(gathererPrefab, spawnPosition, Quaternion.identity, friendlyUnitsGO.transform);
         }
         for (int i = 0; i < GameDataManager.Instance.pickedRecons; i++)
         {
@@ -36,7 +36,7 @@ public class PlayableCharactersFriendlyUnitsSpawner : MonoBehaviour
             float xOffset = Random.Range(-spawnAreaWidth, spawnAreaWidth);
             float zOffset = Random.Range(-spawnAreaWidth, spawnAreaWidth);
             Vector3 spawnPosition = friendlyUnitsGO.transform.position + new Vector3(xOffset, 0, zOffset);
-            Instantiate(reconPrefab, spawnPosition, Quaternion.identity);
+            Instantiate(reconPrefab, spawnPosition, Quaternion.identity, friendlyUnitsGO.transform);
         }
     }
 

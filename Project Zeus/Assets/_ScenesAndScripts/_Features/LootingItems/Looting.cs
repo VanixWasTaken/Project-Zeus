@@ -5,7 +5,6 @@ public class Looting : MonoBehaviour
 {
 
     [SerializeField] GameObject lootGO;
-    GameObject lootOnUnit;
 
 
   
@@ -15,9 +14,9 @@ public class Looting : MonoBehaviour
         if (other.CompareTag("Gatherer"))
         {
             GathererLoot lootOnUnit = other.GetComponent<GathererLoot>();
-            
-            Debug.Log(lootOnUnit.lootGO.name);
+            UnitStateManager unitStateManager = other.GetComponent<UnitStateManager>();
 
+            unitStateManager.collectedLoot++;
             lootOnUnit.lootGO.SetActive(true);
 
             Destroy(lootGO);

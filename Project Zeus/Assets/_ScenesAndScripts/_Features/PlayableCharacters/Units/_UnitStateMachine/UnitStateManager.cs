@@ -30,6 +30,7 @@ public class UnitStateManager : MonoBehaviour
     //public string myEnemyTag;
     //public int damage = 10;
     //public bool isDead = false;
+    public RightPartUIUnitDescription rightPartUIUnitDescription;
     #endregion
 
     // These values can be assigned in the Unit Prefabs, to make some Units more expensive than others
@@ -39,6 +40,10 @@ public class UnitStateManager : MonoBehaviour
     #region Worker Variables
     [Header("Worker Variables")]
     public int collectedEnergy;
+    #endregion
+
+    #region Gatherer Variables
+    public int collectedLoot;
     #endregion
 
     public InputActions newInputActions;
