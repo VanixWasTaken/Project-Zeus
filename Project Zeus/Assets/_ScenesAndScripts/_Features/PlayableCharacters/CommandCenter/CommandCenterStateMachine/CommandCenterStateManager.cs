@@ -31,6 +31,7 @@ public class CommandCenterStateManager : MonoBehaviour
     public TextMeshProUGUI extractionUIWorkers;
     public TextMeshProUGUI extractionUIRecons;
     public TextMeshProUGUI extractionUIGatherers;
+    public TextMeshProUGUI gatheredLootUI;
     public Button extractionUIExtractButton;
     public GameObject extractionWarningMenu;
     #endregion
@@ -43,7 +44,6 @@ public class CommandCenterStateManager : MonoBehaviour
     public int gatherersInsideExtraction;
     bool allUnitsInsideExtraction;
 
-    public int entireCollectedLoot;
 
   
 
@@ -92,6 +92,8 @@ public class CommandCenterStateManager : MonoBehaviour
                 SwitchStates(clickedState);
             }
         }
+
+        gatheredLootUI.text = "Gathered Loot: " + GameDataManager.Instance.collectedLoot;
     }
 
     public void SwitchStates(CommandCenterBaseState state)
@@ -151,7 +153,7 @@ public class CommandCenterStateManager : MonoBehaviour
             {
                 if (unitStateManager.collectedLoot > 0)
                 {
-                    entireCollectedLoot++;
+                    GameDataManager.Instance.collectedLoot++;
                 }
 
                 if (unitStateManager.collectedLoot > 0)

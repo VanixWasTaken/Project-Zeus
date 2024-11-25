@@ -18,6 +18,8 @@ public class GameDataManager : MonoBehaviour
     public int currentEnergy;
     public int maxEnergy = 100;
 
+    public int collectedLoot= 0;
+
     private void Awake()
     {
         if (Instance == null)
