@@ -11,4 +11,8 @@ public abstract class EnemyBaseState
     public virtual void OnTriggerExit(EnemyStateManager _enemy, Collider _collision) { }
 
     public virtual void OnUnitHit(EnemyStateManager _enemy) { }
+
+    public virtual void OnScreamHeard(EnemyStateManager _enemy) { }
+
+    public virtual void OnScreamFinished(EnemyStateManager _enemy) { }
 }

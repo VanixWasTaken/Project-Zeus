@@ -1,20 +1,24 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
+using System.Collections.Generic;
 
 public class EnemyStateManager : MonoBehaviour
 {
-#region States
+    #region States
     public EnemyBaseState roamingState = new EnemyRoamingState();
     public EnemyChasingState chasingState = new EnemyChasingState();
     public EnemyAttackingState attackingState = new EnemyAttackingState();
-#endregion
-#region References
+
+    public EnemyScreamerScreamingState screamerScreamingState = new EnemyScreamerScreamingState();
+    #endregion
+    #region References
     EnemyBaseState currentState;
     Collider enemyDetectionRadius;
     GameObject mainTarget;
     public NavMeshAgent navMeshAgent;
     public Animator animator;
+    private List<GameObject> enemiesInRange = new List<GameObject>();
     #endregion
 
     #region Unity BuiltIn
@@ -39,6 +43,11 @@ public class EnemyStateManager : MonoBehaviour
 
     void OnTriggerEnter(Collider _collision)
     {
+        if (_collision.gameObject.layer == 14)
+        {
+            enemiesInRange.Add(_collision.gameObject);
+        }
+
         if (CheckMethod("OnTriggerEnter"))
         {
             currentState.OnTriggerEnter(this, _collision);
@@ -53,6 +62,7 @@ public class EnemyStateManager : MonoBehaviour
         }
     }
 
+    #region Animator Events
     public void OnUnitHit()
     {
         if (CheckMethod("OnUnitHit"))
@@ -60,16 +70,54 @@ public class EnemyStateManager : MonoBehaviour
             currentState.OnUnitHit(this);
         }
     }
+    public void OnScreamHeard()
+    {
+        if (CheckMethod("OnScreamHeard"))
+        {
+            currentState.OnScreamHeard(this);
+        }
+    }
+    public void OnScreamFinished()
+    {
+        if (CheckMethod("OnScreamFinished"))
+        {
+            currentState.OnScreamFinished(this);
+        }
+    }
+    #endregion
+    #endregion
 
-#endregion
+    #region Custom Functions
 
-#region Custom Functions
-
-#region Public Functions
+    #region Public Functions
     public void SwitchState(EnemyBaseState _state)
     {
         currentState = _state;
         currentState.EnterState(this);
+    }
+
+    public List<GameObject> GetEnemiesInRange()
+    {
+        if (enemiesInRange != null)
+        {
+            return enemiesInRange;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public void SetEnemiesInRange(List<GameObject> _enemiesInRange)
+    {
+        if (_enemiesInRange == null)
+        {
+            enemiesInRange = null;
+        }
+        else if (_enemiesInRange != null)
+        {
+            enemiesInRange = _enemiesInRange;
+        } 
     }
 
     public GameObject GetTarget() 
@@ -109,6 +157,13 @@ public class EnemyStateManager : MonoBehaviour
         {
             navMeshAgent.SetDestination(targetPosition); // Use NavMeshAgent to move
         }
+    }
+
+    public void HearScream(GameObject _target)
+    {
+        Debug.Log("I have heard the scream");
+        SetTarget(_target);
+        SwitchState(chasingState);
     }
 
     #endregion

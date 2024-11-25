@@ -46,8 +46,6 @@ public class UnitStateManager : MonoBehaviour
     public int collectedLoot;
     #endregion
 
-    public InputActions newInputActions;
-
     void Awake()
     {
         // Connects as many references per code as possible to hold the inspector clean
@@ -109,10 +107,7 @@ public class UnitStateManager : MonoBehaviour
 
 
     void Start()
-    {
-        newInputActions = new InputActions();
-        newInputActions.Keyboard.Enable();
-
+    { 
         StartCoroutine(EnergyDepletion(energyDepletionInterval));
 
         selectionIndicator.SetActive(false);

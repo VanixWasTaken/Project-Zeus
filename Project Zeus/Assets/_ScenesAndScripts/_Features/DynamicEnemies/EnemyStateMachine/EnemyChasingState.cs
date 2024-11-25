@@ -46,7 +46,7 @@ public class EnemyChasingState : EnemyBaseState
         // Check if the enemy has reached the units
         if (_enemy.navMeshAgent != null && !_enemy.navMeshAgent.pathPending)
         {
-            _enemy.navMeshAgent.stoppingDistance = 1;
+            _enemy.navMeshAgent.stoppingDistance = 2;
             if (_enemy.navMeshAgent.remainingDistance < _enemy.navMeshAgent.stoppingDistance)
             {
                 unitReached = true;

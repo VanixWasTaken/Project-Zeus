@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyRoamingState : EnemyBaseState
 {
     private List<GameObject> detectedObjects = new List<GameObject>();
+    private List<GameObject> enemiesInRange = new List<GameObject>();
     float distance;
     float nearestDistance = 100;
 
@@ -36,7 +37,17 @@ public class EnemyRoamingState : EnemyBaseState
 
     public override void OnTriggerEnter(EnemyStateManager _enemy, Collider _collision)
     {
-        detectedObjects.Add(_collision.gameObject);
+        if (_collision.CompareTag("Screamer") || _collision.CompareTag("Enemy"))
+        {
+            enemiesInRange.Add(_collision.gameObject);
+            Debug.Log(enemiesInRange.Count);
+        }
+
+        if (_collision.gameObject.layer == 15)
+        {
+            detectedObjects.Add(_collision.gameObject);
+        }
+        
     }
 
     private GameObject DetermineNearestObject(EnemyStateManager _enemy, List<GameObject> _objects)
@@ -79,7 +90,15 @@ public class EnemyRoamingState : EnemyBaseState
             {
                 detectedObjects.Remove(_nearestObject);
             }
-            _enemy.SwitchState(_enemy.chasingState);
+
+            if (_enemy.CompareTag("Screamer"))
+            {
+                _enemy.SwitchState(_enemy.screamerScreamingState);
+            }
+            else
+            {
+                _enemy.SwitchState(_enemy.chasingState);
+            }
         }
     }
 }
