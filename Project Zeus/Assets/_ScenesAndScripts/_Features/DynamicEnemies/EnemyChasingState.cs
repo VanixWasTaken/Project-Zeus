@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class EnemyChasingState : EnemyBaseState
 {
-    bool workerReached = false;
+    bool unitReached = false;
 
     public override void EnterState(EnemyStateManager _enemy)
     {
@@ -44,16 +44,15 @@ public class EnemyChasingState : EnemyBaseState
             _enemy.navMeshAgent.stoppingDistance = 3;
             if (_enemy.navMeshAgent.remainingDistance < _enemy.navMeshAgent.stoppingDistance)
             {
-                workerReached = true;
+                unitReached = true;
                 Debug.Log("I have reached the target!");
             }
             else
             {
-                Debug.Log("I am updating the target position");
                 UpdateUnitPosition(_enemy);
             }
 
-            if (workerReached)
+            if (unitReached)
             {
                 // Switch to attack state once the enemy is close enough to the player
                 Debug.Log("I am switching to the attack state");

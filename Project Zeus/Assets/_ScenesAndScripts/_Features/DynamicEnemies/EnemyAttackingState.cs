@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 
@@ -22,19 +23,24 @@ public class EnemyAttackingState : EnemyBaseState
     {
         target = _unit.GetComponent<UnitStateManager>();
 
-        if (target.life > 0)
+        if (target != null)
         {
-            target.TakeDamage(); // Fill TakeDamage with 25 later 
-            Debug.Log("The target has " + target.life + " lifepoints.");
+            if (target.life <= 0)
+            {
+                target.Die();
+                _enemy.SwitchState(_enemy.roamingState);
+            }
+            else if (target.life > 0)
+            {
+                _enemy.StartCoroutine(_enemy.AttackDelay(1.0f));
+                target.TakeDamage(25f, _enemy);
+            } 
         }
 
-        else if (target.life <= 0) 
+        else 
         {
             _enemy.SwitchState(_enemy.roamingState);
         }
-
-        _enemy.StartCoroutine(_enemy.AttackDelay(1.0f));
-
     }
     
 }

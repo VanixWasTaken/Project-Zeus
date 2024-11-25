@@ -145,15 +145,21 @@ public class UnitStateManager : MonoBehaviour
         
     }
 
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
     public void StopMoving() // Resets the NavMesh path and switches to idle state
     {
         navMeshAgent.ResetPath();
         SwitchStates(idleState);
     }
 
-    public void TakeDamage()
+    public void TakeDamage(float _incomingDamage, EnemyStateManager _enemy)
     {
-        // Write Function to take damage here later
+        // very basic implementation, can be modified later
+        life -= _incomingDamage;
     }
 
     public void EnergyLogic(string _action)
