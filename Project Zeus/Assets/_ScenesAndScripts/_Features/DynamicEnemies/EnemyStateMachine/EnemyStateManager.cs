@@ -14,18 +14,19 @@ public class EnemyStateManager : MonoBehaviour
     #endregion
     #region References
     EnemyBaseState currentState;
-    Collider enemyDetectionRadius;
     GameObject mainTarget;
     public NavMeshAgent navMeshAgent;
     public Animator animator;
+
+    private List<GameObject> detectedObjects = new List<GameObject>();
     private List<GameObject> enemiesInRange = new List<GameObject>();
+
     #endregion
 
     #region Unity BuiltIn
 
     void Awake()
     {
-        enemyDetectionRadius = GetComponent<SphereCollider>();
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
     }
@@ -43,22 +44,25 @@ public class EnemyStateManager : MonoBehaviour
 
     void OnTriggerEnter(Collider _collision)
     {
-        if (_collision.gameObject.layer == 14)
+        if (_collision.CompareTag("Enemy") || _collision.CompareTag("Screamer"))
         {
             enemiesInRange.Add(_collision.gameObject);
         }
-
-        if (CheckMethod("OnTriggerEnter"))
+        else if (_collision.gameObject.layer == 15)
         {
-            currentState.OnTriggerEnter(this, _collision);
+            detectedObjects.Add(_collision.gameObject);
         }
     }
 
     void OnTriggerExit(Collider _collision)
     {
-        if (CheckMethod("OnTriggerExit"))
+        if (_collision.CompareTag("Enemy") || _collision.CompareTag("Screamer"))
         {
-            currentState.OnTriggerExit(this, _collision);
+            enemiesInRange.Remove(_collision.gameObject);
+        }
+        else if (_collision.gameObject.layer == 15)
+        {
+            detectedObjects.Remove(_collision.gameObject);
         }
     }
 
@@ -96,6 +100,23 @@ public class EnemyStateManager : MonoBehaviour
         currentState.EnterState(this);
     }
 
+    public List<GameObject> GetDetectedObjects()
+    {
+        if (detectedObjects != null)
+        {
+            return detectedObjects;
+        }
+        else
+        {
+            return null;
+        }
+    }
+
+    public void UpdateDetectedObjects(GameObject _object)
+    {
+        detectedObjects.Remove(_object);
+    }
+
     public List<GameObject> GetEnemiesInRange()
     {
         if (enemiesInRange != null)
@@ -106,18 +127,6 @@ public class EnemyStateManager : MonoBehaviour
         {
             return null;
         }
-    }
-
-    public void SetEnemiesInRange(List<GameObject> _enemiesInRange)
-    {
-        if (_enemiesInRange == null)
-        {
-            enemiesInRange = null;
-        }
-        else if (_enemiesInRange != null)
-        {
-            enemiesInRange = _enemiesInRange;
-        } 
     }
 
     public GameObject GetTarget() 

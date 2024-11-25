@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEditor;
 using UnityEngine;
-using UnityEngine.Animations;
 
 
 public class EnemyAttackingState : EnemyBaseState
@@ -12,9 +8,9 @@ public class EnemyAttackingState : EnemyBaseState
     public override void EnterState(EnemyStateManager _enemy)
     {
         Debug.Log("Attacking!");
+        _enemy.transform.LookAt(_enemy.GetTarget().transform);
         _enemy.animator.SetBool("anIsAttacking", true);
         _enemy.animator.SetTrigger("anShouldAttack");
-        AttackWorker(_enemy, _enemy.GetTarget());
     }
 
     public override void UpdateState(EnemyStateManager _enemy)
@@ -29,9 +25,16 @@ public class EnemyAttackingState : EnemyBaseState
 
     public void AttackWorker(EnemyStateManager _enemy, GameObject _unit)
     {
-        target = _unit.GetComponent<UnitStateManager>();
-
-        _enemy.transform.LookAt(target.transform.position);
+        if (_unit != null)
+        {
+            target = _unit.GetComponent<UnitStateManager>();
+        }
+        else
+        {
+            _enemy.SetTarget(null);
+            _enemy.SwitchState(_enemy.roamingState);
+        }
+        
 
         if (target != null)
         {
@@ -40,6 +43,8 @@ public class EnemyAttackingState : EnemyBaseState
                 target.Die();
                 _enemy.animator.SetBool("anIsAttacking", false);
                 _enemy.animator.SetFloat("anSpeed", 0);
+                _enemy.SetTarget(null);
+                _enemy.UpdateDetectedObjects(_unit);
                 _enemy.SwitchState(_enemy.roamingState);
             }
             else if (target.life > 0)
@@ -47,9 +52,12 @@ public class EnemyAttackingState : EnemyBaseState
                 target.TakeDamage(25f, _enemy);
             } 
         }
-
         else 
         {
+            _enemy.SetTarget(null);
+            _enemy.animator.SetBool("anIsAttacking", false);
+            _enemy.animator.SetFloat("anSpeed", 0);
+            _enemy.UpdateDetectedObjects(_unit);
             _enemy.SwitchState(_enemy.roamingState);
         }
     }

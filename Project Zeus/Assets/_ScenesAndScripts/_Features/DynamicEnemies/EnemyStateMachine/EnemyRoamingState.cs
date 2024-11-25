@@ -4,26 +4,24 @@ using UnityEngine;
 
 public class EnemyRoamingState : EnemyBaseState
 {
-    private List<GameObject> detectedObjects = new List<GameObject>();
-    private List<GameObject> enemiesInRange = new List<GameObject>();
     float distance;
     float nearestDistance = 100;
 
     public override void EnterState(EnemyStateManager _enemy)
     {
-        for (int i = 0; i < detectedObjects.Count; i++) 
+        if (DetermineNearestObject(_enemy, _enemy.GetDetectedObjects()) == null)
         {
-            Debug.Log(detectedObjects[i]);
+            RoamingBehaviour(_enemy);
         }
-        Debug.Log("Roaming!");
+
     }
 
     public override void UpdateState(EnemyStateManager _enemy)
     {
         // If the object detected 1 or more objects, check what object is nearest and switch to attack state
-        if (detectedObjects.Count > 0)
+        if (_enemy.GetDetectedObjects().Count > 0)
         {
-            GameObject nearestObject = DetermineNearestObject(_enemy, detectedObjects);
+            GameObject nearestObject = DetermineNearestObject(_enemy, _enemy.GetDetectedObjects());
 
             ExitAndUpdateList(_enemy, nearestObject);
         }
@@ -35,20 +33,6 @@ public class EnemyRoamingState : EnemyBaseState
         yield break;
     }
 
-    public override void OnTriggerEnter(EnemyStateManager _enemy, Collider _collision)
-    {
-        if (_collision.CompareTag("Screamer") || _collision.CompareTag("Enemy"))
-        {
-            enemiesInRange.Add(_collision.gameObject);
-            Debug.Log(enemiesInRange.Count);
-        }
-
-        if (_collision.gameObject.layer == 15)
-        {
-            detectedObjects.Add(_collision.gameObject);
-        }
-        
-    }
 
     private GameObject DetermineNearestObject(EnemyStateManager _enemy, List<GameObject> _objects)
     {
@@ -86,9 +70,9 @@ public class EnemyRoamingState : EnemyBaseState
         if (_nearestObject != null)
         {
             _enemy.SetTarget(_nearestObject);
-            if (detectedObjects.Contains(_nearestObject))
+            if (_enemy.GetDetectedObjects().Contains(_nearestObject))
             {
-                detectedObjects.Remove(_nearestObject);
+                _enemy.GetDetectedObjects().Remove(_nearestObject);
             }
 
             if (_enemy.CompareTag("Screamer"))

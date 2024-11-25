@@ -5,13 +5,9 @@ using Unity.VisualScripting;
 
 public class EnemyScreamerScreamingState : EnemyBaseState
 {
-    List<GameObject> enemiesInRange = new List<GameObject>();
-
 
     public override void EnterState(EnemyStateManager _enemy)
     {
-        enemiesInRange = _enemy.GetEnemiesInRange();
-        Debug.Log(enemiesInRange.Count);
         _enemy.animator.SetBool("anIsScreaming", true);
         _enemy.animator.SetTrigger("anShouldScream");
     }
@@ -23,7 +19,7 @@ public class EnemyScreamerScreamingState : EnemyBaseState
 
     public override void OnScreamHeard(EnemyStateManager _enemy)
     {
-        AlertOtherEnemies(_enemy.GetTarget());
+        AlertOtherEnemies(_enemy, _enemy.GetTarget());
     }
 
     public override void OnScreamFinished(EnemyStateManager _enemy)
@@ -31,13 +27,18 @@ public class EnemyScreamerScreamingState : EnemyBaseState
         Exit(_enemy);
     }
 
-    private void AlertOtherEnemies(GameObject _target)
+    private void AlertOtherEnemies(EnemyStateManager _enemy, GameObject _target)
     {
-        Debug.Log("I have alerted the other enemies!");
-        Debug.Log("This is our target: " + _target);
+        List<GameObject> enemies = _enemy.GetEnemiesInRange();
 
+        foreach (GameObject obj in enemies)
+        {
+            EnemyStateManager stateManager = obj.GetComponent<EnemyStateManager>();
+            stateManager.HearScream(_target);
+        }
         // replace this later with enemies that are inside the radius, did not have time to implement properly
         // since the enemiesInRange List did not populate for some reason
+        /*
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
         foreach (GameObject obj in enemies)
@@ -45,6 +46,7 @@ public class EnemyScreamerScreamingState : EnemyBaseState
             EnemyStateManager stateManager = obj.GetComponent<EnemyStateManager>();
             stateManager.HearScream(_target);
         }
+        */
     }
 
     private void Exit(EnemyStateManager _enemy)
