@@ -43,7 +43,7 @@ public class CommandCenterStateManager : MonoBehaviour
     public int gatherersInsideExtraction;
     bool allUnitsInsideExtraction;
 
-
+    public int entireCollectedLoot;
 
   
 
@@ -143,6 +143,28 @@ public class CommandCenterStateManager : MonoBehaviour
         if (other.CompareTag("Gatherer"))
         {
             gatherersInsideExtraction++;
+
+            UnitStateManager unitStateManager = other.GetComponent<UnitStateManager>();
+            GathererLoot lootOnUnit = other.GetComponent<GathererLoot>();
+
+            if (unitStateManager != null) // Check if the component was found
+            {
+                if (unitStateManager.collectedLoot > 0)
+                {
+                    entireCollectedLoot++;
+                }
+
+                if (unitStateManager.collectedLoot > 0)
+                {
+                    unitStateManager.collectedLoot--;
+                }
+
+                lootOnUnit.lootGO.SetActive(false);
+            }
+            else
+            {
+                Debug.LogError("UnitStateManager component not found on the Gatherer!");
+            }
         }
     }
 

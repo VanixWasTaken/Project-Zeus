@@ -42,6 +42,10 @@ public class UnitStateManager : MonoBehaviour
     public int collectedEnergy;
     #endregion
 
+    #region Gatherer Variables
+    public int collectedLoot;
+    #endregion
+
     public InputActions newInputActions;
 
     void Awake()
