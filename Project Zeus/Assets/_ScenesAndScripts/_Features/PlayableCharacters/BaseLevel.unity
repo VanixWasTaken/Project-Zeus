@@ -4367,8 +4367,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   swarmWarning: {fileID: 1266914227}
-  warningTime: 9
-  endTime: 2
+  warningTime: 19
+  endTime: 20
 --- !u!4 &218086033 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 413233302971493001, guid: 6d60547fb0863fb4594a680a2a1b8743,
