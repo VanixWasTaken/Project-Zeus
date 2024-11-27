@@ -1996,7 +1996,7 @@ MonoBehaviour:
   currentKilogram: 0
   currentEnergy: 0
   maxEnergy: 100
-  collectedLoot: 0
+  collectedLoot: 3
 --- !u!1 &558938490
 GameObject:
   m_ObjectHideFlags: 0

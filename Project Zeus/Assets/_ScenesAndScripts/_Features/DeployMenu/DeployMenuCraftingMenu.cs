@@ -13,6 +13,11 @@ public class DeployMenuCraftingMenu : MonoBehaviour
     }
 
 
+    void Update()
+    {
+        loot.text = "Loot: " + GameDataManager.Instance.collectedLoot;
+    }
+
     public void OnCraftingMenuButtonClicked()
     {
         if (craftingMenu.activeSelf == false)
@@ -28,19 +33,28 @@ public class DeployMenuCraftingMenu : MonoBehaviour
 
     public void OnCraftWorkerButtonClicked()
     {
-        GameDataManager.Instance.collectedLoot--;
-        GameDataManager.Instance.availableWorkers++;
+        if (GameDataManager.Instance.collectedLoot > 0)
+        {
+            GameDataManager.Instance.collectedLoot--;
+            GameDataManager.Instance.availableWorkers++;
+        }
     }
 
     public void OnCraftReconButtonClicked()
     {
-        GameDataManager.Instance.collectedLoot--;
-        GameDataManager.Instance.availableRecons++;
+        if (GameDataManager.Instance.collectedLoot > 0)
+        {
+            GameDataManager.Instance.collectedLoot--;
+            GameDataManager.Instance.availableRecons++;
+        }
     }
 
     public void OnCraftGathererButtonClicked()
     {
-        GameDataManager.Instance.collectedLoot--;
-        GameDataManager.Instance.availableGatherers++;
+        if (GameDataManager.Instance.collectedLoot > 0)
+        {
+            GameDataManager.Instance.collectedLoot--;
+            GameDataManager.Instance.availableGatherers++;
+        }
     }
 }
