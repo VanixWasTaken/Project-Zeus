@@ -107,12 +107,14 @@ public class CommandCenterStateManager : MonoBehaviour
     {
         if (other.CompareTag("Worker"))
         {
+            Debug.Log("I am inside the drop zone");
             workersInsideExtraction++;
 
             UnitStateManager unitStateManager = other.GetComponent<UnitStateManager>();
 
             if (unitStateManager != null) // Check if the component was found
             {
+                Debug.Log("I am delivering my energy, which is: " + unitStateManager.collectedEnergy);
                 // this block checks if the current energy is greater than the max and adjusts the values accordingly
                 int checkEnergy = GameDataManager.Instance.currentEnergy + unitStateManager.collectedEnergy;
 
