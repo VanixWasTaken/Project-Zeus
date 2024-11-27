@@ -6,4 +6,6 @@ public abstract class UnitBaseState
 
     public abstract void UpdateState(UnitStateManager _unit);
 
+    public virtual void OnEnemyHit(UnitStateManager _unit) { }
+
 }

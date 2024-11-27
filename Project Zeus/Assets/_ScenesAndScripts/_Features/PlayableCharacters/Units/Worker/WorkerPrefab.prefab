@@ -188,6 +188,8 @@ MonoBehaviour:
   energyDepletionInterval: 5
   collectedEnergy: 0
   collectedLoot: 0
+  enemiesInRange: []
+  mainTarget: {fileID: 0}
 --- !u!114 &4243177221194803777
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -785,7 +787,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 0.14901961, g: 0.62352943, b: 0.8392157, a: 1}
-  m_Intensity: 100
+  m_Intensity: 200
   m_Range: 10
   m_SpotAngle: 50
   m_InnerSpotAngle: 21.80208
