@@ -220,6 +220,9 @@ public class CommandCenterStateManager : MonoBehaviour
         if (allUnitsInsideExtraction)
         {
             extractionWarningMenu.SetActive(false);
+            GameDataManager.Instance.availableWorkers += workersInsideExtraction;
+            GameDataManager.Instance.availableRecons += reconsInsideExtraction;
+            GameDataManager.Instance.availableGatherers += gatherersInsideExtraction;
             SceneManager.LoadScene("ExtractionScreenMenu");
         }
         else
@@ -247,6 +250,9 @@ public class CommandCenterStateManager : MonoBehaviour
 
     public void OnExtractionWarningYesClicked()
     {
+        GameDataManager.Instance.availableWorkers += workersInsideExtraction;
+        GameDataManager.Instance.availableRecons += reconsInsideExtraction;
+        GameDataManager.Instance.availableGatherers += gatherersInsideExtraction;
         SceneManager.LoadScene("ExtractionScreenMenu");
     }
 }
