@@ -140,6 +140,17 @@ public class UnitStateManager : MonoBehaviour
         
     }
 
+    public IEnumerator DamageEnemy(EnemyStateManager _enemy, int _damage)
+    {
+        yield return new WaitForSeconds(5);
+        _enemy.life -= _damage;
+        yield return new WaitForSeconds(2);
+        _enemy.life -= _damage;
+        yield return new WaitForSeconds(2);
+        _enemy.Die();
+        yield break;
+    }
+
     public void Die()
     {
         UnitSelectionManager selectionManager = FindFirstObjectByType<UnitSelectionManager>();

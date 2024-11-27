@@ -30,6 +30,10 @@ public class EnemyStateManager : MonoBehaviour
     public int currentPointIndex = 0;
     public Vector3[] patrolPoints;
     public Vector3 circleCenter;
+
+
+    // variables for fighting
+    public int life = 50;
     #endregion
 
     #region Unity BuiltIn
@@ -60,6 +64,11 @@ public class EnemyStateManager : MonoBehaviour
         else if (_collision.gameObject.layer == 15)
         {
             detectedObjects.Add(_collision.gameObject);
+            if (_collision.gameObject.CompareTag("Gatherer"))
+            {
+                UnitStateManager stateManager = _collision.gameObject.GetComponent<UnitStateManager>();
+                stateManager.StartCoroutine(stateManager.DamageEnemy(this, 25));
+            }
         }
     }
 
@@ -108,6 +117,11 @@ public class EnemyStateManager : MonoBehaviour
         Debug.Log(_state);
         currentState = _state;
         currentState.EnterState(this);
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
     }
 
     public List<GameObject> GetDetectedObjects()
