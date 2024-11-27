@@ -63,6 +63,8 @@ public class CommandCenterStateManager : MonoBehaviour
     {
         currentState.UpdateState(this);
 
+        UpdateEnergyMeter();
+
         // Creates a Raycast and checks wether or not you hover above the commandCenter
         Vector2 mousePosition = Mouse.current.position.ReadValue();
         Ray ray = mainCamera.ScreenPointToRay(mousePosition);
@@ -179,18 +181,15 @@ public class CommandCenterStateManager : MonoBehaviour
 
     private void ExitCheck(int _difference, int _amount)
     {
-        GameDataManager.Instance.currentEnergy -= _amount;
-        UpdateEnergyMeter();
-        /*
         if (_difference <= 0)
         {
             SceneManager.LoadScene("DeathScreenMenu");
         }
         else if (_difference > 0) 
         {
-            
+            GameDataManager.Instance.currentEnergy -= _amount;
+            UpdateEnergyMeter();
         }
-        */
     }
 
     public void DepleteEnergy(int _amount)
