@@ -29,9 +29,15 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         gatherersText.text = ("Gatherers\t\t: " + currentPickedGatherers + " / " + availableGatherers);
     }
 
-   
 
 
+    void Update()
+    {
+        // Reads the current units available and correctly formats the texts
+        workersText.text = ("Workers\t\t: " + currentPickedWorkers + " / " + GameDataManager.Instance.availableWorkers);
+        reconsText.text = ("Recons\t\t: " + currentPickedRecons + " / " + GameDataManager.Instance.availableRecons);
+        gatherersText.text = ("Gatherers\t\t: " + currentPickedGatherers + " / " + GameDataManager.Instance.availableGatherers);
+    }
 
 
 
