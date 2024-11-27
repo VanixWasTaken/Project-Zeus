@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class CameraScript : MonoBehaviour
 {
 
-    float speed = 6.0f;
+    float speed = 12.0f;
     Vector3 currentVelocity;
     Vector3 direction;
     InputActions inputActions;

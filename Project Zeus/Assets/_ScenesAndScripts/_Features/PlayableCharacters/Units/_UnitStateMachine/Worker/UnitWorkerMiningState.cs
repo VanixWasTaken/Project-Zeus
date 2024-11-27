@@ -13,6 +13,6 @@ public class UnitWorkerMiningState : UnitBaseState
     public override void UpdateState(UnitStateManager _unit)
     {
         timeElapsed += Time.deltaTime;
-        _unit.collectedEnergy = Mathf.FloorToInt(timeElapsed % 60);
+        _unit.collectedEnergy = Mathf.FloorToInt(timeElapsed % 60) * 2;
     }
 }

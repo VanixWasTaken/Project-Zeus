@@ -177,15 +177,18 @@ public class CommandCenterStateManager : MonoBehaviour
 
     private void ExitCheck(int _difference, int _amount)
     {
+        GameDataManager.Instance.currentEnergy -= _amount;
+        UpdateEnergyMeter();
+        /*
         if (_difference <= 0)
         {
             SceneManager.LoadScene("DeathScreenMenu");
         }
         else if (_difference > 0) 
         {
-            GameDataManager.Instance.currentEnergy -= _amount;
-            UpdateEnergyMeter();
+            
         }
+        */
     }
 
     public void DepleteEnergy(int _amount)
@@ -223,6 +226,7 @@ public class CommandCenterStateManager : MonoBehaviour
             GameDataManager.Instance.availableWorkers += workersInsideExtraction;
             GameDataManager.Instance.availableRecons += reconsInsideExtraction;
             GameDataManager.Instance.availableGatherers += gatherersInsideExtraction;
+            GameDataManager.Instance.currentKilogram = 0;
             SceneManager.LoadScene("ExtractionScreenMenu");
         }
         else
@@ -253,6 +257,7 @@ public class CommandCenterStateManager : MonoBehaviour
         GameDataManager.Instance.availableWorkers += workersInsideExtraction;
         GameDataManager.Instance.availableRecons += reconsInsideExtraction;
         GameDataManager.Instance.availableGatherers += gatherersInsideExtraction;
+        GameDataManager.Instance.currentKilogram = 0;
         SceneManager.LoadScene("ExtractionScreenMenu");
     }
 }
