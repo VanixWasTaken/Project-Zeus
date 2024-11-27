@@ -355,7 +355,7 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 0.14901961, g: 0.62352943, b: 0.8392157, a: 1}
-  m_Intensity: 100
+  m_Intensity: 200
   m_Range: 10
   m_SpotAngle: 50
   m_InnerSpotAngle: 21.80208
@@ -496,6 +496,72 @@ Transform:
   - {fileID: 188194238894047108}
   m_Father: {fileID: 1761379547151016791}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2954026815550861064
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7622782863368748586}
+  - component: {fileID: 2675841245981851470}
+  - component: {fileID: 4369013512268227300}
+  m_Layer: 0
+  m_Name: EnemyHitbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7622782863368748586
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2954026815550861064}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2003761672035447417}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2675841245981851470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2954026815550861064}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b86a00d01dd4d8744845af69654598d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!135 &4369013512268227300
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2954026815550861064}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 8
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &3211228806699153573
 GameObject:
   m_ObjectHideFlags: 0
@@ -851,6 +917,7 @@ Transform:
   m_LocalScale: {x: 0.73, y: 0.73, z: 0.73}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 7622782863368748586}
   - {fileID: 6574505098065796718}
   - {fileID: 7501154555636505221}
   - {fileID: 1435658055810737525}
@@ -972,6 +1039,8 @@ MonoBehaviour:
   energyDepletionInterval: 5
   collectedEnergy: 0
   collectedLoot: 0
+  enemiesInRange: []
+  mainTarget: {fileID: 0}
 --- !u!114 &5320346246174388841
 MonoBehaviour:
   m_ObjectHideFlags: 0

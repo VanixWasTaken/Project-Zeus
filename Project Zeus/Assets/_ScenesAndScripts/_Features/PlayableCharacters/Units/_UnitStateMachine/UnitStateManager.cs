@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
@@ -13,6 +14,8 @@ public class UnitStateManager : MonoBehaviour
     public UnitDeactivatedState deactivatedState = new UnitDeactivatedState();
 
     public UnitWorkerMiningState workerMiningState = new UnitWorkerMiningState();
+
+    public UnitGathererFightingState gathererFightingState = new UnitGathererFightingState();
     #endregion
 
     #region References Variables
@@ -44,6 +47,10 @@ public class UnitStateManager : MonoBehaviour
 
     #region Gatherer Variables
     public int collectedLoot;
+
+    public List<GameObject> enemiesInRange = new List<GameObject>();
+
+    public GameObject mainTarget;
     #endregion
 
     void Awake()
@@ -107,7 +114,8 @@ public class UnitStateManager : MonoBehaviour
 
 
     void Start()
-    { 
+    {
+        animator.SetBool("isAttacking", false);
         StartCoroutine(EnergyDepletion(energyDepletionInterval));
 
         selectionIndicator.SetActive(false);
@@ -134,22 +142,54 @@ public class UnitStateManager : MonoBehaviour
     {
         if (currentState != deactivatedState)
         {
-            navMeshAgent.SetDestination(targetPosition);
-            SwitchStates(walkingState);
+            if (currentState != gathererFightingState)
+            {
+                navMeshAgent.SetDestination(targetPosition);
+                SwitchStates(walkingState);
+            }
         }
         
     }
 
-    public IEnumerator DamageEnemy(EnemyStateManager _enemy, int _damage)
+    public void GathererShouldFight(Collider other)
     {
-        yield return new WaitForSeconds(2);
-        _enemy.life -= _damage;
-        yield return new WaitForSeconds(1);
-        _enemy.life -= _damage;
-        yield return new WaitForSeconds(1);
-        animator.SetBool("isAttacking", false);
-        _enemy.Die();
-        yield break;
+        if (other != null)
+        {
+            if (other.gameObject.CompareTag("Screamer") || other.gameObject.CompareTag("Enemy"))
+            {
+                enemiesInRange.Add(other.gameObject);
+                if (currentState != gathererFightingState)
+                {
+                    navMeshAgent.isStopped = true;
+                    navMeshAgent.ResetPath();
+                    SwitchStates(gathererFightingState);
+                }
+            }
+        }
+    }
+
+    public void GathererRangeExited(Collider other)
+    {
+        if (other != null)
+        {
+            if (other.gameObject.CompareTag("Screamer") || other.gameObject.CompareTag("Enemy"))
+            {
+                enemiesInRange.Remove(other.gameObject);
+                Debug.Log("I have removed: " + other.gameObject + " from the list!");
+                if (enemiesInRange.Count <= 0)
+                {
+                    SwitchStates(idleState);
+                }
+            }
+        }
+    }
+
+    public void OnEnemyHit()
+    {
+        if (currentState == gathererFightingState)
+        {
+            currentState.OnEnemyHit(this);
+        }
     }
 
     public void Die()
@@ -170,6 +210,10 @@ public class UnitStateManager : MonoBehaviour
 
     public void TakeDamage(float _incomingDamage, EnemyStateManager _enemy)
     {
+        if (tag == "Gatherer")
+        {
+            SwitchStates(gathererFightingState);
+        }
         // very basic implementation, can be modified later
         life -= _incomingDamage;
     }

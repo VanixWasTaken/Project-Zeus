@@ -32,6 +32,7 @@ public class EnemyStateManager : MonoBehaviour
     public Vector3[] patrolPoints;
     public Vector3 circleCenter;
 
+    public bool shouldPatrol = false;
 
     // variables for fighting
     public int life = 50;
@@ -66,13 +67,6 @@ public class EnemyStateManager : MonoBehaviour
         else if (_collision.gameObject.layer == 15)
         {
             detectedObjects.Add(_collision.gameObject);
-            if (_collision.gameObject.CompareTag("Gatherer"))
-            {
-                UnitStateManager stateManager = _collision.gameObject.GetComponent<UnitStateManager>();
-                stateManager.animator.SetBool("isAttacking", true);
-                stateManager.animator.SetTrigger("shouldAttack");
-                stateManager.StartCoroutine(stateManager.DamageEnemy(this, 25));
-            }
         }
     }
 
@@ -126,6 +120,13 @@ public class EnemyStateManager : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+    }
+
+    public void TakeDamage(UnitStateManager _unit, int _damage)
+    {
+        life -= _damage;
+        mainTarget = _unit.gameObject;
+        SwitchState(chasingState);
     }
 
     public void ActivateLight()

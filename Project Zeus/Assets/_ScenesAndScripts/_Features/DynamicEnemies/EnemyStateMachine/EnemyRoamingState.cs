@@ -13,12 +13,16 @@ public class EnemyRoamingState : EnemyBaseState
 
         _enemy.animator.SetFloat("anSpeed", 1);
 
-        _enemy.circleCenter = _enemy.centerPoint != null ? _enemy.centerPoint.position : _enemy.transform.position;
+        if (_enemy.shouldPatrol)
+        {
+            _enemy.circleCenter = _enemy.centerPoint != null ? _enemy.centerPoint.position : _enemy.transform.position;
 
-        // Generate patrol points around the circle
-        _enemy.patrolPoints = GeneratePatrolPoints(_enemy.circleCenter, _enemy.radius, _enemy.segments);
+            // Generate patrol points around the circle
+            _enemy.patrolPoints = GeneratePatrolPoints(_enemy.circleCenter, _enemy.radius, _enemy.segments);
 
-        _enemy.StartCoroutine(_enemy.RoamingBehaviour());
+            _enemy.StartCoroutine(_enemy.RoamingBehaviour());
+        }
+        
     }
 
     public override void UpdateState(EnemyStateManager _enemy)
