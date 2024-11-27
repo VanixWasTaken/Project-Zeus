@@ -26087,7 +26087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1297158082
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30611,7 +30611,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1519462505}
   - component: {fileID: 1519462506}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: NavMesh Surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -30652,7 +30652,7 @@ MonoBehaviour:
   m_Center: {x: 0, y: 2, z: 0}
   m_LayerMask:
     serializedVersion: 2
-    m_Bits: 33011
+    m_Bits: 243
   m_UseGeometry: 0
   m_DefaultArea: 0
   m_GenerateLinks: 0
