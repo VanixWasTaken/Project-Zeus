@@ -142,6 +142,10 @@ public class UnitStateManager : MonoBehaviour
 
     public void Die()
     {
+        UnitSelectionManager selectionManager = FindFirstObjectByType<UnitSelectionManager>();
+
+        selectionManager.RemoveDestroyedUnits(this);
+
         Destroy(gameObject);
     }
 

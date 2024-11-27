@@ -160,6 +160,17 @@ public class UnitSelectionManager : MonoBehaviour
         keepSelected = false;
     }
 
+    public void RemoveDestroyedUnits(UnitStateManager _unit)
+    {
+        if (lastSelectedUnits.Contains(_unit))
+        {
+            lastSelectedUnits.Remove(_unit);
+        }
+        if (selectedUnits.Contains(_unit))
+        {
+            selectedUnits.Remove(_unit);
+        }
+    }
     public void ShutDownSelected()
     {
         if (lastSelectedUnits.Count > 0)

@@ -32,8 +32,15 @@ public class EnemyChasingState : EnemyBaseState
 
     private void ChaseUnit(EnemyStateManager _enemy)
     {
-        Vector3 targetPosition = _enemy.GetTarget().transform.position;
-        _enemy.MoveToTarget(targetPosition);
+        if (_enemy.GetTarget() != null)
+        {
+            Vector3 targetPosition = _enemy.GetTarget().transform.position;
+            _enemy.MoveToTarget(targetPosition);
+        }
+        else
+        {
+            _enemy.SwitchState(_enemy.roamingState);
+        }
     }
 
     private void UpdateUnitPosition(EnemyStateManager _enemy)

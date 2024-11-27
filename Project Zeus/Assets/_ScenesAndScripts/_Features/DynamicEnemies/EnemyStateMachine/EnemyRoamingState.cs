@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,13 +6,15 @@ public class EnemyRoamingState : EnemyBaseState
     float distance;
     float nearestDistance = 100;
 
+
     public override void EnterState(EnemyStateManager _enemy)
     {
-        if (DetermineNearestObject(_enemy, _enemy.GetDetectedObjects()) == null)
-        {
-            RoamingBehaviour(_enemy);
-        }
+        _enemy.circleCenter = _enemy.centerPoint != null ? _enemy.centerPoint.position : _enemy.transform.position;
 
+        // Generate patrol points around the circle
+        _enemy.patrolPoints = GeneratePatrolPoints(_enemy.circleCenter, _enemy.radius, _enemy.segments);
+
+        _enemy.StartCoroutine(_enemy.RoamingBehaviour());
     }
 
     public override void UpdateState(EnemyStateManager _enemy)
@@ -27,17 +28,28 @@ public class EnemyRoamingState : EnemyBaseState
         }
     }
 
-    private IEnumerator RoamingBehaviour(EnemyStateManager _enemy)
+    Vector3[] GeneratePatrolPoints(Vector3 _center, float _radius, int _segments)
     {
-        // implement behaviour for roaming around their designated area
-        yield break;
-    }
+        Vector3[] points = new Vector3[_segments];
+        float angleStep = 360f / _segments;
 
+        for (int i = 0; i < _segments; i++)
+        {
+            float angle = i * angleStep * Mathf.Deg2Rad;
+            points[i] = new Vector3(
+                _center.x + Mathf.Cos(angle) * _radius,
+                _center.y,
+                _center.z + Mathf.Sin(angle) * _radius
+            );
+        }
+
+        return points;
+    }
 
     private GameObject DetermineNearestObject(EnemyStateManager _enemy, List<GameObject> _objects)
     {
-        // set the object to the first object of the list
-        GameObject targetObject = _objects[0];
+        // set the object to null to be able to reference it
+        GameObject targetObject = null;
 
         // iterate through all objects in list and determine nearest object
         for (int i = 0; i < _objects.Count; i++)
@@ -69,7 +81,11 @@ public class EnemyRoamingState : EnemyBaseState
     {
         if (_nearestObject != null)
         {
+            _enemy.StopAllCoroutines();
+            _enemy.navMeshAgent.isStopped = true;
+            _enemy.navMeshAgent.ResetPath();
             _enemy.SetTarget(_nearestObject);
+
             if (_enemy.GetDetectedObjects().Contains(_nearestObject))
             {
                 _enemy.GetDetectedObjects().Remove(_nearestObject);

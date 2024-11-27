@@ -36,21 +36,11 @@ public class EnemyScreamerScreamingState : EnemyBaseState
             EnemyStateManager stateManager = obj.GetComponent<EnemyStateManager>();
             stateManager.HearScream(_target);
         }
-        // replace this later with enemies that are inside the radius, did not have time to implement properly
-        // since the enemiesInRange List did not populate for some reason
-        /*
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-        foreach (GameObject obj in enemies)
-        {
-            EnemyStateManager stateManager = obj.GetComponent<EnemyStateManager>();
-            stateManager.HearScream(_target);
-        }
-        */
     }
 
     private void Exit(EnemyStateManager _enemy)
     {
+        _enemy.animator.SetBool("anIsScreaming", false);
         _enemy.SwitchState(_enemy.chasingState);
     }
 }

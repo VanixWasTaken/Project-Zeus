@@ -21,6 +21,15 @@ public class EnemyStateManager : MonoBehaviour
     private List<GameObject> detectedObjects = new List<GameObject>();
     private List<GameObject> enemiesInRange = new List<GameObject>();
 
+    // variables for the roaming behaviour / IEnumerator
+    public Transform centerPoint; // The center of the circular patrol (optional)
+    public float radius = 20f; // Radius of the circle
+    public float patrolSpeed = 3f; // Speed of the patrol
+    public int segments = 24; // Number of points in the circle (more means smoother path)
+
+    public int currentPointIndex = 0;
+    public Vector3[] patrolPoints;
+    public Vector3 circleCenter;
     #endregion
 
     #region Unity BuiltIn
@@ -96,6 +105,7 @@ public class EnemyStateManager : MonoBehaviour
     #region Public Functions
     public void SwitchState(EnemyBaseState _state)
     {
+        Debug.Log(_state);
         currentState = _state;
         currentState.EnterState(this);
     }
@@ -138,7 +148,7 @@ public class EnemyStateManager : MonoBehaviour
         else if (mainTarget == null)
         {
             SwitchState(roamingState);
-            return default;
+            return mainTarget;
         }
         else
         {
@@ -175,6 +185,23 @@ public class EnemyStateManager : MonoBehaviour
         SwitchState(chasingState);
     }
 
+    public IEnumerator RoamingBehaviour()
+    {
+        while (true)
+        {
+            // Move to the current patrol point
+            navMeshAgent.SetDestination(patrolPoints[currentPointIndex]);
+
+            // Wait until the agent reaches the destination
+            while (navMeshAgent.pathPending || navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance)
+            {
+                yield return null;
+            }
+
+            // Move to the next point
+            currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
+        }
+    }
     #endregion
 
     bool CheckMethod(string funcName)
@@ -189,17 +216,6 @@ public class EnemyStateManager : MonoBehaviour
         {
             return false;
         }
-    }
-
-    public IEnumerator AttackDelay(float _attackDelay)
-    {
-        Debug.Log("Starting Attack Delay");
-        if (currentState == attackingState)
-        {
-            yield return new WaitForSeconds(_attackDelay);
-            attackingState.AttackWorker(this, GetTarget());
-        }
-    }
-        
+    }   
     #endregion
 }
