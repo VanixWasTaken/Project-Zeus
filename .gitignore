@@ -98,3 +98,4 @@ fmod_editor.log
 
 /Project Zeus/Assets/Plugins/FMOD/Cache
 Project Zeus/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset
+*.asset
