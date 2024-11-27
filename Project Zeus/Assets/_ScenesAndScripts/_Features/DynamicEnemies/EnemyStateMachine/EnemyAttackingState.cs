@@ -13,6 +13,7 @@ public class EnemyAttackingState : EnemyBaseState
     public override void EnterState(EnemyStateManager _enemy)
     {
         Debug.Log("Attacking!");
+        _enemy.ActivateLight();
         _enemy.transform.LookAt(_enemy.GetTarget().transform);
         _enemy.animator.SetBool("anIsAttacking", true);
         _enemy.animator.SetTrigger("anShouldAttack");

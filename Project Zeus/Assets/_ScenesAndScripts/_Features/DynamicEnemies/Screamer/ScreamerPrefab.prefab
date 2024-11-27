@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6662292531798498690
 Transform:
   m_ObjectHideFlags: 0
@@ -173,6 +173,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   navMeshAgent: {fileID: 0}
   animator: {fileID: 0}
+  spotLight: {fileID: 1450858812948083017}
   centerPoint: {fileID: 0}
   radius: 20
   patrolSpeed: 3
@@ -180,6 +181,7 @@ MonoBehaviour:
   currentPointIndex: 0
   patrolPoints: []
   circleCenter: {x: 0, y: 0, z: 0}
+  life: 50
 --- !u!135 &1298669208124970513
 SphereCollider:
   m_ObjectHideFlags: 0

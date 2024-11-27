@@ -1,20 +1,19 @@
-using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 
 public class EnemyScreamerScreamingState : EnemyBaseState
 {
 
     public override void EnterState(EnemyStateManager _enemy)
     {
+        _enemy.ActivateLight();
         _enemy.animator.SetBool("anIsScreaming", true);
         _enemy.animator.SetTrigger("anShouldScream");
     }
 
     public override void UpdateState(EnemyStateManager _enemy)
     {
-
+        _enemy.gameObject.transform.LookAt(_enemy.GetTarget().transform.position);
     }
 
     public override void OnScreamHeard(EnemyStateManager _enemy)

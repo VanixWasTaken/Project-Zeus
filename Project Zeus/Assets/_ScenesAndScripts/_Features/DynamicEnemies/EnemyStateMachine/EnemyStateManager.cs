@@ -17,6 +17,7 @@ public class EnemyStateManager : MonoBehaviour
     GameObject mainTarget;
     public NavMeshAgent navMeshAgent;
     public Animator animator;
+    public GameObject spotLight;
 
     private List<GameObject> detectedObjects = new List<GameObject>();
     private List<GameObject> enemiesInRange = new List<GameObject>();
@@ -46,6 +47,7 @@ public class EnemyStateManager : MonoBehaviour
 
     void Start()
     {
+        spotLight.SetActive(false);
         currentState = roamingState;
         currentState.EnterState(this);
     }
@@ -67,6 +69,8 @@ public class EnemyStateManager : MonoBehaviour
             if (_collision.gameObject.CompareTag("Gatherer"))
             {
                 UnitStateManager stateManager = _collision.gameObject.GetComponent<UnitStateManager>();
+                stateManager.animator.SetBool("isAttacking", true);
+                stateManager.animator.SetTrigger("shouldAttack");
                 stateManager.StartCoroutine(stateManager.DamageEnemy(this, 25));
             }
         }
@@ -122,6 +126,22 @@ public class EnemyStateManager : MonoBehaviour
     public void Die()
     {
         Destroy(gameObject);
+    }
+
+    public void ActivateLight()
+    {
+        if (!spotLight.activeSelf)
+        {
+            spotLight.SetActive(true);
+        }
+    }
+
+    public void DeactivateLight()
+    {
+        if (spotLight.activeSelf)
+        {
+            spotLight.SetActive(false);
+        }
     }
 
     public List<GameObject> GetDetectedObjects()
@@ -194,7 +214,9 @@ public class EnemyStateManager : MonoBehaviour
 
     public void HearScream(GameObject _target)
     {
-        Debug.Log("I have heard the scream");
+        StopAllCoroutines();
+        navMeshAgent.isStopped = true;
+        navMeshAgent.ResetPath();
         SetTarget(_target);
         SwitchState(chasingState);
     }

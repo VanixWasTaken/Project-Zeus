@@ -8,6 +8,7 @@ public class EnemyChasingState : EnemyBaseState
     public override void EnterState(EnemyStateManager _enemy)
     {
         Debug.Log("Chasing!");
+        _enemy.ActivateLight();
         _enemy.animator.SetBool("anIsChasing", true);
         _enemy.animator.SetFloat("anSpeed", 1f);
         _enemy.animator.SetTrigger("anShouldChase");
