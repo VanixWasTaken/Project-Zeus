@@ -6,6 +6,7 @@ public class UnitWorkerMiningState : UnitBaseState
 
     public override void EnterState(UnitStateManager _unit)
     {
+        timeElapsed = 0;
         _unit.animator.SetBool("anIsMining", true);
         _unit.animator.SetTrigger("anShouldMine");
     }
