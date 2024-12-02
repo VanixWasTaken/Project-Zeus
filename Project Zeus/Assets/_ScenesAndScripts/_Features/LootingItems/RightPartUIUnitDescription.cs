@@ -1,28 +1,37 @@
-using System;
 using TMPro;
-using UnityEditor.Animations;
-using UnityEditor.UI;
 using UnityEngine;
 
 public class RightPartUIUnitDescription : MonoBehaviour
 {
 
-    GameObject textMeshParent;
-    TextMeshProUGUI textMesh;
-    TextMeshProUGUI[] textMeshArray;
+    #region References
 
-    public int holdingItemsInt;
-    public bool isActive = true;
-    string onOff;
+    private GameObject textMeshParent;
+    private TextMeshProUGUI textMesh;
+    private TextMeshProUGUI[] textMeshArray;
 
-    string unitType;
+    #endregion
 
-    void Awake()
+    #region Variables
+
+    private int holdingItemsInt;
+    private bool isActive = true;
+    private string onOff;
+    private string unitType;
+
+    #endregion
+
+
+
+    #region Unity Build In
+
+    private void Awake()
     {
         textMeshParent = GameObject.Find("RightPartUI");
     }
 
-    void Start()
+
+    private void Start()
     {
         if (gameObject.tag == "Worker")
         {
@@ -42,8 +51,7 @@ public class RightPartUIUnitDescription : MonoBehaviour
     }
 
 
-
-    void Update()
+    private void Update()
     {
         if (isActive)
         {
@@ -64,4 +72,6 @@ public class RightPartUIUnitDescription : MonoBehaviour
 
         textMesh.text = unitType + " : " + onOff + "Items: " + holdingItemsInt;
     }
+
+    #endregion
 }

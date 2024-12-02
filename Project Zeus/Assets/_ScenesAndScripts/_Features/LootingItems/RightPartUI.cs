@@ -4,8 +4,20 @@ using UnityEngine;
 public class RightPartUI : MonoBehaviour
 {
 
+    #region References
+
     [SerializeField] TextMeshProUGUI unitDescription;
-    int unitInstances;
+
+    #endregion
+
+    #region Variables
+
+    private int unitInstances;
+
+    #endregion
+
+
+    #region Unity Build In
 
     void Start()
     {
@@ -17,9 +29,5 @@ public class RightPartUI : MonoBehaviour
         }
     }
 
-   
-    void Update()
-    {
-        
-    }
+    #endregion
 }

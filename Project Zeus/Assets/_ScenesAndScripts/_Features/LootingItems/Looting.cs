@@ -11,7 +11,9 @@ public class Looting : MonoBehaviour
     #endregion
 
 
-    #region Custom Functions()
+    #region Unity Build In
+
+    #region Colliders
 
     private void OnTriggerEnter(Collider other)
     {
@@ -26,6 +28,8 @@ public class Looting : MonoBehaviour
             Destroy(lootGO);
         }
     }
+
+    #endregion
 
     #endregion
 }
