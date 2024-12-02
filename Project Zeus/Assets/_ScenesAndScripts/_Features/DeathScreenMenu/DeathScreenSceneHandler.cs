@@ -6,6 +6,8 @@ using UnityEngine.Video;
 
 public class DeathScreenSceneHandler : MonoBehaviour
 {
+    #region References
+
     // references for the cutscene
     [SerializeField] VideoPlayer videoPlayer;
     [SerializeField] GameObject returnCutscene;
@@ -15,6 +17,10 @@ public class DeathScreenSceneHandler : MonoBehaviour
     [SerializeField] TextMeshProUGUI reconsText;
     [SerializeField] TextMeshProUGUI gatherersText;
 
+    #endregion
+
+    #region Variables
+
     // variables to calculate the lost units
     int lostWorkers;
     int lostRecons;
@@ -22,28 +28,60 @@ public class DeathScreenSceneHandler : MonoBehaviour
 
     int[] unitCount;
 
+    #endregion
 
-    void Awake()
-    {
-        if (returnCutscene == null)
-        {
-            returnCutscene = GameObject.Find("ReturnCutscene");
-        }
 
-        if (videoPlayer == null)
-        {
-            videoPlayer = returnCutscene.GetComponentInChildren<VideoPlayer>();
-        }
 
-        
-    }
+    #region Unity Built-In
 
-    void Start()
+    private void Start()
     {
         if (videoPlayer != null)
         {
             videoPlayer.loopPointReached += OnVideoEnd;
         }
+
+        SetText();
+    }
+
+    #region Buttons
+
+    public void OnRTSButtonClicked()
+    {
+        returnCutscene.SetActive(true);
+    }
+
+    public void OnQuitButtonClicked()
+    {
+        Application.Quit(); // does nothing in the editor,  but quits the game when built
+    }
+
+    #endregion
+
+    #region Video Player
+
+    private void OnVideoEnd(VideoPlayer videoPlayer)
+    {
+        GameDataManager.Instance.currentKilogram = 0;
+        GameDataManager.Instance.pickedWorkers = 0;
+        GameDataManager.Instance.pickedRecons = 0;
+        GameDataManager.Instance.pickedGatherers = 0;
+        SceneManager.LoadScene("DeployMenu");
+    }
+
+    #endregion
+
+    #endregion
+
+    #region Custom Functions()
+
+    private void SetText()
+    {
+        ///<summary>
+        /// In this function the script gets the values of every picked unit and stores it in an array
+        /// 
+        /// After that, it iterates through the array in a for loop and updates the text in the unit display
+        ///</summary>
 
         unitCount = GameDataManager.Instance.GetLostUnitCount();
 
@@ -67,35 +105,15 @@ public class DeathScreenSceneHandler : MonoBehaviour
         }
     }
 
-
-    // public methods
-    public void OnRTSButtonClicked()
-    {
-        returnCutscene.SetActive(true);
-    }
-
-    public void OnQuitButtonClicked()
-    {
-        Application.Quit(); // does nothing in the editor,  but quits the game when built
-    }
-
-    // private methods
-    void OnVideoEnd(VideoPlayer videoPlayer)
-    {
-        GameDataManager.Instance.currentKilogram = 0;
-        GameDataManager.Instance.pickedWorkers = 0;
-        GameDataManager.Instance.pickedRecons = 0;
-        GameDataManager.Instance.pickedGatherers = 0;
-        SceneManager.LoadScene("DeployMenu");
-    }
-
-    int[] GetLostUnits()
+    private int[] GetLostUnits()
     {
         return unitCount;
     }
 
-    void OnDestroy()
+    private void OnDestroy()
     {
         GameDataManager.Instance.UpdateAvailableUnits(GetLostUnits());
     }
+
+    #endregion
 }

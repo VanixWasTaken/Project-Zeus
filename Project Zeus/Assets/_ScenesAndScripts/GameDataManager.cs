@@ -6,10 +6,13 @@ public class GameDataManager : MonoBehaviour
 
     public int availableWorkers = 0;
     public int pickedWorkers;
+    public int extractedWorkers;
     public int availableRecons = 0;
     public int pickedRecons;
+    public int extractedRecons;
     public int availableGatherers = 0;
     public int pickedGatherers;
+    public int extractedGatherers;
 
     public float maxKilogram = 100;
     public float currentKilogram = 0;
@@ -42,6 +45,33 @@ public class GameDataManager : MonoBehaviour
     public void DecreaseCurrentKilogram(float value)
     {
         currentKilogram -= value;
+    }
+
+    public int[] GetSavedUnitCount()
+    {
+        int[] unitValues = new int[3];
+
+        for (int i = 0; i < unitValues.Length; i++)
+        {
+            int unitCount = 0;
+
+            if (i == 0)
+            {
+                unitCount = extractedWorkers;
+            }
+            else if (i == 1)
+            {
+                unitCount = extractedRecons;
+            }
+            else if (i == 2)
+            {
+                unitCount = extractedGatherers;
+            }
+
+            unitValues[i] = unitCount;
+        }
+
+        return unitValues;
     }
 
     public int[] GetLostUnitCount()
