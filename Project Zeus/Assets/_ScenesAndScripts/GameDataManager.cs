@@ -4,23 +4,38 @@ public class GameDataManager : MonoBehaviour
 {
     public static GameDataManager Instance { get; private set; }
 
+    #region Variables
+
+    [Header("Available Units")]
     public int availableWorkers = 0;
-    public int pickedWorkers;
-    public int extractedWorkers;
     public int availableRecons = 0;
-    public int pickedRecons;
-    public int extractedRecons;
     public int availableGatherers = 0;
+
+    [Header("Picked Units")]
+    public int pickedWorkers;
+    public int pickedRecons;
     public int pickedGatherers;
+
+    [Header("Extracted Units")]
+    public int extractedWorkers;
+    public int extractedRecons;
     public int extractedGatherers;
 
+    [Header("Weight System")]
     public float maxKilogram = 100;
     public float currentKilogram = 0;
 
+    [Header("Energy System")]
     public int currentEnergy;
     public int maxEnergy = 100;
 
+    [Header("Loot System")]
     public int collectedLoot= 0;
+
+    #endregion
+
+
+    #region Unity Build In
 
     private void Awake()
     {
@@ -37,11 +52,17 @@ public class GameDataManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+
+
+    #region Custom Function()
 
     public void IncreaseCurrentKilogram(float value)
     {
         currentKilogram += value;
     }
+
     public void DecreaseCurrentKilogram(float value)
     {
         currentKilogram -= value;
@@ -86,7 +107,7 @@ public class GameDataManager : MonoBehaviour
             {
                 unitCount = pickedWorkers;
             }
-            else if(i == 1) 
+            else if (i == 1)
             {
                 unitCount = pickedRecons;
             }
@@ -120,4 +141,6 @@ public class GameDataManager : MonoBehaviour
             }
         }
     }
+
+    #endregion
 }

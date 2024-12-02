@@ -3,21 +3,29 @@ using UnityEngine;
 
 public class UnitGathererFightingState : UnitBaseState
 {
+
+    #region References
+
+    private GameObject targetObject;
+
+    #endregion
+
+    #region Variables
+
     private float distance;
     private float nearestDistance = 100f;
-    private GameObject targetObject;
+   
+    #endregion
+
+
+    #region Unity Build In
 
     public override void EnterState(UnitStateManager _unit)
     {
-        _unit.animator.SetBool("isAttacking", true);
-        _unit.animator.SetTrigger("shouldAttack");
+        SetAttackAnimations(_unit);
 
-        if (DetermineNearestObject(_unit, _unit.enemiesInRange) == null)
-        {
-            _unit.animator.SetBool("isAttacking", false);
-            _unit.animator.SetFloat("anSpeed", 0);
-            _unit.SwitchStates(_unit.idleState);
-        }
+        ResetAttackAnimations(_unit);
+
 
         _unit.mainTarget = DetermineNearestObject(_unit, _unit.enemiesInRange);
     }
@@ -27,9 +35,15 @@ public class UnitGathererFightingState : UnitBaseState
         
     }
 
+    #endregion
+
+
+
+    #region Custom Functions()
+
     public override void OnEnemyHit(UnitStateManager _unit)
     {
-        
+
         if (_unit.mainTarget != null)
         {
             _unit.transform.LookAt(_unit.mainTarget.transform);
@@ -57,7 +71,7 @@ public class UnitGathererFightingState : UnitBaseState
                     _unit.SwitchStates(_unit.idleState);
                 }
             }
-        }      
+        }
     }
 
     private GameObject DetermineNearestObject(UnitStateManager _unit, List<GameObject> _objects)
@@ -87,4 +101,28 @@ public class UnitGathererFightingState : UnitBaseState
             return null;
         }
     }
+
+    private void SetAttackAnimations(UnitStateManager _unit)
+    {
+        _unit.animator.SetBool("isAttacking", true);
+        _unit.animator.SetTrigger("shouldAttack");
+    }
+
+    private void ResetAttackAnimations(UnitStateManager _unit)
+    {
+        if (DetermineNearestObject(_unit, _unit.enemiesInRange) == null)
+        {
+            _unit.animator.SetBool("isAttacking", false);
+            _unit.animator.SetFloat("anSpeed", 0);
+            _unit.SwitchStates(_unit.idleState);
+        }
+    }
+
+    #endregion
+
+
+
+
+
+
 }

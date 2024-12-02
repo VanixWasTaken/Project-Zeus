@@ -7,9 +7,20 @@ using System.Collections.Generic;
 public class CommandCenterClickedState : CommandCenterBaseState
 {
 
-    InputActions inputActions;
+    #region References
 
-    bool aboveButton = false;
+    private InputActions inputActions;
+
+    #endregion
+
+    #region Variables
+
+    private bool aboveButton = false;
+
+    #endregion
+
+
+    #region Unity Build In
 
     public override void EnterState(CommandCenterStateManager commandCenter)
     {
@@ -22,23 +33,19 @@ public class CommandCenterClickedState : CommandCenterBaseState
     public override void UpdateState(CommandCenterStateManager commandCenter)
     {
         HoversAboveButton(commandCenter);
-        if (!commandCenter.hoversAbove)
-        {
-            if (Mouse.current.leftButton.isPressed && !aboveButton)
-            {
-                commandCenter.extracttionUnitInfo.gameObject.SetActive(false);
-            }
-        }
 
+        ClickedOnBase(commandCenter);
 
-        commandCenter.extractionUIWorkers.text = "Workers:\t" + commandCenter.workersInsideExtraction.ToString() + " / "  + GameDataManager.Instance.pickedWorkers;
-        commandCenter.extractionUIRecons.text = "Recons:\t" + commandCenter.reconsInsideExtraction.ToString() + " / " + GameDataManager.Instance.pickedRecons;
-        commandCenter.extractionUIGatherers.text = "Gatherers:\t" + commandCenter.gatherersInsideExtraction.ToString() + " / " + GameDataManager.Instance.pickedGatherers;
+        UpdateText(commandCenter);
     }
 
+    #endregion
 
 
-    void HoversAboveButton(CommandCenterStateManager commandCenter)
+
+    #region Custom Function()
+
+    private void HoversAboveButton(CommandCenterStateManager commandCenter) // Checks If the mouse currently is above a Button
     {
         // Create PointerEventData
         PointerEventData pointerEventData = new PointerEventData(EventSystem.current)
@@ -55,4 +62,23 @@ public class CommandCenterClickedState : CommandCenterBaseState
         aboveButton = results.Exists(result => result.gameObject == commandCenter.extractionUIExtractButton.gameObject || commandCenter.extractionWarningMenu.gameObject);
     }
 
+    private void ClickedOnBase(CommandCenterStateManager commandCenter)
+    {
+        if (!commandCenter.hoversAbove)
+        {
+            if (Mouse.current.leftButton.isPressed && !aboveButton)
+            {
+                commandCenter.extracttionUnitInfo.gameObject.SetActive(false);
+            }
+        }
+    }
+
+    private void UpdateText(CommandCenterStateManager commandCenter)
+    {
+        commandCenter.extractionUIWorkers.text = "Workers:\t" + commandCenter.workersInsideExtraction.ToString() + " / " + GameDataManager.Instance.pickedWorkers;
+        commandCenter.extractionUIRecons.text = "Recons:\t" + commandCenter.reconsInsideExtraction.ToString() + " / " + GameDataManager.Instance.pickedRecons;
+        commandCenter.extractionUIGatherers.text = "Gatherers:\t" + commandCenter.gatherersInsideExtraction.ToString() + " / " + GameDataManager.Instance.pickedGatherers;
+    }
+
+    #endregion
 }

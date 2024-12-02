@@ -17,15 +17,13 @@ public class CommandCenterStateManager : MonoBehaviour
 
     #region References
 
+    private InputActions inputActions;
     [SerializeField] Camera mainCamera;
     [SerializeField] GameObject commandCenterObject;
     [SerializeField] TextMeshProUGUI energyMeter;
-
+    [SerializeField] UnitStateManager unit;
     public GameObject buildingButton;
     public GameObject playerButton;
-    [SerializeField] UnitStateManager unit;
-    InputActions inputActions;
-
     public GameObject extracttionUnitInfo;
     public TextMeshProUGUI extractionUIWorkers;
     public TextMeshProUGUI extractionUIRecons;
@@ -33,9 +31,10 @@ public class CommandCenterStateManager : MonoBehaviour
     public TextMeshProUGUI gatheredLootUI;
     public Button extractionUIExtractButton;
     public GameObject extractionWarningMenu;
+
     #endregion
 
-
+    #region Variables
 
     public bool hoversAbove;
     public int collectedCompleteEnergy;
@@ -44,14 +43,15 @@ public class CommandCenterStateManager : MonoBehaviour
     public int gatherersInsideExtraction;
     bool allUnitsInsideExtraction;
 
+    #endregion
 
-  
 
+    #region Unity Build In
 
-    void Start()
+    private void Start()
     {
-        GameDataManager.Instance.currentEnergy = GameDataManager.Instance.maxEnergy;
-        energyMeter.text = ("Energy:\t" +  GameDataManager.Instance.currentEnergy + " / " + GameDataManager.Instance.maxEnergy);
+        SetData();
+
         currentState = idleState;
         currentState.EnterState(this);
 
@@ -59,51 +59,17 @@ public class CommandCenterStateManager : MonoBehaviour
         inputActions.Mouse.Enable();
     }
 
-    void Update()
+    private void Update()
     {
         currentState.UpdateState(this);
 
         UpdateEnergyMeter();
+        UpdateLoot();
 
-        // Creates a Raycast and checks wether or not you hover above the commandCenter
-        Vector2 mousePosition = Mouse.current.position.ReadValue();
-        Ray ray = mainCamera.ScreenPointToRay(mousePosition);
-        RaycastHit hit;
-
-        int layerMask = 1 << 6;
-
-        bool raycastHit = Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask);
-
-        // Applies a shader if you hover above the commandCenter
-        if (raycastHit)
-        {
-            commandCenterObject.layer = LayerMask.NameToLayer("Outline");
-            hoversAbove = true;
-        }
-        else
-        {
-            commandCenterObject.layer = LayerMask.NameToLayer("Default");
-            hoversAbove = false;
-        }
-
-
-        if (hoversAbove)
-        {
-            if (Mouse.current.leftButton.wasPressedThisFrame)
-            {
-                SwitchStates(clickedState);
-            }
-        }
-
-        gatheredLootUI.text = "Gathered Loot: " + GameDataManager.Instance.collectedLoot;
+        MouseHoverShader(); // Check if the mouse hovers above the Object, if yes it applies a shader. And if you press leftclick while hovering it changes states.
     }
 
-    public void SwitchStates(CommandCenterBaseState state)
-    {
-        currentState = state;
-        state.EnterState(this);
-    }
-
+    #region Colliders
 
     private void OnTriggerEnter(Collider other)
     {
@@ -145,7 +111,7 @@ public class CommandCenterStateManager : MonoBehaviour
         {
             reconsInsideExtraction++;
         }
-        
+
         if (other.CompareTag("Gatherer"))
         {
             gatherersInsideExtraction++;
@@ -174,37 +140,13 @@ public class CommandCenterStateManager : MonoBehaviour
         }
     }
 
-    void UpdateEnergyMeter()
-    {
-        energyMeter.text = ("Energy:\t" + GameDataManager.Instance.currentEnergy + " / " + GameDataManager.Instance.maxEnergy);
-    }
-
-    private void ExitCheck(int _difference, int _amount)
-    {
-        if (_difference <= 0)
-        {
-            SceneManager.LoadScene("DeathScreenMenu");
-        }
-        else if (_difference > 0) 
-        {
-            GameDataManager.Instance.currentEnergy -= _amount;
-            UpdateEnergyMeter();
-        }
-    }
-
-    public void DepleteEnergy(int _amount)
-    {
-        int difference = GameDataManager.Instance.currentEnergy - _amount;
-        ExitCheck(difference, _amount);
-    }
-
     private void OnTriggerExit(Collider other)
     {
         if (other.CompareTag("Worker"))
         {
             workersInsideExtraction--;
         }
-        
+
         if (other.CompareTag("Recon"))
         {
             reconsInsideExtraction--;
@@ -216,6 +158,9 @@ public class CommandCenterStateManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region Buttons
 
     public void OnExtractionButtonClicked()
     {
@@ -235,18 +180,6 @@ public class CommandCenterStateManager : MonoBehaviour
         }
     }
 
-    void AllUnitsInsideExitCheck()
-    {
-        if (GameDataManager.Instance.pickedWorkers + GameDataManager.Instance.pickedRecons + GameDataManager.Instance.pickedGatherers == workersInsideExtraction + reconsInsideExtraction + gatherersInsideExtraction)
-        {
-            allUnitsInsideExtraction = true;
-        }
-        else
-        {
-            allUnitsInsideExtraction = false;
-        }
-    }
-
     public void OnExtractionWarningNoClicked()
     {
         extracttionUnitInfo.SetActive(false);
@@ -259,4 +192,99 @@ public class CommandCenterStateManager : MonoBehaviour
         GameDataManager.Instance.extractedGatherers = gatherersInsideExtraction;
         SceneManager.LoadScene("ExtractionScreenMenu");
     }
+
+    #endregion
+
+    #endregion
+
+
+    #region Custom Functions()
+
+    public void SwitchStates(CommandCenterBaseState state)
+    {
+        currentState = state;
+        state.EnterState(this);
+    }
+
+    public void DepleteEnergy(int _amount)
+    {
+        int difference = GameDataManager.Instance.currentEnergy - _amount;
+        ExitCheck(difference, _amount);
+    }
+
+    private void UpdateEnergyMeter()
+    {
+        energyMeter.text = ("Energy:\t" + GameDataManager.Instance.currentEnergy + " / " + GameDataManager.Instance.maxEnergy);
+    }
+
+    private void UpdateLoot()
+    {
+        gatheredLootUI.text = "Gathered Loot: " + GameDataManager.Instance.collectedLoot;
+    }
+
+    private void AllUnitsInsideExitCheck()
+    {
+        if (GameDataManager.Instance.pickedWorkers + GameDataManager.Instance.pickedRecons + GameDataManager.Instance.pickedGatherers == workersInsideExtraction + reconsInsideExtraction + gatherersInsideExtraction)
+        {
+            allUnitsInsideExtraction = true;
+        }
+        else
+        {
+            allUnitsInsideExtraction = false;
+        }
+    }
+
+    private void ExitCheck(int _difference, int _amount)
+    {
+        if (_difference <= 0)
+        {
+            SceneManager.LoadScene("DeathScreenMenu");
+        }
+        else if (_difference > 0)
+        {
+            GameDataManager.Instance.currentEnergy -= _amount;
+            UpdateEnergyMeter();
+        }
+    }
+
+    private void SetData()
+    {
+        GameDataManager.Instance.currentEnergy = GameDataManager.Instance.maxEnergy;
+        energyMeter.text = ("Energy:\t" + GameDataManager.Instance.currentEnergy + " / " + GameDataManager.Instance.maxEnergy);
+    }
+
+    private void MouseHoverShader()
+    {
+        // Creates a Raycast and checks wether or not you hover above the commandCenter
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+        Ray ray = mainCamera.ScreenPointToRay(mousePosition);
+        RaycastHit hit;
+
+        int layerMask = 1 << 6; // Check that the Layer is "Outline"
+
+        bool raycastHit = Physics.Raycast(ray, out hit, Mathf.Infinity, layerMask);
+
+        // Applies a shader if you hover above the commandCenter
+        if (raycastHit)
+        {
+            commandCenterObject.layer = LayerMask.NameToLayer("Outline");
+            hoversAbove = true;
+        }
+        else
+        {
+            commandCenterObject.layer = LayerMask.NameToLayer("Default");
+            hoversAbove = false;
+        }
+
+
+        if (hoversAbove)
+        {
+            if (Mouse.current.leftButton.wasPressedThisFrame)
+            {
+                SwitchStates(clickedState);
+            }
+        }
+    }
+
+    #endregion
 }

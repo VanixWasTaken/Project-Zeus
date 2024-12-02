@@ -6,27 +6,36 @@ using UnityEngine.InputSystem;
 
 public class UnitSelectionManager : MonoBehaviour
 {
-    InputActions inputActions;
-    bool keepSelected;
-    public Camera mainCamera;
-    public LayerMask unitLayer;
-    [SerializeField] GameObject activationButtons;
 
-    
-    #region Selection Box UI
+    #region References
+
+    public Camera mainCamera;
     public RectTransform selectionBox; // Drag your UI Image here for the selection box
-    Vector2 startPosition;
-    Vector2 endPosition;
+    [SerializeField] GameObject activationButtons;
+    private InputActions inputActions;
+
+    private List<UnitStateManager> selectedUnits = new List<UnitStateManager>();
+    private List<UnitStateManager> lastSelectedUnits = new List<UnitStateManager>();
+
     #endregion
 
-    List<UnitStateManager> selectedUnits = new List<UnitStateManager>();
-    List<UnitStateManager> lastSelectedUnits = new List<UnitStateManager>();
+    #region Variables
 
+    public LayerMask unitLayer;
+    private Vector2 startPosition;
+    private Vector2 endPosition;
+    private bool keepSelected;
+
+    #endregion
+
+
+    #region Unity Build In
 
     void Start()
     {
         inputActions = new InputActions();
         inputActions.Mouse.Enable();
+
         selectionBox.gameObject.SetActive(false); // Hide the selection box initially
     }
 
@@ -36,9 +45,12 @@ public class UnitSelectionManager : MonoBehaviour
         HandleCommands();
     }
 
+    #endregion
+
 
 
     #region Custom Functions()
+
     void HandleSelection()
     {
         if (Mouse.current.leftButton.wasPressedThisFrame) // Handle click selection and drag start
@@ -113,10 +125,8 @@ public class UnitSelectionManager : MonoBehaviour
         }
     }
 
-
-    void HandleCommands()
+    void HandleCommands() // Handle movement command with right-click
     {
-        // Handle movement command with right-click
         if (Mouse.current.rightButton.wasPressedThisFrame && selectedUnits.Count > 0)
         {
             Ray ray = mainCamera.ScreenPointToRay(Mouse.current.position.ReadValue());
@@ -171,6 +181,7 @@ public class UnitSelectionManager : MonoBehaviour
             selectedUnits.Remove(_unit);
         }
     }
+
     public void ShutDownSelected()
     {
         if (lastSelectedUnits.Count > 0)
@@ -194,5 +205,6 @@ public class UnitSelectionManager : MonoBehaviour
             keepSelected = true;
         }
     }
+
     #endregion
 }
