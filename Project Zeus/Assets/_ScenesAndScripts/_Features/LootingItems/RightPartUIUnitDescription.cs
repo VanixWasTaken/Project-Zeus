@@ -14,8 +14,8 @@ public class RightPartUIUnitDescription : MonoBehaviour
 
     #region Variables
 
-    private int holdingItemsInt;
-    private bool isActive = true;
+    public int holdingItemsInt;
+    public bool isActive = true;
     private string onOff;
     private string unitType;
 
