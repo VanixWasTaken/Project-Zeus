@@ -14,16 +14,15 @@ public class DeployMenuDeployButton : MonoBehaviour
     #endregion
 
 
-    void Start()
+    #region Unity Build In
+
+    private void Start()
     {
         if (videoPlayer != null) // Subscribe to the loopPointReached event to detect when the video ends
         {
             videoPlayer.loopPointReached += OnVideoEnd;
         }
     }
-
-
-    #region Custom Functions()
 
     #region Buttons
 
@@ -37,7 +36,13 @@ public class DeployMenuDeployButton : MonoBehaviour
 
     #endregion
 
-    void OnVideoEnd(VideoPlayer vp) // Activates when the video ends and changes scene
+    #endregion
+
+
+
+    #region Custom Functions()
+
+    private void OnVideoEnd(VideoPlayer vp) // Activates when the video ends and changes scene
     {
         SceneManager.LoadScene("BaseLevel");
     }

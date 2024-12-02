@@ -14,17 +14,19 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
 
     #region Variables
 
-    int currentPickedWorkers = 0;
-    int availableWorkers;
-    int currentPickedRecons = 0;
-    int availableRecons;
-    int currentPickedGatherers = 0;
-    int availableGatherers;
+    private int currentPickedWorkers = 0;
+    private int availableWorkers;
+    private int currentPickedRecons = 0;
+    private int availableRecons;
+    private int currentPickedGatherers = 0;
+    private int availableGatherers;
 
     #endregion
 
 
-    void Start()
+    #region Unity Build In
+
+    private void Start()
     {
         // For ease of use a local reference
         availableWorkers = GameDataManager.Instance.availableWorkers;
@@ -37,21 +39,9 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
 
 
 
-    void Update()
+    private void Update()
     {
-        UpdateTexts(); // Reads the current units available and correctly formats the texts
-       
-    }
-
-
-
-    #region Custom Functions()
-
-    void UpdateTexts()
-    {
-        workersText.text = ("Workers\t\t: " + currentPickedWorkers + " / " + GameDataManager.Instance.availableWorkers);
-        reconsText.text = ("Recons\t\t: " + currentPickedRecons + " / " + GameDataManager.Instance.availableRecons);
-        gatherersText.text = ("Gatherers\t\t: " + currentPickedGatherers + " / " + GameDataManager.Instance.availableGatherers);
+        UpdateTexts(); // Reads the current units available and correctly formats the texts  
     }
 
     #region Buttons
@@ -124,6 +114,18 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
     }
 
     #endregion
+
+    #endregion
+
+
+    #region Custom Functions()
+
+    private void UpdateTexts()
+    {
+        workersText.text = ("Workers\t\t: " + currentPickedWorkers + " / " + GameDataManager.Instance.availableWorkers);
+        reconsText.text = ("Recons\t\t: " + currentPickedRecons + " / " + GameDataManager.Instance.availableRecons);
+        gatherersText.text = ("Gatherers\t\t: " + currentPickedGatherers + " / " + GameDataManager.Instance.availableGatherers);
+    }
 
     #endregion
 }

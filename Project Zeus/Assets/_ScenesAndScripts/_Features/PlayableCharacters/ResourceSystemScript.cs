@@ -1,16 +1,24 @@
 using TMPro;
-using UnityEditor;
 using UnityEngine;
 
 public class ResourceSystemScript : MonoBehaviour
 {
 
-    public int collectedMinerals;
-    public ResourceCollecterScript[] resources; // Array to hold multiple resources
-    float timeElapsed = 0f;
+    #region References
 
     [SerializeField] TextMeshProUGUI mineralsHUDCounter;
-    
+
+    #endregion
+
+    #region Variables
+
+    public int collectedMinerals;
+    public ResourceCollecterScript[] resources; // Array to hold multiple resources
+    private float timeElapsed = 0f;
+
+    #endregion
+
+
 
     private void Update()
     {

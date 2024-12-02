@@ -4,14 +4,25 @@ using UnityEngine;
 public class PlayableCharactersFriendlyUnitsSpawner : MonoBehaviour
 {
 
+    #region References
+
     [SerializeField] GameObject workerPrefab;
     [SerializeField] GameObject reconPrefab;
     [SerializeField] GameObject gathererPrefab;
     [SerializeField] GameObject friendlyUnitsGO;
 
-    float spawnAreaWidth = 5;
+    #endregion
 
-    void Start()
+    #region Variables
+
+    private float spawnAreaWidth = 5;
+
+    #endregion
+
+
+    #region Unity Build In
+
+    private void Start()
     {
         // Initializing the units that was chosen in the DeployMenu
         for (int i = 0; i < GameDataManager.Instance.pickedWorkers; i++)
@@ -40,9 +51,5 @@ public class PlayableCharactersFriendlyUnitsSpawner : MonoBehaviour
         }
     }
 
-
-    void Update()
-    {
-        
-    }
+    #endregion
 }

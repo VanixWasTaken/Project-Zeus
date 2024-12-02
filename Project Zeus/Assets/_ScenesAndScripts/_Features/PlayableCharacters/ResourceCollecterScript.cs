@@ -3,20 +3,24 @@ using UnityEngine;
 public class ResourceCollecterScript : MonoBehaviour
 {
 
-    UnitWorkerMiningState miningState = new UnitWorkerMiningState();
-    UnitIdleState idleState = new UnitIdleState();
 
+    #region Unity Build In
 
-
+    #region Collider
+    
     private void OnTriggerEnter(Collider other)
     {
+        /// <summary>
+        /// Gets the entered Worker and switches his state to the MiningState
+        /// </summary>
+
         if (other.tag == "Worker")
         {
             other.transform.LookAt(transform.position); // Turns the player to the ressourceObject
 
 
             UnitStateManager unitScript = other.gameObject.GetComponent<UnitStateManager>(); // Get UnitStateManager.cs
-
+            UnitWorkerMiningState miningState = new UnitWorkerMiningState();
 
             if (unitScript != null) // Switch states inside UnitStateManager
             {
@@ -26,9 +30,11 @@ public class ResourceCollecterScript : MonoBehaviour
             {
                 Debug.LogError("UnitStateManager component not found on the collided object.");
             }
-
         }
     }
+
+    #endregion
+
+    #endregion
 }
 
-   

@@ -13,21 +13,17 @@ public class DeployMenuCraftingMenu : MonoBehaviour
     #endregion
 
 
-
-    void Start()
+    #region Unity Build In
+    private void Start()
     {
         loot.text = "Loot: " + GameDataManager.Instance.collectedLoot;
     }
 
 
-    void Update()
+    private void Update()
     {
         loot.text = "Loot: " + GameDataManager.Instance.collectedLoot;
     }
-
-
-
-    #region Custom Functions()
 
     #region Buttons
     public void OnCraftingMenuButtonClicked()
@@ -72,4 +68,5 @@ public class DeployMenuCraftingMenu : MonoBehaviour
     #endregion
 
     #endregion
+
 }
