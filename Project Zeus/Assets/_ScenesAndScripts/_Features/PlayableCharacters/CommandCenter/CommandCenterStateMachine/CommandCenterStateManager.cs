@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -8,16 +6,17 @@ using UnityEngine.UI;
 
 public class CommandCenterStateManager : MonoBehaviour
 {
-    // All available CommandCenterStates
-    #region CommandCenterStates
+    
+    #region CommandCenter States
+
     CommandCenterBaseState currentState;
     public CommandCenterIdleState idleState = new CommandCenterIdleState();
     public CommandCenterClickedState clickedState = new CommandCenterClickedState();
+
     #endregion
 
-
-    // All references
     #region References
+
     [SerializeField] Camera mainCamera;
     [SerializeField] GameObject commandCenterObject;
     [SerializeField] TextMeshProUGUI energyMeter;
@@ -35,6 +34,7 @@ public class CommandCenterStateManager : MonoBehaviour
     public Button extractionUIExtractButton;
     public GameObject extractionWarningMenu;
     #endregion
+
 
 
     public bool hoversAbove;
