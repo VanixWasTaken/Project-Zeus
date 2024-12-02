@@ -27,6 +27,10 @@ public class DeathScreenRTSButton : MonoBehaviour
 
     private void OnVideoEnd(VideoPlayer videoPlayer)
     {
+        GameDataManager.Instance.currentKilogram = 0;
+        GameDataManager.Instance.pickedWorkers = 0;
+        GameDataManager.Instance.pickedRecons = 0;
+        GameDataManager.Instance.pickedGatherers = 0;
         SceneManager.LoadScene("DeployMenu");
     }
 }

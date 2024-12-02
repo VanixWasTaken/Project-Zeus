@@ -1986,17 +1986,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb5a4956ef6b044aa315ee032b0a2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableWorkers: 6
+  availableWorkers: 4
   pickedWorkers: 0
-  availableRecons: 6
+  availableRecons: 4
   pickedRecons: 0
-  availableGatherers: 6
+  availableGatherers: 4
   pickedGatherers: 0
   maxKilogram: 100
   currentKilogram: 0
   currentEnergy: 0
-  maxEnergy: 100
-  collectedLoot: 3
+  maxEnergy: 200
+  collectedLoot: 0
 --- !u!1 &558938490
 GameObject:
   m_ObjectHideFlags: 0
