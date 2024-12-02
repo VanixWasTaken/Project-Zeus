@@ -1,10 +1,17 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DeployMenuCraftingMenu : MonoBehaviour
 {
+
+    #region References
+
     [SerializeField] TextMeshProUGUI loot;
     [SerializeField] GameObject craftingMenu;
+
+    #endregion
+
 
 
     void Start()
@@ -18,6 +25,11 @@ public class DeployMenuCraftingMenu : MonoBehaviour
         loot.text = "Loot: " + GameDataManager.Instance.collectedLoot;
     }
 
+
+
+    #region Custom Functions()
+
+    #region Buttons
     public void OnCraftingMenuButtonClicked()
     {
         if (craftingMenu.activeSelf == false)
@@ -57,4 +69,7 @@ public class DeployMenuCraftingMenu : MonoBehaviour
             GameDataManager.Instance.availableGatherers++;
         }
     }
+    #endregion
+
+    #endregion
 }
