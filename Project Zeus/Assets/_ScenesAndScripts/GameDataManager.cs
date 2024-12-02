@@ -66,7 +66,6 @@ public class GameDataManager : MonoBehaviour
             }
 
             unitValues[i] = unitCount;
-            Debug.Log(unitValues[i]);
         }
 
         return unitValues;
