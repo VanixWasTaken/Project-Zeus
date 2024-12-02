@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class CollisionHelper : MonoBehaviour
 {
-    private SphereCollider _collider;
+    #region Unity Built-In
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,4 +15,6 @@ public class CollisionHelper : MonoBehaviour
         UnitStateManager unit = GetComponentInParent<UnitStateManager>();
         unit.GathererRangeExited(other);
     }
+
+    #endregion
 }

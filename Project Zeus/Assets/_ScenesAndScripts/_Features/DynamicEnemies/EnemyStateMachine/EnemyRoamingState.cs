@@ -3,9 +3,16 @@ using UnityEngine;
 
 public class EnemyRoamingState : EnemyBaseState
 {
+    #region Variables
+
     float distance;
     float nearestDistance = 100;
 
+    #endregion
+
+
+
+    #region Unity Built-In
 
     public override void EnterState(EnemyStateManager _enemy)
     {
@@ -36,8 +43,25 @@ public class EnemyRoamingState : EnemyBaseState
         }
     }
 
-    Vector3[] GeneratePatrolPoints(Vector3 _center, float _radius, int _segments)
+    #endregion
+
+
+    #region Custom Functions()
+
+    private Vector3[] GeneratePatrolPoints(Vector3 _center, float _radius, int _segments)
     {
+        /// <summary>
+        /// 
+        /// This method generates the points of the patrol circle.
+        /// 
+        /// Creates and Array with the size of the circle segments and calculates how many
+        /// degrees are between each patrol point.
+        /// 
+        /// Then it calculates where each point is, based on the degrees and radius inside
+        /// the for loop and then returns the points array.
+        /// 
+        /// </summary>
+        
         Vector3[] points = new Vector3[_segments];
         float angleStep = 360f / _segments;
 
@@ -56,10 +80,19 @@ public class EnemyRoamingState : EnemyBaseState
 
     private GameObject DetermineNearestObject(EnemyStateManager _enemy, List<GameObject> _objects)
     {
-        // set the object to null to be able to reference it
+        /// <summary>
+        /// This function takes a list of GameObjects and determines the nearest one.
+        /// 
+        /// It loops through the list and compares their respective distance to this object.
+        /// When an object is nearer than the latest determined object, it sets the target to
+        /// the new nearestTarget and saves it's distance to compare to the following objects.
+        /// 
+        /// After looping through the GameObject List it returns either the nearest GameObject
+        /// or logs an error and returns null, if anything went wrong.
+        /// </summary>
+
         GameObject targetObject = null;
 
-        // iterate through all objects in list and determine nearest object
         for (int i = 0; i < _objects.Count; i++)
         {
             distance = Vector3.Distance(_enemy.transform.position, _objects[i].transform.position);
@@ -71,13 +104,11 @@ public class EnemyRoamingState : EnemyBaseState
             }
         }
 
-        // return the nearest object (targetObject)
         if (targetObject != null)
         {
             return targetObject;
         }
 
-        // if anything went wrong, log an error to console
         else
         {
             Debug.LogError("Error: No target object was found! Returning null!");
@@ -87,6 +118,18 @@ public class EnemyRoamingState : EnemyBaseState
 
     private void ExitAndUpdateList(EnemyStateManager _enemy, GameObject _nearestObject)
     {
+        /// <summary>
+        /// When there is a nearest object in range, the function stops the roaming
+        /// and sets the mainTarget in the StateManager to the nearest object.
+        /// 
+        /// It then removes the target object from the DetectedObjects List, to avoid
+        /// null references.
+        /// 
+        /// Based on the enemies class (Screamer / "Normal"), the function decides
+        /// if it should switch to the screaming or chasing state.
+        /// </summary>
+        /// 
+        
         if (_nearestObject != null)
         {
             _enemy.StopAllCoroutines();
@@ -109,4 +152,7 @@ public class EnemyRoamingState : EnemyBaseState
             }
         }
     }
+
+    #endregion
+
 }

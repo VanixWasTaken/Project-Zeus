@@ -6,13 +6,25 @@ using UnityEngine.Rendering.Universal;
 
 public class EnemyAttackingState : EnemyBaseState
 {
+    #region References
+
     private UnitStateManager target;
+
+    #endregion
+
+    #region Variables
 
     private float distance;
     private float nearestDistance = 100f;
+
+    #endregion
+
+
+
+    #region Unity Built-In
+
     public override void EnterState(EnemyStateManager _enemy)
     {
-        Debug.Log("Attacking!");
         _enemy.ActivateLight();
         _enemy.transform.LookAt(_enemy.GetTarget().transform);
         _enemy.animator.SetBool("anIsAttacking", true);
@@ -21,7 +33,7 @@ public class EnemyAttackingState : EnemyBaseState
 
     public override void UpdateState(EnemyStateManager _enemy)
     {
-        
+        // no need for implementation
     }
 
     public override void OnUnitHit(EnemyStateManager _enemy)
@@ -36,10 +48,20 @@ public class EnemyAttackingState : EnemyBaseState
         }
     }
 
-    // gets the reference to the unit and calls the take damage function, until unit is dead
-    // when unit is dead, determines whether to chase next target or switch back to roaming
+    #endregion
+
+
+    #region Custom Functions()
+
     public void AttackWorker(EnemyStateManager _enemy)
     {
+        /// <summary>
+        /// Gets a reference to the nearest Unit / the target
+        /// 
+        /// Determines if the unit is alive or dead -> if alive: take damage
+        /// --> if dead: determine wether to chase next target or switch to roaming
+        /// </summary>
+        
         GameObject _unit = _enemy.GetTarget();
 
         if (_unit != null)
@@ -116,5 +138,7 @@ public class EnemyAttackingState : EnemyBaseState
             return null;
         }
     }
+
+    #endregion
 
 }

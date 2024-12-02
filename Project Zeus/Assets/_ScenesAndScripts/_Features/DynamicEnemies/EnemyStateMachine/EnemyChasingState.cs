@@ -3,22 +3,30 @@ using UnityEngine;
 
 public class EnemyChasingState : EnemyBaseState
 {
-    bool unitReached = false;
+    #region Variables
+
+    private bool unitReached = false;
+
+    #endregion
+
+
+
+    #region Unity Built-In
 
     public override void EnterState(EnemyStateManager _enemy)
     {
-        Debug.Log("Chasing!");
-        _enemy.ActivateLight();
-        _enemy.animator.SetBool("anIsChasing", true);
-        _enemy.animator.SetFloat("anSpeed", 1f);
-        _enemy.animator.SetTrigger("anShouldChase");
-        ChaseUnit(_enemy);
+        LightUpAndStartAnims(_enemy); // Start Animations and ActivateLight
+
+        ChaseUnit(_enemy); // Start Chasing Behaviour
     }
 
     public override void UpdateState(EnemyStateManager _enemy)
     {
-        NavigationCheck(_enemy);
+        NavigationCheck(_enemy); // Check if enemy reached target
     }
+
+
+    #region Colliders
 
     public override void OnTriggerExit(EnemyStateManager _enemy, Collider _collision)
     {
@@ -31,8 +39,28 @@ public class EnemyChasingState : EnemyBaseState
         }
     }
 
+    #endregion
+
+    #endregion
+
+
+    #region Custom Functions()
+
+    private void LightUpAndStartAnims(EnemyStateManager _enemy) 
+    {
+        _enemy.ActivateLight();
+        _enemy.animator.SetBool("anIsChasing", true);
+        _enemy.animator.SetFloat("anSpeed", 1f);
+        _enemy.animator.SetTrigger("anShouldChase");
+    }
+
     private void ChaseUnit(EnemyStateManager _enemy)
     {
+        /// <summary>
+        /// If the enemy has a target: get its current position and move toward it
+        /// 
+        /// If there is no target: switch back to roaming state
+        /// </summary>
         if (_enemy.GetTarget() != null)
         {
             Vector3 targetPosition = _enemy.GetTarget().transform.position;
@@ -51,7 +79,17 @@ public class EnemyChasingState : EnemyBaseState
 
     private  void NavigationCheck(EnemyStateManager _enemy)
     {
-        // Check if the enemy has reached the units
+        /// <summary>
+        /// This functions checks if the enemy reached the target
+        /// 
+        /// If the target is not in range yet, update the targetposition of the
+        /// navmesh-agent and keep chasing
+        /// 
+        /// if the target is in range, flip unitReached --> switch state to attacking
+        /// 
+        /// Before switching to attack state: disable animations and call SwitchState
+        /// </summary>
+
         if (_enemy.navMeshAgent != null && !_enemy.navMeshAgent.pathPending)
         {
             _enemy.navMeshAgent.stoppingDistance = 2;
@@ -67,12 +105,13 @@ public class EnemyChasingState : EnemyBaseState
 
             if (unitReached)
             {
-                // Switch to attack state once the enemy is close enough to the player
-                Debug.Log("I am switching to the attack state");
                 _enemy.animator.SetFloat("anSpeed", 0);
                 _enemy.animator.SetBool("anIsChasing", false);
                 _enemy.SwitchState(_enemy.attackingState);
             }
         }
     }
+
+    #endregion
+
 }

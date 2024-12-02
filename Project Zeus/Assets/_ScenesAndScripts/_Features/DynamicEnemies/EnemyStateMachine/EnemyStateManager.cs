@@ -6,37 +6,54 @@ using System.Collections.Generic;
 public class EnemyStateManager : MonoBehaviour
 {
     #region States
+
     public EnemyBaseState roamingState = new EnemyRoamingState();
     public EnemyChasingState chasingState = new EnemyChasingState();
     public EnemyAttackingState attackingState = new EnemyAttackingState();
 
+    // Special State for the Screamer enemy
     public EnemyScreamerScreamingState screamerScreamingState = new EnemyScreamerScreamingState();
+
+    EnemyBaseState currentState; // currentstate
+
     #endregion
+
     #region References
-    EnemyBaseState currentState;
+
+    // References that enable core functionality
     GameObject mainTarget;
     public NavMeshAgent navMeshAgent;
     public Animator animator;
     public GameObject spotLight;
 
+    // List that contains references to objects in range
     private List<GameObject> detectedObjects = new List<GameObject>();
     private List<GameObject> enemiesInRange = new List<GameObject>();
 
-    // variables for the roaming behaviour / IEnumerator
-    public Transform centerPoint; // The center of the circular patrol (optional)
-    public float radius = 20f; // Radius of the circle
-    public float patrolSpeed = 3f; // Speed of the patrol
-    public int segments = 24; // Number of points in the circle (more means smoother path)
-
-    public int currentPointIndex = 0;
-    public Vector3[] patrolPoints;
+    // references used for the roaming behaviour
+    public Transform centerPoint; // center of the circular path
+    public Vector3[] patrolPoints; // points that make up the circle
     public Vector3 circleCenter;
 
+    #endregion
+
+    #region Variables
+
+    // should the player return to roaming or chasing state?
     public bool shouldPatrol = false;
+
+    // variables used to create the circular path for roaming
+    public float radius = 20f;
+    public float patrolSpeed = 3f;
+    public int segments = 24; // segments of the path: more = more circular
+    public int currentPointIndex = 0;
 
     // variables for fighting
     public int life = 50;
+
     #endregion
+
+
 
     #region Unity BuiltIn
 
@@ -58,7 +75,10 @@ public class EnemyStateManager : MonoBehaviour
         currentState.UpdateState(this);
     }
 
-    void OnTriggerEnter(Collider _collision)
+
+    #region Colliders
+
+    private void OnTriggerEnter(Collider _collision)
     {
         if (_collision.CompareTag("Enemy") || _collision.CompareTag("Screamer"))
         {
@@ -70,7 +90,7 @@ public class EnemyStateManager : MonoBehaviour
         }
     }
 
-    void OnTriggerExit(Collider _collision)
+    private void OnTriggerExit(Collider _collision)
     {
         if (_collision.CompareTag("Enemy") || _collision.CompareTag("Screamer"))
         {
@@ -82,7 +102,11 @@ public class EnemyStateManager : MonoBehaviour
         }
     }
 
-    #region Animator Events
+    #endregion
+
+
+    #region Animator
+
     public void OnUnitHit()
     {
         if (CheckMethod("OnUnitHit"))
@@ -90,6 +114,7 @@ public class EnemyStateManager : MonoBehaviour
             currentState.OnUnitHit(this);
         }
     }
+
     public void OnScreamHeard()
     {
         if (CheckMethod("OnScreamHeard"))
@@ -97,6 +122,7 @@ public class EnemyStateManager : MonoBehaviour
             currentState.OnScreamHeard(this);
         }
     }
+
     public void OnScreamFinished()
     {
         if (CheckMethod("OnScreamFinished"))
@@ -104,29 +130,32 @@ public class EnemyStateManager : MonoBehaviour
             currentState.OnScreamFinished(this);
         }
     }
+
     #endregion
+
     #endregion
+
 
     #region Custom Functions
 
-    #region Public Functions
+    private bool CheckMethod(string funcName)
+    {
+        var thisType = currentState.GetType();
+
+        if (thisType.GetMethod(funcName) != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void SwitchState(EnemyBaseState _state)
     {
-        Debug.Log(_state);
         currentState = _state;
         currentState.EnterState(this);
-    }
-
-    public void Die()
-    {
-        Destroy(gameObject);
-    }
-
-    public void TakeDamage(UnitStateManager _unit, int _damage)
-    {
-        life -= _damage;
-        mainTarget = _unit.gameObject;
-        SwitchState(chasingState);
     }
 
     public void ActivateLight()
@@ -145,6 +174,61 @@ public class EnemyStateManager : MonoBehaviour
         }
     }
 
+    public void MoveToTarget(Vector3 targetPosition)
+    {
+        if (navMeshAgent != null)
+        {
+            navMeshAgent.SetDestination(targetPosition); // Use NavMeshAgent to move
+        }
+    }
+
+    public void TakeDamage(UnitStateManager _unit, int _damage)
+    {
+        life -= _damage;
+        mainTarget = _unit.gameObject;
+        SwitchState(chasingState);
+    }
+
+    public void Die()
+    {
+        Destroy(gameObject);
+    }
+
+    public void HearScream(GameObject _target)
+    {
+        StopAllCoroutines();
+        navMeshAgent.isStopped = true;
+        navMeshAgent.ResetPath();
+        SetTarget(_target);
+        SwitchState(chasingState);
+    }
+
+    public void UpdateDetectedObjects(GameObject _object)
+    {
+        detectedObjects.Remove(_object);
+    }
+
+    public IEnumerator RoamingBehaviour()
+    {
+        while (true)
+        {
+            // Move to the current patrol point
+            navMeshAgent.SetDestination(patrolPoints[currentPointIndex]);
+
+            // Wait until the agent reaches the destination
+            while (navMeshAgent.pathPending || navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance)
+            {
+                yield return null;
+            }
+
+            // Move to the next point
+            currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
+        }
+    }
+
+
+    #region Get-Set-Functions()
+
     public List<GameObject> GetDetectedObjects()
     {
         if (detectedObjects != null)
@@ -155,11 +239,6 @@ public class EnemyStateManager : MonoBehaviour
         {
             return null;
         }
-    }
-
-    public void UpdateDetectedObjects(GameObject _object)
-    {
-        detectedObjects.Remove(_object);
     }
 
     public List<GameObject> GetEnemiesInRange()
@@ -205,54 +284,8 @@ public class EnemyStateManager : MonoBehaviour
         }
     }
 
-    public void MoveToTarget(Vector3 targetPosition)
-    {
-        if (navMeshAgent != null)
-        {
-            navMeshAgent.SetDestination(targetPosition); // Use NavMeshAgent to move
-        }
-    }
-
-    public void HearScream(GameObject _target)
-    {
-        StopAllCoroutines();
-        navMeshAgent.isStopped = true;
-        navMeshAgent.ResetPath();
-        SetTarget(_target);
-        SwitchState(chasingState);
-    }
-
-    public IEnumerator RoamingBehaviour()
-    {
-        while (true)
-        {
-            // Move to the current patrol point
-            navMeshAgent.SetDestination(patrolPoints[currentPointIndex]);
-
-            // Wait until the agent reaches the destination
-            while (navMeshAgent.pathPending || navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance)
-            {
-                yield return null;
-            }
-
-            // Move to the next point
-            currentPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
-        }
-    }
     #endregion
 
-    bool CheckMethod(string funcName)
-    {
-        var thisType = currentState.GetType();
-
-        if (thisType.GetMethod(funcName) != null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }   
     #endregion
+
 }
