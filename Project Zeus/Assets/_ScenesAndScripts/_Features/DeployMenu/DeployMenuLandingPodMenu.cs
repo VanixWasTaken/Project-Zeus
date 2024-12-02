@@ -14,33 +14,27 @@ public class DeployMenuLandingPodMenu : MonoBehaviour
 
     #region Variables
 
-    float _maxKilogram;
-    float _currentKilogram;
+    private float _maxKilogram;
+    private float _currentKilogram;
 
     #endregion
 
-    void Start()
+
+    #region Unity Build In
+
+    private void Start()
     {
         loot.text = "Loot\n" + GameDataManager.Instance.collectedLoot; 
     }
 
 
-    void Update()
+    private void Update()
     {
         _maxKilogram = GameDataManager.Instance.maxKilogram;
         _currentKilogram = GameDataManager.Instance.currentKilogram;
 
 
         UpdateKilogram(); // Updates the current kilogram in the correct format
-    }
-
-
-
-    #region Custom Functions()
-
-    void UpdateKilogram()
-    {
-        landingPodKilogramText.text = "Kilogram\n" + _currentKilogram + " / " + _maxKilogram;
     }
 
     #region Buttons
@@ -55,9 +49,19 @@ public class DeployMenuLandingPodMenu : MonoBehaviour
         {
             landingPodMenuGO.SetActive(false);
         }
-    } 
+    }
 
     #endregion
+
+    #endregion
+
+
+    #region Custom Functions()
+
+    private void UpdateKilogram()
+    {
+        landingPodKilogramText.text = "Kilogram\n" + _currentKilogram + " / " + _maxKilogram;
+    }
 
     #endregion
 }

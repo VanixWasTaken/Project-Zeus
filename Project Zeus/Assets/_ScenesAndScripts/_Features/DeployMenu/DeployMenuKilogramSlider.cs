@@ -16,13 +16,15 @@ public class DeployMenuKilogramSlider : MonoBehaviour
 
     #region Variables
 
-    float _maxKilogram;
-    float _currentKilogram;
+    private float _maxKilogram;
+    private float _currentKilogram;
 
     #endregion
 
 
-    void Update()
+    #region Unity Build In
+
+    private void Update()
     {
         _maxKilogram = GameDataManager.Instance.maxKilogram; // For ease of use a local reference
         _currentKilogram = GameDataManager.Instance.currentKilogram; // For ease of use a local reference
@@ -33,19 +35,19 @@ public class DeployMenuKilogramSlider : MonoBehaviour
         KilogramWarning(); // Pops a little warning that shows the player he is currently overweight
     }
 
-
+    #endregion
 
 
     #region Custom Functions()
 
-    public void AdjustKilogramSlider()
+    private void AdjustKilogramSlider()
     {
         float percent = (_currentKilogram / _maxKilogram) * 100;
         kilogramSlider.value = percent / 100f;
         availableKilogramText.text = _currentKilogram + " / " + _maxKilogram;
     }
 
-    void KilogramWarning()
+    private void KilogramWarning()
     {
         if (_currentKilogram > _maxKilogram)
         {
