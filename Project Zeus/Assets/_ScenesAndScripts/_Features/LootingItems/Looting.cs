@@ -4,10 +4,14 @@ using UnityEngine;
 public class Looting : MonoBehaviour
 {
 
+    #region References
+
     [SerializeField] GameObject lootGO;
 
+    #endregion
 
-  
+
+    #region Custom Functions()
 
     private void OnTriggerEnter(Collider other)
     {
@@ -23,4 +27,5 @@ public class Looting : MonoBehaviour
         }
     }
 
+    #endregion
 }
