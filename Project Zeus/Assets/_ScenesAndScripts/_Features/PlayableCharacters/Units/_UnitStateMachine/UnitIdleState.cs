@@ -4,7 +4,7 @@ public class UnitIdleState : UnitBaseState
 {
     public override void EnterState(UnitStateManager _unit)
     {
-        _unit.animator.SetFloat("anSpeed", 0);
+        _unit.animator.SetFloat("anSpeed", 0); // plays the idle animation
     }
 
     public override void UpdateState(UnitStateManager _unit)
