@@ -3,39 +3,49 @@ using UnityEngine.InputSystem;
 
 public class CameraScript : MonoBehaviour
 {
+    #region References
 
-    float speed = 12.0f;
-    Vector3 currentVelocity;
-    Vector3 direction;
-    InputActions inputActions;
-    GameObject test;
+    private InputActions inputActions;
+
+    #endregion
+
+    #region Variables
+
+    private float speed = 12.0f;
+    private Vector3 currentVelocity;
+    private Vector3 direction;
+
+    #endregion
 
 
 
+    #region Unity Built-In
 
-    void Awake()
+    private void Awake()
     {
         inputActions = new InputActions();
     }
 
-    void Start()
+    private void Start()
     {
-        inputActions.Camera.Enable();
+        inputActions.Camera.Enable(); // enables the input for the camera
     }
    
-    void Update()
+    private void Update()
     {
-        HandleMovement();
+        HandleMovement(); // updates the camera position based on player input
     }
 
+    #endregion
 
 
-   
+    #region Custom Functions()
 
-
-    // Reads the Input (Found under Input/Camera/Move) and moves the camera on the horizontal axes based on that
     private void HandleMovement()
     {
+        /// <summary>
+        /// Reads the Input (Found under Input/Camera/Move) and moves the camera on the horizontal axis based on that
+        /// </summary>
         Vector2 inputVector = inputActions.Camera.Move.ReadValue<Vector2>();
 
         direction = new Vector3(inputVector.x, 0f, inputVector.y).normalized;
@@ -48,5 +58,7 @@ public class CameraScript : MonoBehaviour
             transform.position += direction * speed * Time.deltaTime;
         }
     }
+
+    #endregion
 
 }

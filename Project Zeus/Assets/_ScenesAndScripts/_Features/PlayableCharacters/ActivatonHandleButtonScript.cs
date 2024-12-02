@@ -1,9 +1,16 @@
 using UnityEngine;
-using System.Collections;
 
 public class ActivationHandleButtonScript : MonoBehaviour
 {
+    #region References
+
     UnitSelectionManager unitSelectionManager;
+
+    #endregion
+
+
+
+    #region Unity Built-In
 
     private void Awake()
     {
@@ -20,6 +27,8 @@ public class ActivationHandleButtonScript : MonoBehaviour
         }
     }
 
+    #region Buttons
+
     public void OnDeactivateButtonClicked()
     {
         unitSelectionManager.ShutDownSelected();
@@ -29,4 +38,8 @@ public class ActivationHandleButtonScript : MonoBehaviour
     {
         unitSelectionManager.ActivateSelected();
     }
+
+    #endregion
+
+    #endregion
 }
