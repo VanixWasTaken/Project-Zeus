@@ -3,9 +3,16 @@ using UnityEngine;
 
 public class DeployMenuUnitOverviewScript : MonoBehaviour
 {
+
+    #region References
+
     [SerializeField] TextMeshProUGUI workersText;
     [SerializeField] TextMeshProUGUI reconsText;
     [SerializeField] TextMeshProUGUI gatherersText;
+
+    #endregion
+
+    #region Variables
 
     int currentPickedWorkers = 0;
     int availableWorkers;
@@ -14,6 +21,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
     int currentPickedGatherers = 0;
     int availableGatherers;
 
+    #endregion
 
 
     void Start()
@@ -23,23 +31,30 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         availableRecons = GameDataManager.Instance.availableRecons;
         availableGatherers = GameDataManager.Instance.availableGatherers;
 
-        // Reads the current units available and correctly formats the texts
-        workersText.text = ("Workers\t\t: " + currentPickedWorkers + " / " + availableWorkers);
-        reconsText.text = ("Recons\t\t: " + currentPickedRecons + " / " + availableRecons);
-        gatherersText.text = ("Gatherers\t\t: " + currentPickedGatherers + " / " + availableGatherers);
+
+        UpdateTexts(); // Reads the current units available and correctly formats the texts
     }
 
 
 
     void Update()
     {
-        // Reads the current units available and correctly formats the texts
+        UpdateTexts(); // Reads the current units available and correctly formats the texts
+       
+    }
+
+
+
+    #region Custom Functions()
+
+    void UpdateTexts()
+    {
         workersText.text = ("Workers\t\t: " + currentPickedWorkers + " / " + GameDataManager.Instance.availableWorkers);
         reconsText.text = ("Recons\t\t: " + currentPickedRecons + " / " + GameDataManager.Instance.availableRecons);
         gatherersText.text = ("Gatherers\t\t: " + currentPickedGatherers + " / " + GameDataManager.Instance.availableGatherers);
     }
 
-
+    #region Buttons
 
     /// <summary>
     /// All units each habe two buttons, one for adding and one for subtracting the count inside the text.
@@ -107,4 +122,8 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         }
         gatherersText.text = ("Gatherers\t\t: " + currentPickedGatherers + " / " + availableGatherers);
     }
+
+    #endregion
+
+    #endregion
 }

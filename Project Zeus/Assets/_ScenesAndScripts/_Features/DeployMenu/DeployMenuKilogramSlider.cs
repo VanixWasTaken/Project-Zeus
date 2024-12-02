@@ -8,11 +8,16 @@ public class DeployMenuKilogramSlider : MonoBehaviour
 
     #region References
 
-    float _maxKilogram;
-    float _currentKilogram;
     [SerializeField] TextMeshProUGUI availableKilogramText;
     [SerializeField] GameObject kilogramWarning;
     [SerializeField] Slider kilogramSlider;
+
+    #endregion
+
+    #region Variables
+
+    float _maxKilogram;
+    float _currentKilogram;
 
     #endregion
 
