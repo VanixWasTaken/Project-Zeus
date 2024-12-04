@@ -1,9 +1,8 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using static FMODUnity.RuntimeManager;
 
 public class UnitStateManager : MonoBehaviour
 {
@@ -25,7 +24,7 @@ public class UnitStateManager : MonoBehaviour
     //[SerializeField] Camera mainCamera;
     //[SerializeField] Vector3 mouseClickPos;
     CommandCenterStateManager commandCenter; // needed to call function DepleteEnergy()
-    //public ObjectAudioData audioSheet;
+    public ObjectAudioData audioSheet;
     //[SerializeField] Vector3 targetPosition;
     //[SerializeField] GameObject enemyDetector;
     public float life = 100; // delte later
@@ -109,6 +108,9 @@ public class UnitStateManager : MonoBehaviour
                 Debug.LogError("CommandCenter could not be found and assigned");
             }
         }
+
+        LoadBank("UNIT");
+
         #endregion
     }
 
@@ -182,6 +184,11 @@ public class UnitStateManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void OnFootstep()
+    {
+        PlayOneShot(audioSheet.exampleReference01);
     }
 
     public void OnEnemyHit()

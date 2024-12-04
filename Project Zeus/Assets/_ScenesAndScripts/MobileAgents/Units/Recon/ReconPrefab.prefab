@@ -182,6 +182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   navMeshAgent: {fileID: 0}
+  audioSheet: {fileID: 11400000, guid: e7475713a79ee6c45aee43842b553c51, type: 2}
   life: 100
   rightPartUIUnitDescription: {fileID: 7652998036567853228}
   energyDepletionRate: 5

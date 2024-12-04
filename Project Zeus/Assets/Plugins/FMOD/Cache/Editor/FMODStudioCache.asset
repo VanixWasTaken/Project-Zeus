@@ -15,7 +15,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/UNIT.bank
   Name: UNIT
   StudioPath: bank:/SFX/UNIT
-  lastModified: 638683132357107502
+  lastModified: 638689165772276304
   FileSizes: []
   Exists: 1
 --- !u!114 &-8462281308541200199
@@ -204,7 +204,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/_Master.bank
   Name: _Master
   StudioPath: bank:/_Master/_Master
-  lastModified: 638683132357117671
+  lastModified: 638689165771689286
   FileSizes: []
   Exists: 1
 --- !u!114 &-2168720322136858775
@@ -285,10 +285,10 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/_Master.strings.bank
   Name: _Master.strings
   StudioPath: bank:/_Master/_Master.strings
-  lastModified: 638683132357127726
+  lastModified: 638689165771730855
   FileSizes:
   - Name: 
-    Value: 2228
+    Value: 2330
   Exists: 1
 --- !u!114 &11400000
 MonoBehaviour:
@@ -330,13 +330,42 @@ MonoBehaviour:
   - {fileID: -6876815848444543005}
   - {fileID: -2865764766057362934}
   - {fileID: 1001093438210618375}
+  - {fileID: 38853237373330607}
   EditorParameters: []
   MasterBanks:
   - {fileID: -2825738890928706980}
   StringsBanks:
   - {fileID: -863181981819171695}
-  cacheTime: 638683132357127726
+  cacheTime: 638689165772276304
   cacheVersion: 131620
+--- !u!114 &38853237373330607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
+  m_Name: event:/SFX/UNIT/Footstep
+  m_EditorClassIdentifier: 
+  Path: event:/SFX/UNIT/Footstep
+  Guid:
+    Data1: 101196815
+    Data2: 1332084394
+    Data3: 919681443
+    Data4: -1296970019
+  Banks:
+  - {fileID: -8660594532279740105}
+  IsStream: 0
+  Is3D: 0
+  IsOneShot: 1
+  Parameters:
+  - {fileID: 1324542650329077024}
+  MinDistance: 1
+  MaxDistance: 20
+  Length: 540
 --- !u!114 &1001093438210618375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -364,6 +393,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &1324542650329077024
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/Footstep/Pitch
+  m_EditorClassIdentifier: 
+  Name: Pitch
+  StudioPath: 
+  Min: 0.9
+  Max: 1.2
+  Default: 1.2
+  ID:
+    data1: 837613247
+    data2: 1927670469
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &1700966227102106160
 MonoBehaviour:
   m_ObjectHideFlags: 0
