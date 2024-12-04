@@ -34,6 +34,9 @@ public class UnitDeactivatedState : UnitBaseState
         _unit.navMeshAgent.ResetPath();
         _unit.StopAllCoroutines();
 
+        // Queue Sound
+        FMODUnity.RuntimeManager.PlayOneShot(_unit.audioSheet.GetSFXByName(FMODAudioData.SoundID.UnitPoweringDown));
+
         // Start "Animation"
         _unit.animator.SetBool("anIsDeactivated", true);
         _unit.animator.SetTrigger("anShouldDeactivate");
@@ -49,6 +52,7 @@ public class UnitDeactivatedState : UnitBaseState
         /// </summary>
 
         _unit.StartCoroutine(_unit.EnergyDepletion(_unit.energyDepletionInterval));
+        FMODUnity.RuntimeManager.PlayOneShot(_unit.audioSheet.GetSFXByName(FMODAudioData.SoundID.UnitPoweringUp));
         _unit.animator.SetBool("anIsDeactivated", false);
         _unit.rightPartUIUnitDescription.isActive = true;
         _unit.SwitchStates(_unit.idleState);

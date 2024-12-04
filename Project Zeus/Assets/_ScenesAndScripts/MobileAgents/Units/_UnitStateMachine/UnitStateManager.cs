@@ -24,7 +24,7 @@ public class UnitStateManager : MonoBehaviour
     //[SerializeField] Camera mainCamera;
     //[SerializeField] Vector3 mouseClickPos;
     CommandCenterStateManager commandCenter; // needed to call function DepleteEnergy()
-    public ObjectAudioData audioSheet;
+    public FMODAudioData audioSheet;
     //[SerializeField] Vector3 targetPosition;
     //[SerializeField] GameObject enemyDetector;
     public float life = 100; // delte later
@@ -188,7 +188,7 @@ public class UnitStateManager : MonoBehaviour
 
     public void OnFootstep()
     {
-        PlayOneShot(audioSheet.exampleReference01);
+        //PlayOneShot();
     }
 
     public void OnEnemyHit()

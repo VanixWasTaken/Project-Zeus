@@ -498,14 +498,16 @@ MonoBehaviour:
   - ENEMIES
   - ENV
   - EXPL
+  - FIGHTER
   - G_DIA_ENG
   - G_DIA_GER
   - MENU
   - NARR_ENG
   - NARR_GER
+  - RECON
   - UI
   - UNIT
-  - WEAPONS
+  - WORKER
   BanksToLoad:
   - _Master
   - _Master.strings
