@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using static FMODUnity.RuntimeManager;
+using static FMODAudioData.SoundID;
 
 public class DeployMenuUnitOverviewScript : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI workersText;
     [SerializeField] TextMeshProUGUI reconsText;
     [SerializeField] TextMeshProUGUI fightersText;
+    [SerializeField] FMODAudioData audioData;
 
     #endregion
 
@@ -28,6 +31,8 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
 
     private void Start()
     {
+        LoadBank("UI");
+
         // For ease of use a local reference
         availableWorkers = GameDataManager.Instance.availableWorkers;
         availableRecons = GameDataManager.Instance.availableRecons;
@@ -47,16 +52,21 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
     #region Buttons
 
     /// <summary>
-    /// All units each habe two buttons, one for adding and one for subtracting the count inside the text.
+    /// All units each have two buttons, one for adding and one for subtracting the count inside the text.
     /// Can't count above maximum individual unit count or less than zero.
     /// </summary>
     public void OnWorkersAddClicked()
     {
         if (currentPickedWorkers < availableWorkers)
         {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIClick));
             currentPickedWorkers++;
             GameDataManager.Instance.IncreaseCurrentKilogram(10);
             GameDataManager.Instance.pickedWorkers++;
+        }
+        else
+        {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIError));
         }
         workersText.text = ("Workers\t\t: " + currentPickedWorkers + " / " + availableWorkers);
     }
@@ -64,9 +74,14 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
     {
         if (currentPickedWorkers > 0)
         {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIDeselect));
             currentPickedWorkers--;
             GameDataManager.Instance.DecreaseCurrentKilogram(10);
             GameDataManager.Instance.pickedWorkers--;
+        }
+        else
+        {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIError));
         }
         workersText.text = ("Workers\t\t: " + currentPickedWorkers + " / " + availableWorkers);
     }
@@ -75,9 +90,14 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
     {
         if (currentPickedRecons < availableRecons)
         {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIClick));
             currentPickedRecons++;
             GameDataManager.Instance.IncreaseCurrentKilogram(10);
             GameDataManager.Instance.pickedRecons++;
+        }
+        else
+        {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIError));
         }
         reconsText.text = ("Recons\t\t: " + currentPickedRecons + " / " + availableRecons);
     }
@@ -85,20 +105,31 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
     {
         if (currentPickedRecons > 0)
         {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIDeselect));
             currentPickedRecons--;
             GameDataManager.Instance.DecreaseCurrentKilogram(10);
             GameDataManager.Instance.pickedRecons--;
+        }
+        else
+        {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIError));
         }
         reconsText.text = ("Recons\t\t: " + currentPickedRecons + " / " + availableRecons);
     }
 
     public void OnFightersAddClicked()
     {
+        
         if (currentPickedFighters < availableFighters)
         {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIClick));
             currentPickedFighters++;
             GameDataManager.Instance.IncreaseCurrentKilogram(10);
             GameDataManager.Instance.pickedFighters++;
+        }
+        else
+        {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIError));
         }
         fightersText.text = ("Fighters\t\t: " + currentPickedFighters + " / " + availableFighters);
     }
@@ -106,9 +137,14 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
     {
         if (currentPickedFighters > 0)
         {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIDeselect));
             currentPickedFighters--;
             GameDataManager.Instance.DecreaseCurrentKilogram(10);
             GameDataManager.Instance.pickedFighters--;
+        }
+        else
+        {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIError));
         }
         fightersText.text = ("Fighters\t\t: " + currentPickedFighters + " / " + availableFighters);
     }

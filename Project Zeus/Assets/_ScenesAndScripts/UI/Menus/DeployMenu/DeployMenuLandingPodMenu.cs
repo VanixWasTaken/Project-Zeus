@@ -1,5 +1,7 @@
 using TMPro;
 using UnityEngine;
+using static FMODUnity.RuntimeManager;
+using static FMODAudioData.SoundID;
 
 public class DeployMenuLandingPodMenu : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class DeployMenuLandingPodMenu : MonoBehaviour
     [SerializeField] GameObject landingPodMenuGO;
     [SerializeField] TextMeshProUGUI landingPodKilogramText;
     [SerializeField] TextMeshProUGUI loot;
+    [SerializeField] FMODAudioData audioData;
 
     #endregion
 
@@ -24,6 +27,7 @@ public class DeployMenuLandingPodMenu : MonoBehaviour
 
     private void Start()
     {
+        LoadBank("UI");
         loot.text = "Loot\n" + GameDataManager.Instance.collectedLoot; 
     }
 
@@ -43,12 +47,20 @@ public class DeployMenuLandingPodMenu : MonoBehaviour
     {
         if (landingPodMenuGO.activeInHierarchy == false)
         {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIClick));
             landingPodMenuGO.SetActive(true);
         }
         else
         {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIDeselect));
             landingPodMenuGO.SetActive(false);
         }
+    }
+
+
+    public void OnButtonHovered()
+    {
+        PlayOneShot(audioData.GetSFXByName(SFXMenuUIHover));
     }
 
     #endregion

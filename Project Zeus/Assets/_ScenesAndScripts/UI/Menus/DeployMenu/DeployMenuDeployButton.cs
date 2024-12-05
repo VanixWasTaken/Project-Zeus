@@ -1,7 +1,8 @@
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
+using static FMODUnity.RuntimeManager;
+using static FMODAudioData.SoundID;
 
 public class DeployMenuDeployButton : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class DeployMenuDeployButton : MonoBehaviour
 
     [SerializeField] GameObject deployCutscene;
     [SerializeField] VideoPlayer videoPlayer;
+    [SerializeField] FMODAudioData UISheet;
 
     #endregion
 
@@ -18,10 +20,13 @@ public class DeployMenuDeployButton : MonoBehaviour
 
     private void Start()
     {
+        LoadBank("UI");
         if (videoPlayer != null) // Subscribe to the loopPointReached event to detect when the video ends
         {
             videoPlayer.loopPointReached += OnVideoEnd;
         }
+
+        
     }
 
     #region Buttons
@@ -30,6 +35,7 @@ public class DeployMenuDeployButton : MonoBehaviour
     {
         if (GameDataManager.Instance.currentKilogram <= GameDataManager.Instance.maxKilogram) // Checks if the current weight is inside the players maximum weight capacity
         {
+            PlayOneShot(UISheet.GetSFXByName(SFXMenuUIClick));
             deployCutscene.SetActive(true); // Small mp4 currently used as "cutscene" will most likely be removed later
         }
     }

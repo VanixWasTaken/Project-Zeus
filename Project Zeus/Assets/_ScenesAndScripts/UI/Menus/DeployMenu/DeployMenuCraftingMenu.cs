@@ -1,6 +1,7 @@
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
+using static FMODUnity.RuntimeManager;
+using static FMODAudioData.SoundID;
 
 public class DeployMenuCraftingMenu : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class DeployMenuCraftingMenu : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI loot;
     [SerializeField] GameObject craftingMenu;
+    [SerializeField] FMODAudioData audioData;
 
     #endregion
 
@@ -30,10 +32,12 @@ public class DeployMenuCraftingMenu : MonoBehaviour
     {
         if (craftingMenu.activeSelf == false)
         {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIClick));
             craftingMenu.SetActive(true);
         }
         else
         {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIDeselect));
             craftingMenu.SetActive(false);
         }
     }
@@ -43,8 +47,13 @@ public class DeployMenuCraftingMenu : MonoBehaviour
     {
         if (GameDataManager.Instance.collectedLoot > 0)
         {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIClick));
             GameDataManager.Instance.collectedLoot--;
             GameDataManager.Instance.availableWorkers++;
+        }
+        else
+        {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIError));
         }
     }
 
@@ -52,8 +61,13 @@ public class DeployMenuCraftingMenu : MonoBehaviour
     {
         if (GameDataManager.Instance.collectedLoot > 0)
         {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIClick));
             GameDataManager.Instance.collectedLoot--;
             GameDataManager.Instance.availableRecons++;
+        }
+        else
+        {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIError));
         }
     }
 
@@ -61,8 +75,13 @@ public class DeployMenuCraftingMenu : MonoBehaviour
     {
         if (GameDataManager.Instance.collectedLoot > 0)
         {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIClick));
             GameDataManager.Instance.collectedLoot--;
             GameDataManager.Instance.availableFighters++;
+        }
+        else
+        {
+            PlayOneShot(audioData.GetSFXByName(SFXMenuUIError));
         }
     }
     #endregion
