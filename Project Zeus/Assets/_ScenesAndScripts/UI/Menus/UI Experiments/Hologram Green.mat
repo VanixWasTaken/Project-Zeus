@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Hologram Blue
+  m_Name: Hologram Green
   m_Shader: {fileID: -6465566751694194690, guid: 0da02789b8e9ea443826f5e99d529cea,
     type: 3}
   m_Parent: {fileID: 0}
@@ -70,7 +70,7 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _Scroll_Speed: 0.5
+    - _Scroll_Speed: 5
     - _SrcBlend: 1
     - _Surface: 1
     - _WorkflowMode: 1
@@ -78,8 +78,8 @@ Material:
     - _ZWrite: 0
     - _ZWriteControl: 0
     m_Colors:
-    - _Fresnel_Color: {r: 0, g: 0.049282912, b: 5.3403134, a: 0}
+    - _Fresnel_Color: {r: 0.06380734, g: 4.310383, b: 0, a: 0}
     - _Hologram_Tiling: {r: 32, g: 1, b: 0, a: 0}
-    - _Main_Color: {r: 0, g: 1.4230622, b: 2.502222, a: 0}
+    - _Main_Color: {r: 0.49525285, g: 2.9960783, b: 0, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
