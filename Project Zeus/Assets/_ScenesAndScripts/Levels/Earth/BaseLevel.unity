@@ -141,7 +141,7 @@ PrefabInstance:
     - target: {fileID: 386283318288435204, guid: b6ee55fdccfc9de4bb851d392fd453c0,
         type: 3}
       propertyPath: m_TagString
-      value: CommandCenter
+      value: Dropship
       objectReference: {fileID: 0}
     - target: {fileID: 1176063971113869333, guid: b6ee55fdccfc9de4bb851d392fd453c0,
         type: 3}
