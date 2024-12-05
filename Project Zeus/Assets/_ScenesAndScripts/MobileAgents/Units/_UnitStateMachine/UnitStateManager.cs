@@ -13,7 +13,8 @@ public class UnitStateManager : MonoBehaviour
     public UnitWalkingState walkingState = new UnitWalkingState();
     public UnitDeactivatedState deactivatedState = new UnitDeactivatedState();
     public UnitWorkerMiningState workerMiningState = new UnitWorkerMiningState();
-    public UnitFighterFightingState fighterFightingState = new UnitFighterFightingState();
+    public UnitFighterFightingState fighterFightingState = new UnitFighterFightingState(); // DELETE LATER
+    public UnitFightingState fightingState = new UnitFightingState();
 
     #endregion
 
@@ -25,6 +26,7 @@ public class UnitStateManager : MonoBehaviour
     DropshipStateManager dropship; // needed to call function DepleteEnergy()
     public FMODAudioData audioSheet;
     public RightPartUIUnitDescription rightPartUIUnitDescription;
+    public Enemy enemy;
 
     #endregion
 
@@ -42,7 +44,7 @@ public class UnitStateManager : MonoBehaviour
     private float visionRange;
     private float attackRange;
     private float attackSpeed;
-    private float attackDamage;
+    private int attackDamage;
     private float carryingCapacity;
     public int energyDepletionRate; // Can be assigned in the Unit Prefabs, to make some Units more expensive than others
     public float energyDepletionInterval = 1; // Can be assigned in the Unit Prefabs, to make some Units more expensive than others
@@ -59,7 +61,7 @@ public class UnitStateManager : MonoBehaviour
     #endregion
 
 
-
+    #region Unity Build In
 
     void Awake()
     {
@@ -195,6 +197,23 @@ public class UnitStateManager : MonoBehaviour
         currentState.UpdateState(this);
     }
 
+    #region Animator
+
+    public void OnFootstep()
+    {
+        //PlayOneShot();
+    }
+
+    public void OnShooting()
+    {
+        enemy.TakeDamage(attackDamage);
+        Debug.Log("Damage: " + attackDamage);
+    }
+
+    #endregion
+
+    #endregion
+
 
 
     #region Custom Functions()
@@ -250,19 +269,6 @@ public class UnitStateManager : MonoBehaviour
         }
     }
 
-    public void OnFootstep()
-    {
-        //PlayOneShot();
-    }
-
-    public void OnEnemyHit()
-    {
-        if (currentState == fighterFightingState)
-        {
-            currentState.OnEnemyHit(this);
-        }
-    }
-
     public void Die()
     {
 
@@ -310,7 +316,7 @@ public class UnitStateManager : MonoBehaviour
         }
     }
 
-    public void SetClass(UnitClass _unitclass)
+    public void SetClass(UnitClass _unitclass) // Sets the current class to the intended unit
     {
         unitClass = _unitclass;
         Debug.Log("UnitClass set  to " + unitClass);
@@ -319,6 +325,15 @@ public class UnitStateManager : MonoBehaviour
     private void DepleteEnergy(int _amount)
     {
         dropship.DepleteEnergy(_amount);
+    }
+
+    public void ScanForEnemies(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            enemy = other.GetComponent<Enemy>();
+            SwitchStates(fightingState);
+        }
     }
 
     public IEnumerator EnergyDepletion(float _depletionInterval)

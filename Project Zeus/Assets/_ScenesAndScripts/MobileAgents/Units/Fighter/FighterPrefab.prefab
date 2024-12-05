@@ -935,7 +935,7 @@ Animator:
   m_GameObject: {fileID: 5059330462096545759}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 4c179d47270fde849b2d6fc246ee1257, type: 3}
-  m_Controller: {fileID: 9100000, guid: 9809e721e8c9c14408912482c3648b41, type: 2}
+  m_Controller: {fileID: 9100000, guid: 7705ea3469088704da4a3f25ba377019, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 1
@@ -1034,8 +1034,9 @@ MonoBehaviour:
   animator: {fileID: 0}
   navMeshAgent: {fileID: 0}
   audioSheet: {fileID: 0}
-  life: 100
   rightPartUIUnitDescription: {fileID: 6760945820301196620}
+  enemy: {fileID: 0}
+  health: 100
   energyDepletionRate: 5
   energyDepletionInterval: 5
   collectedEnergy: 0
@@ -1068,7 +1069,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   holdingItemsInt: 0
-  isActive: 1
+  isActive: 0
 --- !u!1 &5407630381268824551
 GameObject:
   m_ObjectHideFlags: 0
