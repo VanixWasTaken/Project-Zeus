@@ -8,7 +8,7 @@ public class PlayableCharactersFriendlyUnitsSpawner : MonoBehaviour
 
     [SerializeField] GameObject workerPrefab;
     [SerializeField] GameObject reconPrefab;
-    [SerializeField] GameObject gathererPrefab;
+    [SerializeField] GameObject fighterPrefab;
     [SerializeField] GameObject friendlyUnitsGO;
 
     #endregion
@@ -33,13 +33,13 @@ public class PlayableCharactersFriendlyUnitsSpawner : MonoBehaviour
             Vector3 spawnPosition = friendlyUnitsGO.transform.position + new Vector3(xOffset, 0, zOffset);
             Instantiate(workerPrefab, spawnPosition, Quaternion.identity, friendlyUnitsGO.transform);
         }
-        for (int i = 0; i < GameDataManager.Instance.pickedGatherers; i++)
+        for (int i = 0; i < GameDataManager.Instance.pickedFighters; i++)
         {
             // Determines a random position around the predetermined spawnpoint where each individual unit should spawn
             float xOffset = Random.Range(-spawnAreaWidth, spawnAreaWidth);
             float zOffset = Random.Range(-spawnAreaWidth, spawnAreaWidth);
             Vector3 spawnPosition = friendlyUnitsGO.transform.position + new Vector3(xOffset, 0, zOffset);
-            Instantiate(gathererPrefab, spawnPosition, Quaternion.identity, friendlyUnitsGO.transform);
+            Instantiate(fighterPrefab, spawnPosition, Quaternion.identity, friendlyUnitsGO.transform);
         }
         for (int i = 0; i < GameDataManager.Instance.pickedRecons; i++)
         {

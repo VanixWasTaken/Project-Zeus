@@ -57,12 +57,12 @@ public class DeployMenuCraftingMenu : MonoBehaviour
         }
     }
 
-    public void OnCraftGathererButtonClicked()
+    public void OnCraftFighterButtonClicked()
     {
         if (GameDataManager.Instance.collectedLoot > 0)
         {
             GameDataManager.Instance.collectedLoot--;
-            GameDataManager.Instance.availableGatherers++;
+            GameDataManager.Instance.availableFighters++;
         }
     }
     #endregion

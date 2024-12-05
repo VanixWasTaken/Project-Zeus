@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1176063971113869333}
   - component: {fileID: 8345761443313743947}
   m_Layer: 0
-  m_Name: CommandCenterPrefab
+  m_Name: DropshipCenterPrefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCamera: {fileID: 0}
-  commandCenterObject: {fileID: 0}
+  dropshipObject: {fileID: 386283318288435204}
   energyMeter: {fileID: 0}
   unit: {fileID: 0}
   buildingButton: {fileID: 0}

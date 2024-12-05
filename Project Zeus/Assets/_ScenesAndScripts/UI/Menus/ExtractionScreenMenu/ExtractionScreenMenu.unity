@@ -282,14 +282,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableWorkers: 6
-  pickedWorkers: 2
-  extractedWorkers: 1
   availableRecons: 6
+  availableFighters: 0
+  pickedWorkers: 2
   pickedRecons: 2
+  pickedFighters: 0
+  extractedWorkers: 1
   extractedRecons: 0
-  availableGatherers: 6
-  pickedGatherers: 2
-  extractedGatherers: 2
+  extractedFighters: 0
   maxKilogram: 100
   currentKilogram: 0
   currentEnergy: 0
@@ -1547,7 +1547,7 @@ MonoBehaviour:
   returnCutscene: {fileID: 1494312726}
   workersText: {fileID: 510038553}
   reconsText: {fileID: 586983626}
-  gatherersText: {fileID: 1946370450}
+  fightersText: {fileID: 0}
 --- !u!1 &1494312726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1851,7 +1851,7 @@ GameObject:
   - component: {fileID: 1946370451}
   - component: {fileID: 1946370450}
   m_Layer: 5
-  m_Name: GatherersText
+  m_Name: FightersText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1896,7 +1896,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Gatherers\t\t: XX"
+  m_text: "Fighters\t\t: XX"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2151,7 +2151,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2132312549}
   m_Layer: 5
-  m_Name: Gatherers
+  m_Name: Fighters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class GathererLoot : MonoBehaviour
+public class WorkerLoot : MonoBehaviour
 {
 
     #region References

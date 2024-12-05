@@ -898,7 +898,7 @@ GameObject:
   - component: {fileID: 5320346246174388841}
   - component: {fileID: 6760945820301196620}
   m_Layer: 15
-  m_Name: GathererPrefab
+  m_Name: FighterPrefab
   m_TagString: Gatherer
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

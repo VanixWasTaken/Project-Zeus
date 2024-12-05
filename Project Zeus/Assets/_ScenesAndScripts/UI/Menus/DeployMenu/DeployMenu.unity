@@ -1987,11 +1987,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   availableWorkers: 4
-  pickedWorkers: 0
   availableRecons: 4
+  availableFighters: 0
+  pickedWorkers: 0
   pickedRecons: 0
-  availableGatherers: 4
-  pickedGatherers: 0
+  pickedFighters: 0
+  extractedWorkers: 0
+  extractedRecons: 0
+  extractedFighters: 0
   maxKilogram: 100
   currentKilogram: 0
   currentEnergy: 0
@@ -5607,7 +5610,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Craft Gatherer
+  m_text: 'Craft Fighter
 
 '
   m_isRightToLeft: 0
@@ -5831,7 +5834,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   workersText: {fileID: 1707975560}
   reconsText: {fileID: 2044317568}
-  gatherersText: {fileID: 2082317870}
+  fightersText: {fileID: 2082317870}
 --- !u!1 &1980735915
 GameObject:
   m_ObjectHideFlags: 0
@@ -5845,7 +5848,7 @@ GameObject:
   - component: {fileID: 1980735918}
   - component: {fileID: 1980735917}
   m_Layer: 5
-  m_Name: CraftGatherer
+  m_Name: CraftFighter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6244,7 +6247,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2058438296}
   m_Layer: 5
-  m_Name: Gatherers
+  m_Name: Fighters
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6550,7 +6553,7 @@ GameObject:
   - component: {fileID: 2082317871}
   - component: {fileID: 2082317870}
   m_Layer: 5
-  m_Name: GatherersText
+  m_Name: FightersText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6595,7 +6598,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Gatherers\t\t: XX / YY"
+  m_text: "Fighters\t\t: XX / YY"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

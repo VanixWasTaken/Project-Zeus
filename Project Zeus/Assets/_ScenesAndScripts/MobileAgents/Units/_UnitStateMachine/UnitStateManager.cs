@@ -14,7 +14,7 @@ public class UnitStateManager : MonoBehaviour
 
     public UnitWorkerMiningState workerMiningState = new UnitWorkerMiningState();
 
-    public UnitGathererFightingState gathererFightingState = new UnitGathererFightingState();
+    public UnitFighterFightingState fighterFightingState = new UnitFighterFightingState();
     #endregion
 
     #region References Variables
@@ -23,7 +23,7 @@ public class UnitStateManager : MonoBehaviour
     GameObject selectionIndicator;
     //[SerializeField] Camera mainCamera;
     //[SerializeField] Vector3 mouseClickPos;
-    CommandCenterStateManager commandCenter; // needed to call function DepleteEnergy()
+    DropshipStateManager dropship; // needed to call function DepleteEnergy()
     public FMODAudioData audioSheet;
     //[SerializeField] Vector3 targetPosition;
     //[SerializeField] GameObject enemyDetector;
@@ -91,7 +91,7 @@ public class UnitStateManager : MonoBehaviour
             }
         }
 
-        if (commandCenter == null)
+        if (dropship == null)
         {
             GameObject[] cC = GameObject.FindGameObjectsWithTag("CommandCenter");
 
@@ -99,11 +99,11 @@ public class UnitStateManager : MonoBehaviour
             {
                 if (c != null)
                 {
-                    commandCenter = c.GetComponent<CommandCenterStateManager>();
+                    dropship = c.GetComponent<DropshipStateManager>();
                 }
             }
 
-            if (commandCenter == null)
+            if (dropship == null)
             {
                 Debug.LogError("CommandCenter could not be found and assigned");
             }
@@ -144,7 +144,7 @@ public class UnitStateManager : MonoBehaviour
     {
         if (currentState != deactivatedState)
         {
-            if (currentState != gathererFightingState)
+            if (currentState != fighterFightingState)
             {
                 navMeshAgent.SetDestination(targetPosition);
                 SwitchStates(walkingState);
@@ -160,11 +160,11 @@ public class UnitStateManager : MonoBehaviour
             if (other.gameObject.CompareTag("Screamer") || other.gameObject.CompareTag("Enemy"))
             {
                 enemiesInRange.Add(other.gameObject);
-                if (currentState != gathererFightingState)
+                if (currentState != fighterFightingState)
                 {
                     navMeshAgent.isStopped = true;
                     navMeshAgent.ResetPath();
-                    SwitchStates(gathererFightingState);
+                    SwitchStates(fighterFightingState);
                 }
             }
         }
@@ -193,7 +193,7 @@ public class UnitStateManager : MonoBehaviour
 
     public void OnEnemyHit()
     {
-        if (currentState == gathererFightingState)
+        if (currentState == fighterFightingState)
         {
             currentState.OnEnemyHit(this);
         }
@@ -217,9 +217,9 @@ public class UnitStateManager : MonoBehaviour
 
     public void TakeDamage(float _incomingDamage, EnemyStateManager _enemy)
     {
-        if (tag == "Gatherer")
+        if (tag == "Fighter")
         {
-            SwitchStates(gathererFightingState);
+            SwitchStates(fighterFightingState);
         }
         // very basic implementation, can be modified later
         life -= _incomingDamage;
@@ -248,7 +248,7 @@ public class UnitStateManager : MonoBehaviour
 
     private void DepleteEnergy(int _amount)
     {
-        commandCenter.DepleteEnergy(_amount);
+        dropship.DepleteEnergy(_amount);
     }
 
     public IEnumerator EnergyDepletion(float _depletionInterval)

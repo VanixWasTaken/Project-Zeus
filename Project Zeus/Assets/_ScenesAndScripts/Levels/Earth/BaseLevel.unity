@@ -3228,13 +3228,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableWorkers: 0
   availableRecons: 0
-  availableGatherers: 0
+  availableFighters: 0
   pickedWorkers: 1
   pickedRecons: 1
-  pickedGatherers: 1
+  pickedFighters: 0
   extractedWorkers: 0
   extractedRecons: 0
-  extractedGatherers: 0
+  extractedFighters: 0
   maxKilogram: 100
   currentKilogram: 0
   currentEnergy: 0
@@ -12025,8 +12025,7 @@ MonoBehaviour:
     type: 3}
   reconPrefab: {fileID: 277383952719586449, guid: 0d06d7afa67af9a4e8b78ae07628fe8e,
     type: 3}
-  gathererPrefab: {fileID: 5059330462096545759, guid: 75d767ddd96a0974ba4b9d59859b6f61,
-    type: 3}
+  fighterPrefab: {fileID: 0}
   friendlyUnitsGO: {fileID: 593364197}
 --- !u!1001 &593401468
 PrefabInstance:

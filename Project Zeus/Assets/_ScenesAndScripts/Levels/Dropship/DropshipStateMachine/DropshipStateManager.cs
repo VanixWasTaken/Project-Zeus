@@ -4,14 +4,14 @@ using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class CommandCenterStateManager : MonoBehaviour
+public class DropshipStateManager : MonoBehaviour
 {
-    
-    #region CommandCenter States
 
-    CommandCenterBaseState currentState;
-    public CommandCenterIdleState idleState = new CommandCenterIdleState();
-    public CommandCenterClickedState clickedState = new CommandCenterClickedState();
+    #region Dropship States
+
+    DropshipBaseState currentState;
+    public DropshipIdleState idleState = new DropshipIdleState();
+    public DropshipClickedState clickedState = new DropshipClickedState();
 
     #endregion
 
@@ -19,7 +19,7 @@ public class CommandCenterStateManager : MonoBehaviour
 
     private InputActions inputActions;
     [SerializeField] Camera mainCamera;
-    [SerializeField] GameObject commandCenterObject;
+    [SerializeField] GameObject dropshipObject;
     [SerializeField] TextMeshProUGUI energyMeter;
     [SerializeField] UnitStateManager unit;
     public GameObject buildingButton;
@@ -27,7 +27,7 @@ public class CommandCenterStateManager : MonoBehaviour
     public GameObject extracttionUnitInfo;
     public TextMeshProUGUI extractionUIWorkers;
     public TextMeshProUGUI extractionUIRecons;
-    public TextMeshProUGUI extractionUIGatherers;
+    public TextMeshProUGUI extractionUIFighters;
     public TextMeshProUGUI gatheredLootUI;
     public Button extractionUIExtractButton;
     public GameObject extractionWarningMenu;
@@ -40,7 +40,7 @@ public class CommandCenterStateManager : MonoBehaviour
     public int collectedCompleteEnergy;
     public int workersInsideExtraction;
     public int reconsInsideExtraction;
-    public int gatherersInsideExtraction;
+    public int fightersInsideExtraction;
     bool allUnitsInsideExtraction;
 
     #endregion
@@ -112,12 +112,12 @@ public class CommandCenterStateManager : MonoBehaviour
             reconsInsideExtraction++;
         }
 
-        if (other.CompareTag("Gatherer"))
+        if (other.CompareTag("Fighter"))
         {
-            gatherersInsideExtraction++;
+            fightersInsideExtraction++;
 
             UnitStateManager unitStateManager = other.GetComponent<UnitStateManager>();
-            GathererLoot lootOnUnit = other.GetComponent<GathererLoot>();
+            WorkerLoot lootOnUnit = other.GetComponent<WorkerLoot>();
 
             if (unitStateManager != null) // Check if the component was found
             {
@@ -135,7 +135,7 @@ public class CommandCenterStateManager : MonoBehaviour
             }
             else
             {
-                Debug.LogError("UnitStateManager component not found on the Gatherer!");
+                Debug.LogError("UnitStateManager component not found on the Fighters!");
             }
         }
     }
@@ -152,9 +152,9 @@ public class CommandCenterStateManager : MonoBehaviour
             reconsInsideExtraction--;
         }
 
-        if (other.CompareTag("Gatherer"))
+        if (other.CompareTag("Fighter"))
         {
-            gatherersInsideExtraction--;
+            fightersInsideExtraction--;
         }
     }
 
@@ -171,7 +171,7 @@ public class CommandCenterStateManager : MonoBehaviour
             extractionWarningMenu.SetActive(false);
             GameDataManager.Instance.extractedWorkers = workersInsideExtraction;
             GameDataManager.Instance.extractedRecons = reconsInsideExtraction;
-            GameDataManager.Instance.extractedGatherers = gatherersInsideExtraction;
+            GameDataManager.Instance.extractedFighters = fightersInsideExtraction;
             SceneManager.LoadScene("ExtractionScreenMenu");
         }
         else
@@ -189,7 +189,7 @@ public class CommandCenterStateManager : MonoBehaviour
     {
         GameDataManager.Instance.extractedWorkers = workersInsideExtraction;
         GameDataManager.Instance.extractedRecons = reconsInsideExtraction;
-        GameDataManager.Instance.extractedGatherers = gatherersInsideExtraction;
+        GameDataManager.Instance.extractedFighters = fightersInsideExtraction;
         SceneManager.LoadScene("ExtractionScreenMenu");
     }
 
@@ -200,7 +200,7 @@ public class CommandCenterStateManager : MonoBehaviour
 
     #region Custom Functions()
 
-    public void SwitchStates(CommandCenterBaseState state)
+    public void SwitchStates(DropshipBaseState state)
     {
         currentState = state;
         state.EnterState(this);
@@ -224,7 +224,7 @@ public class CommandCenterStateManager : MonoBehaviour
 
     private void AllUnitsInsideExitCheck()
     {
-        if (GameDataManager.Instance.pickedWorkers + GameDataManager.Instance.pickedRecons + GameDataManager.Instance.pickedGatherers == workersInsideExtraction + reconsInsideExtraction + gatherersInsideExtraction)
+        if (GameDataManager.Instance.pickedWorkers + GameDataManager.Instance.pickedRecons + GameDataManager.Instance.pickedFighters == workersInsideExtraction + reconsInsideExtraction + fightersInsideExtraction)
         {
             allUnitsInsideExtraction = true;
         }
@@ -267,12 +267,12 @@ public class CommandCenterStateManager : MonoBehaviour
         // Applies a shader if you hover above the commandCenter
         if (raycastHit)
         {
-            commandCenterObject.layer = LayerMask.NameToLayer("Outline");
+            dropshipObject.layer = LayerMask.NameToLayer("Outline");
             hoversAbove = true;
         }
         else
         {
-            commandCenterObject.layer = LayerMask.NameToLayer("Default");
+            dropshipObject.layer = LayerMask.NameToLayer("Default");
             hoversAbove = false;
         }
 
