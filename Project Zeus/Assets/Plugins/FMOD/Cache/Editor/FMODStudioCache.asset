@@ -171,33 +171,6 @@ MonoBehaviour:
   lastModified: 638689938423401361
   FileSizes: []
   Exists: 1
---- !u!114 &-8238007347079851127
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ceb653cd98e289a4e8697a1af55201f2, type: 3}
-  m_Name: event:/SFX/UI/SFXMenuUISelect
-  m_EditorClassIdentifier: 
-  Path: event:/SFX/UI/SFXMenuUISelect
-  Guid:
-    Data1: 106418403
-    Data2: 1255639063
-    Data3: 1897569715
-    Data4: 502689487
-  Banks:
-  - {fileID: 5847732944344907864}
-  IsStream: 0
-  Is3D: 0
-  IsOneShot: 1
-  Parameters: []
-  MinDistance: 1
-  MaxDistance: 20
-  Length: 0
 --- !u!114 &-7770340481219558794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -834,7 +807,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/_Master.bank
   Name: _Master
   StudioPath: bank:/_Master/_Master
-  lastModified: 638689938918734576
+  lastModified: 638689965886069724
   FileSizes: []
   Exists: 1
 --- !u!114 &-2504981389508452464
@@ -1160,10 +1133,10 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/_Master.strings.bank
   Name: _Master.strings
   StudioPath: bank:/_Master/_Master.strings
-  lastModified: 638689938918734576
+  lastModified: 638689965886120065
   FileSizes:
   - Name: 
-    Value: 4386
+    Value: 4348
   Exists: 1
 --- !u!114 &-182486839350285138
 MonoBehaviour:
@@ -1340,7 +1313,6 @@ MonoBehaviour:
   - {fileID: 692095643721329462}
   - {fileID: 3246783605568182152}
   - {fileID: -3247299974380126302}
-  - {fileID: -8238007347079851127}
   - {fileID: -1836372754921722713}
   - {fileID: -4058526605559013998}
   - {fileID: -6150439623568191834}
@@ -1356,7 +1328,7 @@ MonoBehaviour:
   - {fileID: -2825738890928706980}
   StringsBanks:
   - {fileID: -863181981819171695}
-  cacheTime: 638689938918734576
+  cacheTime: 638689965886120065
   cacheVersion: 131620
 --- !u!114 &92513434431448552
 MonoBehaviour:
@@ -1633,10 +1605,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Path: event:/SFX/UI/SFXMenuUIDeselect
   Guid:
-    Data1: -264740558
-    Data2: 1099579583
-    Data3: 1526336923
-    Data4: -1134892428
+    Data1: 1783127288
+    Data2: 1314071401
+    Data3: -1180665703
+    Data4: 948405720
   Banks:
   - {fileID: 5847732944344907864}
   IsStream: 0
@@ -2464,7 +2436,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/UI.bank
   Name: UI
   StudioPath: bank:/SFX/UI
-  lastModified: 638689938918709495
+  lastModified: 638689965885972808
   FileSizes: []
   Exists: 1
 --- !u!114 &6008245791710856198
