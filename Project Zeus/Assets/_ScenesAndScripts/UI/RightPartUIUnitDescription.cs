@@ -41,9 +41,9 @@ public class RightPartUIUnitDescription : MonoBehaviour
         {
             unitType = "Recon";
         }
-        else if (gameObject.tag == "Gatherer")
+        else if (gameObject.tag == "Fighter")
         {
-            unitType = "Gatherer";
+            unitType = "Fighter";
         }
 
         textMeshArray = textMeshParent.GetComponentsInChildren<TextMeshProUGUI>();
