@@ -20,7 +20,6 @@ public class DeployMenuDeployButton : MonoBehaviour
 
     private void Start()
     {
-        LoadBank("UI");
         if (videoPlayer != null) // Subscribe to the loopPointReached event to detect when the video ends
         {
             videoPlayer.loopPointReached += OnVideoEnd;
@@ -50,6 +49,7 @@ public class DeployMenuDeployButton : MonoBehaviour
 
     private void OnVideoEnd(VideoPlayer vp) // Activates when the video ends and changes scene
     {
+        UnloadBank("UI");
         SceneManager.LoadScene("BaseLevel");
     }
 

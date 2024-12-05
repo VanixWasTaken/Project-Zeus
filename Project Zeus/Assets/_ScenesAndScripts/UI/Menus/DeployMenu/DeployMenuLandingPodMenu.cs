@@ -27,7 +27,6 @@ public class DeployMenuLandingPodMenu : MonoBehaviour
 
     private void Start()
     {
-        LoadBank("UI");
         loot.text = "Loot\n" + GameDataManager.Instance.collectedLoot; 
     }
 

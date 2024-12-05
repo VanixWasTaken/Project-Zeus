@@ -29,10 +29,14 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
 
     #region Unity Build In
 
+    private void Awake()
+    {
+        // load FMOD bank to be able to play UI sounds
+        LoadBank("UI");
+    }
+
     private void Start()
     {
-        LoadBank("UI");
-
         // For ease of use a local reference
         availableWorkers = GameDataManager.Instance.availableWorkers;
         availableRecons = GameDataManager.Instance.availableRecons;
