@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UnitGathererFightingState : UnitBaseState
+public class UnitFighterFightingState : UnitBaseState
 {
 
     #region References

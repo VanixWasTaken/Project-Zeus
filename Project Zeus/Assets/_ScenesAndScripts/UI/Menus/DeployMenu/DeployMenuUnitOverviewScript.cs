@@ -8,7 +8,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI workersText;
     [SerializeField] TextMeshProUGUI reconsText;
-    [SerializeField] TextMeshProUGUI gatherersText;
+    [SerializeField] TextMeshProUGUI fightersText;
 
     #endregion
 
@@ -18,8 +18,8 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
     private int availableWorkers;
     private int currentPickedRecons = 0;
     private int availableRecons;
-    private int currentPickedGatherers = 0;
-    private int availableGatherers;
+    private int currentPickedFighters = 0;
+    private int availableFighters;
 
     #endregion
 
@@ -31,7 +31,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         // For ease of use a local reference
         availableWorkers = GameDataManager.Instance.availableWorkers;
         availableRecons = GameDataManager.Instance.availableRecons;
-        availableGatherers = GameDataManager.Instance.availableGatherers;
+        availableFighters = GameDataManager.Instance.availableFighters;
 
 
         UpdateTexts(); // Reads the current units available and correctly formats the texts
@@ -92,25 +92,25 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
         reconsText.text = ("Recons\t\t: " + currentPickedRecons + " / " + availableRecons);
     }
 
-    public void OnGatherersAddClicked()
+    public void OnFightersAddClicked()
     {
-        if (currentPickedGatherers < availableGatherers)
+        if (currentPickedFighters < availableFighters)
         {
-            currentPickedGatherers++;
+            currentPickedFighters++;
             GameDataManager.Instance.IncreaseCurrentKilogram(10);
-            GameDataManager.Instance.pickedGatherers++;
+            GameDataManager.Instance.pickedFighters++;
         }
-        gatherersText.text = ("Gatherers\t\t: " + currentPickedGatherers + " / " + availableGatherers);
+        fightersText.text = ("Fighters\t\t: " + currentPickedFighters + " / " + availableFighters);
     }
-    public void OnGatherersSubtractClicked()
+    public void OnFightersSubtractClicked()
     {
-        if (currentPickedGatherers > 0)
+        if (currentPickedFighters > 0)
         {
-            currentPickedGatherers--;
+            currentPickedFighters--;
             GameDataManager.Instance.DecreaseCurrentKilogram(10);
-            GameDataManager.Instance.pickedGatherers--;
+            GameDataManager.Instance.pickedFighters--;
         }
-        gatherersText.text = ("Gatherers\t\t: " + currentPickedGatherers + " / " + availableGatherers);
+        fightersText.text = ("Fighters\t\t: " + currentPickedFighters + " / " + availableFighters);
     }
 
     #endregion
@@ -124,7 +124,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
     {
         workersText.text = ("Workers\t\t: " + currentPickedWorkers + " / " + GameDataManager.Instance.availableWorkers);
         reconsText.text = ("Recons\t\t: " + currentPickedRecons + " / " + GameDataManager.Instance.availableRecons);
-        gatherersText.text = ("Gatherers\t\t: " + currentPickedGatherers + " / " + GameDataManager.Instance.availableGatherers);
+        fightersText.text = ("Fighters\t\t: " + currentPickedFighters + " / " + GameDataManager.Instance.availableFighters);
     }
 
     #endregion

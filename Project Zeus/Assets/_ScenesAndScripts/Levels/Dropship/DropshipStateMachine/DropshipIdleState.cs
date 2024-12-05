@@ -2,7 +2,7 @@ using TMPro.Examples;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CommandCenterIdleState : CommandCenterBaseState
+public class DropshipIdleState : DropshipBaseState
 {
 
     #region Reference
@@ -14,15 +14,15 @@ public class CommandCenterIdleState : CommandCenterBaseState
 
     #region Unity Build In
 
-    public override void EnterState(CommandCenterStateManager commandCenter)
+    public override void EnterState(DropshipStateManager dropship)
     {
         inputActions = new InputActions();
         inputActions.Mouse.Enable();
     }
 
-    public override void UpdateState(CommandCenterStateManager commandCenter)
+    public override void UpdateState(DropshipStateManager dropship)
     {
-        ClickedOnBase(commandCenter); // CURRENTLY DISABLED -- Switches states if you click on the commandCenter
+        ClickedOnBase(dropship); // CURRENTLY DISABLED -- Switches states if you click on the dropship
     }
 
     #endregion
@@ -31,9 +31,9 @@ public class CommandCenterIdleState : CommandCenterBaseState
 
     #region Custom Functions()
 
-    private void ClickedOnBase(CommandCenterStateManager commandCenter)
+    private void ClickedOnBase(DropshipStateManager dropship)
     {
-        if (inputActions.Mouse.Click.IsPressed() && commandCenter.hoversAbove)
+        if (inputActions.Mouse.Click.IsPressed() && dropship.hoversAbove)
         {
             //commandCenter.SwitchStates(commandCenter.clickedState);
             //Debug.Log(commandCenter.collectedCompleteEnergy);

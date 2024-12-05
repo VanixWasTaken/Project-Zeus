@@ -15,7 +15,7 @@ public class DeathScreenSceneHandler : MonoBehaviour
     // references for the lost units display
     [SerializeField] TextMeshProUGUI workersText;
     [SerializeField] TextMeshProUGUI reconsText;
-    [SerializeField] TextMeshProUGUI gatherersText;
+    [SerializeField] TextMeshProUGUI fightersText;
 
     #endregion
 
@@ -24,7 +24,7 @@ public class DeathScreenSceneHandler : MonoBehaviour
     // variables to calculate the lost units
     int lostWorkers;
     int lostRecons;
-    int lostGatherers;
+    int lostFighters;
 
     int[] unitCount;
 
@@ -65,7 +65,7 @@ public class DeathScreenSceneHandler : MonoBehaviour
         GameDataManager.Instance.currentKilogram = 0;
         GameDataManager.Instance.pickedWorkers = 0;
         GameDataManager.Instance.pickedRecons = 0;
-        GameDataManager.Instance.pickedGatherers = 0;
+        GameDataManager.Instance.pickedFighters = 0;
         SceneManager.LoadScene("DeployMenu");
     }
 
@@ -99,8 +99,8 @@ public class DeathScreenSceneHandler : MonoBehaviour
             }
             else if (i == 2)
             {
-                lostGatherers = unitCount[i];
-                gatherersText.text = ("Gatherers\t\t: " + lostGatherers);
+                lostFighters = unitCount[i];
+                fightersText.text = ("Gatherers\t\t: " + lostFighters);
             }
         }
     }

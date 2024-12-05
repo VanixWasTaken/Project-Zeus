@@ -14,7 +14,7 @@ public class ExtractionScreenSceneHandler : MonoBehaviour
     // references for the lost units display
     [SerializeField] TextMeshProUGUI workersText;
     [SerializeField] TextMeshProUGUI reconsText;
-    [SerializeField] TextMeshProUGUI gatherersText;
+    [SerializeField] TextMeshProUGUI fightersText;
 
     #endregion
 
@@ -23,7 +23,7 @@ public class ExtractionScreenSceneHandler : MonoBehaviour
     // variables to display the units that return
     int savedWorkers;
     int savedRecons;
-    int savedGatherers;
+    int savedFighters;
 
     int[] unitCount;
 
@@ -89,8 +89,8 @@ public class ExtractionScreenSceneHandler : MonoBehaviour
             }
             else if (i == 2)
             {
-                savedGatherers = unitCount[i];
-                gatherersText.text = ("Gatherers\t\t: " + savedGatherers);
+                savedFighters = unitCount[i];
+                fightersText.text = ("Fighters\t\t: " + savedFighters);
             }
         }
     }
@@ -113,7 +113,7 @@ public class ExtractionScreenSceneHandler : MonoBehaviour
             }
             else if (i == 2)
             {
-                losses[i] = GameDataManager.Instance.pickedGatherers - savedGatherers;
+                losses[i] = GameDataManager.Instance.pickedFighters - savedFighters;
             }
 
             Debug.Log(losses[i]);
@@ -128,10 +128,10 @@ public class ExtractionScreenSceneHandler : MonoBehaviour
         GameDataManager.Instance.currentKilogram = 0;
         GameDataManager.Instance.extractedWorkers = 0;
         GameDataManager.Instance.extractedRecons = 0;
-        GameDataManager.Instance.extractedGatherers = 0;
+        GameDataManager.Instance.extractedFighters = 0;
         GameDataManager.Instance.pickedWorkers = 0;
         GameDataManager.Instance.pickedRecons = 0;
-        GameDataManager.Instance.pickedGatherers = 0;
+        GameDataManager.Instance.pickedFighters = 0;
     }
 
     #endregion

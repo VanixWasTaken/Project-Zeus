@@ -17,9 +17,9 @@ public class Looting : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Gatherer"))
+        if (other.CompareTag("Fighter"))
         {
-            GathererLoot lootOnUnit = other.GetComponent<GathererLoot>();
+            WorkerLoot lootOnUnit = other.GetComponent<WorkerLoot>();
             UnitStateManager unitStateManager = other.GetComponent<UnitStateManager>();
 
             unitStateManager.collectedLoot++;

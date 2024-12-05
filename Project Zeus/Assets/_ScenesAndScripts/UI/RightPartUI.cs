@@ -21,7 +21,7 @@ public class RightPartUI : MonoBehaviour
 
     void Start()
     {
-        unitInstances = GameDataManager.Instance.pickedWorkers + GameDataManager.Instance.pickedRecons + GameDataManager.Instance.pickedGatherers;
+        unitInstances = GameDataManager.Instance.pickedWorkers + GameDataManager.Instance.pickedRecons + GameDataManager.Instance.pickedFighters;
         
         for (int i = 0; i < unitInstances; i++)
         {

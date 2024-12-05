@@ -9,17 +9,17 @@ public class GameDataManager : MonoBehaviour
     [Header("Available Units")]
     public int availableWorkers = 0;
     public int availableRecons = 0;
-    public int availableGatherers = 0;
+    public int availableFighters = 0;
 
     [Header("Picked Units")]
     public int pickedWorkers;
     public int pickedRecons;
-    public int pickedGatherers;
+    public int pickedFighters;
 
     [Header("Extracted Units")]
     public int extractedWorkers;
     public int extractedRecons;
-    public int extractedGatherers;
+    public int extractedFighters;
 
     [Header("Weight System")]
     public float maxKilogram = 100;
@@ -86,7 +86,7 @@ public class GameDataManager : MonoBehaviour
             }
             else if (i == 2)
             {
-                unitCount = extractedGatherers;
+                unitCount = extractedFighters;
             }
 
             unitValues[i] = unitCount;
@@ -113,7 +113,7 @@ public class GameDataManager : MonoBehaviour
             }
             else if (i == 2)
             {
-                unitCount = pickedGatherers;
+                unitCount = pickedFighters;
             }
 
             unitValues[i] = unitCount;
@@ -135,9 +135,9 @@ public class GameDataManager : MonoBehaviour
             {
                 availableRecons -= lostUnits[i];
             }
-            else if (i == 2 && availableGatherers > 0)
+            else if (i == 2 && availableFighters > 0)
             {
-                availableGatherers -= lostUnits[i];
+                availableFighters -= lostUnits[i];
             }
         }
     }

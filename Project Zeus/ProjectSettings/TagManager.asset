@@ -12,7 +12,7 @@ TagManager:
   - EnemyContainer
   - Worker
   - Recon
-  - Gatherer
+  - Fighter
   - CommandCenter
   - SelectionManager
   - LootOnUnit
