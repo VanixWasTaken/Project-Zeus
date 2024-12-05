@@ -20,6 +20,7 @@ public class FMODAudioData : ScriptableObject
         BARK03
     }
 
+    
     [Serializable]
     public class NamedSFX
     {
