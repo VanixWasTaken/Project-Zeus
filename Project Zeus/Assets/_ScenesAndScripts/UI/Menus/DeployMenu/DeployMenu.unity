@@ -1988,7 +1988,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   availableWorkers: 4
   availableRecons: 4
-  availableFighters: 0
+  availableFighters: 4
   pickedWorkers: 0
   pickedRecons: 0
   pickedFighters: 0

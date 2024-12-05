@@ -13,9 +13,10 @@ TagManager:
   - Worker
   - Recon
   - Fighter
-  - CommandCenter
+  - Dropship
   - SelectionManager
   - LootOnUnit
+  - Gatherer
   layers:
   - Default
   - TransparentFX

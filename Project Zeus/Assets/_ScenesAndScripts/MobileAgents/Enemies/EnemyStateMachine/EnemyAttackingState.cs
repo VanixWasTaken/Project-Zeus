@@ -77,7 +77,7 @@ public class EnemyAttackingState : EnemyBaseState
 
         if (target != null)
         {
-            if (target.life <= 0)
+            if (target.health <= 0)
             {
                 target.Die();
                 _enemy.animator.SetBool("anIsAttacking", false);
@@ -93,7 +93,7 @@ public class EnemyAttackingState : EnemyBaseState
                     _enemy.SwitchState(_enemy.roamingState);
                 }
             }
-            else if (target.life > 0)
+            else if (target.health > 0)
             {
                 target.TakeDamage(25f, _enemy);
             } 

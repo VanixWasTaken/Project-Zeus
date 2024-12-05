@@ -6,51 +6,60 @@ using static FMODUnity.RuntimeManager;
 
 public class UnitStateManager : MonoBehaviour
 {
-    #region UnitStates Variables
+    #region UnitStates
+
     public UnitBaseState currentState;
     public UnitIdleState idleState = new UnitIdleState();
     public UnitWalkingState walkingState = new UnitWalkingState();
     public UnitDeactivatedState deactivatedState = new UnitDeactivatedState();
-
     public UnitWorkerMiningState workerMiningState = new UnitWorkerMiningState();
-
     public UnitFighterFightingState fighterFightingState = new UnitFighterFightingState();
+
     #endregion
 
-    #region References Variables
+    #region References
+
     public Animator animator;
     public NavMeshAgent navMeshAgent;
     GameObject selectionIndicator;
-    //[SerializeField] Camera mainCamera;
-    //[SerializeField] Vector3 mouseClickPos;
     DropshipStateManager dropship; // needed to call function DepleteEnergy()
     public FMODAudioData audioSheet;
-    //[SerializeField] Vector3 targetPosition;
-    //[SerializeField] GameObject enemyDetector;
-    public float life = 100; // delte later
-    //public List<GameObject> enemiesInRange;
-    //public string myEnemyTag;
-    //public int damage = 10;
-    //public bool isDead = false;
     public RightPartUIUnitDescription rightPartUIUnitDescription;
+
     #endregion
 
-    // These values can be assigned in the Unit Prefabs, to make some Units more expensive than others
-    public int energyDepletionRate = 5;
-    public float energyDepletionInterval = 5;
+    #region Variables
 
-    #region Worker Variables
+    public enum UnitClass
+    {
+        Worker,
+        Recon,
+        Fighter
+    }
+    UnitClass unitClass;
+    public float health;
+    private float movementSpeed;
+    private float visionRange;
+    private float attackRange;
+    private float attackSpeed;
+    private float attackDamage;
+    private float carryingCapacity;
+    public int energyDepletionRate; // Can be assigned in the Unit Prefabs, to make some Units more expensive than others
+    public float energyDepletionInterval = 1; // Can be assigned in the Unit Prefabs, to make some Units more expensive than others
+
     [Header("Worker Variables")]
     public int collectedEnergy;
-    #endregion
 
-    #region Gatherer Variables
+    [Header("Fighter Variables")]
     public int collectedLoot;
-
     public List<GameObject> enemiesInRange = new List<GameObject>();
-
     public GameObject mainTarget;
+
+
     #endregion
+
+
+
 
     void Awake()
     {
@@ -93,7 +102,7 @@ public class UnitStateManager : MonoBehaviour
 
         if (dropship == null)
         {
-            GameObject[] cC = GameObject.FindGameObjectsWithTag("CommandCenter");
+            GameObject[] cC = GameObject.FindGameObjectsWithTag("Dropship");
 
             foreach (GameObject c in cC)
             {
@@ -105,11 +114,28 @@ public class UnitStateManager : MonoBehaviour
 
             if (dropship == null)
             {
-                Debug.LogError("CommandCenter could not be found and assigned");
+                Debug.LogError("Dropship could not be found and assigned");
             }
         }
 
         LoadBank("UNIT");
+
+        #endregion
+
+        #region Set Class
+
+        if (CompareTag("Worker"))
+        {
+            SetClass(UnitClass.Worker);
+        }
+        else if (CompareTag("Recon"))
+        {
+            SetClass(UnitClass.Recon);
+        }
+        else if (CompareTag("Fighter"))
+        {
+            SetClass(UnitClass.Fighter);
+        }
 
         #endregion
     }
@@ -123,6 +149,44 @@ public class UnitStateManager : MonoBehaviour
         selectionIndicator.SetActive(false);
         currentState = idleState;
         currentState.EnterState(this);
+
+        #region Define Class
+
+        if (unitClass == UnitClass.Worker)
+        {
+            health = 100;
+            movementSpeed = 5;
+            visionRange = 3;
+            attackRange = 3;
+            attackSpeed = 2;
+            attackDamage = 25;
+            carryingCapacity = 100;
+            energyDepletionRate = 1;
+        }
+        else if (unitClass == UnitClass.Recon)
+        {
+            health = 50;
+            movementSpeed = 8;
+            visionRange = 7;
+            attackRange = 7;
+            attackSpeed = 1;
+            attackDamage = 100;
+            carryingCapacity = 0;
+            energyDepletionRate = 2;
+        }
+        else if (unitClass == UnitClass.Fighter)
+        {
+            health = 100;
+            movementSpeed = 2;
+            visionRange = 5;
+            attackRange = 5;
+            attackSpeed = 3;
+            attackDamage = 50;
+            carryingCapacity = 0;
+            energyDepletionRate = 4;
+        }
+
+        #endregion
     }
 
 
@@ -222,7 +286,7 @@ public class UnitStateManager : MonoBehaviour
             SwitchStates(fighterFightingState);
         }
         // very basic implementation, can be modified later
-        life -= _incomingDamage;
+        health -= _incomingDamage;
     }
 
     public void EnergyLogic(string _action)
@@ -244,6 +308,12 @@ public class UnitStateManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void SetClass(UnitClass _unitclass)
+    {
+        unitClass = _unitclass;
+        Debug.Log("UnitClass set  to " + unitClass);
     }
 
     private void DepleteEnergy(int _amount)
