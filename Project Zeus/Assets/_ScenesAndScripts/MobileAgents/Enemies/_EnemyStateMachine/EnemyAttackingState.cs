@@ -6,43 +6,45 @@ using UnityEngine.Rendering.Universal;
 
 public class EnemyAttackingState : EnemyBaseState
 {
-    #region References
-
-    private UnitStateManager target;
-
-    #endregion
-
-    #region Variables
-
-    private float distance;
-    private float nearestDistance = 100f;
-
-    #endregion
-
-
+  
 
     #region Unity Built-In
 
     public override void EnterState(EnemyStateManager _enemy)
     {
         _enemy.ActivateLight();
-        _enemy.animator.SetBool("anIsAttacking", true);
-        _enemy.animator.SetTrigger("anShouldAttack");
+        
+        ResetAnimations(_enemy);
+
+        _enemy.navMeshAgent.ResetPath();
     }
 
     public override void UpdateState(EnemyStateManager _enemy)
     {
-        // no need for implementation
+        ReturnToRoaming(_enemy);
     }
-
-    
 
     #endregion
 
 
     #region Custom Functions()
 
-  
+    private void ResetAnimations(EnemyStateManager _enemy)
+    {
+        _enemy.animator.SetBool("anIsAttacking", true);
+        _enemy.animator.SetTrigger("anShouldAttack");
+        _enemy.animator.SetBool("anIsWalking", false);
+        _enemy.animator.SetBool("anIsChasing", false);
+    }
+
+    private void ReturnToRoaming(EnemyStateManager _enemy)
+    {
+        if (_enemy.unitStateManager == null)
+        {
+            _enemy.unitSpotted = false;
+            _enemy.SwitchState(_enemy.roamingState);
+        }
+    }
 
     #endregion
 

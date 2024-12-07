@@ -21,10 +21,7 @@ public class EnemyStateManager : MonoBehaviour
     public NavMeshAgent navMeshAgent;
     public Animator animator;
     public GameObject spotLight;
-
-    // List that contains references to objects in range
-    private List<GameObject> detectedObjects = new List<GameObject>();
-    private List<GameObject> enemiesInRange = new List<GameObject>();
+    public UnitStateManager unitStateManager;
 
     #endregion
 
@@ -33,9 +30,8 @@ public class EnemyStateManager : MonoBehaviour
     public List<Vector3> patrolPoints; // points that make up the circle
     public bool unitSpotted = false;
     public Vector3 lastKnownUnitPosititon;
-
-    // variables for fighting
-    public int life = 50;
+    public int health = 100;
+    public bool shouldAttackUnits = false;
 
     #endregion
 
@@ -59,10 +55,55 @@ public class EnemyStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
+
+        Die();
+
+        Debug.Log(currentState);
     }
 
+    #region Colliders
+
+    public void DetectUnits(Collider other)
+    {
+        if (other.CompareTag("Worker") || other.CompareTag("Recon") || other.CompareTag("Fighter"))
+        {
+            unitSpotted = true;
+            lastKnownUnitPosititon = other.transform.position;
+        }
+    }
+
+    public void LooseUnits(Collider other)
+    {
+        if (other.CompareTag("Worker") || other.CompareTag("Recon") || other.CompareTag("Fighter"))
+        {
+            unitSpotted = false;
+            lastKnownUnitPosititon = other.transform.position;
+        }
+    }
+
+    public void ShouldAttackUnits(Collider other, bool _shouldAttackUnits)
+    {
+        if (other.CompareTag("Worker") || other.CompareTag("Recon") || other.CompareTag("Fighter"))
+        {
+            shouldAttackUnits = _shouldAttackUnits;
+            unitStateManager = other.GetComponent<UnitStateManager>();
+        }
+    }
 
     #endregion
+
+    #region Animations
+
+    public void OnUnitHit()
+    {
+        unitStateManager.health -= 25;
+    }
+
+    #endregion
+
+    #endregion
+
+
 
 
     #region Custom Functions
@@ -97,30 +138,18 @@ public class EnemyStateManager : MonoBehaviour
         }
     }
 
+    public void TakeDamage(int _damage)
+    {
+        health -= _damage;
+    }
+
     public void Die()
     {
-        Destroy(gameObject);
-    }
-
-    public void DetectUnits(Collider other)
-    {
-        if (other.CompareTag("Worker") || other.CompareTag("Recon") || other.CompareTag("Fighter"))
+        if (health <= 0)
         {
-            unitSpotted = true;
-            lastKnownUnitPosititon = other.transform.position;
+            Destroy(gameObject);
         }
     }
-
-    public void LooseUnits(Collider other)
-    {
-        if (other.CompareTag("Worker") || other.CompareTag("Recon") || other.CompareTag("Fighter"))
-        {
-            unitSpotted = false;
-            lastKnownUnitPosititon = other.transform.position;
-        }
-    }
-
-
 
     #endregion
 

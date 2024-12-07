@@ -20,7 +20,7 @@ public class UnitFightingState : UnitBaseState
 
     public override void UpdateState(UnitStateManager _unit)
     {
-        if (_unit.enemy.health == 0)
+        if (_unit.enemyStateManager.health == 0)
         {
             _unit.SwitchStates(_unit.idleState);
         }

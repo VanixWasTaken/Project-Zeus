@@ -25,7 +25,7 @@ public class UnitStateManager : MonoBehaviour
     DropshipStateManager dropship; // needed to call function DepleteEnergy()
     public FMODAudioData audioSheet;
     public RightPartUIUnitDescription rightPartUIUnitDescription;
-    public Enemy enemy;
+    public EnemyStateManager enemyStateManager;
 
     #endregion
 
@@ -145,7 +145,6 @@ public class UnitStateManager : MonoBehaviour
 
     void Start()
     {
-        animator.SetBool("isAttacking", false);
         StartCoroutine(EnergyDepletion(energyDepletionInterval));
 
         selectionIndicator.SetActive(false);
@@ -178,7 +177,7 @@ public class UnitStateManager : MonoBehaviour
         }
         else if (unitClass == UnitClass.Fighter)
         {
-            health = 100;
+            health = 200;
             movementSpeed = 2;
             visionRange = 5;
             attackRange = 5;
@@ -195,6 +194,11 @@ public class UnitStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
+
+        if (health <= 0)
+        {
+            Die();
+        }
     }
 
     #region Animator
@@ -206,7 +210,7 @@ public class UnitStateManager : MonoBehaviour
 
     public void OnShooting()
     {
-        enemy.TakeDamage(attackDamage);
+        enemyStateManager.TakeDamage(attackDamage);
         Debug.Log("Damage: " + attackDamage);
     }
 
@@ -217,6 +221,7 @@ public class UnitStateManager : MonoBehaviour
 
 
     #region Custom Functions()
+
     public void SwitchStates(UnitBaseState state) // Change the state
     {
         currentState = state;
@@ -300,7 +305,7 @@ public class UnitStateManager : MonoBehaviour
     {
         if (other.CompareTag("Enemy"))
         {
-            enemy = other.GetComponent<Enemy>();
+            enemyStateManager = other.GetComponent<EnemyStateManager>();
             nearestEnemyPosition = other.transform.position; // Saves the last position of the enemy for uses like view direction or target priority
             SwitchStates(fightingState);
         }
@@ -317,14 +322,17 @@ public class UnitStateManager : MonoBehaviour
     }
 
     #region SelectionIndicator Functions()
+
     public void Select() // Change visual to make selection apparent.
     {
         selectionIndicator.SetActive(true);
     }
+
     public void Deselect() // Change visual to make deselection apparent
     {
         selectionIndicator.SetActive(false);
     }
+
     #endregion
 
     #endregion

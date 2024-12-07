@@ -1,5 +1,4 @@
-using Unity.Cinemachine;
-using UnityEngine;
+
 
 public class EnemyChasingState : EnemyBaseState
 {
@@ -22,12 +21,14 @@ public class EnemyChasingState : EnemyBaseState
 
     public override void UpdateState(EnemyStateManager _enemy)
     {
-        ChaseUnit(_enemy);
+        ChaseUnit(_enemy); // Switch to ChaseState if unit was spotted
+
+        AttackUnits(_enemy); // Switch to AttackState if unit is in enemy range
     }
 
-
-
     #endregion
+
+
 
 
     #region Custom Functions()
@@ -52,6 +53,14 @@ public class EnemyChasingState : EnemyBaseState
         if (_enemy.navMeshAgent.remainingDistance <= 0 && !_enemy.unitSpotted)
         {
             _enemy.SwitchState(_enemy.roamingState);
+        }
+    }
+
+    private void AttackUnits(EnemyStateManager _enemy)
+    {
+        if (_enemy.shouldAttackUnits)
+        {
+            _enemy.SwitchState(_enemy.attackingState);
         }
     }
 
