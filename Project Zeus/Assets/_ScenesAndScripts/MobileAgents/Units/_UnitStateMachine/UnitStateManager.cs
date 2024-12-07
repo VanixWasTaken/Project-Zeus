@@ -47,7 +47,9 @@ public class UnitStateManager : MonoBehaviour
     private float carryingCapacity;
     public int energyDepletionRate; // Can be assigned in the Unit Prefabs, to make some Units more expensive than others
     public float energyDepletionInterval = 1; // Can be assigned in the Unit Prefabs, to make some Units more expensive than others
+    // public float soundEmittingRange; // THIS STAT SHOULD BE INTRODUSED TO DIFFERENTIATE THE CLASSES EVEN MORE
     public Vector3 nearestEnemyPosition;
+    public GameObject shootingSoundGO; // A big sphere that represents the range the shooting soudn is heard by other enemies, allerting them to roam the area where the sound was
 
     [Header("Worker Variables")]
     public int collectedEnergy;
@@ -211,7 +213,32 @@ public class UnitStateManager : MonoBehaviour
     public void OnShooting()
     {
         enemyStateManager.TakeDamage(attackDamage);
+        EmitShootingSound(true);
         Debug.Log("Damage: " + attackDamage);
+    }
+
+    public void OnShootSoundActivated()
+    {
+        EmitShootingSound(false);
+    }
+
+    #endregion
+
+    #region Colliders
+
+    public void ScanForEnemies(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            enemyStateManager = other.GetComponent<EnemyStateManager>();
+            nearestEnemyPosition = other.transform.position; // Saves the last position of the enemy for uses like view direction or target priority
+            SwitchStates(fightingState);
+        }
+    }
+
+    public void AllertEnemiesInSoundRange(Collider other)
+    {
+        Debug.Log("I would be allerted now");
     }
 
     #endregion
@@ -226,22 +253,6 @@ public class UnitStateManager : MonoBehaviour
     {
         currentState = state;
         currentState.EnterState(this);
-    }
-
-    public void GathererRangeExited(Collider other)
-    {
-        if (other != null)
-        {
-            if (other.gameObject.CompareTag("Screamer") || other.gameObject.CompareTag("Enemy"))
-            {
-                enemiesInRange.Remove(other.gameObject);
-                Debug.Log("I have removed: " + other.gameObject + " from the list!");
-                if (enemiesInRange.Count <= 0)
-                {
-                    SwitchStates(idleState);
-                }
-            }
-        }
     }
 
     public void Die()
@@ -301,15 +312,10 @@ public class UnitStateManager : MonoBehaviour
         dropship.DepleteEnergy(_amount);
     }
 
-    public void ScanForEnemies(Collider other)
+    private void EmitShootingSound(bool _setActive) // Is used to activated a big sphere for a split second, after a bullet is shot, to allert enemies in range to investigate the area (faking that they heard the shot)
     {
-        if (other.CompareTag("Enemy"))
-        {
-            enemyStateManager = other.GetComponent<EnemyStateManager>();
-            nearestEnemyPosition = other.transform.position; // Saves the last position of the enemy for uses like view direction or target priority
-            SwitchStates(fightingState);
-        }
-    }
+        shootingSoundGO.SetActive(_setActive);
+    } 
 
     public IEnumerator EnergyDepletion(float _depletionInterval)
     {

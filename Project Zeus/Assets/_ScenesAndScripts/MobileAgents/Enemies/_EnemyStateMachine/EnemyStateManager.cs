@@ -57,8 +57,6 @@ public class EnemyStateManager : MonoBehaviour
         currentState.UpdateState(this);
 
         Die();
-
-        Debug.Log(currentState);
     }
 
     #region Colliders
