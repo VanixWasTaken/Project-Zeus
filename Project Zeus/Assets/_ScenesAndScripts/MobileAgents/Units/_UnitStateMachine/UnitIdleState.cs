@@ -7,6 +7,8 @@ public class UnitIdleState : UnitBaseState
     public override void EnterState(UnitStateManager _unit)
     {
         ResetAnimation(_unit);
+
+        _unit.navMeshAgent.updateRotation = true;
     }
 
     public override void UpdateState(UnitStateManager _unit)

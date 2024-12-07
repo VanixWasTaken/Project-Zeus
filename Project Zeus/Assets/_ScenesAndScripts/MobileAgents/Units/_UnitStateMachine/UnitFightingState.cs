@@ -9,11 +9,13 @@ public class UnitFightingState : UnitBaseState
 
     public override void EnterState(UnitStateManager _unit)
     {
-        _unit.navMeshAgent.SetDestination(_unit.transform.position);
+        _unit.navMeshAgent.ResetPath();
 
         _unit.animator.SetFloat("anSpeed", 0);
         _unit.animator.SetTrigger("anShouldShoot");
         _unit.animator.SetBool("anIsShooting", true);
+
+        LookAtEnemy(_unit);
     }
 
     public override void UpdateState(UnitStateManager _unit)
@@ -26,5 +28,15 @@ public class UnitFightingState : UnitBaseState
 
     #endregion
 
+
+    #region Custom Functions()
+
+    private void LookAtEnemy(UnitStateManager _unit)
+    {
+        _unit.navMeshAgent.updateRotation = false;
+        _unit.transform.LookAt(_unit.nearestEnemyPosition);
+    }
+
+    #endregion
 
 }

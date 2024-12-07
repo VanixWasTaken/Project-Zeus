@@ -13,7 +13,6 @@ public class UnitStateManager : MonoBehaviour
     public UnitWalkingState walkingState = new UnitWalkingState();
     public UnitDeactivatedState deactivatedState = new UnitDeactivatedState();
     public UnitWorkerMiningState workerMiningState = new UnitWorkerMiningState();
-    public UnitFighterFightingState fighterFightingState = new UnitFighterFightingState(); // DELETE LATER
     public UnitFightingState fightingState = new UnitFightingState();
 
     #endregion
@@ -48,6 +47,7 @@ public class UnitStateManager : MonoBehaviour
     private float carryingCapacity;
     public int energyDepletionRate; // Can be assigned in the Unit Prefabs, to make some Units more expensive than others
     public float energyDepletionInterval = 1; // Can be assigned in the Unit Prefabs, to make some Units more expensive than others
+    public Vector3 nearestEnemyPosition;
 
     [Header("Worker Variables")]
     public int collectedEnergy;
@@ -223,36 +223,6 @@ public class UnitStateManager : MonoBehaviour
         currentState.EnterState(this);
     }
 
-    public void OnCommandMove(Vector3 targetPosition) // Moves the player to the set destination and switches to walking state
-    {
-        if (currentState != deactivatedState)
-        {
-            if (currentState != fighterFightingState)
-            {
-                navMeshAgent.SetDestination(targetPosition);
-                SwitchStates(walkingState);
-            }
-        }
-        
-    }
-
-    public void GathererShouldFight(Collider other)
-    {
-        if (other != null)
-        {
-            if (other.gameObject.CompareTag("Screamer") || other.gameObject.CompareTag("Enemy"))
-            {
-                enemiesInRange.Add(other.gameObject);
-                if (currentState != fighterFightingState)
-                {
-                    navMeshAgent.isStopped = true;
-                    navMeshAgent.ResetPath();
-                    SwitchStates(fighterFightingState);
-                }
-            }
-        }
-    }
-
     public void GathererRangeExited(Collider other)
     {
         if (other != null)
@@ -279,20 +249,19 @@ public class UnitStateManager : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void OnCommandMove(Vector3 targetPosition) // Moves the player to the set destination and switches to walking state
+    {
+        if (currentState != deactivatedState)
+        {
+            navMeshAgent.SetDestination(targetPosition);
+            SwitchStates(walkingState);
+        }
+    }
+
     public void StopMoving() // Resets the NavMesh path and switches to idle state
     {
         navMeshAgent.ResetPath();
         SwitchStates(idleState);
-    }
-
-    public void TakeDamage(float _incomingDamage, EnemyStateManager _enemy)
-    {
-        if (tag == "Fighter")
-        {
-            SwitchStates(fighterFightingState);
-        }
-        // very basic implementation, can be modified later
-        health -= _incomingDamage;
     }
 
     public void EnergyLogic(string _action)
@@ -332,6 +301,7 @@ public class UnitStateManager : MonoBehaviour
         if (other.CompareTag("Enemy"))
         {
             enemy = other.GetComponent<Enemy>();
+            nearestEnemyPosition = other.transform.position; // Saves the last position of the enemy for uses like view direction or target priority
             SwitchStates(fightingState);
         }
     }
