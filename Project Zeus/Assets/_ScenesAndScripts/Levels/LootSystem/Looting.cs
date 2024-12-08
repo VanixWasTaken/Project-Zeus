@@ -26,6 +26,10 @@ public class Looting : MonoBehaviour
             lootOnUnit.lootGO.SetActive(true);
 
             Destroy(lootGO);
+
+            //Jaspers Code
+            CylinderFiller filler = (CylinderFiller)other.transform.GetChild(6).GetComponent("CylinderFiller");
+            filler.ChangeFill();
         }
     }
 

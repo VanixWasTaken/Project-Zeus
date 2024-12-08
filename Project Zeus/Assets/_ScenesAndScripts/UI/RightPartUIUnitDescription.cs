@@ -70,7 +70,7 @@ public class RightPartUIUnitDescription : MonoBehaviour
             }
         }
 
-        textMesh.text = unitType + " : " + onOff + "Items: " + holdingItemsInt;
+       // textMesh.text = unitType + " : " + onOff + "Items: " + holdingItemsInt;
     }
 
     #endregion
