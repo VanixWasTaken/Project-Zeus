@@ -190,7 +190,7 @@ public class UnitStateManager : MonoBehaviour
             attackDamage = 50;
             carryingCapacity = 0;
             energyDepletionRate = 4;
-            soundEmittingRange = 20;
+            soundEmittingRange = 10;
         }
 
         SetAllClassStats(); // After adjusting the values above some stats need to be actally applied to its references, this happens here 
@@ -341,6 +341,7 @@ public class UnitStateManager : MonoBehaviour
         // Set the size of the cube vision cone infront of the unit, that represents the view distance
         BoxCollider visionCone = visionConeGO.GetComponent<BoxCollider>();
         visionCone.size = new Vector3(5, 2, visionRange);
+        visionCone.transform.position += new Vector3(0, 0, visionRange / 2);
     }
 
     public IEnumerator EnergyDepletion()
