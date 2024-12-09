@@ -2,6 +2,8 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
+using static FMODUnity.RuntimeManager;
+using static FMODAudioData.SoundID;
 
 public class ExtractionScreenSceneHandler : MonoBehaviour
 {
@@ -15,6 +17,8 @@ public class ExtractionScreenSceneHandler : MonoBehaviour
     [SerializeField] TextMeshProUGUI workersText;
     [SerializeField] TextMeshProUGUI reconsText;
     [SerializeField] TextMeshProUGUI fightersText;
+
+    [SerializeField] FMODAudioData audioSheet;
 
     #endregion
 
@@ -40,6 +44,7 @@ public class ExtractionScreenSceneHandler : MonoBehaviour
             videoPlayer.loopPointReached += OnVideoEnd;
         }
 
+        LoadBank("UI");
         SetText();
     }
 
@@ -47,12 +52,19 @@ public class ExtractionScreenSceneHandler : MonoBehaviour
 
     public void OnRTSButtonClicked()
     {
+        PlayClickSound();
         returnCutscene.SetActive(true);
     }
 
     public void OnQuitButtonClicked()
     {
+        PlayClickSound();
         Application.Quit(); // does nothing in the editor,  but quits the game when built
+    }
+
+    public void OnButtonHovered()
+    {
+        PlayOneShot(audioSheet.GetSFXByName(SFXMenuUIHover));
     }
 
     #endregion
@@ -120,6 +132,11 @@ public class ExtractionScreenSceneHandler : MonoBehaviour
         }
 
         return losses;
+    }
+
+    private void PlayClickSound()
+    {
+        PlayOneShot(audioSheet.GetSFXByName(SFXMenuUIClick));
     }
 
     private void ResetGameData()
