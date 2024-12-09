@@ -53,7 +53,7 @@ public class UnitDeactivatedState : UnitBaseState
         /// </summary>
 
         _unit.StartCoroutine(_unit.EnergyDepletion()); // CHANGE SOME STUFF IN THIS LINE COULD HAVE BROKEN SOMETHING
-        FMODUnity.RuntimeManager.PlayOneShot(_unit.audioSheet.GetSFXByName(FMODAudioData.SoundID.UnitPoweringUp));
+        PlayOneShot(_unit.audioSheet.GetSFXByName(SFXUnitPoweringUp));
         _unit.animator.SetBool("anIsDeactivated", false);
         _unit.rightPartUIUnitDescription.isActive = true;
         _unit.SwitchStates(_unit.idleState);
