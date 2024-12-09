@@ -49,7 +49,7 @@ public class UnitStateManager : MonoBehaviour
     public float energyDepletionInterval = 1; // Can be assigned in the Unit Prefabs, to make some Units more expensive than others
     // public float soundEmittingRange; // THIS STAT SHOULD BE INTRODUSED TO DIFFERENTIATE THE CLASSES EVEN MORE
     public Vector3 nearestEnemyPosition;
-    public GameObject shootingSoundGO; // A big sphere that represents the range the shooting soudn is heard by other enemies, allerting them to roam the area where the sound was
+    public GameObject shootingSoundGO; // A big sphere that represents the range the shooting sound is heard by other enemies, allerting them to roam the area where the sound was
 
     [Header("Worker Variables")]
     public int collectedEnergy;
@@ -238,7 +238,16 @@ public class UnitStateManager : MonoBehaviour
 
     public void AllertEnemiesInSoundRange(Collider other)
     {
-        Debug.Log("I would be allerted now");
+        if (other.CompareTag("Enemy"))
+        {
+            EnemyStateManager _enemyStateManager = other.GetComponent<EnemyStateManager>();
+
+            _enemyStateManager.lastHeardSoundPosition = transform.position;
+            if (_enemyStateManager.currentState != _enemyStateManager.attackingState || _enemyStateManager.currentState != _enemyStateManager.chasingState)
+            {
+                _enemyStateManager.SwitchState(_enemyStateManager.roamSoundState);
+            }
+        }
     }
 
     #endregion

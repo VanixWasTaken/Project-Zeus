@@ -7,10 +7,11 @@ public class EnemyStateManager : MonoBehaviour
 {
     #region States
 
-    EnemyBaseState currentState; // currentstate
+    public EnemyBaseState currentState; // currentstate
     public EnemyBaseState roamingState = new EnemyRoamingState();
     public EnemyChasingState chasingState = new EnemyChasingState();
     public EnemyAttackingState attackingState = new EnemyAttackingState();
+    public EnemyRoamSoundState roamSoundState = new EnemyRoamSoundState();
 
     #endregion
 
@@ -32,6 +33,7 @@ public class EnemyStateManager : MonoBehaviour
     public Vector3 lastKnownUnitPosititon;
     public int health = 100;
     public bool shouldAttackUnits = false;
+    public Vector3 lastHeardSoundPosition; // Everytime an enemy hears a shot he saves its position in this variable
 
     #endregion
 
