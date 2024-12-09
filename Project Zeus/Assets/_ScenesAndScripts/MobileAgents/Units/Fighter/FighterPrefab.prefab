@@ -972,9 +972,10 @@ MonoBehaviour:
   enemyStateManager: {fileID: 0}
   health: 100
   energyDepletionRate: 0
-  energyDepletionInterval: 0
+  soundEmittingRange: 0
   nearestEnemyPosition: {x: 0, y: 0, z: 0}
   shootingSoundGO: {fileID: 8087669432706631972}
+  visionConeGO: {fileID: 5501540466536002355}
   collectedEnergy: 0
   collectedLoot: 0
   enemiesInRange: []
