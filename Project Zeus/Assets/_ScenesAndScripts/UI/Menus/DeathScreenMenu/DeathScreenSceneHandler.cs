@@ -65,6 +65,7 @@ public class DeathScreenSceneHandler : MonoBehaviour
     public void OnQuitButtonClicked()
     {
         PlayClickSound();
+        UnloadBank("UI");
         Application.Quit(); // does nothing in the editor,  but quits the game when built
     }
 
