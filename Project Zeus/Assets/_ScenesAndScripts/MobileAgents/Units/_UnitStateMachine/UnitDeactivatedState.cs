@@ -53,7 +53,7 @@ public class UnitDeactivatedState : UnitBaseState
         /// </summary>
 
         _unit.StartCoroutine(_unit.EnergyDepletion(_unit.energyDepletionInterval));
-        PlayOneShot(_unit.audioSheet.GetSFXByName(SFXUnitPoweringDown));
+        PlayOneShot(_unit.audioSheet.GetSFXByName(SFXUnitPoweringUp));
         _unit.animator.SetBool("anIsDeactivated", false);
         _unit.rightPartUIUnitDescription.isActive = true;
         _unit.SwitchStates(_unit.idleState);

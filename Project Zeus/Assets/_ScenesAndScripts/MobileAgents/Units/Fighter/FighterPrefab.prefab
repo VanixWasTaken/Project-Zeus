@@ -967,7 +967,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   navMeshAgent: {fileID: 0}
-  audioSheet: {fileID: 0}
+  audioSheet: {fileID: 11400000, guid: e7bf03278cea6e04cb586e99ba3e09a0, type: 2}
   rightPartUIUnitDescription: {fileID: 6760945820301196620}
   enemyStateManager: {fileID: 0}
   health: 100

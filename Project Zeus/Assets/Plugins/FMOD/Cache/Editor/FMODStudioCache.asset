@@ -96,7 +96,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/UNIT.bank
   Name: UNIT
   StudioPath: bank:/SFX/UNIT
-  lastModified: 638689265198279416
+  lastModified: 638693393066762973
   FileSizes: []
   Exists: 1
 --- !u!114 &-8560112263858622895
@@ -683,7 +683,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1518
+  Length: 1100
 --- !u!114 &-4006438513520423331
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -935,7 +935,7 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 1518
+  Length: 1098
 --- !u!114 &-1532941843200621808
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1328,7 +1328,7 @@ MonoBehaviour:
   - {fileID: -2825738890928706980}
   StringsBanks:
   - {fileID: -863181981819171695}
-  cacheTime: 638693350779183588
+  cacheTime: 638693393066762973
   cacheVersion: 131620
 --- !u!114 &92513434431448552
 MonoBehaviour:
