@@ -188,8 +188,9 @@ MonoBehaviour:
   rightPartUIUnitDescription: {fileID: 4243177221194803777}
   enemyStateManager: {fileID: 0}
   health: 0
-  energyDepletionRate: 5
-  energyDepletionInterval: 5
+  energyDepletionRate: 0
+  energyDepletionInterval: 0
+  soundEmittingRange: 0
   nearestEnemyPosition: {x: 0, y: 0, z: 0}
   shootingSoundGO: {fileID: 6317388447097827466}
   collectedEnergy: 0
@@ -2005,7 +2006,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 50
+  m_Radius: 30
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &8759251762755119227
 MonoBehaviour:
@@ -2673,7 +2674,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 3, y: 2, z: 5}
+  m_Size: {x: 5, y: 2, z: 5}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5501571715527696319
 MonoBehaviour:

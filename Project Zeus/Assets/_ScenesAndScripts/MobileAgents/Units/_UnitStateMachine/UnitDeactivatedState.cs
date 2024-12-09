@@ -51,7 +51,7 @@ public class UnitDeactivatedState : UnitBaseState
         /// Switches States back to Idle
         /// </summary>
 
-        _unit.StartCoroutine(_unit.EnergyDepletion(_unit.energyDepletionInterval));
+        _unit.StartCoroutine(_unit.EnergyDepletion()); // CHANGE SOME STUFF IN THIS LINE COULD HAVE BROKEN SOMETHING
         FMODUnity.RuntimeManager.PlayOneShot(_unit.audioSheet.GetSFXByName(FMODAudioData.SoundID.UnitPoweringUp));
         _unit.animator.SetBool("anIsDeactivated", false);
         _unit.rightPartUIUnitDescription.isActive = true;
