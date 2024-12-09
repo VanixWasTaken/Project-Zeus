@@ -1,9 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.AI;
 using static FMODUnity.RuntimeManager;
+using static FMODAudioData.SoundID;
 
 public class UnitStateManager : MonoBehaviour
 {
@@ -24,9 +24,16 @@ public class UnitStateManager : MonoBehaviour
     public NavMeshAgent navMeshAgent;
     GameObject selectionIndicator;
     DropshipStateManager dropship; // needed to call function DepleteEnergy()
-    public FMODAudioData audioSheet;
     public RightPartUIUnitDescription rightPartUIUnitDescription;
     public EnemyStateManager enemyStateManager;
+
+    #region Sound References
+
+    public FMODAudioData audioSheet;
+
+    private FMOD.Studio.EventInstance shooting;
+
+    #endregion
 
     #endregion
 
@@ -143,6 +150,8 @@ public class UnitStateManager : MonoBehaviour
         }
 
         #endregion
+
+        LoadBank("FIGHTER");
     }
 
 
@@ -353,6 +362,38 @@ public class UnitStateManager : MonoBehaviour
             DepleteEnergy(energyDepletionRate);
         }
     }
+
+    #region Sound Functions()
+
+    public void PlayShooting()
+    {
+        if (!IsPlaying(shooting))
+        {
+            shooting = CreateInstance(audioSheet.GetSFXByName(SFXUnitFighterShooting));
+            shooting.setParameterByName("Firing", 0);
+            shooting.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            shooting.start();
+            shooting.release();
+        }
+    }
+
+    public void LetShootingFinish()
+    {
+        if (IsPlaying(shooting)) 
+        {
+            shooting.setParameterByName("Firing", 1);
+            shooting.release();
+        }
+        
+    }
+
+    private bool IsPlaying(FMOD.Studio.EventInstance instance)
+    {
+        instance.getPlaybackState(out FMOD.Studio.PLAYBACK_STATE state);
+        return state != FMOD.Studio.PLAYBACK_STATE.STOPPED;
+    }
+
+    #endregion
 
     #region SelectionIndicator Functions()
 

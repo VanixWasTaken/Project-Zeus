@@ -23,6 +23,7 @@ public class UnitWalkingState : UnitBaseState
 
     private void ResetAnimations(UnitStateManager _unit)
     {
+        _unit.LetShootingFinish();
         _unit.animator.SetBool("anIsMining", false);
         _unit.animator.SetBool("anIsShooting", false);
         _unit.animator.SetFloat("anSpeed", 1);

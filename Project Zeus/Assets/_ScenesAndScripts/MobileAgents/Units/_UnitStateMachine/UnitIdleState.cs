@@ -23,6 +23,7 @@ public class UnitIdleState : UnitBaseState
 
     private void ResetAnimation(UnitStateManager _unit)
     {
+        _unit.LetShootingFinish();
         _unit.animator.SetFloat("anSpeed", 0); // plays the idle animation
         _unit.animator.SetBool("anIsShooting", false);
     }

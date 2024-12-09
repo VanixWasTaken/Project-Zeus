@@ -1,9 +1,10 @@
-using UnityEngine;
+using static FMODUnity.RuntimeManager;
+using static FMODAudioData.SoundID;
 
 public class UnitFightingState : UnitBaseState
 {
 
-
+    private FMOD.Studio.EventInstance shooting;
 
     #region Unity Built-In
 
@@ -15,6 +16,8 @@ public class UnitFightingState : UnitBaseState
         _unit.animator.SetTrigger("anShouldShoot");
         _unit.animator.SetBool("anIsShooting", true);
 
+        _unit.PlayShooting();
+
         LookAtEnemy(_unit);
     }
 
@@ -22,6 +25,7 @@ public class UnitFightingState : UnitBaseState
     {
         if (_unit.enemyStateManager.health == 0)
         {
+            _unit.LetShootingFinish();
             _unit.SwitchStates(_unit.idleState);
         }
     }
