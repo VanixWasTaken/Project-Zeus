@@ -6,9 +6,9 @@ public class UnitWalkingState : UnitBaseState
 
     public override void EnterState(UnitStateManager _unit)
     {
-        // starts walking animation
-        _unit.animator.SetBool("anIsMining", false);
-        _unit.animator.SetFloat("anSpeed", 1);
+        ResetAnimations(_unit); // Resets the animations and plays the walk animation
+
+        _unit.navMeshAgent.updateRotation = true;
     }
 
     public override void UpdateState(UnitStateManager _unit)
@@ -21,7 +21,14 @@ public class UnitWalkingState : UnitBaseState
 
     #region Custom Functions()
 
-    void IsAtDestinationCheck(UnitStateManager _unit) // Check if the unit has reached its destination
+    private void ResetAnimations(UnitStateManager _unit)
+    {
+        _unit.animator.SetBool("anIsMining", false);
+        _unit.animator.SetBool("anIsShooting", false);
+        _unit.animator.SetFloat("anSpeed", 1);
+    }
+
+    private void IsAtDestinationCheck(UnitStateManager _unit) // Check if the unit has reached its destination
     {
 
         if (_unit.navMeshAgent != null && !_unit.navMeshAgent.pathPending)

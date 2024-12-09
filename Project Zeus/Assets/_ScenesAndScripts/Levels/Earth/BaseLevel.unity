@@ -141,7 +141,7 @@ PrefabInstance:
     - target: {fileID: 386283318288435204, guid: b6ee55fdccfc9de4bb851d392fd453c0,
         type: 3}
       propertyPath: m_TagString
-      value: CommandCenter
+      value: Dropship
       objectReference: {fileID: 0}
     - target: {fileID: 1176063971113869333, guid: b6ee55fdccfc9de4bb851d392fd453c0,
         type: 3}
@@ -3229,9 +3229,9 @@ MonoBehaviour:
   availableWorkers: 0
   availableRecons: 0
   availableFighters: 0
-  pickedWorkers: 1
+  pickedWorkers: 2
   pickedRecons: 1
-  pickedFighters: 0
+  pickedFighters: 2
   extractedWorkers: 0
   extractedRecons: 0
   extractedFighters: 0
@@ -12025,7 +12025,8 @@ MonoBehaviour:
     type: 3}
   reconPrefab: {fileID: 277383952719586449, guid: 0d06d7afa67af9a4e8b78ae07628fe8e,
     type: 3}
-  fighterPrefab: {fileID: 0}
+  fighterPrefab: {fileID: 5059330462096545759, guid: 75d767ddd96a0974ba4b9d59859b6f61,
+    type: 3}
   friendlyUnitsGO: {fileID: 593364197}
 --- !u!1001 &593401468
 PrefabInstance:
