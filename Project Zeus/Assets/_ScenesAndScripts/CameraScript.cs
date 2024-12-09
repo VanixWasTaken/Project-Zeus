@@ -106,7 +106,7 @@ public class CameraScript : MonoBehaviour
 
     private void TurnCamera()
     {
-        if (inputActions.Keyboard.TurnCameraRight)
+        //if (inputActions.Keyboard.TurnCameraRight)
     }
 
     #endregion
