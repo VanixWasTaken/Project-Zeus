@@ -5,9 +5,9 @@ public class EnemyRoamingState : EnemyBaseState
 
     #region Variables
 
-    Vector3 _patrolPostion1;
-    Vector3 _patrolPostion2;
-    Vector3 lastPatrolDestination;
+    Vector3 _defaultPatrolPostion1;
+    Vector3 _defaultPatrolPostion2;
+    Vector3 _lastPatrolDestination;
 
     #endregion
 
@@ -19,16 +19,16 @@ public class EnemyRoamingState : EnemyBaseState
     {
         ResetAnimations(_enemy);
 
-        SetDefaultPatrolRoute(_enemy); // If there isn't set a custom patrol route, it will add a default route.
+        InitializePatrolRoute(_enemy); // If there isn't set a custom patrol route, it will add a default route.
 
         _enemy.navMeshAgent.speed = 2;
-        _enemy.navMeshAgent.SetDestination(_patrolPostion1);
-        lastPatrolDestination = _patrolPostion1;
+        _enemy.navMeshAgent.SetDestination(_enemy.patrolPoints[0]);
+        _lastPatrolDestination = _enemy.patrolPoints[0];
     }
 
     public override void UpdateState(EnemyStateManager _enemy)
     {
-        StartPatrol(_enemy);
+        Patrol(_enemy);
 
         ChaseUnit(_enemy);
     }
@@ -38,35 +38,27 @@ public class EnemyRoamingState : EnemyBaseState
 
     #region Custom Functions()
 
-    private void SetDefaultPatrolRoute(EnemyStateManager _enemy)
-   {
-        if (_patrolPostion1 == Vector3.zero)
-        {
-            _patrolPostion1 = new Vector3(_enemy.transform.position.x, _enemy.transform.position.y, _enemy.transform.position.z + 4);
-            _patrolPostion2 = new Vector3(_enemy.transform.position.x, _enemy.transform.position.y, _enemy.transform.position.z - 4);
-        }
-
+    private void InitializePatrolRoute(EnemyStateManager _enemy) // Sets up the patrol route based on user-defined or default positions
+    {
         if (_enemy.patrolPoints.Count == 0)
         {
-            _enemy.patrolPoints.Add(_patrolPostion1);
-            _enemy.patrolPoints.Add(_patrolPostion2);
+            _defaultPatrolPostion1 = _enemy.transform.position += new Vector3(0, 0, 8);
+            _defaultPatrolPostion2 = _enemy.transform.position += new Vector3(0, 0, -8);
+
+            _enemy.patrolPoints.Add(_defaultPatrolPostion1);
+            _enemy.patrolPoints.Add(_defaultPatrolPostion2);
         }
     }
 
-    private void StartPatrol(EnemyStateManager _enemy)
+    private void Patrol(EnemyStateManager _enemy) // Makes the enemy patrol between custom defined or if those wherent set, the default points
     {
         if (_enemy.navMeshAgent.remainingDistance <= 0)
         {
-            if (lastPatrolDestination == _enemy.patrolPoints[0])
-            {
-                _enemy.navMeshAgent.SetDestination(_patrolPostion2);
-                lastPatrolDestination = _patrolPostion2;
-            }
-            else if (lastPatrolDestination == _enemy.patrolPoints[1])
-            {
-                _enemy.navMeshAgent.SetDestination(_patrolPostion1);
-                lastPatrolDestination = _patrolPostion1;
-            }
+            int currendIndex = _enemy.patrolPoints.IndexOf(_lastPatrolDestination);
+            int nextIndex = (currendIndex + 1) % _enemy.patrolPoints.Count; // Cycle through the patrol points
+        
+            _enemy.navMeshAgent.SetDestination(_enemy.patrolPoints[nextIndex]);
+            _lastPatrolDestination = _enemy.patrolPoints[nextIndex];
         }
     }
 

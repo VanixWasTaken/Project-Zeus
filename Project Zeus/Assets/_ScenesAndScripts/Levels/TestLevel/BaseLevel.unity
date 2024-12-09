@@ -1379,7 +1379,7 @@ PrefabInstance:
     - target: {fileID: 726466336552129662, guid: 4173552810c5b554f99cf9552c5c6423,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 14.87
+      value: 10.73
       objectReference: {fileID: 0}
     - target: {fileID: 726466336552129662, guid: 4173552810c5b554f99cf9552c5c6423,
         type: 3}
@@ -1389,7 +1389,7 @@ PrefabInstance:
     - target: {fileID: 726466336552129662, guid: 4173552810c5b554f99cf9552c5c6423,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 20.82
+      value: 26.02
       objectReference: {fileID: 0}
     - target: {fileID: 726466336552129662, guid: 4173552810c5b554f99cf9552c5c6423,
         type: 3}
@@ -1429,12 +1429,12 @@ PrefabInstance:
     - target: {fileID: 1199337483447460220, guid: 4173552810c5b554f99cf9552c5c6423,
         type: 3}
       propertyPath: patrolPoints.Array.size
-      value: 0
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1199337483447460220, guid: 4173552810c5b554f99cf9552c5c6423,
         type: 3}
       propertyPath: patrolPoints.Array.data[0].x
-      value: 4
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 1199337483447460220, guid: 4173552810c5b554f99cf9552c5c6423,
         type: 3}
@@ -1444,12 +1444,12 @@ PrefabInstance:
     - target: {fileID: 1199337483447460220, guid: 4173552810c5b554f99cf9552c5c6423,
         type: 3}
       propertyPath: patrolPoints.Array.data[0].z
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1199337483447460220, guid: 4173552810c5b554f99cf9552c5c6423,
         type: 3}
       propertyPath: patrolPoints.Array.data[1].x
-      value: 4
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 1199337483447460220, guid: 4173552810c5b554f99cf9552c5c6423,
         type: 3}
@@ -1464,7 +1464,7 @@ PrefabInstance:
     - target: {fileID: 1199337483447460220, guid: 4173552810c5b554f99cf9552c5c6423,
         type: 3}
       propertyPath: patrolPoints.Array.data[2].x
-      value: 14
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 1199337483447460220, guid: 4173552810c5b554f99cf9552c5c6423,
         type: 3}
@@ -1474,7 +1474,22 @@ PrefabInstance:
     - target: {fileID: 1199337483447460220, guid: 4173552810c5b554f99cf9552c5c6423,
         type: 3}
       propertyPath: patrolPoints.Array.data[2].z
-      value: 20
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199337483447460220, guid: 4173552810c5b554f99cf9552c5c6423,
+        type: 3}
+      propertyPath: patrolPoints.Array.data[3].x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199337483447460220, guid: 4173552810c5b554f99cf9552c5c6423,
+        type: 3}
+      propertyPath: patrolPoints.Array.data[3].y
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1199337483447460220, guid: 4173552810c5b554f99cf9552c5c6423,
+        type: 3}
+      propertyPath: patrolPoints.Array.data[3].z
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 2971767848771766707, guid: 4173552810c5b554f99cf9552c5c6423,
         type: 3}
