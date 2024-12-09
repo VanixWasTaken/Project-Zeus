@@ -6,7 +6,9 @@ public class UnitIdleState : UnitBaseState
 
     public override void EnterState(UnitStateManager _unit)
     {
-        _unit.animator.SetFloat("anSpeed", 0); // plays the idle animation
+        ResetAnimation(_unit);
+
+        _unit.navMeshAgent.updateRotation = true;
     }
 
     public override void UpdateState(UnitStateManager _unit)
@@ -16,4 +18,14 @@ public class UnitIdleState : UnitBaseState
 
     #endregion
 
+
+    #region Custom Functions()
+
+    private void ResetAnimation(UnitStateManager _unit)
+    {
+        _unit.animator.SetFloat("anSpeed", 0); // plays the idle animation
+        _unit.animator.SetBool("anIsShooting", false);
+    }
+
+    #endregion
 }

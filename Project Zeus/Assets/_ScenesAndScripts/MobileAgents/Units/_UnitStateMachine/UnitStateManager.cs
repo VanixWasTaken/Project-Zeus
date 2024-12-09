@@ -6,51 +6,64 @@ using static FMODUnity.RuntimeManager;
 
 public class UnitStateManager : MonoBehaviour
 {
-    #region UnitStates Variables
+    #region UnitStates
+
     public UnitBaseState currentState;
     public UnitIdleState idleState = new UnitIdleState();
     public UnitWalkingState walkingState = new UnitWalkingState();
     public UnitDeactivatedState deactivatedState = new UnitDeactivatedState();
-
     public UnitWorkerMiningState workerMiningState = new UnitWorkerMiningState();
+    public UnitFightingState fightingState = new UnitFightingState();
 
-    public UnitFighterFightingState fighterFightingState = new UnitFighterFightingState();
     #endregion
 
-    #region References Variables
+    #region References
+
     public Animator animator;
     public NavMeshAgent navMeshAgent;
     GameObject selectionIndicator;
-    //[SerializeField] Camera mainCamera;
-    //[SerializeField] Vector3 mouseClickPos;
     DropshipStateManager dropship; // needed to call function DepleteEnergy()
     public FMODAudioData audioSheet;
-    //[SerializeField] Vector3 targetPosition;
-    //[SerializeField] GameObject enemyDetector;
-    public float life = 100; // delte later
-    //public List<GameObject> enemiesInRange;
-    //public string myEnemyTag;
-    //public int damage = 10;
-    //public bool isDead = false;
     public RightPartUIUnitDescription rightPartUIUnitDescription;
+    public EnemyStateManager enemyStateManager;
+
     #endregion
 
-    // These values can be assigned in the Unit Prefabs, to make some Units more expensive than others
-    public int energyDepletionRate = 5;
-    public float energyDepletionInterval = 5;
+    #region Variables
 
-    #region Worker Variables
+    public enum UnitClass
+    {
+        Worker,
+        Recon,
+        Fighter
+    }
+    UnitClass unitClass;
+    public float health;
+    private float movementSpeed;
+    private float visionRange;
+    private float attackRange;
+    private float attackSpeed;
+    private int attackDamage;
+    private float carryingCapacity;
+    public int energyDepletionRate; // Can be assigned in the Unit Prefabs, to make some Units more expensive than others
+    public float energyDepletionInterval = 1; // Can be assigned in the Unit Prefabs, to make some Units more expensive than others
+    // public float soundEmittingRange; // THIS STAT SHOULD BE INTRODUSED TO DIFFERENTIATE THE CLASSES EVEN MORE
+    public Vector3 nearestEnemyPosition;
+    public GameObject shootingSoundGO; // A big sphere that represents the range the shooting sound is heard by other enemies, allerting them to roam the area where the sound was
+
     [Header("Worker Variables")]
     public int collectedEnergy;
-    #endregion
 
-    #region Gatherer Variables
+    [Header("Fighter Variables")]
     public int collectedLoot;
-
     public List<GameObject> enemiesInRange = new List<GameObject>();
-
     public GameObject mainTarget;
+
+
     #endregion
+
+
+    #region Unity Build In
 
     void Awake()
     {
@@ -93,7 +106,7 @@ public class UnitStateManager : MonoBehaviour
 
         if (dropship == null)
         {
-            GameObject[] cC = GameObject.FindGameObjectsWithTag("CommandCenter");
+            GameObject[] cC = GameObject.FindGameObjectsWithTag("Dropship");
 
             foreach (GameObject c in cC)
             {
@@ -105,11 +118,28 @@ public class UnitStateManager : MonoBehaviour
 
             if (dropship == null)
             {
-                Debug.LogError("CommandCenter could not be found and assigned");
+                Debug.LogError("Dropship could not be found and assigned");
             }
         }
 
         LoadBank("UNIT");
+
+        #endregion
+
+        #region Set Class
+
+        if (CompareTag("Worker"))
+        {
+            SetClass(UnitClass.Worker);
+        }
+        else if (CompareTag("Recon"))
+        {
+            SetClass(UnitClass.Recon);
+        }
+        else if (CompareTag("Fighter"))
+        {
+            SetClass(UnitClass.Fighter);
+        }
 
         #endregion
     }
@@ -117,86 +147,121 @@ public class UnitStateManager : MonoBehaviour
 
     void Start()
     {
-        animator.SetBool("isAttacking", false);
         StartCoroutine(EnergyDepletion(energyDepletionInterval));
 
         selectionIndicator.SetActive(false);
         currentState = idleState;
         currentState.EnterState(this);
+
+        #region Define Class
+
+        if (unitClass == UnitClass.Worker)
+        {
+            health = 100;
+            movementSpeed = 5;
+            visionRange = 3;
+            attackRange = 3;
+            attackSpeed = 2;
+            attackDamage = 25;
+            carryingCapacity = 100;
+            energyDepletionRate = 1;
+        }
+        else if (unitClass == UnitClass.Recon)
+        {
+            health = 50;
+            movementSpeed = 8;
+            visionRange = 7;
+            attackRange = 7;
+            attackSpeed = 1;
+            attackDamage = 100;
+            carryingCapacity = 0;
+            energyDepletionRate = 2;
+        }
+        else if (unitClass == UnitClass.Fighter)
+        {
+            health = 200;
+            movementSpeed = 2;
+            visionRange = 5;
+            attackRange = 5;
+            attackSpeed = 3;
+            attackDamage = 50;
+            carryingCapacity = 0;
+            energyDepletionRate = 4;
+        }
+
+        #endregion
     }
 
 
     void Update()
     {
         currentState.UpdateState(this);
-    }
 
-
-
-    #region Custom Functions()
-    public void SwitchStates(UnitBaseState state) // Change the state
-    {
-        currentState = state;
-        currentState.EnterState(this);
-    }
-
-    public void OnCommandMove(Vector3 targetPosition) // Moves the player to the set destination and switches to walking state
-    {
-        if (currentState != deactivatedState)
+        if (health <= 0)
         {
-            if (currentState != fighterFightingState)
-            {
-                navMeshAgent.SetDestination(targetPosition);
-                SwitchStates(walkingState);
-            }
-        }
-        
-    }
-
-    public void GathererShouldFight(Collider other)
-    {
-        if (other != null)
-        {
-            if (other.gameObject.CompareTag("Screamer") || other.gameObject.CompareTag("Enemy"))
-            {
-                enemiesInRange.Add(other.gameObject);
-                if (currentState != fighterFightingState)
-                {
-                    navMeshAgent.isStopped = true;
-                    navMeshAgent.ResetPath();
-                    SwitchStates(fighterFightingState);
-                }
-            }
+            Die();
         }
     }
 
-    public void GathererRangeExited(Collider other)
-    {
-        if (other != null)
-        {
-            if (other.gameObject.CompareTag("Screamer") || other.gameObject.CompareTag("Enemy"))
-            {
-                enemiesInRange.Remove(other.gameObject);
-                Debug.Log("I have removed: " + other.gameObject + " from the list!");
-                if (enemiesInRange.Count <= 0)
-                {
-                    SwitchStates(idleState);
-                }
-            }
-        }
-    }
+    #region Animator
 
     public void OnFootstep()
     {
         //PlayOneShot();
     }
 
-    public void OnEnemyHit()
+    public void OnShooting()
     {
-        if (currentState == fighterFightingState)
+        enemyStateManager.TakeDamage(attackDamage);
+        EmitShootingSound(true);
+        Debug.Log("Damage: " + attackDamage);
+    }
+
+    public void OnShootSoundActivated()
+    {
+        EmitShootingSound(false);
+    }
+
+    #endregion
+
+    #region Colliders
+
+    public void ScanForEnemies(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
         {
-            currentState.OnEnemyHit(this);
+            enemyStateManager = other.GetComponent<EnemyStateManager>();
+            nearestEnemyPosition = other.transform.position; // Saves the last position of the enemy for uses like view direction or target priority
+            SwitchStates(fightingState);
         }
+    }
+
+    public void AllertEnemiesInSoundRange(Collider other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            EnemyStateManager _enemyStateManager = other.GetComponent<EnemyStateManager>();
+
+            _enemyStateManager.lastHeardSoundPosition = transform.position;
+            if (_enemyStateManager.currentState != _enemyStateManager.attackingState || _enemyStateManager.currentState != _enemyStateManager.chasingState)
+            {
+                _enemyStateManager.SwitchState(_enemyStateManager.roamSoundState);
+            }
+        }
+    }
+
+    #endregion
+
+    #endregion
+
+
+
+    #region Custom Functions()
+
+    public void SwitchStates(UnitBaseState state) // Change the state
+    {
+        currentState = state;
+        currentState.EnterState(this);
     }
 
     public void Die()
@@ -209,20 +274,19 @@ public class UnitStateManager : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void OnCommandMove(Vector3 targetPosition) // Moves the player to the set destination and switches to walking state
+    {
+        if (currentState != deactivatedState)
+        {
+            navMeshAgent.SetDestination(targetPosition);
+            SwitchStates(walkingState);
+        }
+    }
+
     public void StopMoving() // Resets the NavMesh path and switches to idle state
     {
         navMeshAgent.ResetPath();
         SwitchStates(idleState);
-    }
-
-    public void TakeDamage(float _incomingDamage, EnemyStateManager _enemy)
-    {
-        if (tag == "Fighter")
-        {
-            SwitchStates(fighterFightingState);
-        }
-        // very basic implementation, can be modified later
-        life -= _incomingDamage;
     }
 
     public void EnergyLogic(string _action)
@@ -246,10 +310,21 @@ public class UnitStateManager : MonoBehaviour
         }
     }
 
+    public void SetClass(UnitClass _unitclass) // Sets the current class to the intended unit
+    {
+        unitClass = _unitclass;
+        Debug.Log("UnitClass set  to " + unitClass);
+    }
+
     private void DepleteEnergy(int _amount)
     {
         dropship.DepleteEnergy(_amount);
     }
+
+    private void EmitShootingSound(bool _setActive) // Is used to activated a big sphere for a split second, after a bullet is shot, to allert enemies in range to investigate the area (faking that they heard the shot)
+    {
+        shootingSoundGO.SetActive(_setActive);
+    } 
 
     public IEnumerator EnergyDepletion(float _depletionInterval)
     {
@@ -262,14 +337,17 @@ public class UnitStateManager : MonoBehaviour
     }
 
     #region SelectionIndicator Functions()
+
     public void Select() // Change visual to make selection apparent.
     {
         selectionIndicator.SetActive(true);
     }
+
     public void Deselect() // Change visual to make deselection apparent
     {
         selectionIndicator.SetActive(false);
     }
+
     #endregion
 
     #endregion
