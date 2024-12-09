@@ -213,7 +213,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/FIGHTER.bank
   Name: FIGHTER
   StudioPath: bank:/SFX/FIGHTER
-  lastModified: 638689262298741883
+  lastModified: 638693425806068670
   FileSizes: []
   Exists: 1
 --- !u!114 &-7596133678144141744
@@ -1027,8 +1027,8 @@ MonoBehaviour:
     Data3: 919681443
     Data4: -1296970019
   Banks:
-  - {fileID: 173960363322647871}
   - {fileID: -8660594532279740105}
+  - {fileID: 173960363322647871}
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
@@ -1328,7 +1328,7 @@ MonoBehaviour:
   - {fileID: -2825738890928706980}
   StringsBanks:
   - {fileID: -863181981819171695}
-  cacheTime: 638693393066762973
+  cacheTime: 638693425806931828
   cacheVersion: 131620
 --- !u!114 &92513434431448552
 MonoBehaviour:
@@ -1453,7 +1453,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/RECON.bank
   Name: RECON
   StudioPath: bank:/SFX/RECON
-  lastModified: 638689262301114209
+  lastModified: 638693425806931828
   FileSizes: []
   Exists: 1
 --- !u!114 &287384235095984720
@@ -2828,4 +2828,4 @@ MonoBehaviour:
   Parameters: []
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 6473
