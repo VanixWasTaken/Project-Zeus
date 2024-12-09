@@ -32,6 +32,7 @@ public class DeployMenuUnitOverviewScript : MonoBehaviour
     private void Awake()
     {
         // load FMOD bank to be able to play UI sounds
+        Debug.Log("Loading FMOD Bank");
         LoadBank("UI");
     }
 

@@ -665,7 +665,8 @@ MonoBehaviour:
   returnCutscene: {fileID: 1830000033}
   workersText: {fileID: 601000495}
   reconsText: {fileID: 1699541428}
-  fightersText: {fileID: 0}
+  fightersText: {fileID: 1729621638}
+  audioSheet: {fileID: 11400000, guid: 14ca13aa9c0541e458b2014c10e27709, type: 2}
 --- !u!4 &745164992
 Transform:
   m_ObjectHideFlags: 0
@@ -1308,6 +1309,7 @@ GameObject:
   - component: {fileID: 1362880208}
   - component: {fileID: 1362880207}
   - component: {fileID: 1362880206}
+  - component: {fileID: 1362880209}
   m_Layer: 5
   m_Name: QuitButton
   m_TagString: Untagged
@@ -1429,6 +1431,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1362880204}
   m_CullTransparentMesh: 1
+--- !u!114 &1362880209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362880204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 745164991}
+          m_TargetAssemblyTypeName: DeathScreenSceneHandler, Assembly-CSharp
+          m_MethodName: OnButtonHovered
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1364459158
 GameObject:
   m_ObjectHideFlags: 0
@@ -1574,6 +1605,7 @@ GameObject:
   - component: {fileID: 1660141907}
   - component: {fileID: 1660141906}
   - component: {fileID: 1660141905}
+  - component: {fileID: 1660141908}
   m_Layer: 5
   m_Name: RTSButton
   m_TagString: Untagged
@@ -1695,6 +1727,35 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1660141903}
   m_CullTransparentMesh: 1
+--- !u!114 &1660141908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1660141903}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 745164991}
+          m_TargetAssemblyTypeName: DeathScreenSceneHandler, Assembly-CSharp
+          m_MethodName: OnButtonHovered
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &1699541426
 GameObject:
   m_ObjectHideFlags: 0

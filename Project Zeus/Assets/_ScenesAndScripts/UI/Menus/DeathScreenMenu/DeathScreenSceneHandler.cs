@@ -1,8 +1,9 @@
-using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Video;
+using static FMODUnity.RuntimeManager;
+using static FMODAudioData.SoundID;
 
 public class DeathScreenSceneHandler : MonoBehaviour
 {
@@ -11,11 +12,13 @@ public class DeathScreenSceneHandler : MonoBehaviour
     // references for the cutscene
     [SerializeField] VideoPlayer videoPlayer;
     [SerializeField] GameObject returnCutscene;
-
+    
     // references for the lost units display
     [SerializeField] TextMeshProUGUI workersText;
     [SerializeField] TextMeshProUGUI reconsText;
     [SerializeField] TextMeshProUGUI fightersText;
+
+    [SerializeField] FMODAudioData audioSheet;
 
     #endregion
 
@@ -41,18 +44,27 @@ public class DeathScreenSceneHandler : MonoBehaviour
             videoPlayer.loopPointReached += OnVideoEnd;
         }
 
+        LoadBank("UI");
+
         SetText();
     }
 
     #region Buttons
 
+    public void OnButtonHovered()
+    {
+        PlayOneShot(audioSheet.GetSFXByName(SFXMenuUIHover));
+    }
+
     public void OnRTSButtonClicked()
     {
+        PlayClickSound();
         returnCutscene.SetActive(true);
     }
 
     public void OnQuitButtonClicked()
     {
+        PlayClickSound();
         Application.Quit(); // does nothing in the editor,  but quits the game when built
     }
 
@@ -66,6 +78,7 @@ public class DeathScreenSceneHandler : MonoBehaviour
         GameDataManager.Instance.pickedWorkers = 0;
         GameDataManager.Instance.pickedRecons = 0;
         GameDataManager.Instance.pickedFighters = 0;
+        UnloadBank("UI");
         SceneManager.LoadScene("DeployMenu");
     }
 
@@ -108,6 +121,11 @@ public class DeathScreenSceneHandler : MonoBehaviour
     private int[] GetLostUnits()
     {
         return unitCount;
+    }
+
+    private void PlayClickSound()
+    {
+        PlayOneShot(audioSheet.GetSFXByName(SFXMenuUIClick));
     }
 
     private void OnDestroy()

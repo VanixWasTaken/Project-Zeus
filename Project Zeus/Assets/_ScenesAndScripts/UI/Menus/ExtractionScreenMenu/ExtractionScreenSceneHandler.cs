@@ -149,6 +149,8 @@ public class ExtractionScreenSceneHandler : MonoBehaviour
         GameDataManager.Instance.pickedWorkers = 0;
         GameDataManager.Instance.pickedRecons = 0;
         GameDataManager.Instance.pickedFighters = 0;
+
+        UnloadBank("UI");
     }
 
     #endregion
