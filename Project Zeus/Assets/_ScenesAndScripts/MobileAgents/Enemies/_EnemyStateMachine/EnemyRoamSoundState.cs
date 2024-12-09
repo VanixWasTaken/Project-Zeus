@@ -17,7 +17,7 @@ public class EnemyRoamSoundState : EnemyBaseState
             _enemy.SwitchState(_enemy.roamingState);
         }
 
-        ChaseUnit(_enemy);
+        FollowSoundSource(_enemy);
     }
 
     #endregion
@@ -25,7 +25,7 @@ public class EnemyRoamSoundState : EnemyBaseState
 
     #region Custom Functions()
 
-    private void ChaseUnit(EnemyStateManager _enemy)
+    private void FollowSoundSource(EnemyStateManager _enemy)
     {
         if (_enemy.unitSpotted)
         {

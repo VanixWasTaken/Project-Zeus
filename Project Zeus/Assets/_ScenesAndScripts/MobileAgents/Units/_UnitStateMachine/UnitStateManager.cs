@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.AI;
 using static FMODUnity.RuntimeManager;
@@ -46,10 +47,10 @@ public class UnitStateManager : MonoBehaviour
     private int attackDamage;
     private float carryingCapacity;
     public int energyDepletionRate; // Can be assigned in the Unit Prefabs, to make some Units more expensive than others
-    public float energyDepletionInterval = 1; // Can be assigned in the Unit Prefabs, to make some Units more expensive than others
-    // public float soundEmittingRange; // THIS STAT SHOULD BE INTRODUSED TO DIFFERENTIATE THE CLASSES EVEN MORE
+    public float soundEmittingRange; // Defines the range in which the units emit sound
     public Vector3 nearestEnemyPosition;
     public GameObject shootingSoundGO; // A big sphere that represents the range the shooting sound is heard by other enemies, allerting them to roam the area where the sound was
+    public GameObject visionConeGO; // A BoxCollider that represents the view distance
 
     [Header("Worker Variables")]
     public int collectedEnergy;
@@ -147,7 +148,7 @@ public class UnitStateManager : MonoBehaviour
 
     void Start()
     {
-        StartCoroutine(EnergyDepletion(energyDepletionInterval));
+        StartCoroutine(EnergyDepletion()); // Start the energy depletion (once per second updated)
 
         selectionIndicator.SetActive(false);
         currentState = idleState;
@@ -165,6 +166,7 @@ public class UnitStateManager : MonoBehaviour
             attackDamage = 25;
             carryingCapacity = 100;
             energyDepletionRate = 1;
+            soundEmittingRange = 30;
         }
         else if (unitClass == UnitClass.Recon)
         {
@@ -176,6 +178,7 @@ public class UnitStateManager : MonoBehaviour
             attackDamage = 100;
             carryingCapacity = 0;
             energyDepletionRate = 2;
+            soundEmittingRange = 30;
         }
         else if (unitClass == UnitClass.Fighter)
         {
@@ -187,7 +190,10 @@ public class UnitStateManager : MonoBehaviour
             attackDamage = 50;
             carryingCapacity = 0;
             energyDepletionRate = 4;
+            soundEmittingRange = 10;
         }
+
+        SetAllClassStats(); // After adjusting the values above some stats need to be actally applied to its references, this happens here 
 
         #endregion
     }
@@ -326,11 +332,23 @@ public class UnitStateManager : MonoBehaviour
         shootingSoundGO.SetActive(_setActive);
     } 
 
-    public IEnumerator EnergyDepletion(float _depletionInterval)
+    private void SetAllClassStats()
+    {
+        // Set the size of the sphere that represents the shooting sound range that can be heard by enemies
+        SphereCollider shootingSoundSphere = shootingSoundGO.GetComponent<SphereCollider>();
+        shootingSoundSphere.radius = soundEmittingRange;
+
+        // Set the size of the cube vision cone infront of the unit, that represents the view distance
+        BoxCollider visionCone = visionConeGO.GetComponent<BoxCollider>();
+        visionCone.size = new Vector3(5, 2, visionRange);
+        visionCone.transform.position += new Vector3(0, 0, visionRange / 2);
+    }
+
+    public IEnumerator EnergyDepletion()
     {
         while (true)
         {
-            yield return new WaitForSeconds(_depletionInterval);
+            yield return new WaitForSeconds(1);
 
             DepleteEnergy(energyDepletionRate);
         }

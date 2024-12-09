@@ -114,7 +114,7 @@ public class DeathScreenSceneHandler : MonoBehaviour
             else if (i == 2)
             {
                 lostFighters = unitCount[i];
-                fightersText.text = ("Gatherers\t\t: " + lostFighters);
+                fightersText.text = ("Fighters\t\t: " + lostFighters);
             }
         }
     }
