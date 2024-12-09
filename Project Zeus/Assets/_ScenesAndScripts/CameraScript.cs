@@ -15,6 +15,8 @@ public class CameraScript : MonoBehaviour
     private Vector3 currentVelocity;
     private Vector3 direction;
 
+    private Vector2 mousePosition;
+
     #endregion
 
 
@@ -34,6 +36,8 @@ public class CameraScript : MonoBehaviour
     private void Update()
     {
         HandleMovement(); // updates the camera position based on player input
+
+        CameraMouseMovement();
     }
 
     #endregion
@@ -57,6 +61,52 @@ public class CameraScript : MonoBehaviour
             currentVelocity = direction * speed;
             transform.position += direction * speed * Time.deltaTime;
         }
+    }
+
+    private void CameraMouseMovement()
+    {
+        mousePosition = Mouse.current.position.ReadValue(); // Get the mouse position using the new Input System
+
+        Vector3 movement = Vector3.zero;
+        
+
+        // Get the screen dimensions
+        float screenWidth = Screen.width;
+        float screenHeight = Screen.height;
+
+        // Check edges and apply movement
+        if (mousePosition.x >= 0 && mousePosition.x < 10f) // Left edge
+        {
+            movement.x -= 1;
+        }
+        else if (mousePosition.x <= screenWidth && mousePosition.x > screenWidth - 10f) // Right edge
+        {
+            movement.x += 1;
+        }
+
+        if (mousePosition.y >= 0 && mousePosition.y < 10f) // Bottom edge
+        {
+            movement.z -= 1; // Assuming camera forward/backward movement is along the Z axis
+        }
+        else if (mousePosition.y <= screenHeight && mousePosition.y > screenHeight - 10f) // Top edge
+        {
+            movement.z += 1;
+        }
+
+
+        // Apply the same -45 degree rotation to the mouse movement
+        movement = Quaternion.AngleAxis(-45, Vector3.up) * movement;
+
+        // Normalize and apply speed
+        movement = movement.normalized * speed * Time.deltaTime;
+
+        // Apply movement
+        transform.Translate(movement, Space.World);
+    }
+
+    private void TurnCamera()
+    {
+        if (inputActions.Keyboard.TurnCameraRight)
     }
 
     #endregion

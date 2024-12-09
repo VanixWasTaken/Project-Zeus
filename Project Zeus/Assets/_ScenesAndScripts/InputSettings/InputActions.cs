@@ -112,6 +112,24 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TurnCameraRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""691dacdf-663f-42ca-8b42-3a46edb5371b"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TurnCameraLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""6738ee71-46e5-4105-bcdd-286650b27d22"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -134,6 +152,28 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""DeactiveUnit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ffba9dea-9848-42e6-b9c9-b245ef1e6209"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TurnCameraRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0a32a61d-8fea-4938-94fb-ab0d8efabe62"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TurnCameraLeft"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -223,6 +263,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Keyboard = asset.FindActionMap("Keyboard", throwIfNotFound: true);
         m_Keyboard_InitializeBuilding = m_Keyboard.FindAction("InitializeBuilding", throwIfNotFound: true);
         m_Keyboard_DeactiveUnit = m_Keyboard.FindAction("DeactiveUnit", throwIfNotFound: true);
+        m_Keyboard_TurnCameraRight = m_Keyboard.FindAction("TurnCameraRight", throwIfNotFound: true);
+        m_Keyboard_TurnCameraLeft = m_Keyboard.FindAction("TurnCameraLeft", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Move = m_Camera.FindAction("Move", throwIfNotFound: true);
@@ -358,12 +400,16 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private List<IKeyboardActions> m_KeyboardActionsCallbackInterfaces = new List<IKeyboardActions>();
     private readonly InputAction m_Keyboard_InitializeBuilding;
     private readonly InputAction m_Keyboard_DeactiveUnit;
+    private readonly InputAction m_Keyboard_TurnCameraRight;
+    private readonly InputAction m_Keyboard_TurnCameraLeft;
     public struct KeyboardActions
     {
         private @InputActions m_Wrapper;
         public KeyboardActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @InitializeBuilding => m_Wrapper.m_Keyboard_InitializeBuilding;
         public InputAction @DeactiveUnit => m_Wrapper.m_Keyboard_DeactiveUnit;
+        public InputAction @TurnCameraRight => m_Wrapper.m_Keyboard_TurnCameraRight;
+        public InputAction @TurnCameraLeft => m_Wrapper.m_Keyboard_TurnCameraLeft;
         public InputActionMap Get() { return m_Wrapper.m_Keyboard; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -379,6 +425,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @DeactiveUnit.started += instance.OnDeactiveUnit;
             @DeactiveUnit.performed += instance.OnDeactiveUnit;
             @DeactiveUnit.canceled += instance.OnDeactiveUnit;
+            @TurnCameraRight.started += instance.OnTurnCameraRight;
+            @TurnCameraRight.performed += instance.OnTurnCameraRight;
+            @TurnCameraRight.canceled += instance.OnTurnCameraRight;
+            @TurnCameraLeft.started += instance.OnTurnCameraLeft;
+            @TurnCameraLeft.performed += instance.OnTurnCameraLeft;
+            @TurnCameraLeft.canceled += instance.OnTurnCameraLeft;
         }
 
         private void UnregisterCallbacks(IKeyboardActions instance)
@@ -389,6 +441,12 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @DeactiveUnit.started -= instance.OnDeactiveUnit;
             @DeactiveUnit.performed -= instance.OnDeactiveUnit;
             @DeactiveUnit.canceled -= instance.OnDeactiveUnit;
+            @TurnCameraRight.started -= instance.OnTurnCameraRight;
+            @TurnCameraRight.performed -= instance.OnTurnCameraRight;
+            @TurnCameraRight.canceled -= instance.OnTurnCameraRight;
+            @TurnCameraLeft.started -= instance.OnTurnCameraLeft;
+            @TurnCameraLeft.performed -= instance.OnTurnCameraLeft;
+            @TurnCameraLeft.canceled -= instance.OnTurnCameraLeft;
         }
 
         public void RemoveCallbacks(IKeyboardActions instance)
@@ -462,6 +520,8 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     {
         void OnInitializeBuilding(InputAction.CallbackContext context);
         void OnDeactiveUnit(InputAction.CallbackContext context);
+        void OnTurnCameraRight(InputAction.CallbackContext context);
+        void OnTurnCameraLeft(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {
