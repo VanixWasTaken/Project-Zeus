@@ -2052,9 +2052,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: adb5a4956ef6b044aa315ee032b0a2f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  availableWorkers: 4
-  availableRecons: 4
-  availableFighters: 0
+  availableWorkers: 6
+  availableRecons: 6
+  availableFighters: 6
   pickedWorkers: 0
   pickedRecons: 0
   pickedFighters: 0
@@ -5303,6 +5303,7 @@ MonoBehaviour:
   availableKilogramText: {fileID: 1144702352}
   kilogramWarning: {fileID: 245369004}
   kilogramSlider: {fileID: 2106916735}
+  audioSheet: {fileID: 11400000, guid: 14ca13aa9c0541e458b2014c10e27709, type: 2}
 --- !u!1 &1707975558
 GameObject:
   m_ObjectHideFlags: 0
