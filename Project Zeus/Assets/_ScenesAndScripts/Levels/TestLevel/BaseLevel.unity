@@ -7694,6 +7694,8 @@ MonoBehaviour:
   camSpeed: 12
   zoomRate: 3
   rotationSpeed: 0.5
+  maxFOV: 60
+  minFOV: 30
 --- !u!1001 &1488872445
 PrefabInstance:
   m_ObjectHideFlags: 0

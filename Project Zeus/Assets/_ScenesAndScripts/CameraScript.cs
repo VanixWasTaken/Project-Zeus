@@ -123,12 +123,12 @@ public class CameraScript : MonoBehaviour
     {
         if (inputActions.Camera.TurnCameraRight.IsPressed()) // Turns the camera to the right
         {
-            cameraFollowTransform.Rotate(0, -rotationSpeed, 0, Space.World);
+            cameraFollowTransform.Rotate(0, -rotationSpeed * Time.deltaTime, 0, Space.World);
         }
 
         else if (inputActions.Camera.TurnCameraLeft.IsPressed()) // Turns the camera to the left
         {
-            cameraFollowTransform.Rotate(0, rotationSpeed, 0, Space.World);
+            cameraFollowTransform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.World);
         }
     }
 
