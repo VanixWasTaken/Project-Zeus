@@ -41955,6 +41955,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7f55e9998f479e4894ec38dbeac018f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mainCamera: {fileID: 574180237}
+  selectionBox: {fileID: 1398338671}
+  activationButtons: {fileID: 448411199}
+  unitLayer:
+    serializedVersion: 2
+    m_Bits: 32768
 --- !u!1001 &2134233139
 PrefabInstance:
   m_ObjectHideFlags: 0
