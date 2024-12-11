@@ -10009,8 +10009,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fogRevealers:
   - revealerTransform: {fileID: 1154659800}
-    sightRange: 1000
-    updateOnlyOnMove: 1
+    sightRange: 10
+    updateOnlyOnMove: 0
     lastSeenAt: {x: 0, y: 0}
   levelMidPoint: {fileID: 1890692315}
   FogRefreshRate: 10
@@ -10026,10 +10026,10 @@ MonoBehaviour:
   LevelDataToLoad: {fileID: 0}
   saveDataOnScan: 0
   levelNameToSave: Default
-  levelDimensionX: 128
-  levelDimensionY: 128
-  unitScale: 1
-  scanSpacingPerUnit: 0.25
+  levelDimensionX: 100
+  levelDimensionY: 100
+  unitScale: 5
+  scanSpacingPerUnit: 0.1
   rayStartHeight: 5
   rayMaxDistance: 10
   obstacleLayers:
