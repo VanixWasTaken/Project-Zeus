@@ -1,5 +1,4 @@
-using static FMODUnity.RuntimeManager;
-using static FMODAudioData.SoundID;
+using static UnitSoundHelper.SoundType;
 
 public class UnitFightingState : UnitBaseState
 {
@@ -16,7 +15,7 @@ public class UnitFightingState : UnitBaseState
         _unit.animator.SetTrigger("anShouldShoot");
         _unit.animator.SetBool("anIsShooting", true);
 
-        _unit.PlayShooting();
+        _unit.sound.PlaySoundByType(SHOOTING);
 
         LookAtEnemy(_unit);
     }
@@ -25,7 +24,7 @@ public class UnitFightingState : UnitBaseState
     {
         if (_unit.enemyStateManager.health == 0)
         {
-            _unit.LetShootingFinish();
+            _unit.sound.StopSoundByType(SHOOTING);
             _unit.SwitchStates(_unit.idleState);
         }
     }

@@ -24,11 +24,11 @@ public class UnitWalkingState : UnitBaseState
     private void ResetAnimations(UnitStateManager _unit)
     {
         #region Sound Reset und Start
-        _unit.LetShootingFinish();
+        _unit.sound.StopSoundByType(UnitSoundHelper.SoundType.SHOOTING);
 
         if (_unit.GetClass() == UnitStateManager.UnitClass.Fighter)
         {
-            _unit.PlayMoving();
+            _unit.sound.PlaySoundByType(UnitSoundHelper.SoundType.MOVING);
         }
 
         #endregion
@@ -48,7 +48,7 @@ public class UnitWalkingState : UnitBaseState
             {
                 // Stop moving and switch to idle state if the destination is reached
                 _unit.StopMoving();
-                _unit.LetMovingFinish();
+                _unit.sound.StopSoundByType(UnitSoundHelper.SoundType.MOVING);
             }
         }
     }
