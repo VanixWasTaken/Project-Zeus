@@ -1358,7 +1358,7 @@ MonoBehaviour:
   availableRecons: 0
   availableFighters: 0
   pickedWorkers: 0
-  pickedRecons: 0
+  pickedRecons: 1
   pickedFighters: 1
   extractedWorkers: 0
   extractedRecons: 0

@@ -32,6 +32,7 @@ public class UnitStateManager : MonoBehaviour
     public FMODAudioData audioSheet;
 
     private FMOD.Studio.EventInstance shooting;
+    private FMOD.Studio.EventInstance moving;
 
     #endregion
 
@@ -139,19 +140,20 @@ public class UnitStateManager : MonoBehaviour
         if (CompareTag("Worker"))
         {
             SetClass(UnitClass.Worker);
+            LoadBank("WORKER");
         }
         else if (CompareTag("Recon"))
         {
             SetClass(UnitClass.Recon);
+            LoadBank("RECON");
         }
         else if (CompareTag("Fighter"))
         {
             SetClass(UnitClass.Fighter);
+            LoadBank("FIGHTER");
         }
 
         #endregion
-
-        LoadBank("FIGHTER");
     }
 
 
@@ -369,8 +371,16 @@ public class UnitStateManager : MonoBehaviour
     {
         if (!IsPlaying(shooting))
         {
-            shooting = CreateInstance(audioSheet.GetSFXByName(SFXUnitFighterShooting));
-            shooting.setParameterByName("Firing", 0);
+            if (unitClass == UnitClass.Fighter)
+            {
+                shooting = CreateInstance(audioSheet.GetSFXByName(SFXUnitFighterShooting));
+                shooting.setParameterByName("Firing", 0);
+            }
+            else if (unitClass == UnitClass.Recon)
+            {
+                shooting = CreateInstance(audioSheet.GetSFXByName(SFXUnitReconShot));
+            }
+
             shooting.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
             shooting.start();
             shooting.release();
@@ -385,6 +395,35 @@ public class UnitStateManager : MonoBehaviour
             shooting.release();
         }
         
+    }
+
+    public void PlayMoving()
+    {
+        if (!IsPlaying(moving))
+        {
+            if (unitClass == UnitClass.Fighter)
+            {
+                moving = CreateInstance(audioSheet.GetSFXByName(SFXUnitFighterMoving));
+                moving.setParameterByName("Moving", 0);
+            }
+            else if (unitClass == UnitClass.Recon)
+            {
+                //moving = CreateInstance(audioSheet.GetSFXByName(SFXUnitReconShot));
+            }
+
+            moving.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            moving.start();
+            moving.release();
+        }
+    }
+
+    public void LetMovingFinish()
+    {
+        if (IsPlaying(moving))
+        {
+            moving.setParameterByName("Moving", 1);
+            moving.release();
+        }
     }
 
     private bool IsPlaying(FMOD.Studio.EventInstance instance)

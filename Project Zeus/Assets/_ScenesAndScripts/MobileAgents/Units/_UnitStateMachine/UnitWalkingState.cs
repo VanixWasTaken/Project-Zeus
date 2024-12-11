@@ -24,6 +24,7 @@ public class UnitWalkingState : UnitBaseState
     private void ResetAnimations(UnitStateManager _unit)
     {
         _unit.LetShootingFinish();
+        _unit.PlayMoving();
         _unit.animator.SetBool("anIsMining", false);
         _unit.animator.SetBool("anIsShooting", false);
         _unit.animator.SetFloat("anSpeed", 1);
@@ -39,6 +40,7 @@ public class UnitWalkingState : UnitBaseState
             {
                 // Stop moving and switch to idle state if the destination is reached
                 _unit.StopMoving();
+                _unit.LetMovingFinish();
             }
         }
     }
