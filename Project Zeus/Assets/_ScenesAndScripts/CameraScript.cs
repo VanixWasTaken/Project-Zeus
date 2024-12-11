@@ -1,3 +1,4 @@
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,17 +7,21 @@ public class CameraScript : MonoBehaviour
     #region References
 
     private InputActions inputActions;
+    private Transform cameraFollowTransform;
+    public CinemachineCamera cinCam;
 
     #endregion
 
     #region Variables
 
-    private float speed = 12.0f;
     private Vector3 currentVelocity;
     private Vector3 direction;
-
     private Vector2 mousePosition;
 
+    [Header("Game Design Variables")]
+    public float camSpeed = 12f;
+    public float zoomRate = 3f;
+    public float rotationSpeed = 0.5f;
     #endregion
 
 
@@ -26,6 +31,8 @@ public class CameraScript : MonoBehaviour
     private void Awake()
     {
         inputActions = new InputActions();
+
+        cameraFollowTransform = GetComponent<Transform>();
     }
 
     private void Start()
@@ -38,6 +45,10 @@ public class CameraScript : MonoBehaviour
         HandleMovement(); // updates the camera position based on player input
 
         CameraMouseMovement();
+
+        TurnCamera();
+
+        Zoom();
     }
 
     #endregion
@@ -48,18 +59,18 @@ public class CameraScript : MonoBehaviour
     private void HandleMovement()
     {
         /// <summary>
-        /// Reads the Input (Found under Input/Camera/Move) and moves the camera on the horizontal axis based on that
+        /// Reads the Input (Found under Input/Camera/Move) and moves the camera relative to its local rotation
         /// </summary>
         Vector2 inputVector = inputActions.Camera.Move.ReadValue<Vector2>();
 
         direction = new Vector3(inputVector.x, 0f, inputVector.y).normalized;
 
-        direction = Quaternion.AngleAxis(-45, Vector3.up) * direction;
+        direction = cameraFollowTransform.rotation * direction;
 
         if (direction.magnitude >= 0.1f)
         {
-            currentVelocity = direction * speed;
-            transform.position += direction * speed * Time.deltaTime;
+            currentVelocity = direction * camSpeed;
+            transform.position += currentVelocity * Time.deltaTime;
         }
     }
 
@@ -95,10 +106,10 @@ public class CameraScript : MonoBehaviour
 
 
         // Apply the same -45 degree rotation to the mouse movement
-        movement = Quaternion.AngleAxis(-45, Vector3.up) * movement;
+        movement = cameraFollowTransform.rotation * movement;
 
         // Normalize and apply speed
-        movement = movement.normalized * speed * Time.deltaTime;
+        movement = movement.normalized * camSpeed * Time.deltaTime;
 
         // Apply movement
         transform.Translate(movement, Space.World);
@@ -106,7 +117,28 @@ public class CameraScript : MonoBehaviour
 
     private void TurnCamera()
     {
-        //if (inputActions.Keyboard.TurnCameraRight)
+        if (inputActions.Camera.TurnCameraRight.IsPressed()) // Turns the camera to the right
+        {
+            cameraFollowTransform.Rotate(0, -rotationSpeed, 0, Space.World);
+        }
+
+        else if (inputActions.Camera.TurnCameraLeft.IsPressed()) // Turns the camera to the left
+        {
+            cameraFollowTransform.Rotate(0, rotationSpeed, 0, Space.World);
+        }
+    }
+
+    private void Zoom()
+    {
+        if (inputActions.Camera.ZoomIn.WasPerformedThisFrame() && cinCam.Lens.FieldOfView >= 30)
+        {
+            cinCam.Lens.FieldOfView -= zoomRate;
+        }
+
+        else if (inputActions.Camera.ZoomOut.WasPerformedThisFrame() && cinCam.Lens.FieldOfView <= 60)
+        {
+            cinCam.Lens.FieldOfView += zoomRate;
+        }
     }
 
     #endregion
