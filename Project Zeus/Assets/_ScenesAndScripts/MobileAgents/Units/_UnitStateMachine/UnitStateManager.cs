@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static FMODUnity.RuntimeManager;
 using static FMODAudioData.SoundID;
+using FischlWorks_FogWar;
 
 public class UnitStateManager : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class UnitStateManager : MonoBehaviour
     DropshipStateManager dropship; // needed to call function DepleteEnergy()
     public RightPartUIUnitDescription rightPartUIUnitDescription;
     public EnemyStateManager enemyStateManager;
+    private csFogWar fogWar;
+    
 
     #region Sound References
 
@@ -77,7 +80,7 @@ public class UnitStateManager : MonoBehaviour
     void Awake()
     {
         // Connects as many references per code as possible to hold the inspector clean
-        #region Variable Connections
+        #region Reference Connections
         if (navMeshAgent == null)
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
@@ -131,6 +134,18 @@ public class UnitStateManager : MonoBehaviour
             }
         }
 
+        if (fogWar == null) // Connects the Fog of War plugin
+        {
+            fogWar = FindAnyObjectByType<csFogWar>();
+
+            if (fogWar == null)
+            {
+                Debug.LogError("fogWar on UnitStateManager could not found and assigned");
+            }
+        }
+
+          
+
         LoadBank("UNIT");
 
         #endregion
@@ -178,6 +193,8 @@ public class UnitStateManager : MonoBehaviour
             carryingCapacity = 100;
             energyDepletionRate = 1;
             soundEmittingRange = 30;
+            
+            fogWar.AddFogRevealer(new csFogWar.FogRevealer(this.transform, 10, true)); // Set the Fog of War Revealer
         }
         else if (unitClass == UnitClass.Recon)
         {

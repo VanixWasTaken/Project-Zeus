@@ -1363,8 +1363,8 @@ MonoBehaviour:
   availableRecons: 0
   availableFighters: 0
   pickedWorkers: 1
-  pickedRecons: 1
-  pickedFighters: 1
+  pickedRecons: 0
+  pickedFighters: 0
   extractedWorkers: 0
   extractedRecons: 0
   extractedFighters: 0
@@ -6585,7 +6585,7 @@ GameObject:
   - component: {fileID: 1290805236}
   m_Layer: 0
   m_Name: Systems
-  m_TagString: Untagged
+  m_TagString: Systems
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7697,6 +7697,7 @@ MonoBehaviour:
   rotationSpeed: 60
   maxFOV: 65
   minFOV: 20
+  defaultFOV: 45
 --- !u!1001 &1488872445
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10006,20 +10007,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5de54c084f472845b61ee9a97cb8a48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fogRevealers: []
+  fogRevealers:
+  - revealerTransform: {fileID: 1154659800}
+    sightRange: 1000
+    updateOnlyOnMove: 1
+    lastSeenAt: {x: 0, y: 0}
   levelMidPoint: {fileID: 1890692315}
   FogRefreshRate: 10
-  fogPlaneHeight: 2
+  fogPlaneHeight: 0
   fogPlaneMaterial: {fileID: 2100000, guid: 36b93ac6fcf129c449491654e397fe4a, type: 2}
   fogColor: {r: 0.019607844, g: 0.05882353, b: 0.09803922, a: 1}
   fogPlaneAlpha: 1
   fogLerpSpeed: 2.5
-  keepRevealedTiles: 0
+  keepRevealedTiles: 1
   revealedTileOpacity: 0.5
   fogPlaneTextureLerpTarget: {fileID: 0}
   fogPlaneTextureLerpBuffer: {fileID: 0}
   LevelDataToLoad: {fileID: 0}
-  saveDataOnScan: 1
+  saveDataOnScan: 0
   levelNameToSave: Default
   levelDimensionX: 128
   levelDimensionY: 128
