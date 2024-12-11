@@ -22,6 +22,8 @@ public class CameraScript : MonoBehaviour
     public float camSpeed = 12f;
     public float zoomRate = 3f;
     public float rotationSpeed = 0.5f;
+    public float maxFOV = 60;
+    public float minFOV = 30;
     #endregion
 
 
@@ -49,6 +51,8 @@ public class CameraScript : MonoBehaviour
         TurnCamera();
 
         Zoom();
+
+        ResetCam();
     }
 
     #endregion
@@ -130,14 +134,23 @@ public class CameraScript : MonoBehaviour
 
     private void Zoom()
     {
-        if (inputActions.Camera.ZoomIn.WasPerformedThisFrame() && cinCam.Lens.FieldOfView >= 30)
+        if (inputActions.Camera.ZoomIn.WasPerformedThisFrame() && cinCam.Lens.FieldOfView > minFOV)
         {
             cinCam.Lens.FieldOfView -= zoomRate;
         }
 
-        else if (inputActions.Camera.ZoomOut.WasPerformedThisFrame() && cinCam.Lens.FieldOfView <= 60)
+        else if (inputActions.Camera.ZoomOut.WasPerformedThisFrame() && cinCam.Lens.FieldOfView < maxFOV)
         {
             cinCam.Lens.FieldOfView += zoomRate;
+        }
+    }
+
+    private void ResetCam()
+    {
+        if (inputActions.Camera.ResetCamera.WasPerformedThisFrame())
+        {
+            transform.rotation = Quaternion.Euler(0, -45, 0);
+            cinCam.Lens.FieldOfView = maxFOV;
         }
     }
 
