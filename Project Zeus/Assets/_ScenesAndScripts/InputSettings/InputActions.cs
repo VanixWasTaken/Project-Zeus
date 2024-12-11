@@ -34,13 +34,13 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
-                    ""initialStateCheck"": false
+                    ""initialStateCheck"": true
                 },
                 {
                     ""name"": ""RightClick"",
                     ""type"": ""Button"",
                     ""id"": ""d154e4c1-3447-44f0-b715-8070fe050106"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
@@ -145,9 +145,45 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             ""actions"": [
                 {
                     ""name"": ""Move"",
-                    ""type"": ""Value"",
+                    ""type"": ""Button"",
                     ""id"": ""306efe12-e299-4fa4-94f7-a81a997461bc"",
                     ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TurnCameraLeft"",
+                    ""type"": ""Button"",
+                    ""id"": ""058d2249-23b3-4a44-acd5-8dc6c8a548a3"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""TurnCameraRight"",
+                    ""type"": ""Button"",
+                    ""id"": ""3d8d5369-b03a-4e44-b336-d69c6ac1cf06"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ZoomIn"",
+                    ""type"": ""Value"",
+                    ""id"": ""a1f1e906-ab83-437b-b552-9a54f5543192"",
+                    ""expectedControlType"": ""Axis"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ZoomOut"",
+                    ""type"": ""Value"",
+                    ""id"": ""fe24b40a-f38f-4c05-8731-67167ad18b21"",
+                    ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
@@ -208,6 +244,50 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""Move"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ca2a9269-9ee7-431b-a765-29c208046b25"",
+                    ""path"": ""<Keyboard>/q"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TurnCameraLeft"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1b382ea5-5a2e-4606-9d1f-19e780adcd07"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""TurnCameraRight"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a8a68daf-62ab-4bbd-afb0-8b914c860095"",
+                    ""path"": ""<Mouse>/scroll/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomIn"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""548a4ada-f570-4476-8416-e34c970725f2"",
+                    ""path"": ""<Mouse>/scroll/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ZoomOut"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -226,6 +306,10 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Move = m_Camera.FindAction("Move", throwIfNotFound: true);
+        m_Camera_TurnCameraLeft = m_Camera.FindAction("TurnCameraLeft", throwIfNotFound: true);
+        m_Camera_TurnCameraRight = m_Camera.FindAction("TurnCameraRight", throwIfNotFound: true);
+        m_Camera_ZoomIn = m_Camera.FindAction("ZoomIn", throwIfNotFound: true);
+        m_Camera_ZoomOut = m_Camera.FindAction("ZoomOut", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -411,11 +495,19 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Camera;
     private List<ICameraActions> m_CameraActionsCallbackInterfaces = new List<ICameraActions>();
     private readonly InputAction m_Camera_Move;
+    private readonly InputAction m_Camera_TurnCameraLeft;
+    private readonly InputAction m_Camera_TurnCameraRight;
+    private readonly InputAction m_Camera_ZoomIn;
+    private readonly InputAction m_Camera_ZoomOut;
     public struct CameraActions
     {
         private @InputActions m_Wrapper;
         public CameraActions(@InputActions wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_Camera_Move;
+        public InputAction @TurnCameraLeft => m_Wrapper.m_Camera_TurnCameraLeft;
+        public InputAction @TurnCameraRight => m_Wrapper.m_Camera_TurnCameraRight;
+        public InputAction @ZoomIn => m_Wrapper.m_Camera_ZoomIn;
+        public InputAction @ZoomOut => m_Wrapper.m_Camera_ZoomOut;
         public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -428,6 +520,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
+            @TurnCameraLeft.started += instance.OnTurnCameraLeft;
+            @TurnCameraLeft.performed += instance.OnTurnCameraLeft;
+            @TurnCameraLeft.canceled += instance.OnTurnCameraLeft;
+            @TurnCameraRight.started += instance.OnTurnCameraRight;
+            @TurnCameraRight.performed += instance.OnTurnCameraRight;
+            @TurnCameraRight.canceled += instance.OnTurnCameraRight;
+            @ZoomIn.started += instance.OnZoomIn;
+            @ZoomIn.performed += instance.OnZoomIn;
+            @ZoomIn.canceled += instance.OnZoomIn;
+            @ZoomOut.started += instance.OnZoomOut;
+            @ZoomOut.performed += instance.OnZoomOut;
+            @ZoomOut.canceled += instance.OnZoomOut;
         }
 
         private void UnregisterCallbacks(ICameraActions instance)
@@ -435,6 +539,18 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
+            @TurnCameraLeft.started -= instance.OnTurnCameraLeft;
+            @TurnCameraLeft.performed -= instance.OnTurnCameraLeft;
+            @TurnCameraLeft.canceled -= instance.OnTurnCameraLeft;
+            @TurnCameraRight.started -= instance.OnTurnCameraRight;
+            @TurnCameraRight.performed -= instance.OnTurnCameraRight;
+            @TurnCameraRight.canceled -= instance.OnTurnCameraRight;
+            @ZoomIn.started -= instance.OnZoomIn;
+            @ZoomIn.performed -= instance.OnZoomIn;
+            @ZoomIn.canceled -= instance.OnZoomIn;
+            @ZoomOut.started -= instance.OnZoomOut;
+            @ZoomOut.performed -= instance.OnZoomOut;
+            @ZoomOut.canceled -= instance.OnZoomOut;
         }
 
         public void RemoveCallbacks(ICameraActions instance)
@@ -466,5 +582,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     public interface ICameraActions
     {
         void OnMove(InputAction.CallbackContext context);
+        void OnTurnCameraLeft(InputAction.CallbackContext context);
+        void OnTurnCameraRight(InputAction.CallbackContext context);
+        void OnZoomIn(InputAction.CallbackContext context);
+        void OnZoomOut(InputAction.CallbackContext context);
     }
 }
