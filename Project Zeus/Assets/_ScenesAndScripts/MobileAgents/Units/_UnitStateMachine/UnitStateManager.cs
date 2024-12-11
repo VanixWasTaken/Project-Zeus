@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static FMODUnity.RuntimeManager;
 using static FMODAudioData.SoundID;
+using Unity.VisualScripting;
 
 public class UnitStateManager : MonoBehaviour
 {
@@ -46,7 +47,7 @@ public class UnitStateManager : MonoBehaviour
         Recon,
         Fighter
     }
-    UnitClass unitClass;
+    private UnitClass unitClass;
     public float health;
     private float movementSpeed;
     private float visionRange;
@@ -224,7 +225,10 @@ public class UnitStateManager : MonoBehaviour
 
     public void OnFootstep()
     {
-        //PlayOneShot();
+        if (unitClass == UnitClass.Recon)
+        {
+            PlayMoving();
+        }
     }
 
     public void OnShooting()
@@ -333,6 +337,11 @@ public class UnitStateManager : MonoBehaviour
         Debug.Log("UnitClass set  to " + unitClass);
     }
 
+    public UnitClass GetClass()
+    {
+        return unitClass;
+    }
+
     private void DepleteEnergy(int _amount)
     {
         dropship.DepleteEnergy(_amount);
@@ -397,23 +406,28 @@ public class UnitStateManager : MonoBehaviour
         
     }
 
-    public void PlayMoving()
+    public void PlayMoving(bool footstep = false)
     {
+        if (unitClass == UnitClass.Recon)
+        {
+            moving = CreateInstance(audioSheet.GetSFXByName(SFXUnitReconFootstep));
+            moving.setParameterByName("Pitch", Random.Range(0.9f, 1.1f));
+            moving.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            moving.start();
+            moving.release();
+            return;
+        }
+
         if (!IsPlaying(moving))
         {
             if (unitClass == UnitClass.Fighter)
             {
                 moving = CreateInstance(audioSheet.GetSFXByName(SFXUnitFighterMoving));
                 moving.setParameterByName("Moving", 0);
+                moving.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+                moving.start();
+                moving.release();
             }
-            else if (unitClass == UnitClass.Recon)
-            {
-                //moving = CreateInstance(audioSheet.GetSFXByName(SFXUnitReconShot));
-            }
-
-            moving.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
-            moving.start();
-            moving.release();
         }
     }
 

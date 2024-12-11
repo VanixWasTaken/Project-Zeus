@@ -23,8 +23,16 @@ public class UnitWalkingState : UnitBaseState
 
     private void ResetAnimations(UnitStateManager _unit)
     {
+        #region Sound Reset und Start
         _unit.LetShootingFinish();
-        _unit.PlayMoving();
+
+        if (_unit.GetClass() == UnitStateManager.UnitClass.Fighter)
+        {
+            _unit.PlayMoving();
+        }
+
+        #endregion
+
         _unit.animator.SetBool("anIsMining", false);
         _unit.animator.SetBool("anIsShooting", false);
         _unit.animator.SetFloat("anSpeed", 1);

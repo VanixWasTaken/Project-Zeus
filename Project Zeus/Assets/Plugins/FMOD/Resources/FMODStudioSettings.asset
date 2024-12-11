@@ -466,7 +466,7 @@ MonoBehaviour:
   sourceProjectPath: 
   sourceBankPath: Assets/_Art/Sound/Banks/Desktop
   sourceBankPathUnformatted: 
-  BankRefreshCooldown: 5
+  BankRefreshCooldown: 1
   ShowBankRefreshWindow: 1
   AutomaticEventLoading: 0
   BankLoadType: 1
