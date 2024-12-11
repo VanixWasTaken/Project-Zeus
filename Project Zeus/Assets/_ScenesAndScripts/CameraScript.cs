@@ -19,11 +19,12 @@ public class CameraScript : MonoBehaviour
     private Vector2 mousePosition;
 
     [Header("Game Design Variables")]
-    public float camSpeed = 12f;
-    public float zoomRate = 3f;
-    public float rotationSpeed = 0.5f;
-    public float maxFOV = 60;
-    public float minFOV = 30;
+    public float camSpeed = 13f;
+    public float zoomRate = 5f;
+    public float rotationSpeed = 60f;
+    public float maxFOV = 65f;
+    public float minFOV = 20f;
+    public float defaultFOV = 45f;
     #endregion
 
 
@@ -40,6 +41,8 @@ public class CameraScript : MonoBehaviour
     private void Start()
     {
         inputActions.Camera.Enable(); // enables the input for the camera
+
+        cinCam.Lens.FieldOfView = defaultFOV;
     }
    
     private void Update()
@@ -150,7 +153,7 @@ public class CameraScript : MonoBehaviour
         if (inputActions.Camera.ResetCamera.WasPerformedThisFrame())
         {
             transform.rotation = Quaternion.Euler(0, -45, 0);
-            cinCam.Lens.FieldOfView = maxFOV;
+            cinCam.Lens.FieldOfView = defaultFOV;
         }
     }
 
