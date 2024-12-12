@@ -52,6 +52,7 @@ public class UnitStateManager : MonoBehaviour
     public float health;
     private float movementSpeed;
     public int visionRange;
+    public int visionConeRange;
     private float attackRange;
     private float attackSpeed;
     private int attackDamage;
@@ -185,7 +186,8 @@ public class UnitStateManager : MonoBehaviour
         {
             health = 100;
             movementSpeed = 5;
-            visionRange = 3;
+            visionRange = 6;
+            visionConeRange = 3;
             attackRange = 3;
             attackSpeed = 2;
             attackDamage = 25;
@@ -193,13 +195,14 @@ public class UnitStateManager : MonoBehaviour
             energyDepletionRate = 1;
             soundEmittingRange = 30;
             
-            fogWar.AddFogRevealer(new csFogWar.FogRevealer(this.transform, 5, true)); // Set the Fog of War Revealer
+            fogWar.AddFogRevealer(new csFogWar.FogRevealer(this.transform, visionRange, true)); // Set the Fog of War Revealer
         }
         else if (unitClass == UnitClass.Recon)
         {
             health = 50;
             movementSpeed = 8;
-            visionRange = 7;
+            visionRange = 14;
+            visionConeRange = 7;
             attackRange = 7;
             attackSpeed = 1;
             attackDamage = 100;
@@ -207,13 +210,14 @@ public class UnitStateManager : MonoBehaviour
             energyDepletionRate = 2;
             soundEmittingRange = 30;
 
-            fogWar.AddFogRevealer(new csFogWar.FogRevealer(this.transform, 5, true)); // Set the Fog of War Revealer
+            fogWar.AddFogRevealer(new csFogWar.FogRevealer(this.transform, visionRange, true)); // Set the Fog of War Revealer
         }
         else if (unitClass == UnitClass.Fighter)
         {
             health = 200;
             movementSpeed = 2;
-            visionRange = 5;
+            visionRange = 10;
+            visionConeRange = 5;
             attackRange = 5;
             attackSpeed = 3;
             attackDamage = 50;
@@ -221,7 +225,7 @@ public class UnitStateManager : MonoBehaviour
             energyDepletionRate = 4;
             soundEmittingRange = 10;
 
-            fogWar.AddFogRevealer(new csFogWar.FogRevealer(this.transform, 5, true)); // Set the Fog of War Revealer
+            fogWar.AddFogRevealer(new csFogWar.FogRevealer(this.transform, visionRange, true)); // Set the Fog of War Revealer
         }
 
         SetAllClassStats(); // After adjusting the values above some stats need to be actally applied to its references, this happens here 

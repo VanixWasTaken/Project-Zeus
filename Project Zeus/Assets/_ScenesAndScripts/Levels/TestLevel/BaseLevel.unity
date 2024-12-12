@@ -357,6 +357,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8099869876767769438, guid: b6ee55fdccfc9de4bb851d392fd453c0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8345761443313743947, guid: b6ee55fdccfc9de4bb851d392fd453c0,
         type: 3}
       propertyPath: m_Radius
@@ -366,6 +371,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ProvidesContacts
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8345761443313743947, guid: b6ee55fdccfc9de4bb851d392fd453c0,
+        type: 3}
+      propertyPath: m_IncludeLayers.m_Bits
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8601730507746951299, guid: b6ee55fdccfc9de4bb851d392fd453c0,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9776,11 +9791,11 @@ MonoBehaviour:
   revealedTileOpacity: 0
   fogPlaneTextureLerpTarget: {fileID: 0}
   fogPlaneTextureLerpBuffer: {fileID: 0}
-  LevelDataToLoad: {fileID: 0}
+  LevelDataToLoad: {fileID: 4900000, guid: ac4bcb8249c84d742bbc271968a8ddf0, type: 3}
   saveDataOnScan: 0
-  levelNameToSave: Default
-  levelDimensionX: 50
-  levelDimensionY: 50
+  levelNameToSave: BaseLevelLevelData
+  levelDimensionX: 128
+  levelDimensionY: 128
   unitScale: 3
   scanSpacingPerUnit: 0.25
   rayStartHeight: 20
