@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_ScenesAndScripts/UI/Menus/DeployMenu/DeployMenu.unity
+    path: Assets/_ScenesAndScripts/UI/Menus/OldDeployMenu/DeployMenu.unity
     guid: 8d21244188daf8b41b120b93220395cd
   - enabled: 1
     path: Assets/_ScenesAndScripts/Levels/Earth/BaseLevel.unity
