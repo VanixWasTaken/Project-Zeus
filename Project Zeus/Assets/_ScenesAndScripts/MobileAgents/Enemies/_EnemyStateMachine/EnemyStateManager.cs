@@ -1,7 +1,8 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections.Generic;
+using static FMODUnity.RuntimeManager;
+using static FMODAudioData.SoundID;
 
 public class EnemyStateManager : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class EnemyStateManager : MonoBehaviour
     public GameObject spotLight;
     public UnitStateManager unitStateManager;
 
+    public FMODAudioData audioSheet;
+
     #endregion
 
     #region Variables
@@ -45,6 +48,8 @@ public class EnemyStateManager : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+
+        LoadBank("ENEMIES");
     }
 
     void Start()
@@ -97,6 +102,12 @@ public class EnemyStateManager : MonoBehaviour
     public void OnUnitHit()
     {
         unitStateManager.health -= 25;
+    }
+
+    public void OnFootstep()
+    {
+        Debug.Log("Footstep");
+        PlayOneShot(audioSheet.GetSFXByName(SFXEnemyScreamerSteps));
     }
 
     #endregion

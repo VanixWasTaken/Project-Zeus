@@ -404,6 +404,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   spotLight: {fileID: 5302223175946049330}
   unitStateManager: {fileID: 0}
+  audioSheet: {fileID: 11400000, guid: d41b3a1be0b7cf441a12f0ad4a778099, type: 2}
   patrolPoints: []
   unitSpotted: 0
   lastKnownUnitPosititon: {x: 0, y: 0, z: 0}
