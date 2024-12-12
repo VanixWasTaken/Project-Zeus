@@ -19,9 +19,12 @@ public class CameraScript : MonoBehaviour
     private Vector2 mousePosition;
 
     [Header("Game Design Variables")]
-    public float camSpeed = 12f;
-    public float zoomRate = 3f;
-    public float rotationSpeed = 0.5f;
+    public float camSpeed = 13f;
+    public float zoomRate = 5f;
+    public float rotationSpeed = 60f;
+    public float maxFOV = 65f;
+    public float minFOV = 20f;
+    public float defaultFOV = 45f;
     #endregion
 
 
@@ -38,6 +41,8 @@ public class CameraScript : MonoBehaviour
     private void Start()
     {
         inputActions.Camera.Enable(); // enables the input for the camera
+
+        cinCam.Lens.FieldOfView = defaultFOV;
     }
    
     private void Update()
@@ -49,6 +54,8 @@ public class CameraScript : MonoBehaviour
         TurnCamera();
 
         Zoom();
+
+        ResetCam();
     }
 
     #endregion
@@ -119,25 +126,34 @@ public class CameraScript : MonoBehaviour
     {
         if (inputActions.Camera.TurnCameraRight.IsPressed()) // Turns the camera to the right
         {
-            cameraFollowTransform.Rotate(0, -rotationSpeed, 0, Space.World);
+            cameraFollowTransform.Rotate(0, -rotationSpeed * Time.deltaTime, 0, Space.World);
         }
 
         else if (inputActions.Camera.TurnCameraLeft.IsPressed()) // Turns the camera to the left
         {
-            cameraFollowTransform.Rotate(0, rotationSpeed, 0, Space.World);
+            cameraFollowTransform.Rotate(0, rotationSpeed * Time.deltaTime, 0, Space.World);
         }
     }
 
     private void Zoom()
     {
-        if (inputActions.Camera.ZoomIn.WasPerformedThisFrame() && cinCam.Lens.FieldOfView >= 30)
+        if (inputActions.Camera.ZoomIn.WasPerformedThisFrame() && cinCam.Lens.FieldOfView > minFOV)
         {
             cinCam.Lens.FieldOfView -= zoomRate;
         }
 
-        else if (inputActions.Camera.ZoomOut.WasPerformedThisFrame() && cinCam.Lens.FieldOfView <= 60)
+        else if (inputActions.Camera.ZoomOut.WasPerformedThisFrame() && cinCam.Lens.FieldOfView < maxFOV)
         {
             cinCam.Lens.FieldOfView += zoomRate;
+        }
+    }
+
+    private void ResetCam()
+    {
+        if (inputActions.Camera.ResetCamera.WasPerformedThisFrame())
+        {
+            transform.rotation = Quaternion.Euler(0, -45, 0);
+            cinCam.Lens.FieldOfView = defaultFOV;
         }
     }
 

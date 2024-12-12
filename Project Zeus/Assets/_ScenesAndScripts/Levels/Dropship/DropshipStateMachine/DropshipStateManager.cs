@@ -66,7 +66,7 @@ public class DropshipStateManager : MonoBehaviour
         UpdateEnergyMeter();
         UpdateLoot();
 
-        MouseHoverShader(); // Check if the mouse hovers above the Object, if yes it applies a shader. And if you press leftclick while hovering it changes states.
+        // MouseHoverShader(); // Check if the mouse hovers above the Object, if yes it applies a shader. And if you press leftclick while hovering it changes states. CURRENTLY NOT FUNCTIONING
     }
 
     #region Colliders

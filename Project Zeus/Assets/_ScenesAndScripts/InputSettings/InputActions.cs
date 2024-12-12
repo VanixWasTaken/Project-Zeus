@@ -187,6 +187,15 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""ResetCamera"",
+                    ""type"": ""Button"",
+                    ""id"": ""665dee60-f7ad-4621-b1bf-073812d96b58"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -288,6 +297,39 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
                     ""action"": ""ZoomOut"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Button With One Modifier"",
+                    ""id"": ""a6e203d6-f61b-4e60-af67-5afb8b2d1635"",
+                    ""path"": ""ButtonWithOneModifier"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetCamera"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Button"",
+                    ""id"": ""27d48ba1-c107-41c8-8446-12d2d9fee57c"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Modifier"",
+                    ""id"": ""e10df2a6-905c-4da5-9a8e-4bce6e61dfe6"",
+                    ""path"": ""<Keyboard>/leftCtrl"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ResetCamera"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -310,6 +352,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         m_Camera_TurnCameraRight = m_Camera.FindAction("TurnCameraRight", throwIfNotFound: true);
         m_Camera_ZoomIn = m_Camera.FindAction("ZoomIn", throwIfNotFound: true);
         m_Camera_ZoomOut = m_Camera.FindAction("ZoomOut", throwIfNotFound: true);
+        m_Camera_ResetCamera = m_Camera.FindAction("ResetCamera", throwIfNotFound: true);
     }
 
     ~@InputActions()
@@ -499,6 +542,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_Camera_TurnCameraRight;
     private readonly InputAction m_Camera_ZoomIn;
     private readonly InputAction m_Camera_ZoomOut;
+    private readonly InputAction m_Camera_ResetCamera;
     public struct CameraActions
     {
         private @InputActions m_Wrapper;
@@ -508,6 +552,7 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         public InputAction @TurnCameraRight => m_Wrapper.m_Camera_TurnCameraRight;
         public InputAction @ZoomIn => m_Wrapper.m_Camera_ZoomIn;
         public InputAction @ZoomOut => m_Wrapper.m_Camera_ZoomOut;
+        public InputAction @ResetCamera => m_Wrapper.m_Camera_ResetCamera;
         public InputActionMap Get() { return m_Wrapper.m_Camera; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -532,6 +577,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @ZoomOut.started += instance.OnZoomOut;
             @ZoomOut.performed += instance.OnZoomOut;
             @ZoomOut.canceled += instance.OnZoomOut;
+            @ResetCamera.started += instance.OnResetCamera;
+            @ResetCamera.performed += instance.OnResetCamera;
+            @ResetCamera.canceled += instance.OnResetCamera;
         }
 
         private void UnregisterCallbacks(ICameraActions instance)
@@ -551,6 +599,9 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
             @ZoomOut.started -= instance.OnZoomOut;
             @ZoomOut.performed -= instance.OnZoomOut;
             @ZoomOut.canceled -= instance.OnZoomOut;
+            @ResetCamera.started -= instance.OnResetCamera;
+            @ResetCamera.performed -= instance.OnResetCamera;
+            @ResetCamera.canceled -= instance.OnResetCamera;
         }
 
         public void RemoveCallbacks(ICameraActions instance)
@@ -586,5 +637,6 @@ public partial class @InputActions: IInputActionCollection2, IDisposable
         void OnTurnCameraRight(InputAction.CallbackContext context);
         void OnZoomIn(InputAction.CallbackContext context);
         void OnZoomOut(InputAction.CallbackContext context);
+        void OnResetCamera(InputAction.CallbackContext context);
     }
 }

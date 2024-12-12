@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using static FMODUnity.RuntimeManager;
 using static FMODAudioData.SoundID;
-using Unity.VisualScripting;
+using FischlWorks_FogWar;
 
 public class UnitStateManager : MonoBehaviour
 {
@@ -27,12 +27,14 @@ public class UnitStateManager : MonoBehaviour
     DropshipStateManager dropship; // needed to call function DepleteEnergy()
     public RightPartUIUnitDescription rightPartUIUnitDescription;
     public EnemyStateManager enemyStateManager;
+    private csFogWar fogWar;
 
     #region Sound References
 
     public FMODAudioData audioSheet;
 
-    public UnitSoundHelper sound = new();
+    private FMOD.Studio.EventInstance shooting;
+    private FMOD.Studio.EventInstance moving;
 
     #endregion
 
@@ -46,10 +48,11 @@ public class UnitStateManager : MonoBehaviour
         Recon,
         Fighter
     }
-    private UnitClass unitClass;
+    UnitClass unitClass;
     public float health;
     private float movementSpeed;
-    private float visionRange;
+    public int visionRange;
+    public int visionConeRange;
     private float attackRange;
     private float attackSpeed;
     private int attackDamage;
@@ -77,7 +80,7 @@ public class UnitStateManager : MonoBehaviour
     void Awake()
     {
         // Connects as many references per code as possible to hold the inspector clean
-        #region Variable Connections
+        #region Reference Connections
         if (navMeshAgent == null)
         {
             navMeshAgent = GetComponent<NavMeshAgent>();
@@ -131,6 +134,18 @@ public class UnitStateManager : MonoBehaviour
             }
         }
 
+        if (fogWar == null) // Connects the Fog of War plugin
+        {
+            fogWar = FindAnyObjectByType<csFogWar>();
+
+            if (fogWar == null)
+            {
+                Debug.LogError("fogWar on UnitStateManager could not found and assigned");
+            }
+        }
+
+          
+
         LoadBank("UNIT");
 
         #endregion
@@ -153,8 +168,6 @@ public class UnitStateManager : MonoBehaviour
             LoadBank("FIGHTER");
         }
 
-        sound.Initialize(this, unitClass, audioSheet);
-
         #endregion
     }
 
@@ -173,37 +186,46 @@ public class UnitStateManager : MonoBehaviour
         {
             health = 100;
             movementSpeed = 5;
-            visionRange = 3;
+            visionRange = 6;
+            visionConeRange = 3;
             attackRange = 3;
             attackSpeed = 2;
             attackDamage = 25;
             carryingCapacity = 100;
             energyDepletionRate = 1;
             soundEmittingRange = 30;
+            
+            fogWar.AddFogRevealer(new csFogWar.FogRevealer(this.transform, visionRange, true)); // Set the Fog of War Revealer
         }
         else if (unitClass == UnitClass.Recon)
         {
             health = 50;
             movementSpeed = 8;
-            visionRange = 7;
+            visionRange = 14;
+            visionConeRange = 7;
             attackRange = 7;
             attackSpeed = 1;
             attackDamage = 100;
             carryingCapacity = 0;
             energyDepletionRate = 2;
             soundEmittingRange = 30;
+
+            fogWar.AddFogRevealer(new csFogWar.FogRevealer(this.transform, visionRange, true)); // Set the Fog of War Revealer
         }
         else if (unitClass == UnitClass.Fighter)
         {
             health = 200;
             movementSpeed = 2;
-            visionRange = 5;
+            visionRange = 10;
+            visionConeRange = 5;
             attackRange = 5;
             attackSpeed = 3;
             attackDamage = 50;
             carryingCapacity = 0;
             energyDepletionRate = 4;
             soundEmittingRange = 10;
+
+            fogWar.AddFogRevealer(new csFogWar.FogRevealer(this.transform, visionRange, true)); // Set the Fog of War Revealer
         }
 
         SetAllClassStats(); // After adjusting the values above some stats need to be actally applied to its references, this happens here 
@@ -226,10 +248,7 @@ public class UnitStateManager : MonoBehaviour
 
     public void OnFootstep()
     {
-        if (unitClass == UnitClass.Recon)
-        {
-            sound.PlaySoundByType(UnitSoundHelper.SoundType.MOVING);
-        }
+        //PlayOneShot();
     }
 
     public void OnShooting()
@@ -338,11 +357,6 @@ public class UnitStateManager : MonoBehaviour
         Debug.Log("UnitClass set  to " + unitClass);
     }
 
-    public UnitClass GetClass()
-    {
-        return unitClass;
-    }
-
     private void DepleteEnergy(int _amount)
     {
         dropship.DepleteEnergy(_amount);
@@ -374,6 +388,75 @@ public class UnitStateManager : MonoBehaviour
             DepleteEnergy(energyDepletionRate);
         }
     }
+
+    #region Sound Functions()
+
+    public void PlayShooting()
+    {
+        if (!IsPlaying(shooting))
+        {
+            if (unitClass == UnitClass.Fighter)
+            {
+                shooting = CreateInstance(audioSheet.GetSFXByName(SFXUnitFighterShooting));
+                shooting.setParameterByName("Firing", 0);
+            }
+            else if (unitClass == UnitClass.Recon)
+            {
+                shooting = CreateInstance(audioSheet.GetSFXByName(SFXUnitReconShot));
+            }
+
+            shooting.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            shooting.start();
+            shooting.release();
+        }
+    }
+
+    public void LetShootingFinish()
+    {
+        if (IsPlaying(shooting)) 
+        {
+            shooting.setParameterByName("Firing", 1);
+            shooting.release();
+        }
+        
+    }
+
+    public void PlayMoving()
+    {
+        if (!IsPlaying(moving))
+        {
+            if (unitClass == UnitClass.Fighter)
+            {
+                moving = CreateInstance(audioSheet.GetSFXByName(SFXUnitFighterMoving));
+                moving.setParameterByName("Moving", 0);
+            }
+            else if (unitClass == UnitClass.Recon)
+            {
+                //moving = CreateInstance(audioSheet.GetSFXByName(SFXUnitReconShot));
+            }
+
+            moving.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
+            moving.start();
+            moving.release();
+        }
+    }
+
+    public void LetMovingFinish()
+    {
+        if (IsPlaying(moving))
+        {
+            moving.setParameterByName("Moving", 1);
+            moving.release();
+        }
+    }
+
+    private bool IsPlaying(FMOD.Studio.EventInstance instance)
+    {
+        instance.getPlaybackState(out FMOD.Studio.PLAYBACK_STATE state);
+        return state != FMOD.Studio.PLAYBACK_STATE.STOPPED;
+    }
+
+    #endregion
 
     #region SelectionIndicator Functions()
 
