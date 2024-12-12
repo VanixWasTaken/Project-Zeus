@@ -189,6 +189,7 @@ MonoBehaviour:
   audioSheet: {fileID: 11400000, guid: 520b48e711ae8d947af16fb7903c8325, type: 2}
   health: 0
   visionRange: 0
+  visionConeRange: 0
   energyDepletionRate: 0
   soundEmittingRange: 0
   nearestEnemyPosition: {x: 0, y: 0, z: 0}
@@ -979,7 +980,7 @@ Transform:
   m_GameObject: {fileID: 3198929168495148869}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.7, z: 0.3}
   m_LocalScale: {x: 0.72999996, y: 0.72999996, z: 0.72999996}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -996,8 +997,8 @@ Light:
   serializedVersion: 11
   m_Type: 0
   m_Color: {r: 0.14901961, g: 0.62352943, b: 0.8392157, a: 1}
-  m_Intensity: 200
-  m_Range: 10
+  m_Intensity: 50
+  m_Range: 25.67
   m_SpotAngle: 50
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
