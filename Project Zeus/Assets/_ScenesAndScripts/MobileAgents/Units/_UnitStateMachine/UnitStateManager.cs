@@ -28,7 +28,6 @@ public class UnitStateManager : MonoBehaviour
     public RightPartUIUnitDescription rightPartUIUnitDescription;
     public EnemyStateManager enemyStateManager;
     private csFogWar fogWar;
-    
 
     #region Sound References
 
@@ -52,7 +51,7 @@ public class UnitStateManager : MonoBehaviour
     UnitClass unitClass;
     public float health;
     private float movementSpeed;
-    private float visionRange;
+    public int visionRange;
     private float attackRange;
     private float attackSpeed;
     private int attackDamage;
@@ -194,7 +193,7 @@ public class UnitStateManager : MonoBehaviour
             energyDepletionRate = 1;
             soundEmittingRange = 30;
             
-            fogWar.AddFogRevealer(new csFogWar.FogRevealer(this.transform, 10, true)); // Set the Fog of War Revealer
+            fogWar.AddFogRevealer(new csFogWar.FogRevealer(this.transform, 5, true)); // Set the Fog of War Revealer
         }
         else if (unitClass == UnitClass.Recon)
         {
@@ -207,6 +206,8 @@ public class UnitStateManager : MonoBehaviour
             carryingCapacity = 0;
             energyDepletionRate = 2;
             soundEmittingRange = 30;
+
+            fogWar.AddFogRevealer(new csFogWar.FogRevealer(this.transform, 5, true)); // Set the Fog of War Revealer
         }
         else if (unitClass == UnitClass.Fighter)
         {
@@ -219,6 +220,8 @@ public class UnitStateManager : MonoBehaviour
             carryingCapacity = 0;
             energyDepletionRate = 4;
             soundEmittingRange = 10;
+
+            fogWar.AddFogRevealer(new csFogWar.FogRevealer(this.transform, 5, true)); // Set the Fog of War Revealer
         }
 
         SetAllClassStats(); // After adjusting the values above some stats need to be actally applied to its references, this happens here 

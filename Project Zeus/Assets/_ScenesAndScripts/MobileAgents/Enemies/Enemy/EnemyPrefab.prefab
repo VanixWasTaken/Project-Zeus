@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 8940075620569007204}
   - component: {fileID: 609786778806132978}
   - component: {fileID: 1199337483447460220}
+  - component: {fileID: 7728294870747146920}
   m_Layer: 2
   m_Name: EnemyPrefab
   m_TagString: Enemy
@@ -409,6 +410,21 @@ MonoBehaviour:
   health: 100
   shouldAttackUnits: 0
   lastHeardSoundPosition: {x: 0, y: 0, z: 0}
+--- !u!114 &7728294870747146920
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6228393709742757974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 985add12ee4836e40b7241671b1d892c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fogWar: {fileID: 0}
+  visibility: 0
+  additionalRadius: 0
 --- !u!1001 &5098173587108994957
 PrefabInstance:
   m_ObjectHideFlags: 0
