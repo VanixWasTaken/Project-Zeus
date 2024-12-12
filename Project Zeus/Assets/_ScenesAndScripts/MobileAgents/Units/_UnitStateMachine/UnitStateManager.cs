@@ -170,6 +170,8 @@ public class UnitStateManager : MonoBehaviour
         }
 
         #endregion
+
+        sound.Initialize(this, unitClass, audioSheet);
     }
 
 
@@ -249,7 +251,10 @@ public class UnitStateManager : MonoBehaviour
 
     public void OnFootstep()
     {
-        //PlayOneShot();
+        if (unitClass == UnitClass.Recon)
+        {
+            sound.PlaySoundByType(UnitSoundHelper.SoundType.MOVING);
+        }
     }
 
     public void OnShooting()

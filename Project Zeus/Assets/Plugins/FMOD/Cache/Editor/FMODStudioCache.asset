@@ -96,7 +96,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/UNIT.bank
   Name: UNIT
   StudioPath: bank:/SFX/UNIT
-  lastModified: 638695259878495689
+  lastModified: 638696105380872988
   FileSizes: []
   Exists: 1
 --- !u!114 &-8560112263858622895
@@ -213,7 +213,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/FIGHTER.bank
   Name: FIGHTER
   StudioPath: bank:/SFX/FIGHTER
-  lastModified: 638695259877912739
+  lastModified: 638696139679602053
   FileSizes: []
   Exists: 1
 --- !u!114 &-7596133678144141744
@@ -753,7 +753,7 @@ MonoBehaviour:
   Banks:
   - {fileID: -7725287997567409299}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 0
   Parameters:
   - {fileID: -4254155889963244711}
@@ -856,7 +856,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/_Master.bank
   Name: _Master
   StudioPath: bank:/_Master/_Master
-  lastModified: 638695095578874239
+  lastModified: 638696141468033921
   FileSizes: []
   Exists: 1
 --- !u!114 &-2504981389508452464
@@ -1026,10 +1026,11 @@ MonoBehaviour:
   IsStream: 0
   Is3D: 0
   IsOneShot: 1
-  Parameters: []
+  Parameters:
+  - {fileID: 1564129911561138118}
   MinDistance: 1
   MaxDistance: 20
-  Length: 0
+  Length: 662
 --- !u!114 &-1262761658629355971
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1182,7 +1183,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/_Master.strings.bank
   Name: _Master.strings
   StudioPath: bank:/_Master/_Master.strings
-  lastModified: 638695095578908634
+  lastModified: 638696141468063949
   FileSizes:
   - Name: 
     Value: 4434
@@ -1377,7 +1378,7 @@ MonoBehaviour:
   - {fileID: -2825738890928706980}
   StringsBanks:
   - {fileID: -863181981819171695}
-  cacheTime: 638695259878495689
+  cacheTime: 638696141468063949
   cacheVersion: 131620
 --- !u!114 &92513434431448552
 MonoBehaviour:
@@ -1502,7 +1503,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/RECON.bank
   Name: RECON
   StudioPath: bank:/SFX/RECON
-  lastModified: 638695259878188155
+  lastModified: 638696105380373473
   FileSizes: []
   Exists: 1
 --- !u!114 &287384235095984720
@@ -1777,6 +1778,30 @@ MonoBehaviour:
   MinDistance: 1
   MaxDistance: 20
   Length: 0
+--- !u!114 &1564129911561138118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fecb8ef7f94ca804a8ab72049b86782e, type: 3}
+  m_Name: parameter:/SFXEnemyScreamerSteps/Pitch
+  m_EditorClassIdentifier: 
+  Name: Pitch
+  StudioPath: 
+  Min: 0.9
+  Max: 1.1
+  Default: 1
+  ID:
+    data1: 837613247
+    data2: 1927670469
+  Type: 0
+  IsGlobal: 0
+  Labels: []
+  Exists: 1
 --- !u!114 &1654222761052747485
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2629,8 +2654,8 @@ MonoBehaviour:
   Name: Pitch
   StudioPath: 
   Min: 0.9
-  Max: 1.2
-  Default: 1.2
+  Max: 1.1
+  Default: 1
   ID:
     data1: 837613247
     data2: 1927670469
@@ -2797,7 +2822,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/ENEMIES.bank
   Name: ENEMIES
   StudioPath: bank:/SFX/ENEMIES
-  lastModified: 638689262297697426
+  lastModified: 638696105378275963
   FileSizes: []
   Exists: 1
 --- !u!114 &8628331067395682374

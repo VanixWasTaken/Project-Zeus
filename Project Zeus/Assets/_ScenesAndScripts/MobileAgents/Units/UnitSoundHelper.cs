@@ -72,7 +72,7 @@ public class UnitSoundHelper
             {
                 shooting = CreateInstance(audioSheet.GetSFXByName(SFXUnitFighterShooting));
 
-                shooting.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(unit.gameObject));
+                AttachInstanceToGameObject(moving, unit.gameObject);
                 shooting.setParameterByName("Firing", 0);
                 shooting.start();
                 shooting.release();
@@ -83,7 +83,7 @@ public class UnitSoundHelper
         {
             shooting = CreateInstance(audioSheet.GetSFXByName(SFXUnitReconShot));
 
-            shooting.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(unit.gameObject));
+            AttachInstanceToGameObject(moving, unit.gameObject);
             shooting.start();
             shooting.release();
         }
@@ -108,7 +108,8 @@ public class UnitSoundHelper
             {
                 moving = CreateInstance(audioSheet.GetSFXByName(SFXUnitFighterMoving));
 
-                moving.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(unit.gameObject));
+                AttachInstanceToGameObject(moving, unit.gameObject);
+
                 moving.setParameterByName("Moving", 0);
                 moving.start();
                 moving.release();
@@ -120,7 +121,7 @@ public class UnitSoundHelper
             moving = CreateInstance(audioSheet.GetSFXByName(SFXUnitReconFootstep));
 
             moving.setParameterByName("Pitch", Random.Range(0.9f, 1.1f));
-            moving.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(unit.gameObject));
+            AttachInstanceToGameObject(moving, unit.gameObject);
             moving.start();
             moving.release();
         }
