@@ -1,0 +1,105 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0fc5f510daad0540ae27b9c4a08265b, type: 3}
+  m_Name: WorkerSheet
+  m_EditorClassIdentifier: 
+  SFXList:
+  - name: Powering Up
+    eventID: 0
+    Event:
+      Guid:
+        Data1: 777058875
+        Data2: 1311229748
+        Data3: -1130429018
+        Data4: 707870102
+      Path: event:/SFX/UNIT/SFXUnitPowerUp
+  - name: Powering Down
+    eventID: 1
+    Event:
+      Guid:
+        Data1: 1746790864
+        Data2: 1330889596
+        Data3: -1099122773
+        Data4: -1032564821
+      Path: event:/SFX/UNIT/SFXUnitShutDown
+  - name: Footstep
+    eventID: 2
+    Event:
+      Guid:
+        Data1: -1051413292
+        Data2: 1274466201
+        Data3: 899023539
+        Data4: -1060368970
+      Path: event:/SFX/WORKER/SFXUnitWorkerFootstep
+  - name: Throw Punch
+    eventID: 3
+    Event:
+      Guid:
+        Data1: -1827565571
+        Data2: 1098656236
+        Data3: -51958088
+        Data4: -392899833
+      Path: event:/SFX/WORKER/SFXUnitWorkerThrowPunch
+  - name: Hit Punch
+    eventID: 4
+    Event:
+      Guid:
+        Data1: -292301963
+        Data2: 1319387555
+        Data3: 618229130
+        Data4: -1368906928
+      Path: event:/SFX/WORKER/SFXUnitWorkerHitPunch
+  - name: Drop Loot
+    eventID: 5
+    Event:
+      Guid:
+        Data1: -1634205655
+        Data2: 1183694752
+        Data3: -2055803248
+        Data4: 392422611
+      Path: event:/SFX/WORKER/SFXUnitWorkerDropLoot
+  - name: Collect Loot
+    eventID: 6
+    Event:
+      Guid:
+        Data1: 1794740024
+        Data2: 1103309176
+        Data3: 1898541723
+        Data4: 515071502
+      Path: event:/SFX/WORKER/SFXUnitWorkerCollectLoot
+  - name: Idle
+    eventID: 7
+    Event:
+      Guid:
+        Data1: 1943817679
+        Data2: 1285580009
+        Data3: -147936870
+        Data4: -739116815
+      Path: event:/SFX/WORKER/SFXUnitWorkerIdle
+  - name: Building
+    eventID: 8
+    Event:
+      Guid:
+        Data1: -605539565
+        Data2: 1263676347
+        Data3: -339951425
+        Data4: 108834073
+      Path: event:/SFX/WORKER/SFXUnitWorkerBuilding
+  - name: Death
+    eventID: 9
+    Event:
+      Guid:
+        Data1: -177201283
+        Data2: 1296425401
+        Data3: 246840250
+        Data4: 1664505436
+      Path: event:/SFX/WORKER/SFXUnitWorkerDeath

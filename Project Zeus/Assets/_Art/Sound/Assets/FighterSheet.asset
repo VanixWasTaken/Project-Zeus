@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0fc5f510daad0540ae27b9c4a08265b, type: 3}
+  m_Name: FighterSheet
+  m_EditorClassIdentifier: 
+  SFXList:
+  - name: Powering Up
+    eventID: 0
+    Event:
+      Guid:
+        Data1: 777058875
+        Data2: 1311229748
+        Data3: -1130429018
+        Data4: 707870102
+      Path: event:/SFX/UNIT/SFXUnitPowerUp
+  - name: Powering Down
+    eventID: 1
+    Event:
+      Guid:
+        Data1: 1746790864
+        Data2: 1330889596
+        Data3: -1099122773
+        Data4: -1032564821
+      Path: event:/SFX/UNIT/SFXUnitShutDown
+  - name: Moving
+    eventID: 15
+    Event:
+      Guid:
+        Data1: -344317516
+        Data2: 1205750042
+        Data3: 1515478202
+        Data4: 113381642
+      Path: event:/SFX/FIGHTER/SFXUnitFighterMoving
+  - name: Shooting
+    eventID: 16
+    Event:
+      Guid:
+        Data1: -1126005869
+        Data2: 1320385468
+        Data3: -1986905695
+        Data4: -554788184
+      Path: event:/SFX/FIGHTER/SFXUnitFighterShooting
+  - name: Overheating
+    eventID: 17
+    Event:
+      Guid:
+        Data1: 340716854
+        Data2: 1320309198
+        Data3: -629046655
+        Data4: -685495879
+      Path: event:/SFX/FIGHTER/SFXUnitFighterOverheating
+  - name: Melee
+    eventID: 18
+    Event:
+      Guid:
+        Data1: -500966460
+        Data2: 1265732185
+        Data3: 1558042532
+        Data4: -700605337
+      Path: event:/SFX/FIGHTER/SFXUnitFighterMelee
+  - name: Idle
+    eventID: 19
+    Event:
+      Guid:
+        Data1: -861472745
+        Data2: 1120513119
+        Data3: -1166401646
+        Data4: 282279944
+      Path: event:/SFX/FIGHTER/SFXUnitFighterIdle
+  - name: Death
+    eventID: 20
+    Event:
+      Guid:
+        Data1: -1233222638
+        Data2: 1267776075
+        Data3: -2007178109
+        Data4: -1507352619
+      Path: event:/SFX/FIGHTER/SFXUnitFighterDeath

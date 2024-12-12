@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0fc5f510daad0540ae27b9c4a08265b, type: 3}
+  m_Name: EnemySheet
+  m_EditorClassIdentifier: 
+  SFXList:
+  - name: Vocalisations
+    eventID: 21
+    Event:
+      Guid:
+        Data1: 1476376037
+        Data2: 1300110753
+        Data3: -1919029373
+        Data4: 1989532283
+      Path: event:/SFX/ENEMIES/SFXEnemyScreamerVocalisations
+  - name: Steps
+    eventID: 22
+    Event:
+      Guid:
+        Data1: -417250305
+        Data2: 1308161123
+        Data3: -1758179687
+        Data4: 2116602709
+      Path: event:/SFX/ENEMIES/SFXEnemyScreamerSteps
+  - name: Attack
+    eventID: 23
+    Event:
+      Guid:
+        Data1: -1054379101
+        Data2: 1259814799
+        Data3: 628360879
+        Data4: -1900598782
+      Path: event:/SFX/ENEMIES/SFXEnemyScreamerAttack
+  - name: Attack Impact
+    eventID: 24
+    Event:
+      Guid:
+        Data1: 228189994
+        Data2: 1115970734
+        Data3: -1537344081
+        Data4: 1279190589
+      Path: event:/SFX/ENEMIES/SFXEnemyScreamerAttackImpact
+  - name: Scream
+    eventID: 25
+    Event:
+      Guid:
+        Data1: 1916356347
+        Data2: 1076923335
+        Data3: 2117480323
+        Data4: 262606421
+      Path: event:/SFX/ENEMIES/SFXEnemyScreamerScream
+  - name: Death
+    eventID: 26
+    Event:
+      Guid:
+        Data1: 741489529
+        Data2: 1219135156
+        Data3: -942683728
+        Data4: 95427374
+      Path: event:/SFX/ENEMIES/SFXEnemyScreamerDeath
