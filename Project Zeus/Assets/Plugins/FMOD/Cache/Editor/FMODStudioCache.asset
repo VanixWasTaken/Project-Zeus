@@ -96,7 +96,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/UNIT.bank
   Name: UNIT
   StudioPath: bank:/SFX/UNIT
-  lastModified: 638696105380872988
+  lastModified: 638696142789291843
   FileSizes: []
   Exists: 1
 --- !u!114 &-8560112263858622895
@@ -213,7 +213,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/FIGHTER.bank
   Name: FIGHTER
   StudioPath: bank:/SFX/FIGHTER
-  lastModified: 638696139679602053
+  lastModified: 638696142788687228
   FileSizes: []
   Exists: 1
 --- !u!114 &-7596133678144141744
@@ -726,7 +726,7 @@ MonoBehaviour:
   Banks:
   - {fileID: -8660594532279740105}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -856,7 +856,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/_Master.bank
   Name: _Master
   StudioPath: bank:/_Master/_Master
-  lastModified: 638696141468033921
+  lastModified: 638696142137689562
   FileSizes: []
   Exists: 1
 --- !u!114 &-2504981389508452464
@@ -979,7 +979,7 @@ MonoBehaviour:
   Banks:
   - {fileID: -8660594532279740105}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -1024,7 +1024,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 8407631444911058309}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters:
   - {fileID: 1564129911561138118}
@@ -1080,7 +1080,7 @@ MonoBehaviour:
   - {fileID: 173960363322647871}
   - {fileID: -8660594532279740105}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters:
   - {fileID: 6773935658547078867}
@@ -1183,7 +1183,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/_Master.strings.bank
   Name: _Master.strings
   StudioPath: bank:/_Master/_Master.strings
-  lastModified: 638696141468063949
+  lastModified: 638696142137745538
   FileSizes:
   - Name: 
     Value: 4434
@@ -1378,7 +1378,7 @@ MonoBehaviour:
   - {fileID: -2825738890928706980}
   StringsBanks:
   - {fileID: -863181981819171695}
-  cacheTime: 638696141468063949
+  cacheTime: 638696142852241567
   cacheVersion: 131620
 --- !u!114 &92513434431448552
 MonoBehaviour:
@@ -1503,7 +1503,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/RECON.bank
   Name: RECON
   StudioPath: bank:/SFX/RECON
-  lastModified: 638696105380373473
+  lastModified: 638696142788977918
   FileSizes: []
   Exists: 1
 --- !u!114 &287384235095984720
@@ -2615,7 +2615,7 @@ MonoBehaviour:
   Banks:
   - {fileID: 173960363322647871}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 1
   Parameters: []
   MinDistance: 1
@@ -2822,7 +2822,7 @@ MonoBehaviour:
   Path: Assets/_Art/Sound/Banks/Desktop/ENEMIES.bank
   Name: ENEMIES
   StudioPath: bank:/SFX/ENEMIES
-  lastModified: 638696105378275963
+  lastModified: 638696142852241567
   FileSizes: []
   Exists: 1
 --- !u!114 &8628331067395682374
@@ -2897,7 +2897,7 @@ MonoBehaviour:
   Banks:
   - {fileID: -7725287997567409299}
   IsStream: 0
-  Is3D: 0
+  Is3D: 1
   IsOneShot: 0
   Parameters:
   - {fileID: -4997039301253113684}
