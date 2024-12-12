@@ -91,3 +91,8 @@ Assets/StreamingAssets/*.bank
 # If the source bank files are kept outside of the StreamingAssets folder then these can be ignored.
 # Log files can be ignored.
 fmod_editor.log
+
+
+Project Zeus/Assets/Plugins/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF.asset
+Project Zeus/Assets/Plugins/TextMesh Pro/Resources/Fonts & Materials/Eurostile-Reg SDF.asset
+Project Zeus/Assets/Plugins/TextMesh Pro/Resources/Fonts & Materials/EurostileExt-Reg SDF.asset
