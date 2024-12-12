@@ -32,6 +32,7 @@ public class UnitStateManager : MonoBehaviour
     #region Sound References
 
     public FMODAudioData audioSheet;
+    public UnitSoundHelper sound = new();
 
     private FMOD.Studio.EventInstance shooting;
     private FMOD.Studio.EventInstance moving;
@@ -355,6 +356,11 @@ public class UnitStateManager : MonoBehaviour
     {
         unitClass = _unitclass;
         Debug.Log("UnitClass set  to " + unitClass);
+    }
+
+    public UnitClass GetClass()
+    {
+        return unitClass;
     }
 
     private void DepleteEnergy(int _amount)
