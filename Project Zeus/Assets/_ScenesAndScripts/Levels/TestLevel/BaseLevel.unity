@@ -360,7 +360,7 @@ PrefabInstance:
     - target: {fileID: 8099869876767769438, guid: b6ee55fdccfc9de4bb851d392fd453c0,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 8345761443313743947, guid: b6ee55fdccfc9de4bb851d392fd453c0,
         type: 3}
@@ -380,7 +380,7 @@ PrefabInstance:
     - target: {fileID: 8601730507746951299, guid: b6ee55fdccfc9de4bb851d392fd453c0,
         type: 3}
       propertyPath: m_Layer
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5612,7 +5612,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 29cc5ef92624cad46b954efca3f112f3, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &1537198517
 GameObject:
@@ -7036,7 +7036,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 16
   ignoreTriggers: 1
-  drawGizmos: 1
+  drawGizmos: 0
   LogOutOfRange: 0
 --- !u!4 &1995245598
 Transform:
