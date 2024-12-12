@@ -3,8 +3,6 @@ using static UnitSoundHelper.SoundType;
 public class UnitFightingState : UnitBaseState
 {
 
-    private FMOD.Studio.EventInstance shooting;
-
     #region Unity Built-In
 
     public override void EnterState(UnitStateManager _unit)

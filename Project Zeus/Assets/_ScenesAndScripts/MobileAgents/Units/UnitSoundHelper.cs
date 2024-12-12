@@ -1,6 +1,7 @@
 using UnityEngine;
 using static FMODUnity.RuntimeManager;
 using static FMODAudioData.SoundID;
+using UnityEngine.Analytics;
 
 public class UnitSoundHelper
 {
@@ -10,6 +11,8 @@ public class UnitSoundHelper
 
     private FMOD.Studio.EventInstance shooting;
     private FMOD.Studio.EventInstance moving;
+    private FMOD.Studio.EventInstance activate;
+    private FMOD.Studio.EventInstance deactivate;
     private FMOD.Studio.EventInstance dying;
 
 
@@ -18,6 +21,8 @@ public class UnitSoundHelper
     {
         SHOOTING,
         MOVING,
+        ACTIVATE,
+        DEACTIVATE,
         DEATH
     }
 
@@ -38,6 +43,14 @@ public class UnitSoundHelper
 
             case SoundType.MOVING:
                 PlayMoving();
+                break;
+
+            case SoundType.ACTIVATE:
+                PlayActivation();
+                break;
+
+            case SoundType.DEACTIVATE:
+                PlayDeactivation();
                 break;
 
             case SoundType.DEATH:
@@ -72,7 +85,7 @@ public class UnitSoundHelper
             {
                 shooting = CreateInstance(audioSheet.GetSFXByName(SFXUnitFighterShooting));
 
-                AttachInstanceToGameObject(moving, unit.gameObject);
+                AttachInstanceToGameObject(shooting, unit.gameObject);
                 shooting.setParameterByName("Firing", 0);
                 shooting.start();
                 shooting.release();
@@ -83,7 +96,8 @@ public class UnitSoundHelper
         {
             shooting = CreateInstance(audioSheet.GetSFXByName(SFXUnitReconShot));
 
-            AttachInstanceToGameObject(moving, unit.gameObject);
+            AttachInstanceToGameObject(shooting, unit.gameObject);
+
             shooting.start();
             shooting.release();
         }
@@ -136,6 +150,26 @@ public class UnitSoundHelper
             moving.setParameterByName("Moving", 1);
             moving.release();
         }
+    }
+
+    private void PlayActivation()
+    {
+        activate = CreateInstance(audioSheet.GetSFXByName(SFXUnitPoweringUp));
+
+        AttachInstanceToGameObject(activate, unit.gameObject);
+
+        activate.start();
+        activate.release();
+    }
+
+    private void PlayDeactivation()
+    {
+        deactivate = CreateInstance(audioSheet.GetSFXByName(SFXUnitPoweringDown));
+
+        AttachInstanceToGameObject(deactivate, unit.gameObject);
+
+        deactivate.start();
+        deactivate.release();
     }
 
     private bool IsPlaying(FMOD.Studio.EventInstance instance)

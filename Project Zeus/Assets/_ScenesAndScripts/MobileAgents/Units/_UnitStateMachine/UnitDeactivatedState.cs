@@ -1,6 +1,7 @@
 using static FMODUnity.RuntimeManager;
 using static FMODAudioData.SoundID;
 using System.Diagnostics;
+using FMOD;
 
 public class UnitDeactivatedState : UnitBaseState
 {
@@ -41,7 +42,7 @@ public class UnitDeactivatedState : UnitBaseState
         // Queue Sound
         if (_unit.audioSheet != null)
         {
-            PlayOneShot(_unit.audioSheet.GetSFXByName(SFXUnitPoweringDown));
+            _unit.sound.PlaySoundByType(UnitSoundHelper.SoundType.DEACTIVATE);
         }
         else
         {
@@ -67,7 +68,7 @@ public class UnitDeactivatedState : UnitBaseState
 
         if (_unit.audioSheet != null)
         {
-            PlayOneShot(_unit.audioSheet.GetSFXByName(SFXUnitPoweringUp));
+            _unit.sound.PlaySoundByType(UnitSoundHelper.SoundType.ACTIVATE);
         }
         else
         {
