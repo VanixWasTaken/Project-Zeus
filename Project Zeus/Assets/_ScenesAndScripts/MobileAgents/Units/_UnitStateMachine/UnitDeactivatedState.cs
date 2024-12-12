@@ -1,5 +1,6 @@
 using static FMODUnity.RuntimeManager;
 using static FMODAudioData.SoundID;
+using System.Diagnostics;
 
 public class UnitDeactivatedState : UnitBaseState
 {
@@ -21,6 +22,8 @@ public class UnitDeactivatedState : UnitBaseState
     #endregion
 
 
+
+
     #region Custom Functions()
 
     private void Deactivate(UnitStateManager _unit)
@@ -36,7 +39,15 @@ public class UnitDeactivatedState : UnitBaseState
         _unit.StopAllCoroutines();
 
         // Queue Sound
-        PlayOneShot(_unit.audioSheet.GetSFXByName(SFXUnitPoweringDown));
+        if (_unit.audioSheet != null)
+        {
+            PlayOneShot(_unit.audioSheet.GetSFXByName(SFXUnitPoweringDown));
+        }
+        else
+        {
+            UnityEngine.Debug.LogWarning("_Unit.audiosheet is null in UnitDeactivatedState.cs");
+        }
+        
 
         // Start "Animation"
         _unit.animator.SetBool("anIsDeactivated", true);
@@ -53,7 +64,16 @@ public class UnitDeactivatedState : UnitBaseState
         /// </summary>
 
         _unit.StartCoroutine(_unit.EnergyDepletion()); // CHANGE SOME STUFF IN THIS LINE COULD HAVE BROKEN SOMETHING
-        PlayOneShot(_unit.audioSheet.GetSFXByName(SFXUnitPoweringUp));
+
+        if (_unit.audioSheet != null)
+        {
+            PlayOneShot(_unit.audioSheet.GetSFXByName(SFXUnitPoweringUp));
+        }
+        else
+        {
+            UnityEngine.Debug.LogWarning("_Unit.audiosheet is null in UnitDeactivatedState.cs");
+        }
+
         _unit.animator.SetBool("anIsDeactivated", false);
         _unit.rightPartUIUnitDescription.isActive = true;
         _unit.SwitchStates(_unit.idleState);
