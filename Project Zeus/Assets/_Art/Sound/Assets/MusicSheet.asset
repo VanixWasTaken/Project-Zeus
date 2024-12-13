@@ -1,15 +1,3 @@
-%YAML 1.1
-%TAG !u! tag:unity3d.com,2011:
---- !u!114 &11400000
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0fc5f510daad0540ae27b9c4a08265b, type: 3}
-  m_Name: MusicSheet
-  m_EditorClassIdentifier: 
-  SFXList: []
+version https://git-lfs.github.com/spec/v1
+oid sha256:70d2abb98495946c5f46ba539ab8abc5e59cb1acf5f107064a703740ad7e7368
+size 428
