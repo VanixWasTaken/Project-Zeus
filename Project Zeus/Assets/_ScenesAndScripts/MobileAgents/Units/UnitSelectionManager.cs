@@ -140,13 +140,13 @@ public class UnitSelectionManager : MonoBehaviour
 
     void MoveUnitsToTargetWithSpacing(Vector3 targetPosition)
     {
-        float spacing = 2f; // Set a spacing distance
+        float spacing = 1f; // Set a spacing distance
 
         foreach (UnitStateManager unit in selectedUnits)
         {
             // Calculate a new position based on the current unit's position and desired target
             Vector3 offset = new Vector3(Random.Range(-spacing, spacing), 0, Random.Range(-spacing, spacing));
-            Vector3 adjustedTarget = targetPosition + offset;
+            Vector3 adjustedTarget = targetPosition; // + offset; 
 
             
             unit.OnCommandMove(adjustedTarget);
