@@ -3,11 +3,10 @@ using UnityEngine;
 public class ResourceCollecterScript : MonoBehaviour
 {
 
-
     #region Unity Build In
 
     #region Collider
-    
+
     private void OnTriggerEnter(Collider other)
     {
         /// <summary>
@@ -22,13 +21,10 @@ public class ResourceCollecterScript : MonoBehaviour
             UnitStateManager unitScript = other.gameObject.GetComponent<UnitStateManager>(); // Get UnitStateManager.cs
             UnitWorkerMiningState miningState = new UnitWorkerMiningState();
 
-            if (unitScript != null) // Switch states inside UnitStateManager
+            if (unitScript != null && unitScript.CompareTag("Worker")) // Activate one mining device
             {
-                unitScript.SwitchStates(miningState); // Switch to the miningState in the UnitStateManager
-            }
-            else
-            {
-                Debug.LogError("UnitStateManager component not found on the collided object.");
+                //unitScript.
+                //unitScript.SwitchStates(miningState);
             }
         }
     }

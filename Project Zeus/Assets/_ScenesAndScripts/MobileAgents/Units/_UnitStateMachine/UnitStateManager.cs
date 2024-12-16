@@ -63,6 +63,7 @@ public class UnitStateManager : MonoBehaviour
     public Vector3 nearestEnemyPosition;
     public GameObject shootingSoundGO; // A big sphere that represents the range the shooting sound is heard by other enemies, allerting them to roam the area where the sound was
     public GameObject visionConeGO; // A BoxCollider that represents the view distance
+    public bool holdsMineralQuencher = false; // Determines if the Worker currently has a MineralQuencher on him or not
 
     [Header("Worker Variables")]
     public int collectedEnergy;
