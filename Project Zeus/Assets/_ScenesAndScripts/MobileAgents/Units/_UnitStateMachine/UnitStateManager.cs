@@ -233,6 +233,8 @@ public class UnitStateManager : MonoBehaviour
         SetAllClassStats(); // After adjusting the values above some stats need to be actally applied to its references, this happens here 
 
         #endregion
+
+        sound.Initialize(this, unitClass, audioSheet);
     }
 
 
@@ -250,7 +252,7 @@ public class UnitStateManager : MonoBehaviour
 
     public void OnFootstep()
     {
-        //PlayOneShot();
+        sound.PlaySoundByType(UnitSoundHelper.SoundType.MOVING);
     }
 
     public void OnShooting()
@@ -439,7 +441,7 @@ public class UnitStateManager : MonoBehaviour
             }
             else if (unitClass == UnitClass.Recon)
             {
-                //moving = CreateInstance(audioSheet.GetSFXByName(SFXUnitReconShot));
+                moving = CreateInstance(audioSheet.GetSFXByName(SFXUnitReconFootstep));
             }
 
             moving.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));
