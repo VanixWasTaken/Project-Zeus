@@ -63,6 +63,7 @@ public class UnitStateManager : MonoBehaviour
     public Vector3 nearestEnemyPosition;
     public GameObject shootingSoundGO; // A big sphere that represents the range the shooting sound is heard by other enemies, allerting them to roam the area where the sound was
     public GameObject visionConeGO; // A BoxCollider that represents the view distance
+    public bool holdsMineralQuencher = false; // Determines if the Worker currently has a MineralQuencher on him or not
 
     [Header("Worker Variables")]
     public int collectedEnergy;
@@ -232,6 +233,8 @@ public class UnitStateManager : MonoBehaviour
         SetAllClassStats(); // After adjusting the values above some stats need to be actally applied to its references, this happens here 
 
         #endregion
+
+        sound.Initialize(this, unitClass, audioSheet);
     }
 
 
@@ -249,7 +252,7 @@ public class UnitStateManager : MonoBehaviour
 
     public void OnFootstep()
     {
-        //PlayOneShot();
+        sound.PlaySoundByType(UnitSoundHelper.SoundType.MOVING);
     }
 
     public void OnShooting()
@@ -438,7 +441,7 @@ public class UnitStateManager : MonoBehaviour
             }
             else if (unitClass == UnitClass.Recon)
             {
-                //moving = CreateInstance(audioSheet.GetSFXByName(SFXUnitReconShot));
+                moving = CreateInstance(audioSheet.GetSFXByName(SFXUnitReconFootstep));
             }
 
             moving.set3DAttributes(FMODUnity.RuntimeUtils.To3DAttributes(gameObject));

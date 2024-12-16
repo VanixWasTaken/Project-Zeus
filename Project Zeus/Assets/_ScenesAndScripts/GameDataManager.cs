@@ -10,16 +10,19 @@ public class GameDataManager : MonoBehaviour
     public int availableWorkers = 0;
     public int availableRecons = 0;
     public int availableFighters = 0;
+    public int availableMineralQuenchers = 0;
 
     [Header("Picked Units")]
     public int pickedWorkers;
     public int pickedRecons;
     public int pickedFighters;
+    public int pickedMineralQuenchers;
 
     [Header("Extracted Units")]
     public int extractedWorkers;
     public int extractedRecons;
     public int extractedFighters;
+    public int extractedMineralQuenchers;
 
     [Header("Weight System")]
     public float maxKilogram = 100;

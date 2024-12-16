@@ -9,6 +9,7 @@ public class PlayableCharactersFriendlyUnitsSpawner : MonoBehaviour
     [SerializeField] GameObject workerPrefab;
     [SerializeField] GameObject reconPrefab;
     [SerializeField] GameObject fighterPrefab;
+    [SerializeField] GameObject mineralQuencherPrefab;
     [SerializeField] GameObject friendlyUnitsGO;
 
     #endregion
@@ -48,6 +49,14 @@ public class PlayableCharactersFriendlyUnitsSpawner : MonoBehaviour
             float zOffset = Random.Range(-spawnAreaWidth, spawnAreaWidth);
             Vector3 spawnPosition = friendlyUnitsGO.transform.position + new Vector3(xOffset, 0, zOffset);
             Instantiate(reconPrefab, spawnPosition, Quaternion.identity, friendlyUnitsGO.transform);
+        }
+        for (int i = 0; i < GameDataManager.Instance.pickedMineralQuenchers; i++)
+        {
+            // Determines a random position around the predetermined spawnpoint where each individual unit should spawn
+            float xOffset = Random.Range(-spawnAreaWidth, spawnAreaWidth);
+            float zOffset = Random.Range(-spawnAreaWidth, spawnAreaWidth);
+            Vector3 spawnPosition = friendlyUnitsGO.transform.position + new Vector3(xOffset, 0, zOffset);
+            Instantiate(mineralQuencherPrefab, spawnPosition, Quaternion.identity, friendlyUnitsGO.transform);
         }
     }
 

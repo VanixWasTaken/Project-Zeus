@@ -228,10 +228,11 @@ GameObject:
   m_Component:
   - component: {fileID: 6425659443735849670}
   - component: {fileID: 1774993930137553193}
+  - component: {fileID: 6540418861007177569}
   - component: {fileID: 5725626200036057815}
   m_Layer: 0
   m_Name: MineralFarm
-  m_TagString: Untagged
+  m_TagString: Mineral
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -275,6 +276,33 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 4
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &6540418861007177569
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5851400514158842771}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &5725626200036057815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -287,7 +315,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23078515b528bc04c9227be95f003822, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  workersInsideRessource: 0
 --- !u!1 &6632628747643974125
 GameObject:
   m_ObjectHideFlags: 0

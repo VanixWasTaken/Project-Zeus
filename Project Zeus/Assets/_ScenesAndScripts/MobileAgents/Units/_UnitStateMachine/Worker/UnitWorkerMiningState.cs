@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class UnitWorkerMiningState : UnitBaseState
 {
+
     #region Variables
 
     float timeElapsed;
@@ -19,6 +20,8 @@ public class UnitWorkerMiningState : UnitBaseState
         // Starts the animations
         _unit.animator.SetBool("anIsMining", true);
         _unit.animator.SetTrigger("anShouldMine");
+
+
     }
 
     public override void UpdateState(UnitStateManager _unit)
