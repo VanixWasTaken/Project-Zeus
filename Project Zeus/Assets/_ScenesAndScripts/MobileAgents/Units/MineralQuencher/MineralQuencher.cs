@@ -7,6 +7,7 @@ public class MineralQuencher : MonoBehaviour
 
     private GameObject workerGO;
     private UnitStateManager unitStateManager;
+    private Camera cam;
 
     #endregion
 
@@ -23,6 +24,24 @@ public class MineralQuencher : MonoBehaviour
 
     #region Unity Build In
 
+    private void Awake()
+    {
+        #region Reference Connections
+
+        if (cam == null)
+        {
+            cam = FindAnyObjectByType<Camera>();
+
+            if (cam == null )
+            {
+                Debug.LogError("cam in MineralQuencher.cs could not be found and assigned.");
+            }
+        }
+
+        #endregion
+    }
+
+
     private void Update()
     {
         if (assignedWorker)
@@ -34,6 +53,7 @@ public class MineralQuencher : MonoBehaviour
         {
             CollectMineral();
         }
+
     }
 
 
