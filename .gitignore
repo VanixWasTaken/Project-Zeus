@@ -96,3 +96,5 @@ fmod_editor.log
 Project Zeus/Assets/Plugins/TextMesh Pro/Examples & Extras/Resources/Fonts & Materials/Bangers SDF.asset
 Project Zeus/Assets/Plugins/TextMesh Pro/Resources/Fonts & Materials/Eurostile-Reg SDF.asset
 Project Zeus/Assets/Plugins/TextMesh Pro/Resources/Fonts & Materials/EurostileExt-Reg SDF.asset
+/Project Zeus/Assets/Plugins/FMOD/Cache
+Project Zeus/Assets/Plugins/FMOD/Cache/Editor/FMODStudioCache.asset.meta
