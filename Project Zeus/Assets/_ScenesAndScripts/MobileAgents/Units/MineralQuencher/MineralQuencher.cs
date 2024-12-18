@@ -14,8 +14,10 @@ public class MineralQuencher : MonoBehaviour
 
     private bool assignedWorker = false;
     private bool isCollecting = false;
-    public int collectedMinerals;
     private float mineralAccumulator = 0f; // Used to tranfser float into int over time
+
+    [Header("Game Design Variables")]
+    public int mineralCollectingRate = 1;
 
     #endregion
 
@@ -80,7 +82,7 @@ public class MineralQuencher : MonoBehaviour
 
         if (mineralAccumulator >= 1f)
         {
-            collectedMinerals += 1;
+            GameDataManager.Instance.currentEnergy += mineralCollectingRate;
             mineralAccumulator = 0f;
         }
     }
