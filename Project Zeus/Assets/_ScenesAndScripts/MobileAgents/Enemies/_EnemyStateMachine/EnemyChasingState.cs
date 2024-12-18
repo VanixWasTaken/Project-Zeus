@@ -41,6 +41,7 @@ public class EnemyChasingState : EnemyBaseState
         _enemy.animator.SetBool("anIsChasing", true);
         _enemy.animator.SetFloat("anSpeed", 1f);
         _enemy.animator.SetTrigger("anShouldScream");
+        FMODUnity.RuntimeManager.PlayOneShot(_enemy.audioSheet.GetSFXByName(FMODAudioData.SoundID.SFXEnemyScreamerScream));
         _enemy.animator.SetBool("anIsWalking", false);
         _enemy.animator.ResetTrigger("anShouldWalk"); // Currently bugging so I reset the trigger per hand
     }

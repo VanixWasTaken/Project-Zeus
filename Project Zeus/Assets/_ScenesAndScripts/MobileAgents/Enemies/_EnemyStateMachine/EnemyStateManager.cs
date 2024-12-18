@@ -24,6 +24,8 @@ public class EnemyStateManager : MonoBehaviour
     public GameObject spotLight;
     public UnitStateManager unitStateManager;
 
+    public FMODAudioData audioSheet;
+
     #endregion
 
     #region Variables
@@ -50,6 +52,7 @@ public class EnemyStateManager : MonoBehaviour
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        FMODUnity.RuntimeManager.LoadBank("ENEMIES");
     }
 
     void Start()
