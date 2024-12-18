@@ -82,8 +82,11 @@ public class MineralQuencher : MonoBehaviour
 
         if (mineralAccumulator >= 1f)
         {
-            GameDataManager.Instance.currentEnergy += mineralCollectingRate;
             mineralAccumulator = 0f;
+            if (GameDataManager.Instance.currentEnergy < GameDataManager.Instance.maxEnergy)
+            {
+                GameDataManager.Instance.currentEnergy += mineralCollectingRate;
+            }
         }
     }
 

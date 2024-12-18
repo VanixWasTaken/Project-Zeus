@@ -30,6 +30,7 @@ public class GameDataManager : MonoBehaviour
 
     [Header("Energy System")]
     public int currentEnergy;
+    public int startingEnergy = 50; // The energy amount you deploy inside the level with
     public int maxEnergy = 100;
 
     [Header("Loot System")]
