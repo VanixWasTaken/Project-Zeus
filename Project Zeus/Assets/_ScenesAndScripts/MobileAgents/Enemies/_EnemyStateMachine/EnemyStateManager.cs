@@ -28,13 +28,17 @@ public class EnemyStateManager : MonoBehaviour
 
     #region Variables
 
-    public List<Vector3> patrolPoints; // points that make up the circle
     public bool unitSpotted = false;
     public Vector3 lastKnownUnitPosititon;
     public int health = 100;
     public bool shouldAttackUnits = false;
     public Vector3 lastHeardSoundPosition; // Everytime an enemy hears a shot he saves its position in this variable
     public bool finishedScream = false;
+
+    [Header("Game Design Variables")]
+    public float speed = 2f;
+    public float chasingSpeed = 5f;
+    public List<Vector3> patrolPoints; // points that make up the circle
 
     #endregion
 
@@ -60,6 +64,8 @@ public class EnemyStateManager : MonoBehaviour
         currentState.UpdateState(this);
 
         Die();
+
+        Debug.Log(currentState);
     }
 
     #region Colliders
@@ -99,6 +105,18 @@ public class EnemyStateManager : MonoBehaviour
     {
         unitStateManager.health -= 25;
     }
+
+    public void OnScreamFinished()
+    {
+        animator.SetTrigger("anShouldChase");
+        finishedScream = true;
+    }
+
+    public void OnDeathAnimationFinished()
+    {
+        Destroy(gameObject);
+    }
+
 
     #endregion
 
@@ -149,15 +167,7 @@ public class EnemyStateManager : MonoBehaviour
         if (health <= 0)
         {
             animator.SetTrigger("anShouldDie");
-
-
-            Destroy(gameObject);
         }
-    }
-
-    public void OnScreamFinished()
-    {
-        finishedScream = true;
     }
 
     #endregion

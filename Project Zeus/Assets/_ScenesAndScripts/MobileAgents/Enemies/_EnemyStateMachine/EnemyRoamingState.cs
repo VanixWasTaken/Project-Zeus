@@ -17,11 +17,13 @@ public class EnemyRoamingState : EnemyBaseState
 
     public override void EnterState(EnemyStateManager _enemy)
     {
+        _enemy.DeactivateLight();
+
         ResetAnimations(_enemy);
 
         InitializePatrolRoute(_enemy); // If there isn't set a custom patrol route, it will add a default route.
 
-        _enemy.navMeshAgent.speed = 2;
+        _enemy.navMeshAgent.speed = _enemy.speed;
         _enemy.navMeshAgent.SetDestination(_enemy.patrolPoints[0]);
         _lastPatrolDestination = _enemy.patrolPoints[0];
     }
@@ -77,6 +79,8 @@ public class EnemyRoamingState : EnemyBaseState
         _enemy.animator.SetBool("anIsChasing", false);
         _enemy.animator.SetTrigger("anShouldWalk");
         _enemy.animator.SetBool("anIsWalking", true);
+        _enemy.animator.ResetTrigger("anIsScreaming"); // Currently bugging so I reset the trigger per hand
+        _enemy.animator.ResetTrigger("anShouldAttack"); // Currently bugging so I reset the trigger per hand
     }
 
     #endregion

@@ -1,5 +1,7 @@
 
 
+using UnityEngine;
+
 public class EnemyChasingState : EnemyBaseState
 {
     #region Variables
@@ -16,7 +18,7 @@ public class EnemyChasingState : EnemyBaseState
     {
         LightUpAndStartAnims(_enemy); // Start Animations and ActivateLight
 
-        _enemy.navMeshAgent.speed = 5f;
+        _enemy.navMeshAgent.speed = _enemy.chasingSpeed;
     }
 
     public override void UpdateState(EnemyStateManager _enemy)
@@ -38,18 +40,22 @@ public class EnemyChasingState : EnemyBaseState
         _enemy.ActivateLight();
         _enemy.animator.SetBool("anIsChasing", true);
         _enemy.animator.SetFloat("anSpeed", 1f);
-        _enemy.animator.SetTrigger("anShouldChase");
+        _enemy.animator.SetTrigger("anShouldScream");
+        _enemy.animator.SetBool("anIsWalking", false);
+        _enemy.animator.ResetTrigger("anShouldWalk"); // Currently bugging so I reset the trigger per hand
     }
 
     private void ChaseUnit(EnemyStateManager _enemy)
     {
-        _enemy.OnScreamFinished(); // Plays the scream right before going into chase
-
         if (_enemy.finishedScream)
         {
             _enemy.navMeshAgent.SetDestination(_enemy.lastKnownUnitPosititon);
 
             GoBackToRoaming(_enemy); // If there is no unit on sight anymore, gets back to his old patrol positions
+        }
+        else
+        {
+            _enemy.navMeshAgent.ResetPath();
         }
     }
 

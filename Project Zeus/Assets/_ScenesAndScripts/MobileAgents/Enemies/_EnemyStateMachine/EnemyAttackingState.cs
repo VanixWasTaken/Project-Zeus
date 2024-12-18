@@ -32,9 +32,10 @@ public class EnemyAttackingState : EnemyBaseState
     private void ResetAnimations(EnemyStateManager _enemy)
     {
         _enemy.animator.SetBool("anIsAttacking", true);
+        _enemy.animator.SetTrigger("anShouldAttack");
         _enemy.animator.SetBool("anIsWalking", false);
         _enemy.animator.SetBool("anIsChasing", false);
-        _enemy.animator.SetTrigger("anShouldAttack");
+        _enemy.animator.ResetTrigger("anShouldScream"); // Currently bugging so I reset the trigger per hand
     }
 
     private void ReturnToRoaming(EnemyStateManager _enemy)
