@@ -43,9 +43,14 @@ public class EnemyChasingState : EnemyBaseState
 
     private void ChaseUnit(EnemyStateManager _enemy)
     {
-        _enemy.navMeshAgent.SetDestination(_enemy.lastKnownUnitPosititon);
+        _enemy.OnScreamFinished(); // Plays the scream right before going into chase
 
-        GoBackToRoaming(_enemy); // If there is no unit on sight anymore, gets back to his old patrol positions
+        if (_enemy.finishedScream)
+        {
+            _enemy.navMeshAgent.SetDestination(_enemy.lastKnownUnitPosititon);
+
+            GoBackToRoaming(_enemy); // If there is no unit on sight anymore, gets back to his old patrol positions
+        }
     }
 
     private void GoBackToRoaming(EnemyStateManager _enemy)
