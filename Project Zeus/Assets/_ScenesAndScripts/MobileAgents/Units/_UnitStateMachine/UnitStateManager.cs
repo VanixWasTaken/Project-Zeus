@@ -14,7 +14,6 @@ public class UnitStateManager : MonoBehaviour
     public UnitIdleState idleState = new UnitIdleState();
     public UnitWalkingState walkingState = new UnitWalkingState();
     public UnitDeactivatedState deactivatedState = new UnitDeactivatedState();
-    public UnitWorkerMiningState workerMiningState = new UnitWorkerMiningState();
     public UnitFightingState fightingState = new UnitFightingState();
 
     #endregion

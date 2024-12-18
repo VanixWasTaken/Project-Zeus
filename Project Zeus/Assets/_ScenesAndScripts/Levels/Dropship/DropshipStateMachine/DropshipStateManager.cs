@@ -75,36 +75,7 @@ public class DropshipStateManager : MonoBehaviour
     {
         if (other.CompareTag("Worker"))
         {
-            Debug.Log("I am inside the drop zone");
             workersInsideExtraction++;
-
-            UnitStateManager unitStateManager = other.GetComponent<UnitStateManager>();
-
-            if (unitStateManager != null) // Check if the component was found
-            {
-                Debug.Log("I am delivering my energy, which is: " + unitStateManager.collectedEnergy);
-                // this block checks if the current energy is greater than the max and adjusts the values accordingly
-                int checkEnergy = GameDataManager.Instance.currentEnergy + unitStateManager.collectedEnergy;
-
-                if (checkEnergy <= GameDataManager.Instance.maxEnergy)
-                {
-                    GameDataManager.Instance.currentEnergy = checkEnergy;
-                }
-                else if (checkEnergy > GameDataManager.Instance.maxEnergy)
-                {
-                    GameDataManager.Instance.currentEnergy = GameDataManager.Instance.maxEnergy;
-                }
-                else
-                {
-                    Debug.LogError("Error! Calculating energy failed!");
-                }
-
-                unitStateManager.collectedEnergy = 0; // Reset the collectedEnergy on that GameObject
-            }
-            else
-            {
-                Debug.LogError("UnitStateManager component not found on the Worker!");
-            }
         }
 
         if (other.CompareTag("Recon"))
@@ -249,7 +220,7 @@ public class DropshipStateManager : MonoBehaviour
 
     private void SetData()
     {
-        GameDataManager.Instance.currentEnergy = GameDataManager.Instance.maxEnergy;
+        GameDataManager.Instance.currentEnergy = GameDataManager.Instance.startingEnergy;
         energyMeter.text = ("Energy:\t" + GameDataManager.Instance.currentEnergy + " / " + GameDataManager.Instance.maxEnergy);
     }
 

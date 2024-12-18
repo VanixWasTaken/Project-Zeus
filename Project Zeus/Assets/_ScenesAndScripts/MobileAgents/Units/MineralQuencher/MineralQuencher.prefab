@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 8412634531994316332}
   m_Layer: 0
   m_Name: MineralQuencher
-  m_TagString: Untagged
+  m_TagString: MineralQuencher
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,3 +189,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c94c21bcf76853b419f2d02dcc574e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mineralCollectingRate: 1

@@ -7,6 +7,7 @@ public class MineralQuencher : MonoBehaviour
 
     private GameObject workerGO;
     private UnitStateManager unitStateManager;
+    private MineralEnergyHandler mineralEnergyHandler;
 
     #endregion
 
@@ -66,6 +67,9 @@ public class MineralQuencher : MonoBehaviour
         isCollecting = true;
 
         unitStateManager.holdsMineralQuencher = false;
+
+        mineralEnergyHandler = other.GetComponent<MineralEnergyHandler>();
+        
     }
 
     #endregion
@@ -82,8 +86,12 @@ public class MineralQuencher : MonoBehaviour
 
         if (mineralAccumulator >= 1f)
         {
-            GameDataManager.Instance.currentEnergy += mineralCollectingRate;
             mineralAccumulator = 0f;
+            if (GameDataManager.Instance.currentEnergy < GameDataManager.Instance.maxEnergy)
+            {
+                GameDataManager.Instance.currentEnergy += mineralCollectingRate;
+                mineralEnergyHandler.remainingEnergy -= 1;
+            }
         }
     }
 
