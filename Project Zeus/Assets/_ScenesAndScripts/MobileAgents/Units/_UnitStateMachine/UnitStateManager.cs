@@ -49,7 +49,7 @@ public class UnitStateManager : MonoBehaviour
         Recon,
         Fighter
     }
-    UnitClass unitClass;
+    public UnitClass unitClass;
     public float health;
     private float movementSpeed;
     public int visionRange;

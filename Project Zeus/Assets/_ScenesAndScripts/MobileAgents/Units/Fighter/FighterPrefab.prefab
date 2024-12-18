@@ -1263,6 +1263,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fighter
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 4c1acd502231bbd448ac1b905c3eeb58,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c1e7bff5f0de34b4d82256ec875ef1af, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

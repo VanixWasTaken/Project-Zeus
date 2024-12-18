@@ -9,8 +9,10 @@ public class UnitFightingState : UnitBaseState
 
     public override void EnterState(UnitStateManager _unit)
     {
-        //if (_unit.GetClass() == "Fighter")
-        //_unit.navMeshAgent.ResetPath();
+        if (_unit.unitClass != UnitStateManager.UnitClass.Fighter)
+        {
+            _unit.navMeshAgent.ResetPath();
+        }
 
         ResetAnimations(_unit);
 
