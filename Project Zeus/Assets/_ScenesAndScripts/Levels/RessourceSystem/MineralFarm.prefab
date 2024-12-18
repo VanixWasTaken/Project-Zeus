@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6271686288993963038}
   - component: {fileID: 2792968302012082348}
   - component: {fileID: 7908951025847554071}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ResourcePrefab (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 6343755091220034743}
   - component: {fileID: 1697392234904986523}
   - component: {fileID: 163332853469970926}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ResourcePrefab (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 1774993930137553193}
   - component: {fileID: 6540418861007177569}
   - component: {fileID: 5725626200036057815}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: MineralFarm
   m_TagString: Mineral
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 7868067382125312586}
   - component: {fileID: 1340602610182094706}
   - component: {fileID: 8569098076913062193}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: ResourcePrefab (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

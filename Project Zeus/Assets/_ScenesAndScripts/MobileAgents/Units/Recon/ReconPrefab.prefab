@@ -112,14 +112,14 @@ NavMeshAgent:
   m_Acceleration: 30
   avoidancePriority: 50
   m_AngularSpeed: 500
-  m_StoppingDistance: 0
+  m_StoppingDistance: 1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 2
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 0
+  m_ObstacleAvoidanceType: 4
 --- !u!136 &6844881601502991166
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -195,6 +195,7 @@ MonoBehaviour:
   nearestEnemyPosition: {x: 0, y: 0, z: 0}
   shootingSoundGO: {fileID: 2701180233096625478}
   visionConeGO: {fileID: 4474992635404718336}
+  holdsMineralQuencher: 0
   collectedEnergy: 0
   collectedLoot: 0
   enemiesInRange: []

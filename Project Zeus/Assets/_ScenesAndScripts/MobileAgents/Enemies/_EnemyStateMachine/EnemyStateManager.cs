@@ -34,6 +34,7 @@ public class EnemyStateManager : MonoBehaviour
     public int health = 100;
     public bool shouldAttackUnits = false;
     public Vector3 lastHeardSoundPosition; // Everytime an enemy hears a shot he saves its position in this variable
+    public bool finishedScream = false;
 
     #endregion
 
@@ -147,8 +148,16 @@ public class EnemyStateManager : MonoBehaviour
     {
         if (health <= 0)
         {
+            animator.SetTrigger("anShouldDie");
+
+
             Destroy(gameObject);
         }
+    }
+
+    public void OnScreamFinished()
+    {
+        finishedScream = true;
     }
 
     #endregion
