@@ -16,7 +16,7 @@ public class EnemyChasingState : EnemyBaseState
     {
         LightUpAndStartAnims(_enemy); // Start Animations and ActivateLight
 
-        _enemy.navMeshAgent.speed = 3.5f;
+        _enemy.navMeshAgent.speed = 5f;
     }
 
     public override void UpdateState(EnemyStateManager _enemy)
