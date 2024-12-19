@@ -446,7 +446,6 @@ GameObject:
   - component: {fileID: 2285982468663314464}
   - component: {fileID: 6315628705533745189}
   - component: {fileID: 4437015007349617180}
-  - component: {fileID: 5320346246174388841}
   - component: {fileID: 6760945820301196620}
   m_Layer: 15
   m_Name: FighterPrefab
@@ -508,7 +507,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 5
+  m_Speed: 3
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 500
@@ -584,9 +583,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   navMeshAgent: {fileID: 0}
+  selectionIndicator: {fileID: 0}
   rightPartUIUnitDescription: {fileID: 6760945820301196620}
   enemyStateManager: {fileID: 0}
+  frontLight: {fileID: 2173578018925258443}
+  spineTransform: {fileID: 4054450358457070722}
   audioSheet: {fileID: 11400000, guid: e7bf03278cea6e04cb586e99ba3e09a0, type: 2}
+  unitClass: 0
   health: 100
   visionRange: 0
   visionConeRange: 0
@@ -600,19 +603,6 @@ MonoBehaviour:
   collectedLoot: 0
   enemiesInRange: []
   mainTarget: {fileID: 0}
---- !u!114 &5320346246174388841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5059330462096545759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 507fc9142523d85448d6798d03919717, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lootGO: {fileID: 0}
 --- !u!114 &6760945820301196620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1258,6 +1248,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1599826595754709761, guid: 4c1acd502231bbd448ac1b905c3eeb58,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 4c1acd502231bbd448ac1b905c3eeb58,
         type: 3}
       propertyPath: m_Name
@@ -1268,11 +1263,18 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: c1e7bff5f0de34b4d82256ec875ef1af, type: 2}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5866666021909216657, guid: 4c1acd502231bbd448ac1b905c3eeb58, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4c1acd502231bbd448ac1b905c3eeb58, type: 3}
+--- !u!4 &4054450358457070722 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -9162484748627739507, guid: 4c1acd502231bbd448ac1b905c3eeb58,
+    type: 3}
+  m_PrefabInstance: {fileID: 4079168021914060815}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4546002058749112292 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 4c1acd502231bbd448ac1b905c3eeb58,

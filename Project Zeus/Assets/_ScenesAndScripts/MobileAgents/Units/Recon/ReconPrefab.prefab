@@ -184,9 +184,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 0}
   navMeshAgent: {fileID: 0}
+  selectionIndicator: {fileID: 0}
   rightPartUIUnitDescription: {fileID: 7652998036567853228}
   enemyStateManager: {fileID: 0}
+  frontLight: {fileID: 6784024941562942432}
   audioSheet: {fileID: 11400000, guid: 3f98a688fd7234a439eee974cd84ab2b, type: 2}
+  unitClass: 0
   health: 100
   visionRange: 0
   visionConeRange: 0

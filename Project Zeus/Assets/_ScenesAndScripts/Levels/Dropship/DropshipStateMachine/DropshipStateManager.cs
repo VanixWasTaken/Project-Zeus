@@ -76,19 +76,15 @@ public class DropshipStateManager : MonoBehaviour
         if (other.CompareTag("Worker"))
         {
             workersInsideExtraction++;
-        }
 
-        if (other.CompareTag("Recon"))
-        {
-            reconsInsideExtraction++;
-        }
-
-        if (other.CompareTag("Fighter"))
-        {
-            fightersInsideExtraction++;
-
+            /// <summary>
+            ///             Yoshi: Connects a GameObject on the back of the Worker to find the barrel on the
+            ///                    back more easily. Also sets it to not visible so, if the player picks up
+            ///                    loot it can be toggled visible. Then it looks like the player put the loot
+            ///                    on his back.
+            /// </summary>
             UnitStateManager unitStateManager = other.GetComponent<UnitStateManager>();
-            WorkerLoot lootOnUnit = other.GetComponent<WorkerLoot>();
+            UnitLoot lootOnUnit = other.GetComponent<UnitLoot>();
 
             if (unitStateManager != null) // Check if the component was found
             {
@@ -108,6 +104,16 @@ public class DropshipStateManager : MonoBehaviour
             {
                 Debug.LogError("UnitStateManager component not found on the Fighters!");
             }
+        }
+
+        if (other.CompareTag("Recon"))
+        {
+            reconsInsideExtraction++;
+        }
+
+        if (other.CompareTag("Fighter"))
+        {
+            fightersInsideExtraction++;
         }
     }
 

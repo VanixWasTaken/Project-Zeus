@@ -22,11 +22,14 @@ public class UnitStateManager : MonoBehaviour
 
     public Animator animator;
     public NavMeshAgent navMeshAgent;
-    GameObject selectionIndicator;
-    DropshipStateManager dropship; // needed to call function DepleteEnergy()
+    public GameObject selectionIndicator; // Indicator ring around the unit, showing if currently selected or not
+    private DropshipStateManager dropship; // needed to call function DepleteEnergy()
     public RightPartUIUnitDescription rightPartUIUnitDescription;
     public EnemyStateManager enemyStateManager;
+    public GameObject frontLight; // Yoshi: The flashlight infront of each unit
+    public Transform spineTransform;
     private csFogWar fogWar;
+    // public Transform dropShipTransform; // Just for testing aniamtions right now
 
     #region Sound References
 
@@ -178,8 +181,7 @@ public class UnitStateManager : MonoBehaviour
         StartCoroutine(EnergyDepletion()); // Start the energy depletion (once per second updated)
 
         selectionIndicator.SetActive(false);
-        currentState = idleState;
-        currentState.EnterState(this);
+        SwitchStates(deactivatedState); // Start inside the deactivated state, so energy depletion isn't a direct problem
 
         #region Define Class
 
@@ -240,6 +242,8 @@ public class UnitStateManager : MonoBehaviour
     void Update()
     {
         currentState.UpdateState(this);
+
+        // spineTransform.LookAt(dropship.transform); // DELETE LATER
 
         if (health <= 0)
         {
@@ -381,10 +385,23 @@ public class UnitStateManager : MonoBehaviour
         SphereCollider shootingSoundSphere = shootingSoundGO.GetComponent<SphereCollider>();
         shootingSoundSphere.radius = soundEmittingRange;
 
-        // Set the size of the cube vision cone infront of the unit, that represents the view distance
+
+        /// <summary>
+        /// Yoshi: Set the size of the cube vision cone infront of the unit, that represents the view distance
+        ///        Because the cone extends from its midpoint, I teleport it afterwards half its size infront of the player.
+        ///        So it sits correctly infrotn of him (starting right infront of his eyes)
+        ///        Debugs if not found correctly
+        /// </summary>
         BoxCollider visionCone = visionConeGO.GetComponent<BoxCollider>();
-        visionCone.size = new Vector3(5, 2, visionRange);
-        visionCone.transform.position += new Vector3(0, 0, visionRange / 2);
+        if (visionCone == null)
+        {
+            Debug.LogError("visionCone in the function SetAllClassStats in UnitsStateManager could not be found and assigned.");
+        }
+        else
+        {
+            visionCone.size = new Vector3(5, 2, visionRange);
+            visionCone.transform.position += new Vector3(0, 0, visionRange / 2);
+        }
     }
 
     public IEnumerator EnergyDepletion()

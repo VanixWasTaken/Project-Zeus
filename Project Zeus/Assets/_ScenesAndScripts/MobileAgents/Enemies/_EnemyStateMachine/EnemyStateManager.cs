@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.AI;
 using System.Collections.Generic;
@@ -18,7 +17,7 @@ public class EnemyStateManager : MonoBehaviour
     #region References
 
     // References that enable core functionality
-    GameObject mainTarget;
+    private Transform mainTarget;
     public NavMeshAgent navMeshAgent;
     public Animator animator;
     public GameObject spotLight;
@@ -78,7 +77,9 @@ public class EnemyStateManager : MonoBehaviour
     {
         currentState.UpdateState(this);
 
-        Die();
+        FollowPlayer(); // Chases the Player updates his last known Position every frame while unit is spotted
+
+        Die(); // If health reaches 0 plays death animation and despawns
     }
 
     #region Colliders
@@ -88,7 +89,7 @@ public class EnemyStateManager : MonoBehaviour
         if (other.CompareTag("Worker") || other.CompareTag("Recon") || other.CompareTag("Fighter"))
         {
             unitSpotted = true;
-            lastKnownUnitPosititon = other.transform.position;
+            mainTarget = other.gameObject.transform;
         }
     }
 
@@ -97,7 +98,7 @@ public class EnemyStateManager : MonoBehaviour
         if (other.CompareTag("Worker") || other.CompareTag("Recon") || other.CompareTag("Fighter"))
         {
             unitSpotted = false;
-            lastKnownUnitPosititon = other.transform.position;
+            mainTarget = null;
         }
     }
 
@@ -195,6 +196,14 @@ public class EnemyStateManager : MonoBehaviour
         animator.Play(newAnState); // Play the animation
 
         currentAnState = newAnState; // Reassign the current state
+    }
+
+    private void FollowPlayer()
+    {
+        if (unitSpotted && unitStateManager != null)
+        {
+            lastKnownUnitPosititon = mainTarget.position;
+        }
     }
 
     #endregion

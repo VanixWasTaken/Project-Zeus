@@ -31,9 +31,8 @@ public class EnemyAttackingState : EnemyBaseState
 
     private void ReturnToRoaming(EnemyStateManager _enemy)
     {
-        if (_enemy.unitStateManager.health <= 0)
+        if (!_enemy.shouldAttackUnits)
         {
-            _enemy.unitSpotted = false;
             _enemy.SwitchState(_enemy.roamingState);
         }
     }

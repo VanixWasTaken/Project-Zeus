@@ -1,6 +1,7 @@
 using static FMODUnity.RuntimeManager;
 using static FMODAudioData.SoundID;
 using System.Diagnostics;
+using UnityEngine;
 
 public class UnitDeactivatedState : UnitBaseState
 {
@@ -31,6 +32,7 @@ public class UnitDeactivatedState : UnitBaseState
         /// <summary>
         /// Completely stops the unit from moving and plays the transition
         /// to the animation that lets it appear deactivated
+        /// Yoshi: Added more stuff to visualize deactivation like deactivating front light and changing selection inidcator color to red.
         /// </summary>
         
         // Stop Navigation
@@ -52,6 +54,13 @@ public class UnitDeactivatedState : UnitBaseState
         // Start "Animation"
         _unit.animator.SetBool("anIsDeactivated", true);
         _unit.animator.SetTrigger("anShouldDeactivate");
+
+        // Deactivate front light
+        _unit.frontLight.SetActive(false);
+
+        // Change selectionIndicator color to red
+        MeshRenderer selectionIndicatorMesh = _unit.selectionIndicator.GetComponent<MeshRenderer>();
+        selectionIndicatorMesh.material.color = Color.red;
     }
 
     public void Reactivate(UnitStateManager _unit)
@@ -61,6 +70,8 @@ public class UnitDeactivatedState : UnitBaseState
         /// the animation back into the idle
         /// 
         /// Switches States back to Idle
+        /// 
+        /// Yoshi: Added more stuff to visualize reactivation like activating front light and changing selection inidcator color to green again.
         /// </summary>
 
         _unit.StartCoroutine(_unit.EnergyDepletion()); // CHANGE SOME STUFF IN THIS LINE COULD HAVE BROKEN SOMETHING
@@ -75,7 +86,16 @@ public class UnitDeactivatedState : UnitBaseState
         }
 
         _unit.animator.SetBool("anIsDeactivated", false);
+
         _unit.rightPartUIUnitDescription.isActive = true;
+
+        // Reactivate front light
+        _unit.frontLight.SetActive(true);
+
+        // Change selectionIndicator color back to green
+        MeshRenderer selectionIndicatorMesh = _unit.selectionIndicator.GetComponent<MeshRenderer>();
+        selectionIndicatorMesh.material.color = Color.green;
+
         _unit.SwitchStates(_unit.idleState);
     }
 
