@@ -184,7 +184,7 @@ public class EnemyStateManager : MonoBehaviour
     {
         if (health <= 0)
         {
-            animator.SetTrigger("anShouldDie");
+            ChangeAnimationState(ENEMY_DIE);
         }
     }
 

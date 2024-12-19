@@ -52,7 +52,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 2
+  m_Radius: 3.5
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &2901262475527741311
 MonoBehaviour:
@@ -189,4 +189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c94c21bcf76853b419f2d02dcc574e0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  assignedWorker: 0
+  isCollecting: 0
+  mineralAccumulator: 0
   mineralCollectingRate: 1
