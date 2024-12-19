@@ -7,6 +7,8 @@ public class EnemyRoamSoundState : EnemyBaseState
 
     public override void EnterState(EnemyStateManager _enemy)
     {
+        _enemy.ChangeAnimationState(EnemyStateManager.ENEMY_WALKING);
+
         _enemy.navMeshAgent.SetDestination(_enemy.lastHeardSoundPosition);
     }
 

@@ -287,7 +287,7 @@ public class UnitStateManager : MonoBehaviour
             EnemyStateManager _enemyStateManager = other.GetComponent<EnemyStateManager>();
 
             _enemyStateManager.lastHeardSoundPosition = transform.position;
-            if (_enemyStateManager.currentState != _enemyStateManager.attackingState || _enemyStateManager.currentState != _enemyStateManager.chasingState)
+            if (!_enemyStateManager.unitSpotted)
             {
                 _enemyStateManager.SwitchState(_enemyStateManager.roamSoundState);
             }

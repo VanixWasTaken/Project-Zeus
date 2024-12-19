@@ -9,8 +9,7 @@ public class EnemyInvestigateState : EnemyBaseState
 
     public override void EnterState(EnemyStateManager _enemy)
     {
-        ResetAnimations(_enemy);
-
+        _enemy.ChangeAnimationState(EnemyStateManager.ENEMY_WALKING);
     }
 
     public override void UpdateState(EnemyStateManager _enemy)
@@ -20,18 +19,4 @@ public class EnemyInvestigateState : EnemyBaseState
 
     #endregion
 
-
-
-    #region Custom Functions()
-
-    private void ResetAnimations(EnemyStateManager _enemy)
-    {
-        _enemy.animator.SetBool("anIsChasing", false);
-        _enemy.animator.SetBool("anIsAttacking", false);
-        _enemy.animator.SetTrigger("anShouldWalk");
-        _enemy.animator.SetBool("anIsWalking", true);
-
-    }
-
-    #endregion
 }
