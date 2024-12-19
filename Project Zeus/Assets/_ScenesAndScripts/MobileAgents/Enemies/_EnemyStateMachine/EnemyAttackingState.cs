@@ -13,8 +13,8 @@ public class EnemyAttackingState : EnemyBaseState
     public override void EnterState(EnemyStateManager _enemy)
     {
         _enemy.ActivateLight();
-        
-        ResetAnimations(_enemy);
+
+        _enemy.ChangeAnimationState(EnemyStateManager.ENEMY_ATTACKING);
 
         _enemy.navMeshAgent.ResetPath();
     }
@@ -29,19 +29,9 @@ public class EnemyAttackingState : EnemyBaseState
 
     #region Custom Functions()
 
-    private void ResetAnimations(EnemyStateManager _enemy)
-    {
-        _enemy.animator.SetBool("anIsAttacking", true);
-        _enemy.animator.SetTrigger("anShouldAttack");
-        FMODUnity.RuntimeManager.PlayOneShot(_enemy.audioSheet.GetSFXByName(FMODAudioData.SoundID.SFXEnemyScreamerAttack));
-        _enemy.animator.SetBool("anIsWalking", false);
-        _enemy.animator.SetBool("anIsChasing", false);
-        _enemy.animator.ResetTrigger("anShouldScream"); // Currently bugging so I reset the trigger per hand
-    }
-
     private void ReturnToRoaming(EnemyStateManager _enemy)
     {
-        if (_enemy.unitStateManager == null)
+        if (_enemy.unitStateManager.health <= 0)
         {
             _enemy.unitSpotted = false;
             _enemy.SwitchState(_enemy.roamingState);
