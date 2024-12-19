@@ -16,7 +16,11 @@ public class EnemyChasingState : EnemyBaseState
 
     public override void EnterState(EnemyStateManager _enemy)
     {
-        LightUpAndStartAnims(_enemy); // Start Animations and ActivateLight
+        _enemy.ActivateLight(); // Activate a red light for visiblity of the enemy
+        
+        FMODUnity.RuntimeManager.PlayOneShot(_enemy.audioSheet.GetSFXByName(FMODAudioData.SoundID.SFXEnemyScreamerScream));
+
+        _enemy.ChangeAnimationState(EnemyStateManager.ENEMY_SCREAM);
 
         _enemy.navMeshAgent.speed = _enemy.chasingSpeed;
     }
@@ -31,25 +35,17 @@ public class EnemyChasingState : EnemyBaseState
     #endregion
 
 
+    
+
 
 
     #region Custom Functions()
-
-    private void LightUpAndStartAnims(EnemyStateManager _enemy) 
-    {
-        _enemy.ActivateLight();
-        _enemy.animator.SetBool("anIsChasing", true);
-        _enemy.animator.SetFloat("anSpeed", 1f);
-        _enemy.animator.SetTrigger("anShouldScream");
-        FMODUnity.RuntimeManager.PlayOneShot(_enemy.audioSheet.GetSFXByName(FMODAudioData.SoundID.SFXEnemyScreamerScream));
-        _enemy.animator.SetBool("anIsWalking", false);
-        _enemy.animator.ResetTrigger("anShouldWalk"); // Currently bugging so I reset the trigger per hand
-    }
 
     private void ChaseUnit(EnemyStateManager _enemy)
     {
         if (_enemy.finishedScream)
         {
+            _enemy.ChangeAnimationState(EnemyStateManager.ENEMY_CHASING);
             _enemy.navMeshAgent.SetDestination(_enemy.lastKnownUnitPosititon);
 
             GoBackToRoaming(_enemy); // If there is no unit on sight anymore, gets back to his old patrol positions
@@ -62,7 +58,7 @@ public class EnemyChasingState : EnemyBaseState
 
     private void GoBackToRoaming(EnemyStateManager _enemy)
     {
-        if (_enemy.navMeshAgent.remainingDistance <= 0 && !_enemy.unitSpotted)
+        if (_enemy.navMeshAgent.remainingDistance <= 0 && !_enemy.unitSpotted && _enemy.currentState == this)
         {
             _enemy.SwitchState(_enemy.roamingState);
         }

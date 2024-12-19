@@ -36,11 +36,23 @@ public class EnemyStateManager : MonoBehaviour
     public bool shouldAttackUnits = false;
     public Vector3 lastHeardSoundPosition; // Everytime an enemy hears a shot he saves its position in this variable
     public bool finishedScream = false;
+    public string currentAnState;
+    public bool isAttacking = false;
 
     [Header("Game Design Variables")]
     public float speed = 2f;
     public float chasingSpeed = 5f;
     public List<Vector3> patrolPoints; // points that make up the circle
+
+    #region Animation States
+
+    public const string ENEMY_WALKING = "Walking";
+    public const string ENEMY_SCREAM = "Scream";
+    public const string ENEMY_CHASING = "Chasing";
+    public const string ENEMY_ATTACKING = "Attacking";
+    public const string ENEMY_DIE = "Die";
+
+    #endregion
 
     #endregion
 
@@ -101,6 +113,11 @@ public class EnemyStateManager : MonoBehaviour
     #endregion
 
     #region Animations
+    
+    public void OnAttackStarted()
+    {
+        FMODUnity.RuntimeManager.PlayOneShot(audioSheet.GetSFXByName(FMODAudioData.SoundID.SFXEnemyScreamerAttack));
+    }
 
     public void OnUnitHit()
     {
@@ -167,8 +184,17 @@ public class EnemyStateManager : MonoBehaviour
     {
         if (health <= 0)
         {
-            animator.SetTrigger("anShouldDie");
+            ChangeAnimationState(ENEMY_DIE);
         }
+    }
+
+    public void ChangeAnimationState(string newAnState) // Yoshi: Instead of the Animatior Hell, i use this to play aniamtions
+    {
+        if (currentAnState == newAnState) return; // Stops the same animation from interrupting itself
+
+        animator.Play(newAnState); // Play the animation
+
+        currentAnState = newAnState; // Reassign the current state
     }
 
     #endregion

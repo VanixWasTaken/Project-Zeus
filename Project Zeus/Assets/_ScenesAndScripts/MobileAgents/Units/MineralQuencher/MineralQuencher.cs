@@ -13,9 +13,9 @@ public class MineralQuencher : MonoBehaviour
 
     #region Variables
 
-    private bool assignedWorker = false;
-    private bool isCollecting = false;
-    private float mineralAccumulator = 0f; // Used to tranfser float into int over time
+    [SerializeField] private bool assignedWorker = false;
+    [SerializeField] private bool isCollecting = false;
+    [SerializeField] private float mineralAccumulator = 0f; // Used to tranfser float into int over time
 
     [Header("Game Design Variables")]
     public int mineralCollectingRate = 1;
@@ -49,6 +49,7 @@ public class MineralQuencher : MonoBehaviour
         if (!unitStateManager.holdsMineralQuencher)
         {
             assignedWorker = true;
+            isCollecting = false;
             workerGO = other.gameObject;
 
             unitStateManager.holdsMineralQuencher = true;
