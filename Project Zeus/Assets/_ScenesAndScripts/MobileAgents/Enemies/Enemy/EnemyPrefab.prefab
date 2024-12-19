@@ -411,8 +411,10 @@ MonoBehaviour:
   shouldAttackUnits: 0
   lastHeardSoundPosition: {x: 0, y: 0, z: 0}
   finishedScream: 0
-  speed: 20
-  chasingSpeed: 5
+  currentAnState: 
+  isAttacking: 0
+  speed: 5
+  chasingSpeed: 8
   patrolPoints: []
 --- !u!114 &7728294870747146920
 MonoBehaviour:
